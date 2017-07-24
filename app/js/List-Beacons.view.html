@@ -1,0 +1,29 @@
+<!-- script brought in here because when placed in index.html it did not work-->
+<!--<script src="../../lib/sorttable.js"></script>-->
+
+<div class="col-md-14 col-md-offset-1" >
+  <div class="tg">
+    <table class="sortable" >
+      <tr >
+        <th class="sorttable_numeric">Beacon ID</th>
+        <th>UUID</th>
+        <th>Major</th>
+        <th>Minor</th>
+        <th>Location ID</th>
+        <th>Transmit Power</th>
+
+      </tr>
+      <tr ng-repeat="a in beacons" >
+        <td>{{a.getBeaconId()}}</td>
+        <td>{{a.getUuid()}}</td>
+        <td>{{a.getMajor()}}</td>
+        <td>{{a.getMinor()}}</td>
+        <td>{{a.getLocationId()}}</td>
+        <td>{{a.getTransmitPower()}}</td>
+      </tr>
+      <!-- Now show table for order items with this order -->
+
+    </table>
+  </div>
+
+</div>

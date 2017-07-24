@@ -1,0 +1,26 @@
+<!-- script brought in here because when placed in index.html it did not work-->
+<!--<script src="../../lib/sorttable.js"></script>-->
+
+<div class="col-md-14 col-md-offset-1" >
+  <div class="tg">
+    <table class="sortable" >
+
+      <tr >
+        <th class="sorttable_numeric">UserPoint ID</th>
+
+        <th>User Point ID</th>
+        <th>Retailer ID</th>
+        <th>Points</th>
+
+      </tr>
+      <tr ng-repeat="a in userPoints" >
+        <td>{{a.getUserPoints()}}</td>
+        <td>{{a.getRetailerId()}}</td>
+        <td>{{a.getPoints()}}</td>
+      </tr>
+      <!-- Now show table for order items with this order -->
+
+    </table>
+  </div>
+
+</div>

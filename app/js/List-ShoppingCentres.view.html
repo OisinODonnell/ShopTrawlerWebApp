@@ -1,0 +1,39 @@
+<!-- script brought in here because when placed in index.html it did not work-->
+<!--<script src="../../lib/sorttable.js"></script>-->
+
+<div class="col-md-14 col-md-offset-1" >
+  <div class="tg">
+    <table class="sortable" >
+
+      <tr >
+        <th class="sorttable_numeric">Shopping Centre ID</th>
+        <th>Admin ID</th>
+        <th>Content Page</th>
+        <th>Phone</th>
+        <th>Facebook URL</th>
+        <th>Twitter URL</th>
+        <th>Website URL</th>
+        <th>Logo Image Small</th>
+        <th>Logo Image Medium</th>
+        <th>Logo Image Large</th>
+      </tr>
+
+      <tr ng-repeat="a in shoppingCentres" >
+        <td>{{a.getShoppingCentreId()}}</td>
+        <td>{{a.getAdminId()}}</td>
+        <td>{{a.getContentPage()}}</td>
+        <td>{{a.getPhone()}}</td>
+        <td>{{a.getFacebookUrl()}}</td>
+        <td>{{a.getTwitterUrl()}}</td>
+        <td>{{a.getWebsiteUrl()}}</td>
+        <td>{{a.getLogoImageSmall()}}</td>
+        <td>{{a.getLogoImageMedium()}}</td>
+        <td>{{a.getLogoImageLarge()}}</td>
+
+      </tr>
+
+
+    </table>
+  </div>
+
+</div>

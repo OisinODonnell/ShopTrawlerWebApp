@@ -1,0 +1,37 @@
+<!-- script brought in here because when placed in index.html it did not work-->
+<!--<script src="../../lib/sorttable.js"></script>-->
+
+<div class="col-md-14 col-md-offset-1" >
+  <div class="tg">
+    <table class="sortable" >
+
+      <tr >
+        <th class="sorttable_numeric">User ID</th>
+        <th>Firstname</th>
+        <th>Surname</th>
+        <th>Email Address</th>
+        <th>Phone</th>
+        <th>Gender</th>
+        <th>Password</th>
+        <th>Type</th>
+        <th>yob</th>
+
+      </tr>
+      <tr ng-repeat="a in users" >
+        <td>{{a.getUserId()}}</td>
+        <td>{{a.getFirstname()}}</td>
+        <td>{{a.getSurname()}}</td>
+        <td>{{a.getEmailAddress()}}</td>
+        <td>{{a.getPhone()}}</td>
+        <td>{{a.getGender()}}</td>
+        <td>{{a.getPassword()}}</td>
+        <td>{{a.getType()}}</td>
+        <td>{{a.getYob()}}</td>
+
+      </tr>
+      </tr>
+
+    </table>
+  </div>
+
+</div>

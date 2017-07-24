@@ -1,0 +1,31 @@
+<!-- script brought in here because when placed in index.html it did not work-->
+<!--<script src="../../lib/sorttable.js"></script>-->
+
+<div class="col-md-14 col-md-offset-1" >
+  <div class="tg">
+    <table class="sortable" >
+
+      <tr >
+        <th class="sorttable_numeric">Visit ID</th>
+        <th>Entry Time</th>
+        <th>Exit Time</th>
+        <th>User Credite For Visit</th>
+        <th>Duration</th>
+        <th>User ID</th>
+        <th>Zone ID</th>
+      </tr>
+      <tr ng-repeat="a in visits" >
+        <td>{{a.getVisitId()}}</td>
+        <td>{{a.getEntryTimeString()}}</td>
+        <td>{{a.getExitTimeString()}}</td>
+        <td>{{a.getUserCreditedForVisit()}}</td>
+        <td>{{a.getDuration()}}</td>
+        <td>{{a.getUserId()}}</td>
+        <td>{{a.getZoneId()}}</td>
+      </tr>
+      <!-- Now show table for order items with this order -->
+
+    </table>
+  </div>
+
+</div>
