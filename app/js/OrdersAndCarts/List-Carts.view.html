@@ -1,0 +1,49 @@
+
+<div class="col-md-14 col-md-offset-1" >
+
+  <!-- Qty, Stock No, Stock Title,  UnitPrice, Extended Price, Price including Vat -->
+  <!-- Include Loyalty Discounts and Total -->
+  <p> List Shopping Cart </p>
+  <div class="tg">
+    <table class="sortable" ng-repeat="ca in carts">
+      <tr>
+        <td align="center" colspan="4">Shopping Carts</td>
+      </tr>
+      <tr >
+        <th>Cart Id</th>
+        <th>Date</th>
+        <th>Cart Items</th>
+        <th>Cart Total</th>
+      </tr>
+      <tr>
+        <td>{{ca.getCartId()}}</td>
+        <td>{{ca.getDateString()}}</td>
+        <td align="center">{{ca.getCartItems().length}}</td>
+        <td>{{ca.getTotal()}}</td>
+        <td>
+          <table class="sortable">
+            <tr>
+              <td align="center" colspan="4">Cart Items</td>
+            </tr>
+            <tr>
+              <th>Stock Item Id</th>
+              <th>Unit Price</th>
+              <th>Quantity</th>
+              <th>Row Total</th>
+
+            </tr>
+            <tr ng-repeat="cait in ca.cartItems">
+              <td>{{cait.stockItemId}}</td>
+              <td>{{cait.unitPrice}}</td>
+              <td>{{cait.quantity}}</td>
+              <td>{{cait.quantity * cait.unitPrice}}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <!-- Now show table for order items with this order -->
+
+    </table>
+  </div>
+
+</div>

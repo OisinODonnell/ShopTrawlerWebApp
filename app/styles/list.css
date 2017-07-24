@@ -1,0 +1,180 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Exo:400,700,800,600);
+.star-rating {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+.star-rating .star {
+  padding: 1px;
+  color: #ddd;
+  font-size: 20px;
+  text-shadow: .05em .05em #aaa;
+  list-style-type: none;
+  display: inline-block;
+  cursor: pointer;
+}
+.star-rating .star.filled {
+  color: #fd0;
+}
+.star-rating.readonly .star.filled {
+  color: #666;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  line-height: 1.8;
+  background: #f9f9f9;
+}
+
+.md-card {
+  width: 80%;
+  height: 500px;
+  display: block;
+  margin: 50px auto;
+  background: linear-gradient(90deg, #333344 60px, #ffffff 60%, #ffffff);
+  box-shadow: 0 0 30px 0 #999;
+  border-radius: 15px;
+  position: relative;
+}
+
+.product-image {
+  width: 40%;
+  display: block;
+  height: 100%;
+  position: relative;
+  float: left;
+}
+.product-image img {
+  width: 70%;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-55%, -60%);
+}
+
+.product-info {
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%);
+}
+
+.product-name,
+.product-price {
+  font-family: "Exo", sans-serif;
+}
+
+.product-name {
+  font-size: 200%;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.product-price {
+  font-size: 180%;
+  font-weight: 700;
+  color: #333344;
+}
+.product-price:before {
+  content: "€ ";
+}
+
+.product-slogan {
+  font-family: "Montserrat", sans-serif;
+  color: #666;
+  margin-bottom: .8em;
+}
+
+.preferences {
+  display: block;
+  list-style: none;
+  margin-bottom: 2em;
+  margin-top: 1em;
+}
+.preferences > li {
+  float: left;
+  padding-right: 30px;
+  padding-left: 0px;
+}
+
+.blue {
+  background: #0f7a94;
+}
+
+.red {
+  background: #9b062a;
+}
+
+.yellow {
+  background: #dbfd20;
+}
+
+.active {
+  box-shadow: inset 0 0 0 2px #0f7a94, inset 0 0 0 4px #fff;
+}
+
+.list-name {
+  color: #999;
+  text-transform: uppercase;
+  font-size: 95%;
+  letter-spacing: .2em;
+  margin-bottom: .5em;
+  display: block;
+}
+
+.table {
+  height: 70%;
+  width: 80%;
+  border: 0;
+}
+
+.qty {
+  font-family: "Exo", sans-serif;
+  display: block;
+  width: 70px;
+  text-align: right;
+  padding: 5px 0px 5px 10px;
+  border-radius: 7px;
+  font-size: 1.3em;
+  font-weight: 700;
+  border: 1.5px solid #999;
+  cursor: pointer;
+  margin-top: -.7em;
+}
+.qty option {
+  text-align: right;
+}
+.qty:outline, .qty:active, .qty:focus {
+  outline: none;
+  border: 0;
+}
+
+.cartButton {
+  button-size: 100%;
+  font-family: "Montserrat", sans-serif;
+  background: #334;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 10px;
+  transition: .25s;
+}
+.cartButton:hover {
+  background: #555;
+}

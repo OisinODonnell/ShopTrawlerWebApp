@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html data-ng-app="app" ng-cloak xmlns:href="http://www.w3.org/1999/xhtml">
+<head>
+  <style>
+
+  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Electronics Store</title>
+  <script src="lib/sorttable.js"></script>
+
+  <!--// Style sheets-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://bootsnipp.com/css/fullscreen.css" media="all" type="text/css"  rel="stylesheet" >
+  <link href="lib/angular-flash.min.css" type="text/css" rel="stylesheet" />
+  <link href="styles/app.css" rel="stylesheet" />
+
+
+  <!--// Angular, JQuery, Bootstrap, sorttable and w3-->
+  <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!--<script src="lib/jquery.tablesorter.js"></script>-->
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!--<link  href="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"/>-->
+  <!--<script src="https://www.w3schools.com/lib/w3.js"></script>-->
+  <script src="lib/angular164.min.js"></script>
+  <script src="lib/angular164-route.min.js"></script>
+  <script src="lib/angular164-cookies.min.js"></script>
+  <script src="lib/angular-flash.js"></script>
+
+  <!--// application-->
+  <script src="app.js"></script>
+
+  <!--// old controllers-->
+  <!--<script src="js/controllers/factory.js"></script>-->
+  <!--<script src="js/login/login.controller.js"></script>-->
+  <!--<script src="js/login/nav.controller.js"></script>-->
+  <!--<script src="js/Accounts/Accounts.controller.js"></script>-->
+  <!--<script src="js/Common/Common.js"></script>-->
+  <!--<script src="js/login/home.controller.js"></script>-->
+  <!--<script src="js/login/register.controller.js"></script>-->
+  <!--<script src="js/OrdersAndCarts/OrdersAndCarts.controller.js"></script>-->
+  <!--<script src="js/Stock/Stock.controller.js"></script>-->
+  <!--<script src="js/Accounts/Accounts.controller.js"></script>-->
+
+  <!--// New App controllers-->
+  <script src="js/beacons.controller.js"></script>
+  <script src="js/shoppingCentres.controller.js"></script>
+  <script src="js/locations.controller.js"></script>
+  <script src="js/zones.controller.js"></script>
+  <script src="js/users.controller.js"></script>
+  <script src="js/visits.controller.js"></script>
+  <script src="js/ratings.controller.js"></script>
+  <script src="js/favourites.controller.js"></script>
+  <script src="js/userPoints.controller.js"></script>
+  <script src="js/retailers.controller.js"></script>
+  <script src="js/bonusCodes.controller.js"></script>
+  <script src="js/content.controller.js"></script>
+  <script src="js/loyaltyRewards.controller.js"></script>
+
+  <!--// services--> <script src="js/app-services/authentication.service.js"></script>
+  <script src="js/app-services/flash.service.js"></script>
+
+  <!-- Real user service that uses an api -->
+  <script src="js/app-services/user.service.js"></script>
+
+  <!-- Fake user service for demo that uses local storage -->
+  <!--<script src="js/app-services/user.service.local-storage.js"></script>-->
+
+  <!--// Models-->
+
+  <!-- old App Models-->
+  <!--<Script src="Models/Account.js"></Script>-->
+  <!--<Script src="Models/Cart.js"></Script>-->
+  <!--<Script src="Models/CartItem.js"></Script>-->
+  <!--<Script src="Models/Order.js"></Script>-->
+  <!--<Script src="Models/OrderItem.js"></Script>-->
+  <!--<Script src="Models/ItemCategory.js"></Script>-->
+  <!--<Script src="Models/Manufacturer.js"></Script>-->
+  <!--<Script src="Models/StockItem.js"></Script>-->
+  <!--<Script src="Models/Session.js"></Script>-->
+  <!--<Script src="Models/StockReview.js"></Script>-->
+
+  <!-- New App  Models -->
+  <Script src="Models/ShoppingCentre.js"></Script>
+  <Script src="Models/Location.js"></Script>
+  <Script src="Models/Beacon.js"></Script>
+  <Script src="Models/Zone.js"></Script>
+  <Script src="Models/User.js"></Script>
+  <Script src="Models/Visit.js"></Script>
+  <Script src="Models/Rating.js"></Script>
+  <Script src="Models/Favourite.js"></Script>
+  <Script src="Models/UserPoint.js"></Script>
+  <Script src="Models/Retailer.js"></Script>
+  <Script src="Models/BonusCode.js"></Script>
+  <Script src="Models/Content.js"></Script>
+  <Script src="Models/LoyaltyReward.js"></Script>
+
+
+
+
+</head>
+<body>
+
+<div>
+  <div  class="navbar navbar-default navbar-static-top navbar-inverse navbar-toggleable-md navbar-light bg-faded" id="nav-top">
+    <div class="container">
+      <div class="navbar-header">
+
+      </div>
+      <div class="col-sm-1 collapse navbar-collapse" id="navbar-lgn-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#!/login" data-ng-show="!loggedIn">Login</a></li>
+          <li><a href="#!/logout" data-ng-show="loggedIn">Log Out</a></li>
+        </ul>
+      </div>
+      <div  class="col-sm-1 collapse navbar-collapse" id="navbar-crt-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#!/ShoppingCentres/List" data-ng-show ="admin && loggedIn" > ShoppingCentre</a>    </li>
+          <li><a href="#!/Contents/List"       data-ng-show = "admin && loggedIn" > Contents      </a>    </li>
+          <li><a href="#!/BonusCodes/List"     data-ng-show = "admin && loggedIn" > BonusCodes    </a>    </li>
+          <li><a href="#!/Locations/List"      data-ng-show = "admin && loggedIn" > Locations     </a>    </li>
+          <li><a href="#!/Beacons/List"        data-ng-show = "admin && loggedIn" > Beacons       </a>    </li>
+          <li><a href="#!/Zones/List"          data-ng-show = "admin && loggedIn" > Zones         </a>    </li>
+          <li><a href="#!/Favourites/List"     data-ng-show = "cust  && loggedIn" > Favourites    </a>    </li>
+          <li><a href="#!/LoyaltyRewards/List" data-ng-show = "cust  && loggedIn" > LoyaltyRewards</a>    </li>
+          <li><a href="#!/Ratings/List"        data-ng-show = "cust  && loggedIn" > Ratings       </a>    </li>
+          <li><a href="#!/Users/List"          data-ng-show = "(cust || admin ) && loggedIn" > Users      </a>    </li>
+          <li><a href="#!/Retailers/List"      data-ng-show = "(cust || admin ) && loggedIn" > Retailers  </a>    </li>
+          <li><a href="#!/UserPoints/List"     data-ng-show = "(cust || admin ) && loggedIn" > UserPoints </a>    </li>
+          <li><a href="#!/Visits/List"         data-ng-show = "(cust || admin ) && loggedIn" > Visits     </a>    </li>
+
+        </ul>
+      </div>
+      <!--<div  class="col-sm-1 collapse navbar-collapse" id="navbar-crt-collapse">-->
+        <!--<ul class="nav navbar-nav">-->
+          <!--<li><a href="#!/Accounts/List"                 data-ng-show = "admin && loggedIn" > Accounts           </a>    </li>-->
+          <!--<li><a href="#!/Accounts/Sessions/List"        data-ng-show = "admin && loggedIn" > Sessions           </a>    </li>-->
+          <!--<li><a href="#!/OrdersAndCarts/Carts/List"     data-ng-show = "cust && loggedIn"  > List Carts         </a>    </li>-->
+          <!--<li><a href="#!/OrdersAndCarts/Checkout"       data-ng-show = "cust && loggedIn"  > Checkout           </a>    </li>-->
+          <!--<li><a href="#!/OrdersAndCarts/Orders/List"    data-ng-show = "(cust || admin ) && loggedIn">List Orders </a> </li>-->
+          <!--<li><a href="#!/Stock/Manufacturers/List"      data-ng-show = "admin && loggedIn" > List Manufacturers    </a> </li>-->
+          <!--<li><a href="#!/Stock/ItemCategories/List"     data-ng-show = "admin && loggedIn" > List Item Categories  </a> </li>-->
+          <!--<li><a href="#!/Stock/StockReviews/List"       data-ng-show = "cust && loggedIn"  > Show Stock Reviews </a>    </li>-->
+          <!--<li><a href="#!/Stock/SearchAdmin"             data-ng-show = "admin && loggedIn" > Product Search     </a>    </li>-->
+          <!--<li><a href="#!/Stock/SearchCustomer"          data-ng-show = "cust && loggedIn"  > Product Search     </a>    </li>-->
+        <!--</ul>-->
+      <!--</div>-->
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- ng-controller="LoginController as vm"  hide setup screens until app is stable -->
+<div >
+
+  <!-- Navigation bar is loaded in here-->
+  <!--<div id="w3include" w3-include-html="navbar.html"></div>-->
+  <!--<script id="navbarInclude">-->
+    <!--w3.includeHTML();-->
+  <!--</script>-->
+  <!-- Location of flash messages -->
+  <!-- The message should go away after 2 seconds (timeout = 2000), the timeout setting did not work-->
+
+  <flash-message  duration="3000" show-close="true" >
+    <div class="my-flash"></div>
+  </flash-message>
+  <div ng-view>
+                <!-- single page website pages come in here-->
+  </div>
+
+</div>
+</body>
+</html>

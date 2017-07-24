@@ -1,0 +1,20 @@
+{
+  "name": "Paddy30",
+  "homepage": "https://github.com/OisinODonnell/E-Store-Front",
+  "authors": [
+    "OisinODonnell <oisinodonnell@hotmail.com>"
+  ],
+  "description": "EStores Front End",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-mocks": "^1.6.4"
+  }
+}

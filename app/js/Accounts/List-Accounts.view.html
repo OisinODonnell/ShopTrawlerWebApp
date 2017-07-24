@@ -1,0 +1,36 @@
+<!-- script brought in here because when placed in index.html it did not work-->
+<!--<script src="../../lib/sorttable.js"></script>-->
+
+<div class="col-md-14 col-md-offset-1" >
+  <div class="tg">
+    <table class="sortable" >
+
+      <tr >
+        <th class="sorttable_numeric">Account ID</th>
+        <th>Account Name</th>
+        <th>Date Joined</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Account Type</th>
+        <th>Payment Type</th>
+        <th>Loyalty Card</th>
+        <th>Address</th>
+
+      </tr>
+      <tr ng-repeat="a in accounts" >
+        <td>{{a.getAccountId()}}</td>
+        <td>{{a.getName()}}</td>
+        <td>{{a.getDateJoinedString()}}</td>
+        <td>{{a.getEmail()}}</td>
+        <td>{{a.getPhone()}}</td>
+        <td>{{a.getAccountType()}}</td>
+        <td>{{a.getPaymentType()}}</td>
+        <td>{{a.getLoyaltyCard()}}</td>
+        <td>{{a.getAddressStreet()}}, {{a.getAddressCity()}}, {{a.getAddressCountry()}}</td>
+      </tr>
+      <!-- Now show table for order items with this order -->
+
+    </table>
+  </div>
+
+</div>

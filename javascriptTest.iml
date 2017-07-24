@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="angular" level="application" />
+    <orderEntry type="library" name="angular-cookies" level="application" />
+    <orderEntry type="library" name="angular-resource" level="application" />
+    <orderEntry type="library" name="angular-route" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="jquery-3.1.1" level="application" />
+    <orderEntry type="library" name="angular-sanitize" level="application" />
+    <orderEntry type="library" name="org.webjars:jasmine:Release" level="application" />
+    <orderEntry type="library" name="org.webjars:jasmine:2.5.0" level="application" />
+    <orderEntry type="library" name="Karma" level="application" />
+    <orderEntry type="library" name="Node.js" level="application" />
+    <orderEntry type="library" name="karma-jasmine-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="w3" level="application" />
+    <orderEntry type="library" name="jquery-3.2.1" level="application" />
+  </component>
+  <component name="POM File Configuration" pomFile="" />
+</module>

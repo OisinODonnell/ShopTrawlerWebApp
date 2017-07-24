@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html data-ng-app="app" xmlns:href="http://www.w3.org/1999/xhtml">
+<head>
+  <style>
+    body{
+      background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');
+      padding:50px;
+    }
+    #login-dp{
+      min-width: 250px;
+      padding: 14px 14px 0;
+      overflow:hidden;
+      background-color:rgba(255,255,255,.8);
+    }
+    #login-dp .help-block{
+      font-size:12px
+    }
+    #login-dp .bottom{
+      background-color:rgba(255,255,255,.8);
+      border-top:1px solid #ddd;
+      clear:both;
+      padding:14px;
+    }
+    #login-dp .social-buttons{
+      margin:12px 0
+    }
+    #login-dp .social-buttons a{
+      width: 49%;
+    }
+    #login-dp .form-group {
+      margin-bottom: 10px;
+    }
+    .btn-fb{
+      color: #fff;
+      background-color:#3b5998;
+    }
+    .btn-fb:hover{
+      color: #fff;
+      background-color:#496ebc
+    }
+    .btn-tw{
+      color: #fff;
+      background-color:#55acee;
+    }
+    .btn-tw:hover{
+      color: #fff;
+      background-color:#59b5fa;
+    }
+    @media(max-width:768px){
+      #login-dp{
+        background-color: inherit;
+        color: #fff;
+      }
+      #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+      }
+
+    }
+  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AngularJS User Registration and Login Example</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://bootsnipp.com/css/fullscreen.css" media="all" type="text/css" rel="stylesheet" >
+
+
+  <link href="../app/styles/app.css" rel="stylesheet" />
+  <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"/>
+
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <script src="lib/angular164.min.js"></script>
+  <script src="lib/angular164-route.min.js"></script>
+  <script src="lib/angular164-cookies.min.js"></script>
+  <script src="lib/angular-flash.js"></script>
+
+</head>
+<body>
+
+<!--<div ng-controller="HomeController">-->
+<div w3-include-html="navbarLogin.html"></div>
+<!--Bring in navbar.html-->
+<script id="navbarInclude">
+  w3.includeHTML();
+</script>
+<flash-message  duration="5000" show-close="true" >
+  <div class="my-flash"></div>
+</flash-message>
+
+<div ng-view>  <!-- single page website pages come in here-->
+
+</div>
+
+<!--</div>-->
+
+<script src="app.js"></script>
+<script src="js/controllers/factory.js"></script>
+<script src="js/login/login.controller.js"></script>
+<script src="js/app-services/authentication.service.js"></script>
+<script src="js/app-services/flash.service.js"></script>
+
+<!-- Real user service that uses an api -->
+<script src="js/app-services/user.service.js"></script>
+
+<!-- Fake user service for demo that uses local storage -->
+<!--<script src="js/app-services/user.service.local-storage.js"></script>-->
+<script src="js/home/home.controller.js"></script>
+<script src="js/login/register.controller.js"></script>
+</body>
+</html>

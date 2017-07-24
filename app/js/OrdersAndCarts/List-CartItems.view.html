@@ -1,0 +1,11 @@
+<div ng-model="testMessage">
+
+  <!-- Qty, Stock No, Stock Title,  UnitPrice, Extended Price -->
+  <p> List CartItems </p>
+  {{testMessage}}
+  <table ng-repeat="c in cartItems">
+    <tr>
+      <td>{{c}}</td>
+    </tr>
+  </table>
+</div>
