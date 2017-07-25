@@ -35,6 +35,7 @@
       $rootScope.tab = 1;
       $rootScope.admin = false;
       $rootScope.cust = true;
+      $rootScope.mob = false;
       $rootScope.loggedIn = false;
 
       let functions  = {};
@@ -62,8 +63,10 @@
               AuthenticationService.SetCredentials(vm.username, vm.password);
 
               // set  navbar controls
-              setAdmin( $rootScope.userType === "ADMINISTRATOR" );
-              setCust( $rootScope.userType === "CUSTOMER" );
+              setAdmin( $rootScope.userType === "Administrator" );
+              setCust( $rootScope.userType === "Retailer" );
+              setMob( $rootScope.userType === "Mobile" );
+
               setLoggedIn(true);
 
               // finally set where to go next
@@ -169,11 +172,14 @@
       const isSelected  = checkTab => $rootScope.tab === checkTab;
 
       const isAdmin     = ()       => $rootScope.admin;
-      const isCust      = ()       => !$rootScope.admin;
+      const isCust      = ()       => $rootScope.cust;
+      const isMob       = ()       => $rootScope.mob;
+
       const isLoggedIn  = ()       => $rootScope.loggedIn;
       const setLoggedIn = state    => $rootScope.loggedIn = state;
       const setAdmin    = state    => $rootScope.admin    = state;
       const setCust     = state    => $rootScope.cust     = state;
+      const setMob      = state    => $rootScope.mob      = state;
 
       const resetUserLoginDetails = () => {
         $rootScope.userType = "CUSTOMER";
