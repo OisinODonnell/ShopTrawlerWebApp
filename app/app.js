@@ -50,7 +50,7 @@
         })
 
           // new routes
-          
+
           // ShoppingCentre
         // .when('/ShoppingCentres/List', {
         //   controller: 'ShoppingCentresController',

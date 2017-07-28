@@ -1,5 +1,5 @@
 ﻿myApp.controller('LoginController', ['$location', 'AuthenticationService','$rootScope','DataFactory','$scope','Flash',
-    function ($location, AuthenticationService, $rootScope, DataFactory,$scope, Flash) {
+    function ($location, AuthenticationService, $rootScope, DataFactory, $scope, Flash) {
       let vm = this;
       // user login/registration placeholders
 
@@ -30,6 +30,7 @@
 
       $scope.username = "";
       $scope.password = "";
+      $scope.vm = vm;
       let id = null;
 
       $rootScope.tab = 1;
@@ -45,13 +46,18 @@
           AuthenticationService.ClearCredentials();
       })();
 
-      functions.login = (username, password) =>  {
+      functions.login  = () =>  {
         vm.dataLoading = true;
         // setAdmin(false);
         // setLoggedIn(false);
         $rootScope.admin =  false;
         $rootScope.loggedIn = false;
-        DataFactory.login($scope.vm.username,$scope.vm.password)
+
+        vm.user = "username="+$scope.vm.username+"&password="+$scope.vm.password;
+
+
+        // DataFactory.login($scope.vm.username,$scope.vm.password)
+        DataFactory.login(vm.user)
           .then(function (response) {
             if (response.data.success === "1") {
               // save user details so that the rest of the app can check them as required

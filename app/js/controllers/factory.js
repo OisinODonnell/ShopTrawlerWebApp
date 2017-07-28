@@ -4,7 +4,11 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     const urlBase = 'http://localhost:8080';
 
     // login/logout/register
-    factory.login       = (username, password)    => $http.get(urlBase  + '/Login/' + username + '/' + password );
+
+  // factory.login       = (username, password)    =>
+    factory.login       = (user)    =>
+      $http.post(urlBase  + '/login',user);
+      // $http.get(urlBase  + '/login/' + username + '/' + password );
 
     factory.registerAdmin    = (name, email, password, accountType ) =>
       $http.get( urlBase + '/Login/register/' + name + '/' + email + '/' + password + '/' + accountType);
@@ -19,10 +23,9 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     // new app factory methods
 
     // ShoppingCentre
-
     factory.listShoppingCentre  = ()                => $http.get(urlBase + '/ShoppingCentre' );
     factory.getShoppingCentre   = (id)              => $http.get(urlBase + '/ShoppingCentre/' + id);
-    factory.addShoppingCentre   = (shoppingCentre)  =>  $http.get(urlBase + '/ShoppingCentre/' + shoppingCentre );
+    factory.addShoppingCentre   = (shoppingCentre)  => $http.get(urlBase + '/ShoppingCentre/' + shoppingCentre );
 
     // Favourits
     factory.listFavourites      = ()            => $http.get(urlBase + '/Favourites' );
@@ -77,12 +80,12 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     // LoyaltyRewards
     factory.listLoyaltyRewards  = ()              => $http.get(urlBase + '/' );
     factory.getLoyaltyReward    = (id)            => $http.get(urlBase + '/LoyaltyRewards/' + id);
-    factory.addLoyaltyReward    = (loyaltyReward) =>  $http.get(urlBase + '/LoyaltyRewards/' + loyaltyReward );
+    factory.addLoyaltyReward    = (loyaltyReward) => $http.get(urlBase + '/LoyaltyRewards/' + loyaltyReward );
 
     // BonusCodes
     factory.listBonusCodes      = ()            => $http.get(urlBase + '/' );
     factory.getBonusCode        = (id)          => $http.get(urlBase + '/BonusCodes/' + id );
-    factory.addBonusCode        = (bonusCode)   =>  $http.get(urlBase + '/BonusCodes/' + bonusCode );
+    factory.addBonusCode        = (bonusCode)   => $http.get(urlBase + '/BonusCodes/' + bonusCode );
 
 
 

@@ -18,7 +18,7 @@
 
 
   <!--// Angular, JQuery, Bootstrap, sorttable and w3-->
-  <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="lib/jquery-3.2.1.min.js"></script>
   <!--<script src="lib/jquery.tablesorter.js"></script>-->
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -33,13 +33,13 @@
   <script src="app.js"></script>
 
   <!--// old controllers-->
-  <!--<script src="js/controllers/factory.js"></script>-->
-  <!--<script src="js/login/login.controller.js"></script>-->
-  <!--<script src="js/login/nav.controller.js"></script>-->
+  <script src="js/controllers/factory.js"></script>
+  <script src="js/login/login.controller.js"></script>
+  <script src="js/login/nav.controller.js"></script>
   <!--<script src="js/Accounts/Accounts.controller.js"></script>-->
-  <!--<script src="js/Common/Common.js"></script>-->
-  <!--<script src="js/login/home.controller.js"></script>-->
-  <!--<script src="js/login/register.controller.js"></script>-->
+  <script src="js/Common/Common.js"></script>
+  <script src="js/login/home.controller.js"></script>
+  <script src="js/login/register.controller.js"></script>
   <!--<script src="js/OrdersAndCarts/OrdersAndCarts.controller.js"></script>-->
   <!--<script src="js/Stock/Stock.controller.js"></script>-->
   <!--<script src="js/Accounts/Accounts.controller.js"></script>-->
@@ -68,21 +68,7 @@
   <!-- Fake user service for demo that uses local storage -->
   <!--<script src="js/app-services/user.service.local-storage.js"></script>-->
 
-  <!--// Models-->
-
-  <!-- old App Models-->
-  <!--<Script src="Models/Account.js"></Script>-->
-  <!--<Script src="Models/Cart.js"></Script>-->
-  <!--<Script src="Models/CartItem.js"></Script>-->
-  <!--<Script src="Models/Order.js"></Script>-->
-  <!--<Script src="Models/OrderItem.js"></Script>-->
-  <!--<Script src="Models/ItemCategory.js"></Script>-->
-  <!--<Script src="Models/Manufacturer.js"></Script>-->
-  <!--<Script src="Models/StockItem.js"></Script>-->
-  <!--<Script src="Models/Session.js"></Script>-->
-  <!--<Script src="Models/StockReview.js"></Script>-->
-
-  <!-- New App  Models -->
+  <!-- App  Models -->
   <Script src="Models/ShoppingCentre.js"></Script>
   <Script src="Models/Location.js"></Script>
   <Script src="Models/Beacon.js"></Script>
@@ -97,11 +83,8 @@
   <Script src="Models/Content.js"></Script>
   <Script src="Models/LoyaltyReward.js"></Script>
 
-
-
-
 </head>
-<body ng-controller="LoginController as vm">
+<!--<body ng-controller="LoginController as vm">-->
 
 <div>
   <div  class="navbar navbar-default navbar-static-top navbar-inverse navbar-toggleable-md navbar-light bg-faded" id="nav-top">
@@ -133,21 +116,6 @@
 
         </ul>
       </div>
-      <!--<div  class="col-sm-1 collapse navbar-collapse" id="navbar-crt-collapse">-->
-        <!--<ul class="nav navbar-nav">-->
-          <!--<li><a href="#!/Accounts/List"                 data-ng-show = "admin && loggedIn" > Accounts           </a>    </li>-->
-          <!--<li><a href="#!/Accounts/Sessions/List"        data-ng-show = "admin && loggedIn" > Sessions           </a>    </li>-->
-          <!--<li><a href="#!/OrdersAndCarts/Carts/List"     data-ng-show = "cust && loggedIn"  > List Carts         </a>    </li>-->
-          <!--<li><a href="#!/OrdersAndCarts/Checkout"       data-ng-show = "cust && loggedIn"  > Checkout           </a>    </li>-->
-          <!--<li><a href="#!/OrdersAndCarts/Orders/List"    data-ng-show = "(cust || admin ) && loggedIn">List Orders </a> </li>-->
-          <!--<li><a href="#!/Stock/Manufacturers/List"      data-ng-show = "admin && loggedIn" > List Manufacturers    </a> </li>-->
-          <!--<li><a href="#!/Stock/ItemCategories/List"     data-ng-show = "admin && loggedIn" > List Item Categories  </a> </li>-->
-          <!--<li><a href="#!/Stock/StockReviews/List"       data-ng-show = "cust && loggedIn"  > Show Stock Reviews </a>    </li>-->
-          <!--<li><a href="#!/Stock/SearchAdmin"             data-ng-show = "admin && loggedIn" > Product Search     </a>    </li>-->
-          <!--<li><a href="#!/Stock/SearchCustomer"          data-ng-show = "cust && loggedIn"  > Product Search     </a>    </li>-->
-        <!--</ul>-->
-      <!--</div>-->
-
     </div>
   </div>
 </div>
