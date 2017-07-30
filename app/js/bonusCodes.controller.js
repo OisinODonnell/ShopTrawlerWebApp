@@ -54,10 +54,10 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
 
 
 
-    function AddBonusCode(bonusCode) {
+    function AddBonusCode(newBonusCode) {
       vm.dataLoading = true;
       let bonusCode = new BonusCode();
-      DataFactory.addBonusCode(bonusCode)
+      DataFactory.addBonusCode(newBonusCode)
         .then( function(response) {
             $scope.bonusCode = Common.createObjects(response.data, bonusCode);
           },

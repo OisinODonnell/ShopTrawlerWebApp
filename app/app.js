@@ -2,60 +2,45 @@
     .config(config)
     .run(run);
 
-  config.$inject = ['$routeProvider','FlashProvider','$httpProvider'];
-    function config($routeProvider,FlashProvider,$httpProvider,$urlRouterProvider) {
+  config.$inject = ['$routeProvider','FlashProvider'];
+    function config($routeProvider,FlashProvider) {
 
 
       // $urlRouterProvider.otherwise('/login');
       // $httpProvider.interceptors.push('APIInterceptor');
 
-      // FlashProvider.setTimeout(2000);
+      FlashProvider.setTimeout(2000);
       FlashProvider.setShowClose(true);
 
-      // these next two were recommended to facilitate CORS communications
-      // But breaks routes when included
-      // $httpProvider.defaults.useXDomain                                      = true;
-      // $httpProvider.defaults.headers.common[ 'Access-Control-Allow-Origin' ] = '*';
-
       $routeProvider
-        // .when('login', {
-        //   controller: 'LoginCtrl',
-        //   templateUrl: 'js/login/login.view.html',
-        //   controllerAs: 'vm',
-        //   requireLogin: false
-        // })
-        .when('/', {
-          controller: 'LoginCtrl',
-          templateUrl: 'js/login/login.view.html',
-          controllerAs: 'vm',
-          requireLogin: true
-        })
+
         .when('/login', {
-          controller: 'LoginController',
-          templateUrl: 'js/login/login.view.html',
+          controller:   'LoginController',
+          templateUrl:  'js/login/login.view.html',
           controllerAs: 'vm',
           requireLogin: false
         })
         .when('/register', {
-          controller: 'LoginController',
-          templateUrl: 'js/login/register.view.html',
+          controller:   'LoginController',
+          templateUrl:  'js/login/register.view.html',
+          controllerAs: 'vm',
+          requireLogin: false
+        })
+        .when('/home', {
+          controller:   'HomeController',
+          templateUrl:  'js/login/home.view.html',
           controllerAs: 'vm',
           requireLogin: false
         })
 
-        .when('/logout', {
-          controller: 'HomeController',
-          templateUrl: 'js/login/home.view.html',
-          controllerAs: 'vm',
-          redirectTo: '/login',
-          requireLogin: true
-        })
-        .when('/home', {
-          controller: 'HomeController',
-          templateUrl: 'js/login/home.view.html',
-          controllerAs: 'vm',
-          requireLogin: true
-        })
+        // .when('/logout', {
+        //   controller: 'HomeController',
+        //   templateUrl: 'js/login/home.view.html',
+        //   controllerAs: 'vm',
+        //   redirectTo: '/login',
+        //   requireLogin: true
+        // })
+        .otherwise({ redirectTo: '/login' });
 
           // new routes
 
@@ -480,7 +465,7 @@
         //   controllerAs: 'vm'
         // })
 
-        .otherwise({ redirectTo: '/login' });
+        // .otherwise({ redirectTo: '/login' });
   }
 
   run.$inject = ['$rootScope', '$location', '$cookies', '$http'];

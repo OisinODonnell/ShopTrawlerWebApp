@@ -21,33 +21,33 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common',
     ListVisits();
 
     let factory = {
-      ListVisits    : ListVisits,
-      ListVisitsBy  : ListVisitsBy,
+      ListShoppingCentres    : ListShoppingCentres,
+      ListShoppingCentreBy  : ListShoppingCentreBy,
     };
 
     return factory;
 
 
 
-    function ListVisits() {
+    function ListShoppingCentres() {
       vm.dataLoading = true;
-      let visit = new Visit();
-      DataFactory.getVisits()
+      let shoppingCentre = new ShoppingCentre();
+      DataFactory.getShoppingCentres()
         .then( function(response) {
-            $scope.visits = Common.createObjects(response.data, visit);
+            $scope.shoppingCentres = Common.createObjects(response.data, shoppingCentre);
           },
-          function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
+          function (error) { $scope.status = 'Unable to load Shopping centres ' + error.message; });
       vm.dataLoading = false;
     }
 
-    function ListVisitsBy(type) {
+    function ListShoppingCentreBy(type) {
       vm.dataLoading = true;
-      let visit = new Visit();
-      DataFactory.getVisits(type)
+      let shoppingCentre = new ShoppingCentre();
+      DataFactory.getShoppingCentres(type)
         .then( function(response) {
-            $scope.visits = Common.createObjects(response.data, visit);
+            $scope.visits = Common.createObjects(response.data, shoppingCentre);
           },
-          function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
+          function (error) { $scope.status = 'Unable to load Shopping Centre ' + error.message; });
       vm.dataLoading = false;
     }
 

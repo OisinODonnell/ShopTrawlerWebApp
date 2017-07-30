@@ -29,7 +29,6 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
       let vm = this;
       // user login/registration placeholders
 
-
       vm.userId       = 0;
       vm.firstname    = "";
       vm.surname      = "";
@@ -39,6 +38,7 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
       vm.password     = "";
       vm.type         = "Mobile";
       vm.yob          = 1992;
+      vm.username     = "";
 
       // globals
       $rootScope.flash = {};
@@ -81,9 +81,7 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
 
         vm.user = "username="+$scope.vm.username+"&password="+$scope.vm.password;
 
-
         DataFactory.login($scope.vm.username,$scope.vm.password)
-        // DataFactory.login(vm.user)
           .then(function (response) {
             if (response.data.success === "1") {
               // save user details so that the rest of the app can check them as required
@@ -92,12 +90,18 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
 
               // show success
               id = Flash.create('success', response.data.message, $rootScope.flash.autoHide, {class: 'custom-class', id: 'custom-id'}, true);
-              AuthenticationService.SetCredentials(vm.username, vm.password);
+              // AuthenticationService.SetCredentials(vm.username, vm.password);
 
               // set  navbar controls
               setAdmin( $rootScope.userType === "Administrator" );
               setCust( $rootScope.userType === "Retailer" );
               setMob( $rootScope.userType === "Mobile" );
+
+              // $rootScope.firstname = $scope.vm.firstname;
+              // $rootScope.surname = $scope.vm.surname;
+              $rootScope.emailAddress = $scope.vm.username;
+              $rootScope.username = $scope.vm.username;
+              vm.username = $scope.vm.username;
 
               setLoggedIn(true);
 
@@ -129,9 +133,7 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
           functions.registerCust();
       };
 
-
       functions.registerAdmin = () => {
-
 
         DataFactory.registerAdmin($scope.vm.name, $scope.vm.email, $scope.vm.password,"ADMINISTRATOR")
           .then(function (response) {
@@ -213,6 +215,8 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
       const setCust     = state    => $rootScope.cust     = state;
       const setMob      = state    => $rootScope.mob      = state;
 
+      const getFirstname = () => { return vm.firstname; }
+
       const resetUserLoginDetails = () => {
         $rootScope.userType = "CUSTOMER";
         $rootScope.loggedInUserTime = "";
@@ -225,7 +229,7 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
 
         $rootScope.userType         = data.userType;
         $rootScope.loggedInUserTime = data.startTime;
-        $rootScope.loggedInUserId   = data.accountId;
+        $rootScope.loggedInUserId   = data.userId;
         $rootScope.loggedInUserName = $scope.vm.username;
       };
 

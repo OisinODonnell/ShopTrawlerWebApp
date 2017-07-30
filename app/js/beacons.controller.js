@@ -9,7 +9,7 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common',
     // placeholders
     $scope.dropdownCategories    = [];
     $scope.dropdownmanufacturers = [];
-    $scope.beacons       = [];
+    $scope.beacons      = [];
     $scope.beaconId     = 0;
     $scope.beacon       = {};
 
@@ -22,13 +22,10 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common',
 
     let factory = {
       ListBeacons : ListBeacons, // all users
-      AddBeacon  : AddBeacon,
-      GetBeacon  : GetBeacon,  // single user
+      AddBeacon   : AddBeacon,
+      GetBeacon   : GetBeacon,  // single user
     };
-
     return factory;
-
-
 
     function ListBeacons() {
       vm.dataLoading = true;
@@ -52,12 +49,10 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common',
       vm.dataLoading = false;
     }
 
-
-
-    function AddBeacon(beacon) {
+    function AddBeacon(newBeacon) {
       vm.dataLoading = true;
       let beacon = new Beacon();
-      DataFactory.addBeacon(beacon)
+      DataFactory.addBeacon(newBeacon)
         .then( function(response) {
             $scope.beacon = Common.createObjects(response.data, beacon);
           },

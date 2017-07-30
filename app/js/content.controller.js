@@ -54,10 +54,10 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common',
 
 
 
-    function AddContent(content) {
+    function AddContent(newContent) {
       vm.dataLoading = true;
       let content = new Content();
-      DataFactory.addContent(content)
+      DataFactory.addContent(newContent)
         .then( function(response) {
             $scope.content = Common.createObjects(response.data, content);
           },

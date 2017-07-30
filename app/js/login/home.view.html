@@ -1,12 +1,12 @@
-﻿<h1>Hi {{vm.username}}!</h1>
+﻿<h1>Hi {{username + vm.username + $scope.vm.username + $scope.username}}!</h1>
 <p>You're logged in!!</p>
 
 <ul>
     <div ng-if="vm.isAdmin()" >
       <h3>All registered users:</h3>
       <li ng-repeat="user in vm.allUsers">
-          {{user.name}}
-          - <a ng-click="vm.deleteUser(user.accountId)">Delete</a>
+          {{vm.emailAddress}}
+          - <a ng-click="vm.deleteUser(vm.accountId)">Delete</a>
       </li>
     </div>
 </ul>
