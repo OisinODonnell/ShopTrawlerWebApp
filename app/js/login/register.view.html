@@ -1,16 +1,23 @@
 ﻿<div class="col-md-4 col-md-offset-3">
     <h2>Register</h2>
     <form name="form" ng-submit="vm.register()" role="form">
-        <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
-            <label for="name">Name</label>
-            <input type="text" placeholder="Full Name"  name="name" id="name" class="form-control" ng-model="vm.name" required />
-            <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Name is required</span>
-        </div>
+      <div class="form-group" ng-class="{ 'has-error': form.firstname.$dirty && form.firstname.$error.required }">
+        <label for="firstname">Firstname</label>
+        <input type="text" placeholder="Firstname"  name="name" id="firstname" class="form-control" ng-model="vm.name" required />
+        <span ng-show="form.firstname.$dirty && form.firstname.$error.required" class="help-block">Firstname is required</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.surname.$dirty && form.surname.$error.required }">
+        <label for="surname">Surname</label>
+        <input type="text" placeholder="Surname"  surname="surname" id="surname" class="form-control" ng-model="vm.surname" required />
+        <span ng-show="form.surname.$dirty && form.surname.$error.required" class="help-block">Surname is required</span>
+      </div>
+
       <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
         <label for="email">Username(email)</label>
         <input type="text" placeholder="Username (your email address)" name="email" id="email" class="form-control" ng-model="vm.email" required />
         <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Username is required</span>
       </div>
+
         <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
           <label for="password">Password</label>
           <input type="password" placeholder="Password" name="password" id="password" class="form-control" ng-model="vm.password" required />
@@ -23,51 +30,25 @@
         </div>
 
         <!-- Select whether this is an admin account. Hide following fields if admin is selected-->
-      <div class="checkbox" >
-        <label><input ng-model="vm.isAdmin" type="checkbox" id="isAdmin"> Create an Administrator Account</label>
-      </div>
-
-
-      <div data-ng-show="!vm.isAdmin === true" >
-
-        <div class="checkbox" >
-          <label><input ng-model="vm.isLoyaltyCard" type="checkbox" id="isLoyaltyCard"> Do you have a loyalty Card</label>
-        </div>
-
 
       <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
         <label for="phone">Phone Number</label>
         <input type="text" placeholder="Phone Number" name="phone" id="phone" class="form-control" ng-model="vm.phone"  />
       </div>
 
-      <div class="form-group" ng-class="{ 'has-error': form.addressStreet.$dirty && form.addressStreet.$error.required }">
-        <label for="addressStreet">Shipping Address Street</label>
-        <input type="text" placeholder="Street" name="addressStreet" id="addressStreet" class="form-control" ng-model="vm.addressStreet"  />
-        <span ng-show="(form.addressStreet.$dirty && form.addressStreet.$error.required) || vm.isAdmin" class="help-block">Street is required</span>
+      <div class="checkbox" >
+        <label><input ng-model="vm.isAdmin" type="checkbox" id="isAdmin"> Create an Administrator Account</label>
       </div>
-      <div class="form-group" ng-class="{ 'has-error': form.addressCity.$dirty && form.addressCity.$error.required }">
-        <label for="addressCity">Shipping Address City</label>
-        <input type="text" placeholder="City" name="addressCity" id="addressCity" class="form-control" ng-model="vm.addressCity"  />
-        <span ng-show="(form.addressCity.$dirty && form.addressCity.$error.required) || vm.isAdmin" class="help-block">City is required</span>
-      </div>
-      <div class="form-group" ng-class="{ 'has-error': form.addressCountry.$dirty && form.addressCountry.$error.required }">
-        <label for="addressCountry">Shipping Address Country</label>
-        <input type="text" placeholder="Country" name="addressCountry" id="addressCountry" class="form-control" ng-model="vm.addressCountry"  />
-        <span ng-show="(form.addressCountry.$dirty && form.addressCountry.$error.required) || vm.isAdmin" class="help-block">Country is required</span>
-      </div>
-      <div class="form-group" ng-class="{ 'has-error': form.paymentType.$dirty && form.paymentType.$error.required }">
-        <label for="paymentType">Payment Type</label>
-        <!--<input type="text" placeholder="Payment Type" name="paymentType" id="paymentType" class="form-control" ng-model="vm.paymentType" required />-->
-        <select name="paymentType" placeholder="Select Payment Card Type" id="paymentType" class="form-control" ng-model="vm.paymentType" >
-          <option value="" disabled selected hidden>Please Choose Payment Card Type...</option>
-          <option value="MASTERCARD">MasterCard</option>
-          <option value="AMEX">American Express Card</option>
-          <option value="VISADEBIT">Visa Debit Card</option> <!-- default value  -->
-          <option value="VISACREDIT">Visa Credit Card</option>
-          <!--<option value="VISADEBIT" selected="selected">Visa Debit Card</option> &lt;!&ndash; default value  &ndash;&gt;-->
-        </select>
-        <!--<span ng-show="form.paymentType.$dirty && form.paymentType.$error.required" class="help-block">Payment Type is required</span>-->
-      </div>
+
+      <div data-ng-show="!vm.isAdmin === true" >
+
+        <!-- Create drop down menu of Registered Retailers for manager to p;ick from-->
+
+        <div class="form-group" ng-class="{ 'has-error': form.retailer.$dirty && form.retailer.$error.required }">
+          <label for="retailer">Retailer</label>
+          <input type="text" placeholder="Retailer" name="retailer" id="retailer" class="form-control" ng-model="vm.retailer"  />
+        </div>
+
       </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>

@@ -1,30 +1,4 @@
-﻿// myApp.controller('LoginCtrl', function($rootScope, $state, UserService, DataFactory){
-//   let login = this;
-//   function signIn(user) {
-//     DataFactory.login(user)
-//       .then(function(response) {
-//         user.access_token = response.data.id;
-//         UserService.setCurrentUser(user);
-//         $rootScope.$broadcast('authorized');
-//         $state.go('dashboard');
-//       });
-//   }
-//   function register(user) {
-//     DataFactory.register(user)
-//       .then(function(response) {
-//         login(user);
-//       });
-//   }
-//   function submit(user) {
-//     login.newUser ? register(user) : signIn(user);
-//   }
-//   login.newUser = false;
-//   login.submit = submit;
-// });
-
-
-
-myApp.controller('LoginController', ['$location', 'AuthenticationService','$rootScope','DataFactory','$scope','Flash',
+﻿myApp.controller('LoginController', ['$location', 'AuthenticationService','$rootScope','DataFactory','$scope','Flash',
     function ($location, AuthenticationService, $rootScope, DataFactory, $scope, Flash) {
       let vm = this;
       // user login/registration placeholders
@@ -74,8 +48,6 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
 
       functions.login  = () =>  {
         vm.dataLoading = true;
-        // setAdmin(false);
-        // setLoggedIn(false);
         $rootScope.admin =  false;
         $rootScope.loggedIn = false;
 
@@ -97,12 +69,9 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
               setCust( $rootScope.userType === "Retailer" );
               setMob( $rootScope.userType === "Mobile" );
 
-              // $rootScope.firstname = $scope.vm.firstname;
-              // $rootScope.surname = $scope.vm.surname;
               $rootScope.emailAddress = $scope.vm.username;
               $rootScope.username = $scope.vm.username;
               vm.username = $scope.vm.username;
-
               setLoggedIn(true);
 
               // finally set where to go next
@@ -113,7 +82,6 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
               id = Flash.create('danger', response.data.message, $rootScope.flash.autoHide, {class: 'custom-class', id: 'custom-id'}, true);
               setAdmin(false);
               setLoggedIn(false);
-
               vm.dataLoading = false;
               $location.path('/login');
             }
@@ -135,7 +103,7 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
 
       functions.registerAdmin = () => {
 
-        DataFactory.registerAdmin($scope.vm.name, $scope.vm.email, $scope.vm.password,"ADMINISTRATOR")
+        DataFactory.registerAdmin($scope.vm.firstname, $scope.vm.surname,$scope.vm.email, $scope.vm.password,"Administrator")
           .then(function (response) {
           if (response.data.success === "1") {
             id = Flash.create('success', response.data.message, $rootScope.flash.autoHide,
@@ -149,15 +117,10 @@ myApp.controller('LoginController', ['$location', 'AuthenticationService','$root
         });
       };
 
-      functions.registerCust = () => {
-        if(isLoyaltyCard === 0) {
-          $scope.vm.loyaltyCard = 0;
-        } else {
-          $scope.vm.loyaltyCard = 1;
-        }
-        DataFactory.registerCust($scope.vm.name, $scope.vm.email, $scope.vm.password, "CUSTOMER",
-          $scope.vm.phone, $scope.vm.loyaltyCard, $scope.vm.addressStreet, $scope.vm.addressCity,
-          $scope.vm.addressCountry, $scope.vm.paymentType )
+      functions.registerRetailer = () => {
+
+        DataFactory.registerCust($scope.vm.firstname, $scope.vm.surname, $scope.vm.email, $scope.vm.password, "Retailer",
+          $scope.vm.phone,$scope.vm.retailer )
         .then(function (response) {
           if (response.data.success === "1") {
             id = Flash.create('success', response.data.message, $rootScope.flash.autoHide,
