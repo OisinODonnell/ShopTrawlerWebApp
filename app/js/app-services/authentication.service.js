@@ -1,4 +1,17 @@
-﻿myApp.factory('AuthenticationService', ['$http', '$cookies', '$rootScope', '$timeout', 'UserService','DataFactory',
+﻿myApp.factory('AuthInterceptor', [function($scope) {
+    return {
+      // Sent the token (if present) with each request
+      'request': function(config) {
+        config.headers = config.headers || {};
+        let encodedString = btoa($scope.username + ":" + $scope.password);
+        config.headers.Authorization = 'Basic ' + encodedString;
+        return config;
+      }
+    };
+  }]);
+
+
+myApp.factory('AuthenticationService', ['$http', '$cookies', '$rootScope', '$timeout', 'UserService','DataFactory',
   function ($http, $cookies, $rootScope, $timeout, UserService, DataFactory) {
 
         let service = {};

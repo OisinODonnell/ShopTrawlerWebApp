@@ -1,3 +1,4 @@
+
 myApp.factory('DataFactory', ['$http', function ($http) {
 
     let factory   = {};
@@ -5,10 +6,10 @@ myApp.factory('DataFactory', ['$http', function ($http) {
 
     // login/logout/register
 
-  // factory.login       = (username, password)    =>
-    factory.login       = (user)    =>
-      $http.post(urlBase  + '/login',user);
-      // $http.get(urlBase  + '/login/' + username + '/' + password );
+  //   factory.login       = (user)    =>
+  //     $http.post(urlBase  + '/login',user);
+    factory.login       = (username, password)    =>
+      $http.get(urlBase  + '/login/' + username + '/' + password );
 
     factory.registerAdmin    = (name, email, password, accountType ) =>
       $http.get( urlBase + '/Login/register/' + name + '/' + email + '/' + password + '/' + accountType);

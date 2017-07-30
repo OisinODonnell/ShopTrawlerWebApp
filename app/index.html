@@ -18,16 +18,18 @@
 
 
   <!--// Angular, JQuery, Bootstrap, sorttable and w3-->
-  <script src="lib/jquery-3.2.1.min.js"></script>
+  <script src="lib/jquery-3.2.1.js"></script>
   <!--<script src="lib/jquery.tablesorter.js"></script>-->
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!--<link  href="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"/>-->
   <!--<script src="https://www.w3schools.com/lib/w3.js"></script>-->
-  <script src="lib/angular165.min.js"></script>
+  <script src="lib/angular165.js"></script>
   <script src="lib/angular165-route.js"></script>
   <script src="lib/angular165-cookies.js"></script>
   <script src="lib/angular-flash.js"></script>
+  <!--<script src="lib/angular-storage.js"></script>-->
+  <!--<script src="lib/angular103-ui-router.js"></script>-->
 
   <!--// application-->
   <script src="app.js"></script>
@@ -85,62 +87,63 @@
 
 </head>
 <!--<body ng-controller="LoginController as vm">-->
+<body>
+  <div>
+    <div  class="navbar navbar-default navbar-static-top navbar-inverse navbar-toggleable-md navbar-light bg-faded" id="nav-top">
+      <div class="container">
+        <div class="navbar-header">
 
-<div>
-  <div  class="navbar navbar-default navbar-static-top navbar-inverse navbar-toggleable-md navbar-light bg-faded" id="nav-top">
-    <div class="container">
-      <div class="navbar-header">
+        </div>
+        <div class="col-sm-1 collapse navbar-collapse" id="navbar-lgn-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#!/login" data-ng-show="!loggedIn">Login</a></li>
+            <li><a href="#!/logout" data-ng-show="loggedIn">Log Out</a></li>
+          </ul>
+        </div>
+        <div  class="col-sm-1 collapse navbar-collapse" id="navbar-crt-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#!/ShoppingCentres/List" data-ng-show ="admin && loggedIn" > ShoppingCentre</a>    </li>
+            <li><a href="#!/Contents/List"       data-ng-show = "admin && loggedIn" > Contents      </a>    </li>
+            <li><a href="#!/BonusCodes/List"     data-ng-show = "admin && loggedIn" > BonusCodes    </a>    </li>
+            <li><a href="#!/Locations/List"      data-ng-show = "admin && loggedIn" > Locations     </a>    </li>
+            <li><a href="#!/Beacons/List"        data-ng-show = "admin && loggedIn" > Beacons       </a>    </li>
+            <li><a href="#!/Zones/List"          data-ng-show = "admin && loggedIn" > Zones         </a>    </li>
+            <li><a href="#!/Favourites/List"     data-ng-show = "cust  && loggedIn" > Favourites    </a>    </li>
+            <li><a href="#!/LoyaltyRewards/List" data-ng-show = "cust  && loggedIn" > LoyaltyRewards</a>    </li>
+            <li><a href="#!/Ratings/List"        data-ng-show = "cust  && loggedIn" > Ratings       </a>    </li>
+            <li><a href="#!/Users/List"          data-ng-show = "(cust || admin ) && loggedIn" > Users      </a>    </li>
+            <li><a href="#!/Retailers/List"      data-ng-show = "(cust || admin ) && loggedIn" > Retailers  </a>    </li>
+            <li><a href="#!/UserPoints/List"     data-ng-show = "(cust || admin ) && loggedIn" > UserPoints </a>    </li>
+            <li><a href="#!/Visits/List"         data-ng-show = "(cust || admin ) && loggedIn" > Visits     </a>    </li>
 
-      </div>
-      <div class="col-sm-1 collapse navbar-collapse" id="navbar-lgn-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#!/login" data-ng-show="!loggedIn">Login</a></li>
-          <li><a href="#!/logout" data-ng-show="loggedIn">Log Out</a></li>
-        </ul>
-      </div>
-      <div  class="col-sm-1 collapse navbar-collapse" id="navbar-crt-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#!/ShoppingCentres/List" data-ng-show ="admin && loggedIn" > ShoppingCentre</a>    </li>
-          <li><a href="#!/Contents/List"       data-ng-show = "admin && loggedIn" > Contents      </a>    </li>
-          <li><a href="#!/BonusCodes/List"     data-ng-show = "admin && loggedIn" > BonusCodes    </a>    </li>
-          <li><a href="#!/Locations/List"      data-ng-show = "admin && loggedIn" > Locations     </a>    </li>
-          <li><a href="#!/Beacons/List"        data-ng-show = "admin && loggedIn" > Beacons       </a>    </li>
-          <li><a href="#!/Zones/List"          data-ng-show = "admin && loggedIn" > Zones         </a>    </li>
-          <li><a href="#!/Favourites/List"     data-ng-show = "cust  && loggedIn" > Favourites    </a>    </li>
-          <li><a href="#!/LoyaltyRewards/List" data-ng-show = "cust  && loggedIn" > LoyaltyRewards</a>    </li>
-          <li><a href="#!/Ratings/List"        data-ng-show = "cust  && loggedIn" > Ratings       </a>    </li>
-          <li><a href="#!/Users/List"          data-ng-show = "(cust || admin ) && loggedIn" > Users      </a>    </li>
-          <li><a href="#!/Retailers/List"      data-ng-show = "(cust || admin ) && loggedIn" > Retailers  </a>    </li>
-          <li><a href="#!/UserPoints/List"     data-ng-show = "(cust || admin ) && loggedIn" > UserPoints </a>    </li>
-          <li><a href="#!/Visits/List"         data-ng-show = "(cust || admin ) && loggedIn" > Visits     </a>    </li>
-
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
 
-<!-- ng-controller="LoginController as vm"  hide setup screens until app is stable -->
-<div >
+  <!-- ng-controller="LoginController as vm"  hide setup screens until app is stable -->
+  <div >
 
-  <!-- Navigation bar is loaded in here-->
-  <!--<div id="w3include" w3-include-html="navbar.html"></div>-->
-  <!--<script id="navbarInclude">-->
-    <!--w3.includeHTML();-->
-  <!--</script>-->
-  <!-- Location of flash messages -->
-  <!-- The message should go away after 2 seconds (timeout = 2000), the timeout setting did not work-->
+    <!-- Navigation bar is loaded in here-->
+    <!--<div id="w3include" w3-include-html="navbar.html"></div>-->
+    <!--<script id="navbarInclude">-->
+      <!--w3.includeHTML();-->
+    <!--</script>-->
+    <!-- Location of flash messages -->
+    <!-- The message should go away after 2 seconds (timeout = 2000), the timeout setting did not work-->
 
-  <flash-message  duration="3000" show-close="true" >
-    <div class="my-flash"></div>
-  </flash-message>
-  <div ng-view>
-                <!-- single page website pages come in here-->
+    <flash-message  duration="3000" show-close="true" >
+      <div class="my-flash"></div>
+    </flash-message>
+    <div ng-view>
+                  <!-- single page website pages come in here-->
+    </div>
+
   </div>
-
-</div>
 </body>
+
 </html>

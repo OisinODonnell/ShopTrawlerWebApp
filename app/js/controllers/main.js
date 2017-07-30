@@ -1,8 +1,10 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+let myApp = angular.module('myApp', ['ngRoute']);
 
-myApp.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
+myApp.config(['$routeProvider', '$httpProvider', 'AuthInterceptor', function ($routeProvider, $httpProvider) {
   $httpProvider.defaults.useXDomain = true;
   $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+  $httpProvider.interceptors.push('AuthInterceptor');
+
 
   $routeProvider
     .when('/', {
@@ -17,6 +19,8 @@ myApp.config(['$routeProvider', '$httpProvider', function ($routeProvider, $http
     })
     .otherwise({ redirectTo: '/' });
  }]);
+
+
 
 myApp.controller('StartupController', ['$scope', 'dataFactory', function ($scope, dataFactory) {
   $scope.status = "First Message";

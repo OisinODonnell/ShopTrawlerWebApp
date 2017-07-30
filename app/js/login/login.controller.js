@@ -1,4 +1,30 @@
-﻿myApp.controller('LoginController', ['$location', 'AuthenticationService','$rootScope','DataFactory','$scope','Flash',
+﻿// myApp.controller('LoginCtrl', function($rootScope, $state, UserService, DataFactory){
+//   let login = this;
+//   function signIn(user) {
+//     DataFactory.login(user)
+//       .then(function(response) {
+//         user.access_token = response.data.id;
+//         UserService.setCurrentUser(user);
+//         $rootScope.$broadcast('authorized');
+//         $state.go('dashboard');
+//       });
+//   }
+//   function register(user) {
+//     DataFactory.register(user)
+//       .then(function(response) {
+//         login(user);
+//       });
+//   }
+//   function submit(user) {
+//     login.newUser ? register(user) : signIn(user);
+//   }
+//   login.newUser = false;
+//   login.submit = submit;
+// });
+
+
+
+myApp.controller('LoginController', ['$location', 'AuthenticationService','$rootScope','DataFactory','$scope','Flash',
     function ($location, AuthenticationService, $rootScope, DataFactory, $scope, Flash) {
       let vm = this;
       // user login/registration placeholders
@@ -56,8 +82,8 @@
         vm.user = "username="+$scope.vm.username+"&password="+$scope.vm.password;
 
 
-        // DataFactory.login($scope.vm.username,$scope.vm.password)
-        DataFactory.login(vm.user)
+        DataFactory.login($scope.vm.username,$scope.vm.password)
+        // DataFactory.login(vm.user)
           .then(function (response) {
             if (response.data.success === "1") {
               // save user details so that the rest of the app can check them as required

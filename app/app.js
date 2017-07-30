@@ -1,14 +1,16 @@
-﻿let myApp =  angular.module('app', ['ngRoute', 'ngCookies','ngFlash'])
+﻿let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
     .config(config)
     .run(run);
 
-  config.$inject = ['$routeProvider','FlashProvider'];
-    function config($routeProvider,FlashProvider) {
+  config.$inject = ['$routeProvider','FlashProvider','$httpProvider'];
+    function config($routeProvider,FlashProvider,$httpProvider,$urlRouterProvider) {
 
-      //
-      FlashProvider.setTimeout(2000);
+
+      // $urlRouterProvider.otherwise('/login');
+      // $httpProvider.interceptors.push('APIInterceptor');
+
+      // FlashProvider.setTimeout(2000);
       FlashProvider.setShowClose(true);
-
 
       // these next two were recommended to facilitate CORS communications
       // But breaks routes when included
@@ -16,8 +18,14 @@
       // $httpProvider.defaults.headers.common[ 'Access-Control-Allow-Origin' ] = '*';
 
       $routeProvider
+        // .when('login', {
+        //   controller: 'LoginCtrl',
+        //   templateUrl: 'js/login/login.view.html',
+        //   controllerAs: 'vm',
+        //   requireLogin: false
+        // })
         .when('/', {
-          controller: 'LoginController',
+          controller: 'LoginCtrl',
           templateUrl: 'js/login/login.view.html',
           controllerAs: 'vm',
           requireLogin: true
@@ -28,6 +36,13 @@
           controllerAs: 'vm',
           requireLogin: false
         })
+        .when('/register', {
+          controller: 'LoginController',
+          templateUrl: 'js/login/register.view.html',
+          controllerAs: 'vm',
+          requireLogin: false
+        })
+
         .when('/logout', {
           controller: 'HomeController',
           templateUrl: 'js/login/home.view.html',
@@ -40,13 +55,6 @@
           templateUrl: 'js/login/home.view.html',
           controllerAs: 'vm',
           requireLogin: true
-        })
-
-        .when('/register', {
-          controller: 'LoginController',
-          templateUrl: 'js/login/register.view.html',
-          controllerAs: 'vm',
-          requireLogin: false
         })
 
           // new routes
@@ -476,9 +484,10 @@
   }
 
   run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
-  function run($rootScope, $location, $cookies, $http) {
+  function run($rootScope, $location, $cookies, $http ) {
     // keep user logged in after page refresh
     // $rootScope.globals.currentUser = "";
+
     $rootScope.globals = $cookies.getObject('globals') || {};
     if ($rootScope.globals.currentUser) {
       $http.defaults.headers.common[ 'Authorization' ] = 'Basic ' + $rootScope.globals.currentUser.authdata;
@@ -494,6 +503,38 @@
     });
   }
 
-
+// myApp.service('UserService', function($cookies) {
+//   let service = this,
+//     currentUser = null;
+//   service.setCurrentUser = function(user) {
+//     currentUser = user;
+//     $cookies.put('user',user);
+//     return currentUser;
+//   };
+//   service.getCurrentUser = function() {
+//     if (!currentUser) {
+//       currentUser = $cookies.get('user');
+//     }
+//     return currentUser;
+//   };
+// });
+//
+// myApp.service('APIInterceptor', function() {
+//   let service = this;
+//   service.request = function(config) {
+//     let currentUser = UserService.getCurrentUser(),
+//       access_token = currentUser ? currentUser.access_token : null;
+//     if (access_token) {
+//       config.headers.authorization = access_token;
+//     }
+//     return config;
+//   };
+//   service.responseError = function(response) {
+//     if (response.status === 401) {
+//       $rootScope.$broadcast('unauthorized');
+//     }
+//     return response;
+//   };
+// });
 
 
