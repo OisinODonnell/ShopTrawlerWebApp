@@ -6,15 +6,13 @@
     <table class="sortable" >
 
       <tr >
-        <th class="sorttable_numeric">UserPoint ID</th>
-
-        <th>User Point ID</th>
+        <th class="sorttable_numeric">User ID</th>
         <th>Retailer ID</th>
         <th>Points</th>
 
       </tr>
       <tr ng-repeat="a in userPoints" >
-        <td>{{a.getUserPoints()}}</td>
+        <td>{{a.getUserId ()}}</td>
         <td>{{a.getRetailerId()}}</td>
         <td>{{a.getPoints()}}</td>
       </tr>

@@ -1,31 +1,36 @@
 ﻿myApp.factory('AuthenticationService', ['$http', '$cookies', '$rootScope', '$timeout', 'UserService','DataFactory',
   function ($http, $cookies, $rootScope, $timeout, UserService, DataFactory) {
 
-        let service = {};
+    let service = {};
 
-        service.setCredentials = (username, password) => {
-            let authdata = Base64.encode(username + ':' + password);
-            $rootScope.globals = {
-                currentUser: {
-                    username: username,
-                    authdata: authdata
-                }
-            };
+    // service.Login = Login;
+    service.setCredentials = setCredentials;
+    service.clearCredentials = clearCredentials;
 
-            // set default auth header for http requests
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
 
-            // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
-            let cookieExp = new Date();
-            cookieExp.setDate(cookieExp.getDate() + 7);
-            $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
+    function setCredentials(username, password){
+        let authdata = Base64.encode(username + ':' + password);
+        $rootScope.globals = {
+            currentUser: {
+                username: username,
+                authdata: authdata
+            }
         };
 
-        service.clearCredentials = () =>{
-            $rootScope.globals = {};
-            $cookies.remove('globals');
-            $http.defaults.headers.common.Authorization = 'Basic';
-        };
+        // set default auth header for http requests
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
+
+        // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
+        let cookieExp = new Date();
+        cookieExp.setDate(cookieExp.getDate() + 7);
+        $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
+    }
+
+    function clearCredentials() {
+        $rootScope.globals = {};
+        $cookies.remove('globals');
+        $http.defaults.headers.common.Authorization = 'Basic';
+    }
 
 
     // Base64 encoding service used by AuthenticationService
@@ -109,7 +114,8 @@
         return output;
       }
     };
-     return service;
+
+    return service;
 
 }]);
 

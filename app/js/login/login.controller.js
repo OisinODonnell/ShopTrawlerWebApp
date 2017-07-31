@@ -10,7 +10,7 @@
       vm.phone        = "";
       vm.gender       = "Male";
       vm.password     = "";
-      vm.type         = "Mobile";
+      vm.type         = "Retailer";
       vm.yob          = 1992;
       vm.username     = "";
 
@@ -88,7 +88,7 @@
         })
     };
 
-      // determine whther an admin or customer account is being created
+      // determine whether an admin or customer account is being created
       functions.register = () => {
         vm.dataLoading = true;
         $rootScope.loggedIn = false;

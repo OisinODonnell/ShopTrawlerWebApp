@@ -23,12 +23,12 @@
         <td>{{a.getAdminId()}}</td>
         <td>{{a.getContentPage()}}</td>
         <td>{{a.getPhone()}}</td>
-        <td>{{a.getFacebookUrl()}}</td>
-        <td>{{a.getTwitterUrl()}}</td>
-        <td>{{a.getWebsiteUrl()}}</td>
-        <td>{{a.getLogoImageSmall()}}</td>
-        <td>{{a.getLogoImageMedium()}}</td>
-        <td>{{a.getLogoImageLarge()}}</td>
+        <td><img ng-src="{{a.getFacebookUrl()}}" height="42" width="42"/></td>
+        <td><img ng-src="{{a.getTwitterUrl()}}"  height="42" width="42"/></td>
+        <td><a href="{{a.getWebsiteUrl()}}"/></td>
+        <td><img ng-src="{{a.getLogoImageSmall()}}"  height="42" width="42"/></td>
+        <td><img ng-src="{{a.getLogoImageMedium()}}" height="42" width="42"/></td>
+        <td><img ng-src="{{a.getLogoImageLarge()}}"  height="42" width="42"/></td>
 
       </tr>
 

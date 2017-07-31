@@ -18,10 +18,10 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common',
     // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
     Common.reloadJs("lib/sorttable.js");
 
-    ListVisits();
+    ListShoppingCentres();
 
     let factory = {
-      ListShoppingCentres    : ListShoppingCentres,
+      ListShoppingCentres   : ListShoppingCentres,
       ListShoppingCentreBy  : ListShoppingCentreBy,
     };
 
@@ -32,7 +32,7 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common',
     function ListShoppingCentres() {
       vm.dataLoading = true;
       let shoppingCentre = new ShoppingCentre();
-      DataFactory.getShoppingCentres()
+      DataFactory.listShoppingCentres()
         .then( function(response) {
             $scope.shoppingCentres = Common.createObjects(response.data, shoppingCentre);
           },

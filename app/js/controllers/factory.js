@@ -70,7 +70,8 @@ myApp.factory('DataFactory', ['$http', function ($http) {
 
     // Users
     factory.listUsers           = ()            => $http.get(urlBase + '/Users' );
-    factory.getUsers            = ()            => $http.get(urlBase + '/Users/' );
+    factory.getUsers            = ()            =>
+      $http.get(urlBase + '/Users/' );
     factory.getUser             = (id)          => $http.get(urlBase + '/User/' + id);
     factory.addUser             = (user)        => $http.get(urlBase + '/User/' + user);
     factory.getUserByEmailAddress = (email)     => $http.get(urlBase + '/User/ByEmail/' + email);

@@ -5,11 +5,11 @@
     vm.user = null;
     vm.allUsers = [];
 
-     this.tab = 1;
+    this.tab = 1;
     let admin = false;
     let loggedIn = false;
-    vm.isAdmin = isAdmin();
-    vm.deleteUser = deleteUser(id);
+    vm.isAdmin = isAdmin;
+    vm.deleteUser = deleteUser;
 
     let factory = {};
 
@@ -17,8 +17,8 @@
     initController();
 
     function initController() {
-      factory.loadCurrentUser($rootScope.username);
-      factory.loadAllUsers();
+      loadCurrentUser($rootScope.username);
+      loadAllUsers();
     }
 
     function loadCurrentUser(username) {
@@ -39,7 +39,7 @@
     function deleteUser(id){
       DataFactory.deleteUserById (id)
         .then(function () {
-          factory.loadAllUsers();
+          loadAllUsers();
         });
     }
 
@@ -49,7 +49,4 @@
       let b = Common.isAdmin();
       return Common.isAdmin();
     }
-
-
-
   }]);
