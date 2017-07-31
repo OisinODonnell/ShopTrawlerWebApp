@@ -25,7 +25,7 @@
       $rootScope.type = "Mobile";
 
       $scope.admin = false;
-      $scope.cust = true;
+      $scope.retailer = true;
       $scope.loggedIn = false;
 
       $scope.username = "";
@@ -35,7 +35,7 @@
 
       $rootScope.tab = 1;
       $rootScope.admin = false;
-      $rootScope.cust = true;
+      $rootScope.retailer = true;
       $rootScope.mob = false;
       $rootScope.loggedIn = false;
 
@@ -43,7 +43,7 @@
 
       (function initController() {
           // reset login status
-          AuthenticationService.ClearCredentials();
+          AuthenticationService.clearCredentials();
       })();
 
       functions.login  = () =>  {
@@ -62,11 +62,11 @@
 
               // show success
               id = Flash.create('success', response.data.message, $rootScope.flash.autoHide, {class: 'custom-class', id: 'custom-id'}, true);
-              // AuthenticationService.SetCredentials(vm.username, vm.password);
+              AuthenticationService.setCredentials(vm.username, vm.password);
 
               // set  navbar controls
               setAdmin( $rootScope.userType === "Administrator" );
-              setCust( $rootScope.userType === "Retailer" );
+              setRetailer( $rootScope.userType === "Retailer" );
               setMob( $rootScope.userType === "Mobile" );
 
               $rootScope.emailAddress = $scope.vm.username;
@@ -138,14 +138,14 @@
       functions.logout = () => {
         vm.dataLoading = true;
         if (isLoggedIn()) {
-          AuthenticationService.Logout(vm.username, vm.loggedInUserTime, function (response) {
+          AuthenticationService.logout(vm.username, vm.loggedInUserTime, function (response) {
             if (response.data.success === "1") {
               // reset user details so that the rest of the app can check them as required
               resetUserLoginDetails();
 
               id = Flash.create('success', response.data.message, $rootScope.flash.autoHide,
                     { class: 'custom-class', id: 'custom-id' }, true);
-              AuthenticationService.SetCredentials(vm.username, vm.password);
+              AuthenticationService.setCredentials(vm.username, vm.password);
 
               setLoggedIn(false);
               setAdmin(false);
@@ -169,13 +169,13 @@
       const isSelected  = checkTab => $rootScope.tab === checkTab;
 
       const isAdmin     = ()       => $rootScope.admin;
-      const isCust      = ()       => $rootScope.cust;
+      const isRetailer  = ()       => $rootScope.retailer;
       const isMob       = ()       => $rootScope.mob;
 
       const isLoggedIn  = ()       => $rootScope.loggedIn;
       const setLoggedIn = state    => $rootScope.loggedIn = state;
       const setAdmin    = state    => $rootScope.admin    = state;
-      const setCust     = state    => $rootScope.cust     = state;
+      const setRetailer = state    => $rootScope.retailer     = state;
       const setMob      = state    => $rootScope.mob      = state;
 
       const getFirstname = () => { return vm.firstname; }

@@ -20,7 +20,7 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
    * This is used to take any entity in.
    * One caveat, the programmer must  ensure the correct dataTYoe is passed
    */
-  lib.createObjects = function (data, dataType) {
+  lib.createObjects = (data, dataType) => {
     let objects = [];
     let obj     = {};
 
@@ -40,7 +40,7 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
    * Add 'ies' to any word passed ending in y
    * add 's' to any other word
    */
-  lib.plural = function (word) {
+  lib.plural = (word) => {
     let len = word.length;
     if (word[ len - 1 ] === 'y') {
       let pre = word.slice(0, len - 1);
@@ -56,7 +56,7 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
    * ie Accounts -> accounts
    */
 
-  lib.lowerCaseFirstLetter = function (str) {
+  lib.lowerCaseFirstLetter = (str) => {
     // get classname as a string
     // pluck out the first character
     //return a lower case version of the classname
@@ -142,7 +142,7 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
   lib.isLoggedIn  = ()       => $rootScope.loggedIn;
   lib.setLoggedIn = state    => $rootScope.loggedIn = state;
   lib.setAdmin    = state    => $rootScope.admin    = state;
-  lib.setCust     = state    => $rootScope.cust     = state;
+  lib.setCust     = state    => $rootScope.retailer     = state;
 
 
   lib.reloadJs = (src) =>  {

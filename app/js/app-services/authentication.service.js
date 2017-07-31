@@ -1,48 +1,10 @@
-﻿myApp.factory('AuthInterceptor', [function($scope) {
-    return {
-      // Sent the token (if present) with each request
-      'request': function(config) {
-        config.headers = config.headers || {};
-        let encodedString = btoa($scope.username + ":" + $scope.password);
-        config.headers.Authorization = 'Basic ' + encodedString;
-        return config;
-      }
-    };
-  }]);
-
-
-myApp.factory('AuthenticationService', ['$http', '$cookies', '$rootScope', '$timeout', 'UserService','DataFactory',
+﻿myApp.factory('AuthenticationService', ['$http', '$cookies', '$rootScope', '$timeout', 'UserService','DataFactory',
   function ($http, $cookies, $rootScope, $timeout, UserService, DataFactory) {
 
         let service = {};
 
-        // service.Login = Login;
-        service.SetCredentials = SetCredentials;
-        service.ClearCredentials = ClearCredentials;
-
-        // function Login(username, password) {
-        //     DataFactory.login(username,password,callback)
-        //        .then(function (response) {
-        //          if (response.success) {
-        //            // save user details so that the rest of the app can check them as required
-        //            $rootScope.userType = response.userType;
-        //            $rootScope.loggedInUserTime = response.startTime;
-        //            $rootScope.loggedInUserId = response.accountId;
-        //            $rootScope.loggedInUserName = response.name;
-        //
-        //            AuthenticationService.SetCredentials(vm.username, vm.password);
-        //            $location.path('/');
-        //          } else {
-        //            FlashService.Error(response.message);
-        //            vm.dataLoading = false;
-        //          }
-        //           // callback(response);
-        //        });
-        // }
-
-        function SetCredentials(username, password) {
+        service.setCredentials = (username, password) => {
             let authdata = Base64.encode(username + ':' + password);
-
             $rootScope.globals = {
                 currentUser: {
                     username: username,
@@ -57,13 +19,13 @@ myApp.factory('AuthenticationService', ['$http', '$cookies', '$rootScope', '$tim
             let cookieExp = new Date();
             cookieExp.setDate(cookieExp.getDate() + 7);
             $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
-        }
+        };
 
-        function ClearCredentials() {
+        service.clearCredentials = () =>{
             $rootScope.globals = {};
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';
-        }
+        };
 
 
     // Base64 encoding service used by AuthenticationService
@@ -99,7 +61,7 @@ myApp.factory('AuthenticationService', ['$http', '$cookies', '$rootScope', '$tim
             this.keyStr.charAt(enc3) +
             this.keyStr.charAt(enc4);
           chr1   = chr2 = chr3 = "";
-          enc1 = enc2 = enc3 = enc4 = "";
+          enc1   = enc2 = enc3 = enc4 = "";
         } while (i < input.length);
 
         return output;
@@ -150,3 +112,15 @@ myApp.factory('AuthenticationService', ['$http', '$cookies', '$rootScope', '$tim
      return service;
 
 }]);
+
+// myApp.factory('AuthInterceptor', [function($scope) {
+//     return {
+//       // Sent the token (if present) with each request
+//       'request': function(config) {
+//         config.headers = config.headers || {};
+//         let encodedString = btoa($scope.username + ":" + $scope.password);
+//         config.headers.Authorization = 'Basic ' + encodedString;
+//         return config;
+//       }
+//     };
+//   }]);

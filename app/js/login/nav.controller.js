@@ -26,7 +26,7 @@ myApp.service('NavController', function(){
   factory.isLoggedIn  = ()    => loggedIn;
   factory.setLoggedIn = state => loggedIn = state;
   factory.setAdmin    = state => admin = state;
-  factory.setCust     = state => cust  = state;
+  factory.setCust     = state => retailer  = state;
 
   return factory;
 });

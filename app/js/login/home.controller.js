@@ -5,49 +5,51 @@
     vm.user = null;
     vm.allUsers = [];
 
-    vm.isAdmin = isAdmin;
-    this.tab = 1;
+     this.tab = 1;
     let admin = false;
     let loggedIn = false;
+    vm.isAdmin = isAdmin();
+    vm.deleteUser = deleteUser(id);
 
     let factory = {};
 
-    vm.deleteUser = factory.deleteUser(id);
 
-    factory.initController();
+    initController();
 
-    factory.initController = () => {
+    function initController() {
       factory.loadCurrentUser($rootScope.username);
       factory.loadAllUsers();
-    };
+    }
 
-    factory.loadCurrentUser = (username) => {
+    function loadCurrentUser(username) {
       DataFactory.getUserByEmailAddress(username)
         .then(function (user) {
           vm.user = user.data;
         });
-    };
+    }
 
-    factory.loadAllUsers = () => {
+    function loadAllUsers() {
       DataFactory.getUsers()
         .then(function (users) {
           vm.allUsers = users.data;
           vm.allUsers = users.data;
         });
-    };
+    }
 
-    factory.deleteUser = (id) => {
+    function deleteUser(id){
       DataFactory.deleteUserById (id)
         .then(function () {
           factory.loadAllUsers();
         });
-    };
+    }
 
-    factory.sAdmin = () => {
+    function isAdmin() {
       "use strict";
       let r = $rootScope.admin;
       let b = Common.isAdmin();
       return Common.isAdmin();
-    };
+    }
+
+
 
   }]);
