@@ -47,6 +47,9 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
       DataFactory.getBonusCode(bonusCodeId)
         .then( function(response) {
             $scope.bonusCode = Common.createObjects(response.data, bonusCode);
+            $scope.bonusCode.storeName = getStoreName($scope.bonusCode.getRetailerid());
+            $scope.bonusCode.userFullname = getStoreName($scope.bonusCode.getUserid());
+
           },
           function (error) { $scope.status = 'Unable to load BonusCode ' + error.message; });
       vm.dataLoading = false;
@@ -64,5 +67,27 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
           function (error) { $scope.status = 'Unable to set bonusCode ' + error.message; });
       vm.dataLoading = false;
     }
+
+    function getStoreName(id) {
+      let retailer = new Retailer();
+      DataFactory.getRetailer(id)
+        .then( function(response) {
+            $scope.retailer = Common.createObjects(response.data, retailer);
+            return retailer.getStoreName();
+          },
+          function (error) { $scope.status = 'Unable to set bonusCode ' + error.message; });
+    }
+
+    function getUserFullname(id) {
+      let user = new User();
+      DataFactory.getUser(id)
+        .then( function(response) {
+            $scope.user = Common.createObjects(response.data, user);
+            return $scope.user.getFirstname() + " " + $scope.user.getSurname()
+          },
+          function (error) { $scope.status = 'Unable to set bonusCode ' + error.message; });
+    }
+
+
 
   }]);

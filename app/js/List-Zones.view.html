@@ -8,11 +8,14 @@
       <tr >
         <th class="sorttable_numeric">Zone ID</th>
         <th>Beacon ID</th>
+        <th>Zone Name</th>
+
 
       </tr>
       <tr ng-repeat="a in zones" >
         <td>{{a.getZoneid()}}</td>
         <td>{{a.getBeaconid()}}</td>
+        <td>{{a.getZoneName()}}</td>
       </tr>
       <!-- Now show table for order items with this order -->
 
