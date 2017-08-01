@@ -12,8 +12,8 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common',
     // placeholders
     $scope.dropdownCategories    = [];
     $scope.dropdownmanufacturers = [];
-    $scope.users       = 0;
-    $scope.userId      = 0;
+    $scope.users       = [];
+    $scope.userid      = 0;
 
 
     // THis script is loaded in the index.html file, but fails to kick in when required when using a number of tables
@@ -34,7 +34,7 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common',
       let user = new User();
       DataFactory.getUsers()
         .then( function(response) {
-            $scope.accounts = Common.createObjects(response.data, user);
+            $scope.users = Common.createObjects(response.data, user);
           },
           function (error) { $scope.status = 'Unable to load User data ' + error.message; });
       vm.dataLoading = false;

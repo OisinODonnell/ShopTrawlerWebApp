@@ -5,15 +5,15 @@
 
 class Location {
 
-  constructor (locationId, altitude, gpsLongtitude, gpsLatitude, locationInShoppingCentre, locationType, shoppingCentreId)
+  constructor (locationid, altitude, gpsLongtitude, gpsLatitude, locationInShoppingCentre, locationType, shoppingCentreid)
   {
-    this.locationId	        = this.setLocationId         (locationId);
+    this.locationid	        = this.setLocationid         (locationid);
     this.altitude	          = this.setAltitude           (altitude);
     this.gpsLongtitude	    = this.setGpsLongtitude      (gpsLongtitude);
     this.gpsLatitude	      = this.setGpsLatitude        (gpsLatitude);
     this.locationInShoppingCentre	  = this.setLocationInShoppingCentre   (locationInShoppingCentre);
     this.locationType	      = this.setLocationType       (locationType);
-    this.shoppingCentreId	  = this.setShoppingCentreId   (shoppingCentreId);
+    this.shoppingCentreid	  = this.setShoppingCentreid   (shoppingCentreid);
 
     this.beacons	          = this.setBeacons            ([]);
     this.shoppingCentres	  = this.setShoppingCentres    ([]);
@@ -21,8 +21,8 @@ class Location {
 
   // getters and setters with default values where attribute is not provided.
 
-  getLocationId         ()  { return this.locationId;                 }
-  setLocationId         (x) { this.locationId          = x ? x : 0;   }
+  getLocationid         ()  { return this.locationid;                 }
+  setLocationid         (x) { this.locationid          = x ? x : 0;   }
   getAltitude           ()  { return this.altitude;                   }
   setAltitude           (x) { this.altitude            = x ? x : 0;   }
   getGpsLongtitude      ()  { return this.gpsLongtitude;              }
@@ -33,8 +33,8 @@ class Location {
   setLocationInShoppingCentre   (x) { this.locationInShoppingCentre      = x ? x : "";}
   getLocationType       ()  { return this.locationType;               }
   setLocationType       (x) { this.locationType        = x ? x : "";  }
-  getShoppingCentreId   ()  { return this.shoppingCentreId;           }
-  setShoppingCentreId   (x) { this.shoppingCentreId    = x ? x : 0;   }
+  getShoppingCentreid   ()  { return this.shoppingCentreid;           }
+  setShoppingCentreid   (x) { this.shoppingCentreid    = x ? x : 0;   }
 
   getBeacons            ()  { return this.beacons;                    }
   setBeacons            (x) { this.beacons             = x ? x : [];  }

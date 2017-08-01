@@ -151,6 +151,30 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
     $('<script/>').attr('src', src).appendTo('body');
   };
 
+  lib.getReadableDate = (date) => {
+    let newDate = "";
+    let parts = date.split(" ");
+    let dateBits = parts[0].split("-");
+    let timeBits = parts[1].split(":");
+    let monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December' ];
+
+    let month = monthNames[dateBits[1]];
+    let year = dateBits[0];
+    let day = dateBits[2];
+
+    let hour = timeBits[0];
+    let minute = timeBits[1];
+    let period = "am";
+    if (hour >= 12) {
+      period = "pm";
+      hour = hour - 12;
+    }
+
+    newDate = hour + ":" + minute + period + " " + month + " " + day + ", " + year;
+
+    return newDate;
+  };
 
   return lib;
 

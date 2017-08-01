@@ -5,9 +5,9 @@
 
 class User {
 
-  constructor (userId, firstname, surname, emailAddress, phone, gender, password, type, yob)
+  constructor (userid, firstname, surname, emailAddress, phone, gender, password, type, yob)
   {
-    this.userId	        = this.setUserId        (userId);
+    this.userid	        = this.setUserid        (userid);
     this.firstname	    = this.setFirstname     (firstname);
     this.surname	      = this.setSurname       (surname);
     this.emailAddress	  = this.setEmailAddress  (emailAddress);
@@ -29,8 +29,8 @@ class User {
 
   // getters and setters with default values where attribute is not provided.
 
-  getUserId       ()  { return this.userId;                 }
-  setUserId       (x) { this.userId           = x ? x : 0;  }
+  getUserid       ()  { return this.userid;                 }
+  setUserid       (x) { this.userid           = x ? x : 0;  }
   getFirstname    ()  { return this.firstname;              }
   setFirstname    (x) { this.firstname        = x ? x : ""; }
   getSurname      ()  { return this.surname;                }

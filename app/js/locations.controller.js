@@ -19,7 +19,7 @@ myApp.controller('LocationsController', ['DataFactory','$scope','Common',
     // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
     Common.reloadJs("lib/sorttable.js");
 
-    ListRatings();
+    ListLocations();
 
     let factory = {
       ListLocations    : ListLocations,
@@ -45,7 +45,7 @@ myApp.controller('LocationsController', ['DataFactory','$scope','Common',
     function AddLocation(newLocation) {
       vm.dataLoading = true;
       let location = new Location();
-      DataFactory.addLocations(newLocation)
+      DataFactory.addLocation(newLocation)
         .then( function(response) {
             $scope.locations = Common.createObjects(response.data, location);
           },
@@ -56,7 +56,7 @@ myApp.controller('LocationsController', ['DataFactory','$scope','Common',
     function GetLocation(id) {
       vm.dataLoading = true;
       let location = new Location();
-      DataFactory.getLocations(id)
+      DataFactory.getLocation(id)
         .then( function(response) {
             $scope.location = Common.createObjects(response.data, location);
           },

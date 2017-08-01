@@ -18,10 +18,10 @@
 
       </tr>
       <tr ng-repeat="a in users" >
-        <td>{{a.getUserId()}}</td>
+        <td>{{a.getUserid()}}</td>
         <td>{{a.getFirstname()}}</td>
         <td>{{a.getSurname()}}</td>
-        <td>{{a.getEmailAddress()}}</td>
+        <td><a href="{{a.getEmailAddress()}}">{{a.getEmailAddress()}}</a></td>
         <td>{{a.getPhone()}}</td>
         <td>{{a.getGender()}}</td>
         <td>{{a.getPassword()}}</td>

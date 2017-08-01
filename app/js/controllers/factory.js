@@ -19,11 +19,11 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     factory.logout      = (id, startTime )        => $http.get( urlBase + '/Login/logout/' + id + '/' + startTime );
 
     // ShoppingCentre
-    factory.listShoppingCentres  = ()                 => $http.get(urlBase + '/ShoppingCentres' );
-    factory.getShoppingCentre    = (id)               => $http.get(urlBase + '/ShoppingCentre/' + id);
-    factory.addShoppingCentre    = (shoppingCentre)   => $http.get(urlBase + '/ShoppingCentre/' + shoppingCentre );
-    factory.deleteShoppingCentre = (id)               => $http.get(urlBase + '/ShoppingCentre/delete/' + id );
-    factory.updateShoppingCentre = (shoppingCentre)   => $http.get(urlBase + '/ShoppingCentre/update/' + shoppingCentre );
+    factory.listShoppingCentres  = ()               => $http.get(urlBase + '/ShoppingCentres' );
+    factory.getShoppingCentre    = (id)             => $http.get(urlBase + '/ShoppingCentre/' + id);
+    factory.addShoppingCentre    = (shoppingCentre) => $http.get(urlBase + '/ShoppingCentre/' + shoppingCentre );
+    factory.deleteShoppingCentre = (id)             => $http.get(urlBase + '/ShoppingCentre/delete/' + id );
+    factory.updateShoppingCentre = (shoppingCentre) => $http.get(urlBase + '/ShoppingCentre/update/' + shoppingCentre );
 
 
   // Favourits

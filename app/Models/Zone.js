@@ -6,10 +6,10 @@
 
 class Zone {
 
-  constructor (zoneId, beaconId)
+  constructor (zoneid, beaconid)
   {
-    this.zoneId	   = this.setZoneId     (zoneId);
-    this.beaconId	 = this.setBeaconId   (beaconId);
+    this.zoneid	   = this.setZoneid     (zoneid);
+    this.beaconid	 = this.setBeaconid   (beaconid);
 
     this.retailers = this.setRetailers  ([]);
     this.visits	   = this.setVisits     ([]);
@@ -19,10 +19,10 @@ class Zone {
 
   // getters and setters with default values where attribute is not provided.
 
-  getZoneId     ()  { return this.zoneId;                 }
-  setZoneId     (x) { this.zoneId           = x ? x : 0;  }
-  getBeaconId   ()  { return this.beaconId;               }
-  setBeaconId   (x) { this.beaconId         = x ? x : ""; }
+  getZoneid     ()  { return this.zoneid;                 }
+  setZoneid     (x) { this.zoneid           = x ? x : 0;  }
+  getBeaconid   ()  { return this.beaconid;               }
+  setBeaconid   (x) { this.beaconid         = x ? x : ""; }
 
   getRetailers  ()  { return this.retailers;              }
   setRetailers  (x) { this.retailers        = x ? x : []; }

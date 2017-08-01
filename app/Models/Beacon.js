@@ -6,10 +6,10 @@
 class Beacon {
 
 
-  constructor (beaconId, locationId, major, minor, transmitPower, uuid)
+  constructor (beaconid, locationid, major, minor, transmitPower, uuid)
   {
-    this.beaconId	    = this.setBeaconId      (beaconId);
-    this.locationId	  = this.setLocationId    (locationId);
+    this.beaconid	    = this.setBeaconid      (beaconid);
+    this.locationid	  = this.setLocationid    (locationid);
     this.major	      = this.setMajor         (major);
     this.minor	      = this.setMinor         (minor);
     this.transmitPower= this.setTransmitPower (transmitPower);
@@ -21,10 +21,10 @@ class Beacon {
 
   // getters and setters with default values where attribute is not provided.
 
-  getBeaconId      ()  { return this.beaconId;                 }
-  setBeaconId      (x) { this.beaconId           = x ? x : 0;  }
-  getLocationId    ()  { return this.locationId;               }
-  setLocationId    (x) { this.locationId         = x ? x : 0;  }
+  getBeaconid      ()  { return this.beaconid;                 }
+  setBeaconid      (x) { this.beaconid           = x ? x : 0;  }
+  getLocationid    ()  { return this.locationid;               }
+  setLocationid    (x) { this.locationid         = x ? x : 0;  }
   getMajor         ()  { return this.major;                    }
   setMajor         (x) { this.major              = x ? x : 0;  }
   getMinor         ()  { return this.minor;                    }

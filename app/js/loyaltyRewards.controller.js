@@ -18,7 +18,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common',
     // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
     Common.reloadJs("lib/sorttable.js");
 
-    ListRatings();
+    ListLoyaltyRewards();
 
     let factory = {
       ListLoyaltyReward    : ListLoyaltyRewards,
@@ -44,7 +44,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common',
     function AddLoyaltyReward(newLoyaltyReward) {
       vm.dataLoading = true;
       let loyaltyReward = new LoyaltyReward();
-      DataFactory.addLoyaltyRewards(newLoyaltyReward)
+      DataFactory.addLoyaltyReward(newLoyaltyReward)
         .then( function(response) {
             $scope.loyaltyRewards = Common.createObjects(response.data, loyaltyReward);
           },

@@ -26,25 +26,26 @@
         <th>Zone ID</th>
 
       </tr>
+
       <tr ng-repeat="a in retailers" >
-        <td>{{a.getRetailerId()}}</td>
+        <td>{{a.getRetailerid()}}</td>
         <td>{{a.getDefaultContentPage1()}}</td>
         <td>{{a.getDefaultContentPage2()}}</td>
         <td>{{a.getDefaultContentPage3()}}</td>
         <td>{{a.getDefaultLoyaltyRewardImage()}}</td>
-        <td>{{a.getFacebookUrl()}}</td>
-        <td>{{a.getTwitterUrl()}}</td>
-        <td>{{a.getWebsiteUrl()}}</td>
-        <td>{{a.getLogoImageSmall()}}</td>
-        <td>{{a.getLogoImageMedium()}}</td>
-        <td>{{a.getLogoImageLarge()}}</td>
+        <td><a href="{{a.getFacebookUrl()}}">{{a.getFacebookUrl()}}</a></td>
+        <td><a href="{{a.getTwitterUrl()}}">{{a.getTwitterUrl()}}</a></td>
+        <td><a href="{{a.getWebsiteUrl()}}">{{a.getWebsiteUrl()}}</a></td>
+        <td><img ng-src="{{a.getLogoImageSmall()}}"  height="42" /></td>
+        <td><img ng-src="{{a.getLogoImageMedium()}}" height="42" /></td>
+        <td><img ng-src="{{a.getLogoImageLarge()}}"  height="42" /></td>
         <td>{{a.getPhone()}}</td>
         <td>{{a.getStoreName()}}</td>
         <td>{{a.getHeaderBackgroundImage()}}</td>
-        <td>{{a.getManagerId()}}</td>
-        <td>{{a.getShoppingCentreId()}}</td>
+        <td>{{a.getManagerid()}}</td>
+        <td>{{a.getShoppingCentreid()}}</td>
         <td>{{a.getStoreDefaultContentPage1()}}</td>
-        <td>{{a.getZoneId()}}</td>
+        <td>{{a.getZoneid()}}</td>
       </tr>
       <!-- Now show table for order items with this order -->
 

@@ -33,6 +33,10 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common',
       DataFactory.listBeacons()
         .then( function(response) {
             $scope.beacons = Common.createObjects(response.data, beacon);
+            let b = $scope.beacons[0];
+            let bid = b.beaconid;
+            let lid = b.locationid;
+
           },
           function (error) { $scope.status = 'Unable to load Beacons ' + error.message; });
       vm.dataLoading = false;

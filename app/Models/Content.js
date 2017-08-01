@@ -4,22 +4,22 @@
  */
 class Content {
 
-  constructor (contentId, endDate, page1, page2, page3, startDate, retailerId)
+  constructor (contentid, endDate, page1, page2, page3, startDate, retailerid)
   {
-    this.contentId	    = this.setContentId    (contentId);
+    this.contentid	    = this.setContentid    (contentid);
     this.endDate	      = this.setEndDate      (endDate);
     this.page1	        = this.setPage1        (page1);
     this.page2	        = this.setPage2        (page2);
     this.page3	        = this.setPage3        (page3);
-    this.retailerId	    = this.setRetailerId   (retailerId);
+    this.retailerid	    = this.setRetailerid   (retailerid);
     this.startDate	    = this.setStartDate    (startDate);
     this.retailers	    = this.setRetailers    ([]);
   }
 
   // getters and setters with default values where attribute is not provided.
 
-  getContentId      ()  { return this.contentId;             }
-  setContentId      (x) { this.contentId       = x ? x : 0;  }
+  getContentid      ()  { return this.contentid;             }
+  setContentid      (x) { this.contentid       = x ? x : 0;  }
   getEndDateString  ()  { return new Date(this.endDate);     }
   setEndDate        (x) { this.endDate         = x ? x : ""; }
   getPage1          ()  { return this.page1;                 }
@@ -28,8 +28,8 @@ class Content {
   setPage2          (x) { this.page2           = x ? x : ""; }
   getPage3          ()  { return this.page3;                 }
   setPage3          (x) { this.page3           = x ? x : ""; }
-  getRetailerId     ()  { return this.retailerId;            }
-  setRetailerId     (x) { this.retailerId      = x ? x : 0;  }
+  getRetailerid     ()  { return this.retailerid;            }
+  setRetailerid     (x) { this.retailerid      = x ? x : 0;  }
 
   getStartDateString()  { return new Date(this.startDate);   }
   setStartDate      (x) { this.startDate       = x ? x : ""; }

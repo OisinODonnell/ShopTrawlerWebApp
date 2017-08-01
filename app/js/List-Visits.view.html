@@ -15,13 +15,13 @@
         <th>Zone ID</th>
       </tr>
       <tr ng-repeat="a in visits" >
-        <td>{{a.getVisitId()}}</td>
-        <td>{{a.getEntryTimeString()}}</td>
-        <td>{{a.getExitTimeString()}}</td>
+        <td>{{a.getVisitid()}}</td>
+        <td>{{a.getEntryTimeReadable()}}</td>
+        <td>{{a.getExitTimeReadable()}}</td>
         <td>{{a.getUserCreditedForVisit()}}</td>
         <td>{{a.getDuration()}}</td>
-        <td>{{a.getUserId()}}</td>
-        <td>{{a.getZoneId()}}</td>
+        <td>{{a.getUserid()}}</td>
+        <td>{{a.getZoneid()}}</td>
       </tr>
       <!-- Now show table for order items with this order -->
 

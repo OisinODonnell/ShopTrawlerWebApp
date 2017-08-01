@@ -5,10 +5,10 @@
 
 class Retailer {
 
-  constructor (retailerId, defaultContentPage1, defaultContentPage2, defaultContentPage3, defaultLoyaltyRewardImage, facebookUrl, twitterUrl,
-               websiteUrl, logoImageSmall, logoImageLarge, logoImageMedium, headerBackgroundImage, managerId, shoppingCentreId, zoneId, phone, storeName, storeDefaultContentPage1)
+  constructor (retailerid, defaultContentPage1, defaultContentPage2, defaultContentPage3, defaultLoyaltyRewardImage, facebookUrl, twitterUrl,
+               websiteUrl, logoImageSmall, logoImageLarge, logoImageMedium, headerBackgroundImage, managerid, shoppingCentreid, zoneid, phone, storeName, storeDefaultContentPage1)
   {
-    this.retailerId	                  = this.setRetailerId                (retailerId);
+    this.retailerid	                  = this.setRetailerid                (retailerid);
     this.defaultContentPage1	        = this.setDefaultContentPage1       (defaultContentPage1);
     this.defaultContentPage2	        = this.setDefaultContentPage2       (defaultContentPage2);
     this.defaultContentPage3	        = this.setDefaultContentPage3       (defaultContentPage3);
@@ -22,10 +22,10 @@ class Retailer {
     this.phone                        = this.setPhone                     (phone);
     this.storeName                    = this.setStoreName                 (storeName);
     this.headerBackgroundImage	      = this.setHeaderBackgroundImage     (headerBackgroundImage);
-    this.managerId	                  = this.setManagerId                 (managerId);
-    this.shoppingCentreId	            = this.setShoppingCentreId          (shoppingCentreId);
+    this.managerid	                  = this.setManagerid                 (managerid);
+    this.shoppingCentreid	            = this.setShoppingCentreid          (shoppingCentreid);
     this.storeDefaultContentPage1	    = this.setStoreDefaultContentPage1  (storeDefaultContentPage1);
-    this.zoneId	                      = this.setZoneId                    (zoneId);
+    this.zoneid	                      = this.setZoneid                    (zoneid);
 
     this.bonusCodes	                  = this.setBonusCodes                ([]);
     this.content	                    = this.setContent                   ([]);
@@ -41,14 +41,14 @@ class Retailer {
 
   getHeaderBackgroundImage      ()  { return this.headerBackgroundImage;         }
   setHeaderBackgroundImage      (x) { this.headerBackgroundImage   = x ? x : ""; }
-  getManagerId                  ()  { return this.managerId;                     }
-  setManagerId                  (x) { this.managerId               = x ? x : ""; }
-  getShoppingCentreId           ()  { return this.shoppingCentreId;              }
-  setShoppingCentreId           (x) { this.shoppingCentreId        = x ? x : ""; }
+  getManagerid                  ()  { return this.managerid;                     }
+  setManagerid                  (x) { this.managerid               = x ? x : ""; }
+  getShoppingCentreid           ()  { return this.shoppingCentreid;              }
+  setShoppingCentreid           (x) { this.shoppingCentreid        = x ? x : ""; }
   getStoreDefaultContentPage1   ()  { return this.storeDefaultContentPage1;      }
   setStoreDefaultContentPage1   (x) { this.storeDefaultContentPage1= x ? x : ""; }
-  getZoneId                     ()  { return this.zoneId;                        }
-  setZoneId                     (x) { this.zoneId                  = x ? x : ""; }
+  getZoneid                     ()  { return this.zoneid;                        }
+  setZoneid                     (x) { this.zoneid                  = x ? x : ""; }
   getPhone                      ()  { return this.phone;                         }
   setPhone                      (x) { this.phone                   = x ? x : ""; }
   getStoreName                  ()  { return this.storeName;                     }
@@ -57,8 +57,8 @@ class Retailer {
 
   // getters and setters with default values where attribute is not provided.
 
-  getRetailerId                 ()  { return this.retailerId;                           }
-  setRetailerId                 (x) { this.retailerId                     = x ? x : 0;  }
+  getRetailerid                 ()  { return this.retailerid;                           }
+  setRetailerid                 (x) { this.retailerid                     = x ? x : 0;  }
   getDefaultContentPage1        ()  { return this.defaultContentPage1;                  }
   setDefaultContentPage1        (x) { this.defaultContentPage1            = x ? x : ""; }
   getDefaultContentPage2        ()  { return this.defaultContentPage2;                  }

@@ -4,13 +4,13 @@
  */
 class LoyaltyReward {
 
-  constructor (loyaltyRewardId, endDate, pointsPerVisit, rewardImage, retailerId, rewardTitle, startDate, visitTime)
+  constructor (loyaltyRewardid, endDate, pointsPerVisit, rewardImage, retailerid, rewardTitle, startDate, visitTime)
   {
-    this.loyaltyRewardId= this.setLoyaltyRewardId   (loyaltyRewardId);
+    this.loyaltyRewardid= this.setLoyaltyRewardid   (loyaltyRewardid);
     this.endDate	      = this.setEndDate           (endDate);
     this.pointsPerVisit	= this.setPointsPerVisit    (pointsPerVisit);
     this.rewardImage	  = this.setRewardImage       (rewardImage);
-    this.retailerId	    = this.setRetailerId        (retailerId);
+    this.retailerid	    = this.setRetailerid        (retailerid);
     this.rewardTitle	  = this.setRewardTitle       (rewardTitle);
     this.startDate	    = this.setStartDate         (startDate);
     this.visitTime	    = this.setVisitTime         (visitTime);
@@ -21,8 +21,8 @@ class LoyaltyReward {
 
   // getters and setters with default values where attribute is not provided.
 
-  getLoyaltyRewardId  ()  { return this.loyaltyRewardId;            }
-  setLoyaltyRewardId  (x) { this.loyaltyRewardId     = x ? x : 0;   }
+  getLoyaltyRewardid  ()  { return this.loyaltyRewardid;            }
+  setLoyaltyRewardid  (x) { this.loyaltyRewardid     = x ? x : 0;   }
   getEndDateString    ()  { return new Date(this.endDate);          }
   setEndDate          (x) { this.endDate             = x ? x : "";  }
   getStartDateString  ()  { return new Date(this.startDate);        }
@@ -31,8 +31,8 @@ class LoyaltyReward {
   setPointsPerVisit   (x) { this.pointsPerVisit      = x ? x : 0;   }
   getRewardImage      ()  { return this.rewardImage;                }
   setRewardImage      (x) { this.rewardImage         = x ? x : "";  }
-  getRetailerId       ()  { return this.retailerId;                 }
-  setRetailerId       (x) { this.retailerId          = x ? x : 0;   }
+  getRetailerid       ()  { return this.retailerid;                 }
+  setRetailerid       (x) { this.retailerid          = x ? x : 0;   }
   getRewardTitle      ()  { return this.rewardTitle;                }
   setRewardTitle      (x) { this.rewardTitle         = x ? x : "";  }
   getVisitTime        ()  { return this.visitTime;                  }
@@ -41,9 +41,46 @@ class LoyaltyReward {
   getRetailers        ()  { return this.retailers;                  }
   setRetailers        (x) { this.retailers           = x ? x : [];  }
 
+  getEndDateReadable    () { return getReadableDate(this.endDate)          }
+  getStartDateReadable  () { return getReadableDate(this.startDate)        }
+
 }
 
+function getReadableDate(date) {
 
+
+  let dateStr = new Date(date);
+
+  let month = dateStr.getMonth();
+  let monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December' ];
+  let monthName = monthNames[month];
+  let year = dateStr.getFullYear()
+  let day = dateStr.getDate();
+
+  let hour = dateStr.getHours();
+  let minute = dateStr.getMinutes();
+  // let period = "am";
+  // if (hour >= 12) {
+  //   period = " pm";
+  //   hour = hour - 12;
+  // }
+
+  let newDate = ""
+  if ((hour === 0) && (minute === 0))
+
+    newDate = monthName + " " + day + ", " + year;
+  else {
+    if (minute < 10)
+      minute = "0" + minute;
+    if (hour < 10)
+      hour = "0" + hour;
+
+    newDate = hour + ":" + minute + " " + monthName + " " + day + ", " + year;
+  }
+
+  return newDate;
+}
 
 
 

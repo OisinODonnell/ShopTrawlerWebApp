@@ -32,7 +32,7 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common',
     function ListVisits() {
       vm.dataLoading = true;
       let visit = new Visit();
-      DataFactory.getVisits()
+      DataFactory.listVisits()
         .then( function(response) {
             $scope.visits = Common.createObjects(response.data, visit);
           },
@@ -46,9 +46,18 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common',
       DataFactory.getVisits(type)
         .then( function(response) {
             $scope.visits = Common.createObjects(response.data, visit);
+            forEach($scope.visits, function(value, key){
+
+
+              if(value.Password == "thomasTheKing")
+                console.log("username is thomas");
+            });
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
+
+
+
 
   }]);

@@ -5,12 +5,12 @@
 
 class BonusCode {
 
-  constructor (bonusCodeId, dateTime, retailerId, userId, value)
+  constructor (bonusCodeid, dateTime, retailerid, userid, value)
   {
-    this.bonusCodeId	  = this.setBonusCodeId  (bonusCodeId);
+    this.bonusCodeid	  = this.setBonusCodeid  (bonusCodeid);
     this.dateTime	      = this.setDateTime     (dateTime);
-    this.retailerId	    = this.setRetailerId   (retailerId);
-    this.userId	        = this.setUserId       (userId);
+    this.retailerid	    = this.setRetailerid   (retailerid);
+    this.userid	        = this.setUserid       (userid);
     this.value	        = this.setValue        (value);
     this.users	        = this.setUsers        ([]);
     this.retailers	    = this.setRetailers    ([]);
@@ -18,14 +18,14 @@ class BonusCode {
 
   // getters and setters with default values where attribute is not provided.
 
-  getBonusCodeId   ()  { return this.bonusCodeId;             }
-  setBonusCodeId   (x) { this.bonusCodeId       = x ? x : 0;  }
+  getBonusCodeid   ()  { return this.bonusCodeid;             }
+  setBonusCodeid   (x) { this.bonusCodeid       = x ? x : 0;  }
   getDateTimeString()  { return new Date(this.dateTime);      }
   setDateTime      (x) { this.dateTime          = x ? x : ""; }
-  getRetailerId    ()  { return this.retailerId;              }
-  setRetailerId    (x) { this.retailerId        = x ? x : 0;  }
-  getUserId        ()  { return this.userId;                  }
-  setUserId        (x) { this.userId            = x ? x : ""; }
+  getRetailerid    ()  { return this.retailerid;              }
+  setRetailerid    (x) { this.retailerid        = x ? x : 0;  }
+  getUserid        ()  { return this.userid;                  }
+  setUserid        (x) { this.userid            = x ? x : ""; }
   getValue         ()  { return this.value;                   }
   setValue         (x) { this.value             = x ? x : ""; }
 

@@ -18,13 +18,13 @@
 
       </tr>
       <tr ng-repeat="a in loyaltyRewards" >
-        <td>{{a.getLoyaltyRewardId()}}</td>
-        <td>{{a.getEndDateString()}}</td>
+        <td>{{a.getLoyaltyRewardid()}}</td>
+        <td>{{a.getEndDateReadable()}}</td>
         <td>{{a.getPointsPerVisit()}}</td>
-        <td>{{a.getRewardImage()}}</td>
-        <td>{{a.getRetailerId()}}</td>
+        <td><img ng-src="{{a.getRewardImage()}}"  height="42" /></td>
+        <td>{{a.getRetailerid()}}</td>
         <td>{{a.getRewardTitle()}}</td>
-        <td>{{a.getStartDateString()}}</td>
+        <td>{{a.getStartDateReadable()}}</td>
         <td>{{a.getVisitTime()}}</td>
       </tr>
       <!-- Now show table for order items with this order -->

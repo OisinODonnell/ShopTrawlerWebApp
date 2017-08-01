@@ -9,8 +9,8 @@ myApp.controller('ZonesController', ['DataFactory','$scope','Common',
     // placeholders
     $scope.dropdownCategories    = [];
     $scope.dropdownmanufacturers = [];
-    $scope.zones       = 0;
-    $scope.zoneId      = 0;
+    $scope.zones       = [];
+    $scope.zoneid      = 0;
 
 
     // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
@@ -30,7 +30,7 @@ myApp.controller('ZonesController', ['DataFactory','$scope','Common',
     function ListZones() {
       vm.dataLoading = true;
       let zone = new Zone();
-      DataFactory.getZones()
+      DataFactory.listZones()
         .then( function(response) {
             $scope.zones = Common.createObjects(response.data, zone);
           },

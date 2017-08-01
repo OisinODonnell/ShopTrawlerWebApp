@@ -5,11 +5,11 @@
 
 class ShoppingCentre {
 
-  constructor (shoppingCentreId, adminId, contentPage, phone, facebookUrl, twitterUrl, websiteUrl,
+  constructor (shoppingCentreid, adminid, contentPage, phone, facebookUrl, twitterUrl, websiteUrl,
                logoImageSmall, logoImageMedium, logoImageLarge)
   {
-    this.shoppingCentreId	= this.setShoppingCentreId  (shoppingCentreId);
-    this.adminId	        = this.setAdminId           (adminId);
+    this.shoppingCentreid	= this.setShoppingCentreid  (shoppingCentreid);
+    this.adminid	        = this.setAdminid           (adminid);
     this.contentPage	    = this.setContentPage       (contentPage);
     this.phone	          = this.setPhone             (phone);
     this.facebookUrl	    = this.setFacebookUrl       (facebookUrl);
@@ -26,10 +26,10 @@ class ShoppingCentre {
 
   // getters and setters with default values where attribute is not provided.
 
-  getShoppingCentreId     ()  { return this.shoppingCentreId;       }
-  setShoppingCentreId     (x) { this.shoppingCentreId = x ? x : 0;  }
-  getAdminId              ()  { return this.adminId;                }
-  setAdminId              (x) { this.adminId          = x ? x : 0;  }
+  getShoppingCentreid     ()  { return this.shoppingCentreid;       }
+  setShoppingCentreid     (x) { this.shoppingCentreid = x ? x : 0;  }
+  getAdminid              ()  { return this.adminid;                }
+  setAdminid              (x) { this.adminid          = x ? x : 0;  }
   getContentPage          ()  { return this.contentPage;            }
   setContentPage          (x) { this.contentPage      = x ? x : ""; }
   getPhone                ()  { return this.phone;                  }

@@ -5,10 +5,10 @@
 
 class Favourite {
 
-  constructor (userId, retailerId)
+  constructor (userid, retailerid)
   {
-    this.userId	        = this.setUserId       (userId);
-    this.retailerId	    = this.setRetailerId   (retailerId);
+    this.userid	        = this.setUserid       (userid);
+    this.retailerid	    = this.setRetailerid   (retailerid);
 
     this.users	        = this.setUsers        ([]);
     this.retailers	    = this.setRetailers    ([]);
@@ -16,10 +16,10 @@ class Favourite {
 
   // getters and setters with default values where attribute is not provided.
 
-  getUserId           ()  { return this.userId;                }
-  setUserId           (x) { this.userId          = x ? x : 0;  }
-  getRetailerId       ()  { return this.retailerId;            }
-  setRetailerId       (x) { this.retailerId      = x ? x : 0; }
+  getUserid           ()  { return this.userid;                }
+  setUserid           (x) { this.userid          = x ? x : 0;  }
+  getRetailerid       ()  { return this.retailerid;            }
+  setRetailerid       (x) { this.retailerid      = x ? x : 0; }
 
   getUsers            ()  { return this.users;                 }
   setUsers            (x) { this.users           = x ? x : []; }
