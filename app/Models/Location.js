@@ -16,7 +16,6 @@ class Location {
     this.shoppingCentreid	  = this.setShoppingCentreid   (shoppingCentreid);
 
     this.beaconsByLocationid	= this.setBeaconsByLocationid  ([]);
-
   }
 
   // getters and setters with default values where attribute is not provided.
@@ -38,4 +37,8 @@ class Location {
 
   getBeaconsByLocationid    ()  { return this.beaconsByLocationid;        }
   setBeaconsByLocationid    (x) { this.beaconsByLocationid = x ? x : [];  }
+
+
+  getBeaconCount        ()  { return this.getBeaconsByLocationid().length(); }
+
 }
