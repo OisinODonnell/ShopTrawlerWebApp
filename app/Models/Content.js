@@ -13,7 +13,6 @@ class Content {
     this.page3	        = this.setPage3        (page3);
     this.retailerid	    = this.setRetailerid   (retailerid);
     this.startDate	    = this.setStartDate    (startDate);
-    this.retailers	    = this.setRetailers    ([]);
   }
 
   // getters and setters with default values where attribute is not provided.
@@ -30,11 +29,9 @@ class Content {
   setPage3          (x) { this.page3           = x ? x : ""; }
   getRetailerid     ()  { return this.retailerid;            }
   setRetailerid     (x) { this.retailerid      = x ? x : 0;  }
-
   getStartDateString()  { return new Date(this.startDate);   }
   setStartDate      (x) { this.startDate       = x ? x : ""; }
-  getRetailers      ()  { return this.retailers;             }
-  setRetailers      (x) { this.retailers       = x ? x : []; }
+
 
 }
 

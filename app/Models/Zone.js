@@ -11,9 +11,8 @@ class Zone {
     this.zoneid	   = this.setZoneid     (zoneid);
     this.beaconid	 = this.setBeaconid   (beaconid);
 
-    this.retailers = this.setRetailers  ([]);
-    this.visits	   = this.setVisits     ([]);
-    this.beacons	 = this.setBeacons    ([]);
+    this.visitsByZoneid	   = this.setVisitsByZoneid     ([]);
+
 
   }
 
@@ -24,12 +23,8 @@ class Zone {
   getBeaconid   ()  { return this.beaconid;               }
   setBeaconid   (x) { this.beaconid         = x ? x : ""; }
 
-  getRetailers  ()  { return this.retailers;              }
-  setRetailers  (x) { this.retailers        = x ? x : []; }
-  getVisits     ()  { return this.visits;                 }
-  setVisits     (x) { this.visits           = x ? x : []; }
-  getBeacons    ()  { return this.beacons;                }
-  setBeacons    (x) { this.beacons          = x ? x : []; }
+  getVisitsByZoneid     ()  { return this.visitsByZoneid;                 }
+  setVisitsByZoneid     (x) { this.visitsByZoneid           = x ? x : []; }
 
 }
 

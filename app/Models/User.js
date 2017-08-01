@@ -17,13 +17,11 @@ class User {
     this.type	          = this.setType          (type);
     this.yob	          = this.setYob           (yob);
 
-    this.bonusCodess	  = this.setBonusCodess   ([]);
-    this.favourites	    = this.setFavourites    ([]);
-    this.ratings	      = this.setRatings       ([]);
-    this.retailers	    = this.setStockReviews  ([]);
-    this.shoppingCentres= this.setShoppingCentres([]);
-    this.userPoints	    = this.setUserPoints    ([]);
-    this.visits	        = this.setVisits        ([]);
+    this.bonusCodesByUserid	    = this.setBonusCodesByUserid    ([]);
+    this.favouritesByUserid	    = this.setFavouritesByUserid    ([]);
+    this.ratingsByUserid	      = this.setRatingsByUserid       ([]);
+    this.userPointsByUserid	    = this.setUserPointsByUserid    ([]);
+    this.visitsByUserid	        = this.setVisitsByUserid        ([]);
 
   }
 
@@ -48,20 +46,16 @@ class User {
   getYob          ()  { return this.yob;                    }
   setYob          (x) { this.yob              = x ? x : ""; }
 
-  getBonusCodess      ()  { return this.bonusCodess;             }
-  setBonusCodess      (x) { this.bonusCodess       = x ? x : []; }
-  getFavourites       ()  { return this.favourites;              }
-  setFavourites       (x) { this.favourites        = x ? x : []; }
-  getRatings          ()  { return this.ratings;                 }
-  setRatings          (x) { this.ratings           = x ? x : []; }
-  getStockReviews     ()  { return this.retailers;               }
-  setStockReviews     (x) { this.retailers         = x ? x : []; }
-  getShoppingCentres  ()  { return this.shoppingCentres;         }
-  setShoppingCentres  (x) { this.shoppingCentres   = x ? x : []; }
-  getUserPoints       ()  { return this.userPoints;              }
-  setUserPoints       (x) { this.userPoints        = x ? x : []; }
-  getVisits           ()  { return this.visits;                  }
-  setVisits           (x) { this.visits            = x ? x : []; }
+  getBonusCodesByUserid  ()  { return this.bonusCodesByUserid;              }
+  setBonusCodesByUserid  (x) { this.bonusCodesByUserid        = x ? x : []; }
+  getFavouritesByUserid  ()  { return this.favouritesByUserid;              }
+  setFavouritesByUserid  (x) { this.favouritesByUserid        = x ? x : []; }
+  getRatingsByUserid     ()  { return this.ratingsByUserid;                 }
+  setRatingsByUserid     (x) { this.ratingsByUserid           = x ? x : []; }
+  getUserPointsByUserid  ()  { return this.userPointsByUserid;              }
+  setUserPointsByUserid  (x) { this.userPointsByUserid        = x ? x : []; }
+  getVisitsByUserid      ()  { return this.visitsByUserid;                  }
+  setVisitsByUserid      (x) { this.visitsByUserid            = x ? x : []; }
 
 }
 

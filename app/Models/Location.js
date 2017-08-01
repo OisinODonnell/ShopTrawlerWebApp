@@ -15,8 +15,8 @@ class Location {
     this.locationType	      = this.setLocationType       (locationType);
     this.shoppingCentreid	  = this.setShoppingCentreid   (shoppingCentreid);
 
-    this.beacons	          = this.setBeacons            ([]);
-    this.shoppingCentres	  = this.setShoppingCentres    ([]);
+    this.beaconsByLocationid	= this.setBeaconsByLocationid  ([]);
+
   }
 
   // getters and setters with default values where attribute is not provided.
@@ -36,8 +36,6 @@ class Location {
   getShoppingCentreid   ()  { return this.shoppingCentreid;           }
   setShoppingCentreid   (x) { this.shoppingCentreid    = x ? x : 0;   }
 
-  getBeacons            ()  { return this.beacons;                    }
-  setBeacons            (x) { this.beacons             = x ? x : [];  }
-  getShoppingCentres    ()  { return this.shoppingCentres;            }
-  setShoppingCentres    (x) { this.shoppingCentres     = x ? x : [];  }
+  getBeaconsByLocationid    ()  { return this.beaconsByLocationid;        }
+  setBeaconsByLocationid    (x) { this.beaconsByLocationid = x ? x : [];  }
 }

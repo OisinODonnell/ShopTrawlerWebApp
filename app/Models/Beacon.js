@@ -8,15 +8,13 @@ class Beacon {
 
   constructor (beaconid, locationid, major, minor, transmitPower, uuid)
   {
-    this.beaconid	    = this.setBeaconid      (beaconid);
-    this.locationid	  = this.setLocationid    (locationid);
-    this.major	      = this.setMajor         (major);
-    this.minor	      = this.setMinor         (minor);
-    this.transmitPower= this.setTransmitPower (transmitPower);
-    this.uuid	        = this.setUuid          (uuid);
-    this.locations	  = this.setLocations     ([]);
-    this.zones	      = this.setZones         ([]);
-
+    this.beaconid	        = this.setBeaconid        (beaconid);
+    this.locationid	      = this.setLocationid      (locationid);
+    this.major	          = this.setMajor           (major);
+    this.minor	          = this.setMinor           (minor);
+    this.transmitPower    = this.setTransmitPower   (transmitPower);
+    this.uuid	            = this.setUuid            (uuid);
+    this.zonesByBeaconid	= this.setZonesByBeaconid ([]);
   }
 
   // getters and setters with default values where attribute is not provided.
@@ -34,9 +32,7 @@ class Beacon {
   getUuid          ()  { return this.uuid;                     }
   setUuid          (x) { this.uuid               = x ? x : ""; }
 
-  getLocations     ()  { return this.locations;                }
-  setLocations     (x) { this.locations          = x ? x : []; }
-  getZones         ()  { return this.zones;                    }
-  setZones         (x) { this.zones              = x ? x : []; }
+  getZonesByBeaconid   ()  { return this.zonesByBeaconid;       }
+  setZonesByBeaconid   (x) { this.zonesByBeaconid = x ? x : []; }
 
 }

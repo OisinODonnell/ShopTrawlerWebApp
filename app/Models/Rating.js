@@ -12,9 +12,6 @@ class Rating {
     this.retailerid	  = this.setRetailerid  (retailerid);
     this.rating	      = this.setRating      (rating);
     this.review	      = this.setReview      (review);
-    this.users	      = this.setUsers       ([]);
-    this.retailers	  = this.setRetailers   ([]);
-
   }
 
   // getters and setters with default values where attribute is not provided.
@@ -29,11 +26,6 @@ class Rating {
   setRating         (x) { this.rating              = x ? x : "";   }
   getReview         ()  { return this.review;                      }
   setReview         (x) { this.review              = x ? x : "";   }
-
-  getRetailers      ()  { return this.retailers;                   }
-  setRetailers      (x) { this.retailers           = x ? x : [];   }
-  getUsers          ()  { return this.users;                       }
-  setUsers          (x) { this.users               = x ? x : [];   }
 
   getDateReadable    () { return getReadableDate(this.date)          }
 

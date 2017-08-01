@@ -27,15 +27,14 @@ class Retailer {
     this.storeDefaultContentPage1	    = this.setStoreDefaultContentPage1  (storeDefaultContentPage1);
     this.zoneid	                      = this.setZoneid                    (zoneid);
 
-    this.bonusCodes	                  = this.setBonusCodes                ([]);
-    this.content	                    = this.setContent                   ([]);
-    this.favourites	                  = this.setFavourites                ([]);
-    this.loyaltyRewards	              = this.setLoyaltyRewards            ([]);
-    this.ratings                      = this.setRatings                   ([]);
-    this.shoppingCentres              = this.setShoppingCentres           ([]);
-    this.users                        = this.setUsers                     ([]);
-    this.zones                        = this.setZones                     ([]);
-    this.userPoints                   = this.setUserPoints                ([]);
+    this.bonusCodesByRetailerid	      = this.setBonusCodesByRetailerid    ([]);
+    this.contentByRetailerid	        = this.setContentByRetailerid       ([]);
+    this.favouritesByRetailerid	      = this.setFavouritesByRetailerid    ([]);
+    this.loyaltyRewardsByRetailerid	  = this.setLoyaltyRewardsByRetailerid([]);
+    this.ratingsByRetailerid          = this.setRatingsByRetailerid       ([]);
+    this.usersByManagerid             = this.setUsersByManagerid          ([]);
+    this.zonesByZoneid                = this.setZonesByZoneid             ([]);
+    this.userPointsByRetailerid       = this.setUserPointsByRetailerid    ([]);
 
   }
 
@@ -80,24 +79,22 @@ class Retailer {
   getLogoImageMedium            ()  { return this.logoImageMedium;               }
   setLogoImageMedium            (x) { this.logoImageMedium        = x ? x : "";  }
 
-  getBonusCodes                 ()  { return this.bonusCodes;                    }
-  setBonusCodes                 (x) { this.bonusCodes             = x ? x : [];  }
-  getContent                    ()  { return this.content;                       }
-  setContent                    (x) { this.content                = x ? x : [];  }
-  getFavourites                 ()  { return this.favourites;                    }
-  setFavourites                 (x) { this.favourites             = x ? x : [];  }
-  getLoyaltyRewards             ()  { return this.loyaltyRewards;                }
-  setLoyaltyRewards             (x) { this.loyaltyRewards         = x ? x : [];  }
-  getRatings                    ()  { return this.ratings;                       }
-  setRatings                    (x) { this.ratings                = x ? x : [];  }
-  getUsers                      ()  { return this.users;                         }
-  setUsers                      (x) { this.users                  = x ? x : [];  }
-  getShoppingCentres            ()  { return this.shoppingCentres;               }
-  setShoppingCentres            (x) { this.shoppingCentres        = x ? x : [];  }
-  getZones                      ()  { return this.zones;                         }
-  setZones                      (x) { this.zones                  = x ? x : [];  }
-  getUserPoints                 ()  { return this.userPoints;                    }
-  setUserPoints                 (x) { this.userPoints             = x ? x : [];  }
+  getBonusCodesByRetailerid                 ()  { return this.bonusCodesByRetailerid;                    }
+  setBonusCodesByRetailerid                 (x) { this.bonusCodesByRetailerid             = x ? x : [];  }
+  getContentByRetailerid                    ()  { return this.contentByRetailerid;                       }
+  setContentByRetailerid                    (x) { this.contentByRetailerid                = x ? x : [];  }
+  getFavouritesByRetailerid                 ()  { return this.favouritesByRetailerid;                    }
+  setFavouritesByRetailerid                 (x) { this.favouritesByRetailerid             = x ? x : [];  }
+  getLoyaltyRewardsByRetailerid             ()  { return this.loyaltyRewardsByRetailerid;                }
+  setLoyaltyRewardsByRetailerid             (x) { this.loyaltyRewardsByRetailerid         = x ? x : [];  }
+  getRatingsByRetailerid                    ()  { return this.ratingsByRetailerid;                       }
+  setRatingsByRetailerid                    (x) { this.ratingsByRetailerid                = x ? x : [];  }
+  getUsersByManagerid                       ()  { return this.usersByManagerid;                          }
+  setUsersByManagerid                       (x) { this.usersByManagerid                   = x ? x : [];  }
+  getZonesByZoneid                          ()  { return this.zonesByZoneid;                             }
+  setZonesByZoneid                          (x) { this.zonesByZoneid                      = x ? x : [];  }
+  getUserPointsByRetailerid                 ()  { return this.userPointsByRetailerid;                    }
+  setUserPointsByRetailerid                 (x) { this.userPointsByRetailerid             = x ? x : [];  }
 
 }
 

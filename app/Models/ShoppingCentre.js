@@ -18,10 +18,10 @@ class ShoppingCentre {
     this.logoImageSmall	  = this.setLogoImageSmall    (logoImageSmall);
     this.logoImageMedium	= this.setLogoImageMedium   (logoImageMedium);
     this.logoImageLarge	  = this.setLogoImageLarge    (logoImageLarge);
+    this.usersByAdminid   = this.setUsersByAdminid    ({});
+    this.locationsByShoppingCentreid	      = this.setLocationsByShoppingCentreid   ([]);
+    this.retailersByShoppingCentreid	      = this.setRetailersByShoppingCentreid   ([]);
 
-    this.users	          = this.setUsers             ([]);
-    this.locations	      = this.setLocations         ([]);
-    this.retailers	      = this.setRetailers         ([]);
   }
 
   // getters and setters with default values where attribute is not provided.
@@ -47,12 +47,16 @@ class ShoppingCentre {
   getLogoImageLarge       ()  { return this.logoImageLarge;         }
   setLogoImageLarge       (x) { this.logoImageLarge   = x ? x : ""; }
 
-  getUsers                ()  { return this.users;                  }
-  setUsers                (x) { this.users            = x ? x : []; }
-  getLocations            ()  { return this.locations;              }
-  setLocations            (x) { this.locations        = x ? x : []; }
-  getRetailers            ()  { return this.retailers;              }
-  setRetailers            (x) { this.retailers        = x ? x : []; }
+  getUsersByAdminid       ()  { return this.usersByAdminid;         }
+  setUsersByAdminid       (x) { this.usersByAdminid   = x ? x : []; }
+
+  getFullname             ()  { return this.usersByAdminid.firstname + " " + this.usersByAdminid.surname;}
+
+  getLocationsByShoppingCentreid    ()  { return this.locationsByShoppingCentreid;              }
+  setLocationsByShoppingCentreid    (x) { this.locationsByShoppingCentreid        = x ? x : []; }
+  getRetailersByShoppingCentreid    ()  { return this.retailersByShoppingCentreid;              }
+  setRetailersByShoppingCentreid    (x) { this.retailersByShoppingCentreid        = x ? x : []; }
+
 }
 
 

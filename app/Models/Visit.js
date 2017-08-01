@@ -15,8 +15,6 @@ class Visit {
     this.duration	      = this.setDuration      (duration);
     this.userid	        = this.setUserid        (userid);
     this.zoneid	        = this.setZoneid        (zoneid);
-    this.users	        = this.setUsers         ([]);
-    this.zones	        = this.setZones         ([]);
 
   }
 
@@ -37,10 +35,6 @@ class Visit {
   getZoneid               ()  { return this.zoneid;               }
   setZoneid               (x) { this.zoneid         = x ? x : ""; }
 
-  getUsers                ()  { return this.users;                }
-  setUsers                (x) { this.users          = x ? x : []; }
-  getZones                ()  { return this.zones;                }
-  setZones                (x) { this.zones          = x ? x : []; }
   getEntryTimeReadable    ()  { return getReadableDate(this.entryTime); }
   getExitTimeReadable     ()  { return getReadableDate(this.exitTime);  }
 

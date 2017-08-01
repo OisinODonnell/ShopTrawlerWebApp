@@ -7,7 +7,7 @@
 
       <tr >
         <th class="sorttable_numeric">Shopping Centre ID</th>
-        <th>Admin ID</th>
+        <th>Administrator</th>
         <th>Content Page</th>
         <th>Phone</th>
         <th>Facebook URL</th>
@@ -20,7 +20,7 @@
 
       <tr ng-repeat="a in shoppingCentres" >
         <td>{{a.getShoppingCentreid()}}</td>
-        <td>{{a.getAdminid()}}</td>
+        <td>{{a.getFullname()}}</td>
         <td>{{a.getContentPage()}}</td>
         <td>{{a.getPhone()}}</td>
         <td><a href="{{a.getFacebookUrl()}}">{{a.getFacebookUrl()}}</a></td>

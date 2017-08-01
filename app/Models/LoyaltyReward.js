@@ -14,9 +14,6 @@ class LoyaltyReward {
     this.rewardTitle	  = this.setRewardTitle       (rewardTitle);
     this.startDate	    = this.setStartDate         (startDate);
     this.visitTime	    = this.setVisitTime         (visitTime);
-
-    this.retailers	    = this.setRetailers         ([]);
-
   }
 
   // getters and setters with default values where attribute is not provided.
@@ -37,9 +34,6 @@ class LoyaltyReward {
   setRewardTitle      (x) { this.rewardTitle         = x ? x : "";  }
   getVisitTime        ()  { return this.visitTime;                  }
   setVisitTime        (x) { this.visitTime           = x ? x : 0;   }
-
-  getRetailers        ()  { return this.retailers;                  }
-  setRetailers        (x) { this.retailers           = x ? x : [];  }
 
   getEndDateReadable    () { return getReadableDate(this.endDate)          }
   getStartDateReadable  () { return getReadableDate(this.startDate)        }
