@@ -1,4 +1,6 @@
-﻿let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
+﻿
+
+let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
     .config(config)
     .run(run);
 

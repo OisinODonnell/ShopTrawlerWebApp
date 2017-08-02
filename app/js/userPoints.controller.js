@@ -32,29 +32,37 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common',
     return factory;
 
 
-
     function ListUserPoints() {
       vm.dataLoading = true;
+      let userPoints;
       let userPoint = new UserPoint();
       DataFactory.listUserPoints()
         .then( function(response) {
-            $scope.userPoints = Common.createObjects(response.data, userPoint);
+            userPoints = Common.createObjects(response.data, userPoint);
+            userPoints.forEach(function (userPoint, key) {
+              userPoint.storeName = Common.findStoreName(userPoint.retailerid);
+              userPoints[key] = userPoint;
+
+            });
+            $scope.userPoints = userPoints;
           },
-          function (error) { $scope.status = 'Unable to load UserPoints ' + error.message; });
-      vm.dataLoading = false;
+
+          function (error) { $scope.status = 'Unable to load UserPoints ' + error.message;
+          }
+        );
     }
 
     function getUserPoints(userId) {
       vm.dataLoading = true;
       let userPoint = new UserPoint();
+      let userPoints;
       DataFactory.getUserPoints(userId)
-        .then( function(response) {
-            $scope.userPoints = Common.createObjects(response.data, userPoint);
+        .then(function (response) {
+            $scope.userPoint = Common.createObjects(response.data, userPoint);
           },
-          function (error) { $scope.status = 'Unable to load UserPoints ' + error.message; });
+          function (error) { $scope.status = 'Unable to set user points ' + error.message; });
       vm.dataLoading = false;
     }
-
 
 
     function AddUserPoints(points, user) {

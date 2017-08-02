@@ -11,10 +11,10 @@
         <th>Points Per Visit</th>
         <th>Reward Image</th>
         <th>Retailer ID</th>
+        <th>Store Name</th>
         <th>Reward Title</th>
         <th>Start Date</th>
         <th>Visit Time</th>
-        <th></th>
 
       </tr>
       <tr ng-repeat="a in loyaltyRewards" >
@@ -23,6 +23,7 @@
         <td>{{a.getPointsPerVisit()}}</td>
         <td><img ng-src="{{a.getRewardImage()}}"  height="42" /></td>
         <td>{{a.getRetailerid()}}</td>
+        <td>{{a.storeName}}</td>
         <td>{{a.getRewardTitle()}}</td>
         <td>{{a.getStartDateReadable()}}</td>
         <td>{{a.getVisitTime()}}</td>

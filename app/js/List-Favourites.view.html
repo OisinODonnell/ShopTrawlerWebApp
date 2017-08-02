@@ -7,12 +7,17 @@
 
       <tr >
         <th class="sorttable_numeric">User ID</th>
+        <th>Users Name</th>
         <th>Retailer ID</th>
+        <th>Store Name</th>
 
       </tr>
       <tr ng-repeat="a in favourites" >
         <td>{{a.getUserid()}}</td>
+        <td>{{a.fullname}}</td>
         <td>{{a.getRetailerid()}}</td>
+        <td>{{a.storeName}}</td>
+
       </tr>
       <!-- Now show table for order items with this order -->
 

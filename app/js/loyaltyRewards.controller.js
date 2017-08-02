@@ -32,12 +32,18 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common',
 
     function ListLoyaltyRewards() {
       vm.dataLoading = true;
+      let loyaltyRewards;
       let loyaltyReward = new LoyaltyReward();
       DataFactory.listLoyaltyRewards()
         .then( function(response) {
-            $scope.loyaltyRewards = Common.createObjects(response.data, loyaltyReward);
-          },
-          function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
+          loyaltyRewards = Common.createObjects(response.data, loyaltyReward);
+          loyaltyRewards.forEach(function (loyaltyReward, key) {
+            loyaltyReward.storeName = Common.findStoreName(loyaltyReward.retailerid);
+            loyaltyRewards[key] = loyaltyReward;
+          });
+          $scope.loyaltyRewards = loyaltyRewards;
+        },
+        function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
       vm.dataLoading = false;
     }
 

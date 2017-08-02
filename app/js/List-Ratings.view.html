@@ -7,7 +7,9 @@
 
       <tr >
         <th class="sorttable_numeric">User ID</th>
+        <th>Users Name</th>
         <th>Retailer ID</th>
+        <th>Store Name</th>
         <th>Date</th>
         <th>Rating</th>
         <th>Review</th>
@@ -15,7 +17,9 @@
       </tr>
       <tr ng-repeat="a in ratings" >
         <td>{{a.getUserid()}}</td>
+        <td>{{a.fullname}}</td>
         <td>{{a.getRetailerid()}}</td>
+        <td>{{a.storeName}}</td>
         <td>{{a.getDateReadable()}}</td>
         <td>{{a.getRating()}}</td>
         <td>{{a.getReview()}}</td>

@@ -175,6 +175,42 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
 
     return newDate;
   };
+  /**
+   *
+   * @param id (userid)
+   * @returns {UsersName} or ""
+   */
+  lib.findUsersName = (id) => {
+    if (id == undefined) return "";
+
+    let user = new User();
+    $rootScope.users.some(function (u) {
+      if (u.userid === id) {
+        user = u;
+        return true
+      }
+    });
+    return user.firstname + " " + user.surname;
+  };
+
+  /**
+   *
+   * @param id (retailerid)
+   * @returns {storeName} or ""
+   */
+  lib.findStoreName = (id) => {
+    if (id == undefined) return "";
+
+    let retailer = new Retailer();
+    $rootScope.retailers.some(function (r) {
+      if (r.retailerid === id) {
+        retailer = r;
+        return true;
+      }
+    });
+    return retailer.storeName;
+  };
+
 
   return lib;
 

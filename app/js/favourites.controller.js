@@ -32,10 +32,19 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common',
 
     function ListFavourites() {
       vm.dataLoading = true;
+      let favourites;
       let favourite = new Favourite();
       DataFactory.listFavourites()
         .then( function(response) {
-            $scope.favourites = Common.createObjects(response.data, favourite);
+
+          favourites = Common.createObjects(response.data, favourite);
+          favourites.forEach(function (favourite, key) {
+            favourite.fullname = Common.findUsersName(favourite.userid);
+            favourite.storeName = Common.findStoreName(favourite.retailerid);
+            favourites[key] = favourite;
+
+          });
+          $scope.favourites = favourites;
           },
           function (error) { $scope.status = 'Unable to load Favourites ' + error.message; });
       vm.dataLoading = false;

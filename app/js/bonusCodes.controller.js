@@ -32,10 +32,18 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
 
     function ListBonusCodes() {
       vm.dataLoading = true;
+      let bonusCodes;
       let bonusCode = new BonusCode();
       DataFactory.listBonusCodes()
         .then( function(response) {
-            $scope.bonusCodes = Common.createObjects(response.data, bonusCode);
+            bonusCodes = Common.createObjects(response.data, bonusCode);
+            bonusCodes.forEach(function (bonusCode, key) {
+              bonusCode.fullname = Common.findUsersName(bonusCode.userid);
+              bonusCode.storeName = Common.findStoreName(bonusCode.retailerid);
+              bonusCodes[key] = bonusCode;
+
+            });
+            $scope.bonusCodes = bonusCodes;
           },
           function (error) { $scope.status = 'Unable to load BonusCodes ' + error.message; });
       vm.dataLoading = false;

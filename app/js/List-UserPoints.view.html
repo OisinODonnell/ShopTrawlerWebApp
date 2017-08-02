@@ -8,12 +8,16 @@
       <tr >
         <th class="sorttable_numeric">User ID</th>
         <th>Retailer ID</th>
+        <th>Users Name</th>
+        <th>Store Name</th>
         <th>Points</th>
 
       </tr>
       <tr ng-repeat="a in userPoints" >
         <td>{{a.getUserid ()}}</td>
         <td>{{a.getRetailerid()}}</td>
+        <td>{{a.fullname}}</td>
+        <td>{{a.storeName}}</td>
         <td>{{a.getPoints()}}</td>
       </tr>
       <!-- Now show table for order items with this order -->

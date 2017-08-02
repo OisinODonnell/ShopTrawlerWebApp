@@ -1,5 +1,5 @@
-﻿myApp.controller('HomeController', ['$location', 'DataFactory','$rootScope','Common',
-  function ($location, DataFactory, $rootScope, Common) {
+﻿myApp.controller('HomeController', ['$location', 'DataFactory','$rootScope','Common','$scope',
+  function ($location, DataFactory, $rootScope, Common, $scope) {
     let vm = this;
 
     vm.user = null;
@@ -10,41 +10,57 @@
     let loggedIn = false;
     vm.isAdmin = isAdmin;
     vm.deleteUser = deleteUser;
+    $rootScope.users = [];
+    $rootScope.retailers = [];
+    $rootScope.currentUser = {};
+
 
     let factory = {};
 
 
-    initController();
-
-    function initController() {
-      loadCurrentUser($rootScope.username);
-      loadAllUsersRetailers();
+    loadData($rootScope.username);
 
 
+    // to call rest multiple times, each call must be nested within the previous call
+    // after it has successfully returned and result is assigned, then call the next
 
-    }
-
-    function loadCurrentUser(username) {
+    function loadData(username) { // as a chained call to rest
+      // load current user ... 1st call
       DataFactory.getUserByEmailAddress(username)
         .then(function (user) {
           vm.user = user.data;
-        });
+          $rootScope.currentUser = user.data;
+
+          // 2nd Call tro rest ... load all users
+          DataFactory.listUsers()
+            .then(function (users) {
+              vm.allUsers = users.data;
+              $rootScope.users = users.data;
+
+              // 3rd Call to Rest ... load all retailers
+              DataFactory.listRetailers()
+                .then(function (retailers) {
+                  vm.allRetailers = retailers.data;
+                  $rootScope.retailers = retailers.data;
+                  console.log("Retailer Count : " + $rootScope.retailers.length);
+                  console.log("User Count : " + $rootScope.users.length);
+
+                }, // error handling function for  listRetailers()
+                  function (error) { $scope.status = 'Unable to load Retailers ' + error.message;   }
+              )
+            }, // error handling function for  listUsers()
+              function (error) { $scope.status = 'Unable to load Users ' + error.message;   }
+          )
+        }, // error handling function for getUserByEmailAddress()
+          function (error) { $scope.status = 'Unable to load CurrentUser ' + error.message;  }
+      );
     }
 
     function loadAllUsers() {
-      DataFactory.getUsers()
+      DataFactory.listUsers()
         .then(function (users) {
           vm.allUsers = users.data;
           $rootScope.users = users.data;
-        });
-    }
-
-    function loadAllUsersRetailers() {
-      DataFactory.getUsersRetailers()
-        .then(function (response) {
-          $rootScope.users = response.data.get("Users");
-          $rootScope.retailers = response.data.get("Retailers");
-          vm.allUsers = response.data.users;
         });
     }
 
