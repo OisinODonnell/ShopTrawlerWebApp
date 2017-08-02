@@ -57,6 +57,9 @@ class User {
   getVisitsByUserid      ()  { return this.visitsByUserid;                  }
   setVisitsByUserid      (x) { this.visitsByUserid            = x ? x : []; }
 
+  getFullname            ()  { return this.firstname + " " + this.surname;  }
+
+
 }
 
 

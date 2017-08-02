@@ -13,6 +13,8 @@
         <th>Duration</th>
         <th>User ID</th>
         <th>Zone ID</th>
+        <th>Users Fullname</th>
+        <th>Store name</th>
       </tr>
       <tr ng-repeat="a in visits" >
         <td>{{a.getVisitid()}}</td>
@@ -22,6 +24,8 @@
         <td>{{a.getDuration()}}</td>
         <td>{{a.getUserid()}}</td>
         <td>{{a.getZoneid()}}</td>
+        <td>{{a.fullname}}</td>
+        <td>{{a.storeName}}</td>
       </tr>
       <!-- Now show table for order items with this order -->
 

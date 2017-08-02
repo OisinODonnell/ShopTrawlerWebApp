@@ -18,7 +18,10 @@
 
     function initController() {
       loadCurrentUser($rootScope.username);
-      loadAllUsers();
+      loadAllUsersRetailers();
+
+
+
     }
 
     function loadCurrentUser(username) {
@@ -32,7 +35,16 @@
       DataFactory.getUsers()
         .then(function (users) {
           vm.allUsers = users.data;
-          vm.allUsers = users.data;
+          $rootScope.users = users.data;
+        });
+    }
+
+    function loadAllUsersRetailers() {
+      DataFactory.getUsersRetailers()
+        .then(function (response) {
+          $rootScope.users = response.data.get("Users");
+          $rootScope.retailers = response.data.get("Retailers");
+          vm.allUsers = response.data.users;
         });
     }
 

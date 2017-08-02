@@ -113,6 +113,15 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     factory.deleteBonusCode     = (id)          => $http.get(urlBase + '/BonusCode/delete/' + id );
     factory.updateBonusCode     = (bonusCode)   => $http.get(urlBase + '/BonusCode/update/' + bonusCode );
 
+
+  // complex queries all under /Main mapping
+
+  // returns all Visits, Users and Retailers
+  factory.getVisitsUsersRetailers  = ()   => $http.get(urlBase + '/Main/VUR');
+  factory.getUsersRetailers        = ()   => $http.get(urlBase + '/Main/UR');
+
+
+
     return factory;
 }]);
 
