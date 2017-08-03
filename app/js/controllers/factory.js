@@ -28,6 +28,8 @@ myApp.factory('DataFactory', ['$http', function ($http) {
 
   // Favourits
     factory.listFavourites      = ()            => $http.get(urlBase + '/Favourites' );
+  factory.listFavouritesByRetailer = (id)     => $http.get(urlBase + '/Favourites/Retailer/' + id  );
+  factory.listFavouritesByUser = (id)         => $http.get(urlBase + '/Favourites/User/' + id );
     factory.getFavourite        = (id)          => $http.get(urlBase + '/Favourite/' + id );
     factory.addFavourite        = (favourite)   => $http.get(urlBase + '/Favourite/' + favourite);
     factory.deleteFavourite     = (id)          => $http.get(urlBase + '/Favourite/delete/' + id );
@@ -35,14 +37,18 @@ myApp.factory('DataFactory', ['$http', function ($http) {
 
     // UserPoints
     factory.listUserPoints      = ()            => $http.get(urlBase + '/UserPoints' );
-    factory.listUserPoints      = (id)          => $http.get(urlBase + '/UserPoints/Retailer/' + id );
+   factory.listUserPointsByRetailer = (id)     => $http.get(urlBase + '/UserPoints/Retailer/' + id );
+  factory.listUserPointsByUser = (id)         => $http.get(urlBase + '/UserPoints/User/' + id );
+  factory.listUserPointsByUserRetailer = (userid, retailerid)         => $http.get(urlBase + '/UserPoints/UserRetailer/{userid}/{retailerid}' + id );
     factory.getUserPoints       = (id)          => $http.get(urlBase + '/UserPoint/' + id );
     factory.addUserPoints       = (userPoints)  => $http.get(urlBase + '/UserPoint/' + userPoints);
     factory.deleteUserPoint     = (id)          => $http.get(urlBase + '/UserPoint/delete/' + id );
     factory.updateUserPoint     = (userPoint)   => $http.get(urlBase + '/UserPoint/update/' + userPoint );
 
     // Ratings
-    factory.listRatings         = ()            => $http.get(urlBase + '/Ratings' );
+    factory.listRatings           = ()          => $http.get(urlBase + '/Ratings' );
+   factory.listRatingsByRetailer = (id)        => $http.get(urlBase + '/Ratings/Retailer/' + id );
+   factory.listRatingsByUser     = (id)        => $http.get(urlBase + '/Ratings/User' + id );
     factory.getRating           = (id)          => $http.get(urlBase + '/Rating/' + id);
     factory.addRating           = (rating)      => $http.get(urlBase + '/Rating/' + rating );
     factory.deleteRating        = (id)          => $http.get(urlBase + '/Rating/delete/' + id );
@@ -50,6 +56,10 @@ myApp.factory('DataFactory', ['$http', function ($http) {
 
     // Visits
     factory.listVisits          = ()            => $http.get(urlBase + '/Visits' );
+  factory.listVisitsByUser    = (id)          => $http.get(urlBase + '/Visits/User/' + id );
+  factory.listVisitsByRetailer= (id)          => $http.get(urlBase + '/Visits/Retailer/' + id);
+  // factory.listVisitsByGender  = ()            => $http.get(urlBase + '/Visits/User/Gender' );
+  // factory.listVisitsByAge     = ()            => $http.get(urlBase + '/Visits/User/Age' );
     factory.getVisit            = (id)          => $http.get(urlBase + '/Visit/' );
     factory.addVisit            = (visit)       => $http.get(urlBase + '/Visit/' + visit );
     factory.deleteVisit         = (id)          => $http.get(urlBase + '/Visit/delete/' + id );
@@ -70,14 +80,15 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     factory.updateLocation      = (location)    => $http.get(urlBase + '/Location/update/' + location );
 
     // Users
-  factory.listUsers           = ()            => $http.get(urlBase + '/Users' );
-  factory.listUsers           = (id)            => $http.get(urlBase + '/Users/Retailer/' + id );
-    factory.getUsers            = ()            =>
-      $http.get(urlBase + '/Users/' );
+    factory.listUsers           = ()            => $http.get(urlBase + '/Users' );
+   factory.listUsersByRetailer = (id)          => $http.get(urlBase + '/Users/Retailer/' + id );
     factory.getUser             = (id)          => $http.get(urlBase + '/User/' + id);
-    factory.addUser             = (user)        => $http.get(urlBase + '/User/' + user);
+  factory.addUser             = (user)        => $http.get(urlBase + '/User/' + user);
+  factory.addRetailManager   = (user)        => $http.get(urlBase + '/User/' + user);
     factory.getUserByEmailAddress = (email)     => $http.get(urlBase + '/User/ByEmail/' + email);
-    factory.deleteUserById      = (id)          => $http.get(urlBase + '/User/delete' + id);
+    factory.deleteUserById      = (id)          => $http.get(urlBase + '/User/delete/' + id);
+  factory.deleteUserByEmailAddress = (email)  => $http.get(urlBase + '/User/delete/' + email);
+  factory.deleteUserByUser    = (user)        => $http.get(urlBase + '/User/delete/' + user);
     factory.updateUser          = (user)        => $http.get(urlBase + '/User/update/' + user );
 
     // Retailers
@@ -95,16 +106,16 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     factory.updateBeacon        = (beacon)      => $http.get(urlBase + '/Beacon/update/' + beacon );
 
     // Content
-  factory.listContent         = ()            => $http.get(urlBase + '/Content' );
-  factory.listContent         = (id)            => $http.get(urlBase + '/Content/Retailer/' + id );
+    factory.listContent         = ()            => $http.get(urlBase + '/Content' );
+   factory.listContentByRetailer = (id)        => $http.get(urlBase + '/Content/Retailer/' + id );
     factory.getContent          = (id)          => $http.get(urlBase + '/Content/' + id );
     factory.addContent          = (content)     => $http.get(urlBase + '/Content/' + content );
     factory.deleteContent       = (id)          => $http.get(urlBase + '/Content/delete/' + id );
     factory.updateContent       = (content)     => $http.get(urlBase + '/Content/update/' + content );
 
     // LoyaltyRewards
-  factory.listLoyaltyRewards  = ()              => $http.get(urlBase + '/LoyaltyRewards' );
-  factory.listLoyaltyRewards  = (id)              => $http.get(urlBase + '/LoyaltyRewards/Retailer/' + id );
+    factory.listLoyaltyRewards  = ()              => $http.get(urlBase + '/LoyaltyRewards' );
+   factory.listLoyaltyRewardsByRetailer  = (id)  => $http.get(urlBase + '/LoyaltyRewards/Retailer/' + id );
     factory.getLoyaltyReward    = (id)            => $http.get(urlBase + '/LoyaltyReward/' + id);
     factory.addLoyaltyReward    = (loyaltyReward) => $http.get(urlBase + '/LoyaltyReward/' + loyaltyReward );
     factory.deleteLoyaltyReward = (id)            => $http.get(urlBase + '/LoyaltyReward/delete/' + id );
@@ -112,7 +123,8 @@ myApp.factory('DataFactory', ['$http', function ($http) {
 
     // BonusCodes
     factory.listBonusCodes      = ()            => $http.get(urlBase + '/BonusCodes' );
-    factory.listBonusCodes      = (id)          => $http.get(urlBase + '/BonusCodes/Retailer/' + id );
+   factory.listBonusCodesByRetailer = (id)     => $http.get(urlBase + '/BonusCodes/Retailer/' + id );
+   factory.listBonusCodesByUser= (id)          => $http.get(urlBase + '/BonusCodes/User/' + id );
     factory.getBonusCode        = (id)          => $http.get(urlBase + '/BonusCode/' + id );
     factory.getBonusCodes       = (id)          => $http.get(urlBase + '/BonusCode/Retailer/' + id );
     factory.addBonusCode        = (bonusCode)   => $http.get(urlBase + '/BonusCode/' + bonusCode );

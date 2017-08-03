@@ -160,15 +160,15 @@
           controller: 'RatingsController',
           templateUrl: 'js/List-Ratings.view.html',
           // requireLogin: true,
-          // permissions: [ "administration" ],
+          // permissions: [ "Administration" ],
           controllerAs: 'ac'
         })
         // Ratings
-        .when('/Ratings/Retailers', {
+        .when('/Ratings/Retailer', {
           controller: 'RatingsController',
           templateUrl: 'js/List-Ratings.view.html',
           // requireLogin: true,
-          // permissions: [ "administration" ],
+          // permissions: [ "Retailer" ],
           controllerAs: 'ac'
         })
         // Favourites
@@ -176,15 +176,15 @@
           controller: 'FavouritesController',
           templateUrl: 'js/List-Favourites.view.html',
           // requireLogin: true,
-          // permissions: [ "administration" ],
+          // permissions: [ "Administration" ],
           controllerAs: 'ac'
         })
         // Favourites
-        .when('/Favourites/Retailers', {
+        .when('/Favourites/Retailer', {
           controller: 'FavouritesController',
           templateUrl: 'js/List-Favourites.view.html',
           // requireLogin: true,
-          // permissions: [ "administration" ],
+          // permissions: [ "Retailer" ],
           controllerAs: 'ac'
         })
 

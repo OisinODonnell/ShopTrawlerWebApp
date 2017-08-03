@@ -1,6 +1,6 @@
 
-myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common',
-  function ( DataFactory,$scope,Common) {
+myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$rootScope',
+  function ( DataFactory,$scope,Common,$rootScope) {
     let vm = this;
 
     $scope.test="";
@@ -18,10 +18,18 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common',
     // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
     Common.reloadJs("lib/sorttable.js");
 
-    ListLoyaltyRewards();
+    if ($rootScope.currentUser.type === "Administrator")
+      ListLoyaltyRewards();
+    else
+      ListLoyaltyRewardsByRetailer($rootScope.currentUser.userid);
+
+
+
+
 
     let factory = {
-      ListLoyaltyReward    : ListLoyaltyRewards,
+      ListLoyaltyRewards    : ListLoyaltyRewards,
+      ListLoyaltyRewardsByRetailer    : ListLoyaltyRewardsByRetailer,
       AddLoyaltyReward  : AddLoyaltyReward,
       GetLoyaltyReward : GetLoyaltyReward,
     };
@@ -44,6 +52,23 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common',
           $scope.loyaltyRewards = loyaltyRewards;
         },
         function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
+      vm.dataLoading = false;
+    }
+
+    function ListLoyaltyRewardsByRetailer(id) {
+      vm.dataLoading = true;
+      let loyaltyRewards;
+      let loyaltyReward = new LoyaltyReward();
+      DataFactory.listLoyaltyRewardsByRetailer(id)
+        .then( function(response) {
+            loyaltyRewards = Common.createObjects(response.data, loyaltyReward);
+            loyaltyRewards.forEach(function (loyaltyReward, key) {
+              loyaltyReward.storeName = Common.findStoreName(loyaltyReward.retailerid);
+              loyaltyRewards[key] = loyaltyReward;
+            });
+            $scope.loyaltyRewards = loyaltyRewards;
+          },
+          function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
       vm.dataLoading = false;
     }
 

@@ -20,8 +20,12 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
     // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
     Common.reloadJs("lib/sorttable.js");
 
+    if ($rootScope.currentUser.type === "Administrator")
+      ListVisits();
+    else
+      ListVisitsByRetailer($rootScope.currentUser.userid);
 
-    ListVisits();
+
 
     function ListVisits() {
       vm.dataLoading = true;
@@ -49,5 +53,33 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
         function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
         vm.dataLoading = false;
     }
+
+    function ListVisitsByRetailer(id) {
+      vm.dataLoading = true;
+      let visit    = new Visit();
+
+      DataFactory.listVisitsByRetailer(id)
+        .then( function(response) {
+            // extract collections
+            let visits    = Common.createObjects(response.data, visit);
+
+            // create augmented visits entities for display
+            visits.forEach(  function (visit, key) {
+              let userid = visit.getUserid();
+              let zoneid = visit.getZoneid();
+
+              visit.fullname = Common.findUsersName(userid);
+              // note retailerid === zoneid
+              visit.storeName = Common.findStoreName(zoneid);
+
+              visits[key] = visit;
+            });
+
+            $scope.visits = visits;
+          },
+          function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
+      vm.dataLoading = false;
+    }
+
 
   }]);

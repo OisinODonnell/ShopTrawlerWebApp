@@ -1,6 +1,6 @@
 
-myApp.controller('ContentsController', ['DataFactory','$scope','Common',
-  function ( DataFactory,$scope,Common) {
+myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootScope',
+  function ( DataFactory,$scope,Common,$rootScope) {
     let vm = this;
 
     $scope.test="";

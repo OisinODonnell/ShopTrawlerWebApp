@@ -1,6 +1,6 @@
 
-myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
-  function ( DataFactory,$scope,Common) {
+myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$rootScope',
+  function ( DataFactory,$scope,Common, $rootScope) {
     let vm = this;
 
     $scope.test="";
@@ -20,12 +20,8 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
 
     if ($rootScope.currentUser.type === "Administrator")
       ListBonusCodes();
-    else if ($rootScope.currentUser.type === "Retailer")
-      ListBonusCodesByRetailer($rootScope.currentUser.userid);
     else
-      getBonusCodes($rootScope.currentUser.userid);
-
-    ListBonusCodes();
+      ListBonusCodesByRetailer($rootScope.currentUser.userid);
 
     let factory = {
       ListBonusCodes : ListBonusCodes, // all users
@@ -36,8 +32,6 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
     };
 
     return factory;
-
-
 
     function ListBonusCodes() {
       vm.dataLoading = true;
@@ -50,7 +44,6 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
               bonusCode.fullname = Common.findUsersName(bonusCode.userid);
               bonusCode.storeName = Common.findStoreName(bonusCode.retailerid);
               bonusCodes[key] = bonusCode;
-
             });
             $scope.bonusCodes = bonusCodes;
           },
@@ -62,7 +55,7 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
       vm.dataLoading = true;
       let bonusCodes;
       let bonusCode = new BonusCode();
-      DataFactory.listBonusCodes(id)
+      DataFactory.listBonusCodesByRetailer(id)
         .then( function(response) {
             bonusCodes = Common.createObjects(response.data, bonusCode);
             bonusCodes.forEach(function (bonusCode, key) {

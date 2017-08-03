@@ -1,9 +1,5 @@
-/**
- * Created by oisin on 07/05/2017.
- */
-
-myApp.controller('UsersController', ['DataFactory','$scope','Common',
-  function ( DataFactory,$scope,Common) {
+myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope',
+  function ( DataFactory,$scope,Common,$rootScope) {
     let vm = this;
 
     $scope.test="";
@@ -12,7 +8,7 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common',
     // placeholders
     $scope.dropdownCategories    = [];
     $scope.dropdownmanufacturers = [];
-    $scope.users       = [];
+    $scope.users;
     $scope.userid      = 0;
 
 
@@ -23,32 +19,52 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common',
     ListUsers();
 
     let factory = {
-      ListUsers        : ListUsers,
-      AddRetailManager : AddRetailManager,
+      ListUsers         : ListUsers,
+      AddRetailManager  : AddRetailManager,
+      AddUser           : AddUser,
     };
-
     return factory;
+
 
     function ListUsers() {
       vm.dataLoading = true;
       let user = new User();
-      DataFactory.getUsers()
+      DataFactory.listUsers()
         .then( function(response) {
-            $scope.users = Common.createObjects(response.data, user);
+            $rootScope.users = Common.createObjects(response.data, user);
           },
-          function (error) { $scope.status = 'Unable to load User data ' + error.message; });
+          function (error) { $scope.status = 'Unable to load User data ' + error.message; }
+        );
       vm.dataLoading = false;
     }
 
-    function AddRetailManager() {
+    /*
+    Add new user, return updated list of users into rootScope
+     */
+    function AddRetailManager(newUser) {
       vm.dataLoading = true;
       let user = new User();
-      DataFactory.setUsers()
+      DataFactory.addRetailManager(newUser)
         .then( function(response) {
-            $scope.users = Common.createObjects(response.data, user);
-
+            $rootScope.users = Common.createObjects(response.data, user);
           },
-          function (error) { $scope.status = 'Unable to load Account data ' + error.message; });
+          function (error) { $scope.status = 'Unable to add new user (manager) ' + error.message; }
+        );
+      vm.dataLoading = false;
+
+    }
+
+    /*
+        Add new user, return updated list of users into $rootScope
+     */
+    function AddUser(newUser) {
+      vm.dataLoading = true;
+      let user = new User();
+      DataFactory.addUser(newUser)
+        .then( function(response) {
+            $rootScope.users = Common.createObjects(response.data, user);
+          },
+          function (error) { $scope.status = 'Unable to add new user data ' + error.message; });
       vm.dataLoading = false;
 
     }

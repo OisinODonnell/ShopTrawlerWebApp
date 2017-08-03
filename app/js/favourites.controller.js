@@ -1,6 +1,6 @@
 
-myApp.controller('FavouritesController', ['DataFactory','$scope','Common',
-  function ( DataFactory,$scope,Common) {
+myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$rootScope',
+  function ( DataFactory,$scope,Common,$rootScope) {
     let vm = this;
 
     $scope.test="";
@@ -18,12 +18,19 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common',
     // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
     Common.reloadJs("lib/sorttable.js");
 
-    ListFavourites();
+    if ($rootScope.currentUser.type === "Administrator")
+      ListFavourites();
+    else if ($rootScope.currentUser.type === "Retailer")
+      ListFavouritesByRetailer($rootScope.currentUser.userid);
+    else
+      ListFavouritesByUser($rootScope.currentUser.userid);
+
 
     let factory = {
-      ListFavourites : ListFavourites, // all users
-      AddFavourite   : AddFavourite,
-      GetFavourites  : GetFavourites,  // single user
+      ListFavourites            : ListFavourites, // all ufavourites
+      ListFavouritesByRetailer  : ListFavouritesByRetailer, // all favourites by retailer
+      ListFavouritesByUser      : ListFavouritesByUser, // all favourites by user
+      AddFavourite              : AddFavourite,
     };
 
     return factory;
@@ -50,12 +57,41 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common',
       vm.dataLoading = false;
     }
 
-    function GetFavourites(userId) {
+    function ListFavouritesByUser(id) {
       vm.dataLoading = true;
+      let favourites;
       let favourite = new Favourite();
-      DataFactory.getFavourites(userId)
+      DataFactory.listFavouritesByUser(id)
         .then( function(response) {
-            $scope.favourites = Common.createObjects(response.data, favourite);
+
+            favourites = Common.createObjects(response.data, favourite);
+            favourites.forEach(function (favourite, key) {
+              favourite.fullname = Common.findUsersName(favourite.userid);
+              favourite.storeName = Common.findStoreName(favourite.retailerid);
+              favourites[key] = favourite;
+
+            });
+            $scope.favourites = favourites;
+          },
+          function (error) { $scope.status = 'Unable to load Favourites ' + error.message; });
+      vm.dataLoading = false;
+    }
+
+    function ListFavouritesByRetailer(id) {
+      vm.dataLoading = true;
+      let favourites;
+      let favourite = new Favourite();
+      DataFactory.listFavouritesByRetailer(id)
+        .then( function(response) {
+
+            favourites = Common.createObjects(response.data, favourite);
+            favourites.forEach(function (favourite, key) {
+              favourite.fullname = Common.findUsersName(favourite.userid);
+              favourite.storeName = Common.findStoreName(favourite.retailerid);
+              favourites[key] = favourite;
+
+            });
+            $scope.favourites = favourites;
           },
           function (error) { $scope.status = 'Unable to load Favourites ' + error.message; });
       vm.dataLoading = false;

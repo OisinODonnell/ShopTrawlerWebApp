@@ -27,7 +27,7 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
     else if ($rootScope.currentUser.type === "Retailer")
       ListUserPointsByRetailer($rootScope.currentUser.userid);
     else
-      getUserPoints($rootScope.currentUser.userid);
+      ListUserPointsByUser($rootScope.currentUser.userid);
 
 
     let factory = {
@@ -64,7 +64,7 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
       vm.dataLoading = true;
       let userPoints;
       let userPoint = new UserPoint();
-      DataFactory.listUserPoints(id)
+      DataFactory.listUserPointsByRetailer(id)
         .then( function(response) {
             userPoints = Common.createObjects(response.data, userPoint);
             userPoints.forEach(function (userPoint, key) {
@@ -81,7 +81,26 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
         );
     }
 
+    function ListUserPointsByUser(id) {
+      vm.dataLoading = true;
+      let userPoints;
+      let userPoint = new UserPoint();
+      DataFactory.listUserPointsByUser(id)
+        .then( function(response) {
+            userPoints = Common.createObjects(response.data, userPoint);
+            userPoints.forEach(function (userPoint, key) {
+              userPoint.storeName = Common.findStoreName(userPoint.retailerid);
+              userPoint.fullname = Common.findUsersName(userPoint.userid);
+              userPoints[key] = userPoint;
 
+            });
+            $scope.userPoints = userPoints;
+          },
+
+          function (error) { $scope.status = 'Unable to load UserPoints ' + error.message;
+          }
+        );
+    }
     function getUserPoints(userId) {
       vm.dataLoading = true;
       let userPoint = new UserPoint();
