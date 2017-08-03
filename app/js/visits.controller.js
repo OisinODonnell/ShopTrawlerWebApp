@@ -33,12 +33,12 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
           let visits    = Common.createObjects(response.data, visit);
 
           // create augmented visits entities for display
-
           visits.forEach(  function (visit, key) {
             let userid = visit.getUserid();
             let zoneid = visit.getZoneid();
 
             visit.fullname = Common.findUsersName(userid);
+            // note retailerid === zoneid
             visit.storeName = Common.findStoreName(zoneid);
 
             visits[key] = visit;

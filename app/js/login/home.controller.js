@@ -13,6 +13,8 @@
     $rootScope.users = [];
     $rootScope.retailers = [];
     $rootScope.currentUser = {};
+    $rootScope.facebookImage = "http://findicons.com/files/icons/947/mini_social_networking/64/facebook.png";
+    $rootScope.twitterImage = "http://findicons.com/files/icons/819/social_me/64/twitter.png";
 
 
     let factory = {};

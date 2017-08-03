@@ -23,9 +23,9 @@
         <td>{{a.getFullname()}}</td>
         <td>{{a.getContentPage()}}</td>
         <td>{{a.getPhone()}}</td>
-        <td><a href="{{a.getFacebookUrl()}}">{{a.getFacebookUrl()}}</a></td>
-        <td><a href="{{a.getTwitterUrl()}}">{{a.getTwitterUrl()}}</a></td>
-        <td><a href="{{a.getWebsiteUrl()}}">{{a.getWebsiteUrl()}}</a></td>
+        <td><a href="{{a.getFacebookUrl()}}"><img src={{facebookImage}} style="width:42px;height:42px;border:0"></a></td>
+        <td><a href="{{a.getTwitterUrl()}}"><img src={{twitterImage}} style="width:42px;height:42px;border:0"></a></td>
+        <td><a href="{{a.getWebsiteUrl()}}"><img src={{a.getLogoImageSmall()}} style="width:42px;height:42px;border:0"></a></td>
         <td><img ng-src="{{a.getLogoImageSmall()}}"  height="42" /></td>
         <td><img ng-src="{{a.getLogoImageMedium()}}" height="42" /></td>
         <td><img ng-src="{{a.getLogoImageLarge()}}"  height="42" /></td>

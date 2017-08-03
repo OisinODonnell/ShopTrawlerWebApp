@@ -18,12 +18,21 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
     // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
     Common.reloadJs("lib/sorttable.js");
 
+    if ($rootScope.currentUser.type === "Administrator")
+      ListBonusCodes();
+    else if ($rootScope.currentUser.type === "Retailer")
+      ListBonusCodesByRetailer($rootScope.currentUser.userid);
+    else
+      getBonusCodes($rootScope.currentUser.userid);
+
     ListBonusCodes();
 
     let factory = {
       ListBonusCodes : ListBonusCodes, // all users
+      ListBonusCodesByRetailer : ListBonusCodesByRetailer, // from logged in retailer
       AddBonusCode  : AddBonusCode,
       GetBonusCode  : GetBonusCode,  // single user
+      GetBonusCodes  : GetBonusCodes,  // single mobil user
     };
 
     return factory;
@@ -49,10 +58,43 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common',
       vm.dataLoading = false;
     }
 
+    function ListBonusCodesByRetailer(id) {
+      vm.dataLoading = true;
+      let bonusCodes;
+      let bonusCode = new BonusCode();
+      DataFactory.listBonusCodes(id)
+        .then( function(response) {
+            bonusCodes = Common.createObjects(response.data, bonusCode);
+            bonusCodes.forEach(function (bonusCode, key) {
+              bonusCode.fullname = Common.findUsersName(bonusCode.userid);
+              bonusCode.storeName = Common.findStoreName(bonusCode.retailerid);
+              bonusCodes[key] = bonusCode;
+
+            });
+            $scope.bonusCodes = bonusCodes;
+          },
+          function (error) { $scope.status = 'Unable to load BonusCodes ' + error.message; });
+      vm.dataLoading = false;
+    }
+
     function GetBonusCode(bonusCodeId) {
       vm.dataLoading = true;
       let bonusCode = new BonusCode();
       DataFactory.getBonusCode(bonusCodeId)
+        .then( function(response) {
+            $scope.bonusCode = Common.createObjects(response.data, bonusCode);
+            $scope.bonusCode.storeName = getStoreName($scope.bonusCode.getRetailerid());
+            $scope.bonusCode.userFullname = getStoreName($scope.bonusCode.getUserid());
+
+          },
+          function (error) { $scope.status = 'Unable to load BonusCode ' + error.message; });
+      vm.dataLoading = false;
+    }
+
+    function GetBonusCodes(id) {
+      vm.dataLoading = true;
+      let bonusCode = new BonusCode();
+      DataFactory.getBonusCode(id)
         .then( function(response) {
             $scope.bonusCode = Common.createObjects(response.data, bonusCode);
             $scope.bonusCode.storeName = getStoreName($scope.bonusCode.getRetailerid());

@@ -1,15 +1,9 @@
-﻿
-
-let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
+﻿let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
     .config(config)
     .run(run);
 
   config.$inject = ['$routeProvider','FlashProvider'];
     function config($routeProvider,FlashProvider) {
-
-
-      // $urlRouterProvider.otherwise('/login');
-      // $httpProvider.interceptors.push('APIInterceptor');
 
       FlashProvider.setTimeout(2000);
       FlashProvider.setShowClose(true);
@@ -66,6 +60,14 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
           // permissions: [ "administration" ],
           controllerAs: 'ac'
         })
+        // Users
+        .when('/Users/Retailer', {
+          controller: 'UsersController',
+          templateUrl: 'js/List-Users.view.html',
+          // requireLogin: true,
+          // permissions: [ "administration" ],
+          controllerAs: 'ac'
+        })
           // Retailers
         .when('/Retailers/List', {
           controller: 'RetailersController',
@@ -82,8 +84,16 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
           // permissions: [ "administration" ],
           controllerAs: 'ac'
         })
+        // Visits
+        .when('/Visits/Retailer', {
+          controller: 'VisitsController',
+          templateUrl: 'js/List-Visits.view.html',
+          // requireLogin: true,
+          // permissions: [ "administration" ],
+          controllerAs: 'ac'
+        })
           // UserPoints
-        .when('/UserPoints/List', {
+        .when('/UserPoints/Retailer', {
           controller: 'UserPointsController',
           templateUrl: 'js/List-UserPoints.view.html',
           // requireLogin: true,
@@ -91,7 +101,7 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
           controllerAs: 'ac'
         })
           // LoyaltyRewards
-        .when('/LoyaltyRewards/List', {
+        .when('/LoyaltyRewards/Retailer', {
           controller: 'LoyaltyRewardsController',
           templateUrl: 'js/List-LoyaltyRewards.view.html',
           // requireLogin: true,
@@ -106,8 +116,15 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
           // permissions: [ "administration" ],
           controllerAs: 'ac'
         })
+        .when('/Contents/Retailer', {
+          controller: 'ContentsController',
+          templateUrl: 'js/List-Contents.view.html',
+          // requireLogin: true,
+          // permissions: [ "administration" ],
+          controllerAs: 'ac'
+        })
           // BonusCodes
-        .when('/BonusCodes/List', {
+        .when('/BonusCodes/Retailer', {
           controller: 'BonusCodesController',
           templateUrl: 'js/List-BonusCodes.view.html',
           // requireLogin: true,
@@ -138,7 +155,7 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
           // permissions: [ "administration" ],
           controllerAs: 'ac'
         })
-          // Ratings
+        // Ratings
         .when('/Ratings/List', {
           controller: 'RatingsController',
           templateUrl: 'js/List-Ratings.view.html',
@@ -146,7 +163,15 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
           // permissions: [ "administration" ],
           controllerAs: 'ac'
         })
-          // Favourites
+        // Ratings
+        .when('/Ratings/Retailers', {
+          controller: 'RatingsController',
+          templateUrl: 'js/List-Ratings.view.html',
+          // requireLogin: true,
+          // permissions: [ "administration" ],
+          controllerAs: 'ac'
+        })
+        // Favourites
         .when('/Favourites/List', {
           controller: 'FavouritesController',
           templateUrl: 'js/List-Favourites.view.html',
@@ -154,7 +179,14 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
           // permissions: [ "administration" ],
           controllerAs: 'ac'
         })
-
+        // Favourites
+        .when('/Favourites/Retailers', {
+          controller: 'FavouritesController',
+          templateUrl: 'js/List-Favourites.view.html',
+          // requireLogin: true,
+          // permissions: [ "administration" ],
+          controllerAs: 'ac'
+        })
 
          .otherwise({ redirectTo: '/login' });
   }
@@ -179,38 +211,5 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
     });
   }
 
-// myApp.service('UserService', function($cookies) {
-//   let service = this,
-//     currentUser = null;
-//   service.setCurrentUser = function(user) {
-//     currentUser = user;
-//     $cookies.put('user',user);
-//     return currentUser;
-//   };
-//   service.getCurrentUser = function() {
-//     if (!currentUser) {
-//       currentUser = $cookies.get('user');
-//     }
-//     return currentUser;
-//   };
-// });
-//
-// myApp.service('APIInterceptor', function() {
-//   let service = this;
-//   service.request = function(config) {
-//     let currentUser = UserService.getCurrentUser(),
-//       access_token = currentUser ? currentUser.access_token : null;
-//     if (access_token) {
-//       config.headers.authorization = access_token;
-//     }
-//     return config;
-//   };
-//   service.responseError = function(response) {
-//     if (response.status === 401) {
-//       $rootScope.$broadcast('unauthorized');
-//     }
-//     return response;
-//   };
-// });
 
 

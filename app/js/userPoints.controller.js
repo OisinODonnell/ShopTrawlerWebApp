@@ -1,6 +1,6 @@
 
-myApp.controller('UserPointsController', ['DataFactory','$scope','Common',
-  function ( DataFactory,$scope,Common) {
+myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$rootScope',
+  function ( DataFactory,$scope,Common,$rootScope) {
     let vm = this;
 
     $scope.test="";
@@ -21,10 +21,18 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common',
     // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
     Common.reloadJs("lib/sorttable.js");
 
-    ListUserPoints();
+
+    if ($rootScope.currentUser.type === "Administrator")
+      ListUserPoints();
+    else if ($rootScope.currentUser.type === "Retailer")
+      ListUserPointsByRetailer($rootScope.currentUser.userid);
+    else
+      getUserPoints($rootScope.currentUser.userid);
+
 
     let factory = {
       ListUserPoints : ListUserPoints, // all users
+      ListUserPointsByRetailer : ListUserPointsByRetailer, // all users
       AddUserPoints  : AddUserPoints,
       getUserPoints  : getUserPoints,  // single user
     };
@@ -39,8 +47,29 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common',
       DataFactory.listUserPoints()
         .then( function(response) {
             userPoints = Common.createObjects(response.data, userPoint);
+
             userPoints.forEach(function (userPoint, key) {
               userPoint.storeName = Common.findStoreName(userPoint.retailerid);
+              userPoint.fullname = Common.findUsersName(userPoint.userid);
+              userPoints[key] = userPoint;
+            });
+            $scope.userPoints = userPoints;
+          },
+          function (error) { $scope.status = 'Unable to load UserPoints ' + error.message;
+          }
+        );
+    }
+
+    function ListUserPointsByRetailer(id) {
+      vm.dataLoading = true;
+      let userPoints;
+      let userPoint = new UserPoint();
+      DataFactory.listUserPoints(id)
+        .then( function(response) {
+            userPoints = Common.createObjects(response.data, userPoint);
+            userPoints.forEach(function (userPoint, key) {
+              userPoint.storeName = Common.findStoreName(userPoint.retailerid);
+              userPoint.fullname = Common.findUsersName(userPoint.userid);
               userPoints[key] = userPoint;
 
             });
@@ -51,6 +80,7 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common',
           }
         );
     }
+
 
     function getUserPoints(userId) {
       vm.dataLoading = true;
