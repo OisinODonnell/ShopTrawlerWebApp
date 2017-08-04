@@ -1,19 +1,8 @@
-
 myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootScope',
   function ( DataFactory,$scope,Common,$rootScope) {
     let vm = this;
-    $scope.test="";
-    $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
 
     // placeholders
-    $scope.dropdownCategories    = [];
-    $scope.dropdownmanufacturers = [];
-    $scope.beacons      = [];
-    $scope.beaconId     = 0;
-    $scope.beacon       = {};
-    $scope.isReadonly = true;
-    $rootScope.beacons = [];
-
 
     // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
     // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
@@ -21,12 +10,12 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootSco
 
     ListBeacons();
 
-    let factory = {
-      ListBeacons : ListBeacons, // all users
-      AddBeacon   : AddBeacon,
-      GetBeacon   : GetBeacon,  // single user
-    };
-    return factory;
+    // let factory = {
+    //   ListBeacons : ListBeacons, // all users
+    //   AddBeacon   : AddBeacon,
+    //   GetBeacon   : GetBeacon,  // single user
+    // };
+    // return factory;
 
     function ListBeacons() {
       vm.dataLoading = true;
@@ -44,7 +33,7 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootSco
       let beacon = new Beacon();
       DataFactory.getBeacon(beaconId)
         .then( function(response) {
-            $scope.beacon = Common.createObjects(response.data, beacon);
+            $rootScope.beacon = Common.createObjects(response.data, beacon);
           },
           function (error) { $scope.status = 'Unable to load Beacon ' + error.message; });
       vm.dataLoading = false;
@@ -55,12 +44,10 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootSco
       let beacon = new Beacon();
       DataFactory.addBeacon(newBeacon)
         .then( function(response) {
-            $scope.beacon = Common.createObjects(response.data, beacon);
+            $rootScope.beacon = Common.createObjects(response.data, beacon);
           },
           function (error) { $scope.status = 'Unable to set beacon ' + error.message; });
       vm.dataLoading = false;
     }
-
-
 
   }]);

@@ -214,6 +214,3 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
       }
     });
   }
-
-
-

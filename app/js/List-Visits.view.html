@@ -1,35 +1,35 @@
-<!-- script brought in here because when placed in index.html it did not work-->
-<!--<script src="../../lib/sorttable.js"></script>-->
-
 <div class="col-md-14 col-md-offset-1" >
   <div class="tg">
-    <table class="sortable" >
-
-      <tr >
-        <th class="sorttable_numeric">Visit ID</th>
-        <th>Entry Time</th>
-        <th>Exit Time</th>
-        <th>User Credite For Visit</th>
-        <th>Duration</th>
-        <th>User ID</th>
-        <th>Zone ID</th>
-        <th>Users Fullname</th>
-        <th>Store name</th>
-      </tr>
-      <tr ng-repeat="a in visits" >
-        <td>{{a.getVisitid()}}</td>
-        <td>{{a.getEntryTimeReadable()}}</td>
-        <td>{{a.getExitTimeReadable()}}</td>
-        <td>{{a.getUserCreditedForVisit()}}</td>
-        <td>{{a.getDuration()}}</td>
-        <td>{{a.getUserid()}}</td>
-        <td>{{a.getZoneid()}}</td>
-        <td>{{a.fullname}}</td>
-        <td>{{a.storeName}}</td>
-      </tr>
-      <!-- Now show table for order items with this order -->
-
-    </table>
-  </div>
-
+    <table id="example" class="display">
+      <thead>
+      <tr>
+            <td >Visit ID</td>
+            <td>Entry Time</td>
+            <td>Exit Time</td>
+            <td>User Credite For Visit</td>
+            <td>Duration</td>
+            <td>User ID</td>
+            <td>Zone ID</td>
+            <td>Users Fullname</td>
+            <td>Store name</td>
+          </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="a in visits">
+            <td>{{a.getVisitid()}}</td>
+            <td>{{a.getEntryTimeReadable()}}</td>
+            <td>{{a.getExitTimeReadable()}}</td>
+            <td>{{a.getUserCreditedForVisit()}}</td>
+            <td>{{a.getDuration()}}</td>
+            <td>{{a.getUserid()}}</td>
+            <td>{{a.getZoneid()}}</td>
+            <td>{{a.fullname}}</td>
+            <td>{{a.storeName}}</td>
+          </tr>
+          <!-- Now show table for order items with this order -->
+        </tbody>
+      </table>
+    </div>
 </div>
+
+

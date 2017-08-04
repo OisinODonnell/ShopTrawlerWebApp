@@ -3,53 +3,67 @@
 
 <div class="col-md-14 col-md-offset-1" >
   <div class="tg">
-    <table class="sortable" >
+    <table id="example" class="display" >
+      <thead>
+        <tr>
+          <td >Retailer ID</td>
+          <td>Default Content Page 1</td>
+          <td>Default Content Page 2</td>
+          <td>Default Content Page 3</td>
+          <td>Default Loyalty Reward Image</td>
+          <td>Facebook URL</td>
+          <td>Twitter URL</td>
+          <td>Website URL</td>
+          <td>Logo Image Small</td>
+          <td>Logo Image Medium</td>
+          <td>Logo Image Large</td>
+          <td>Phone</td>
+          <td>Store Name</td>
+          <td>Header Background Image</td>
+          <td>Manager ID</td>
+          <td>Shopping Centre ID</td>
+          <td>Store Default Content Page 1</td>
+          <td>Zone ID</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="a in retailers" >
+          <td>{{a.getRetailerid()}}</td>
+          <td>{{a.getDefaultContentPage1()}}</td>
+          <td>{{a.getDefaultContentPage2()}}</td>
+          <td>{{a.getDefaultContentPage3()}}</td>
+          <td>{{a.getDefaultLoyaltyRewardImage()}}</td>
+          <td><a href="{{a.getFacebookUrl()}}"><img src={{facebookImage}} style="width:42px;height:42px;border:0"></a></td>
+          <td><a href="{{a.getTwitterUrl()}}"><img src={{twitterImage}} style="width:42px;height:42px;border:0"></a></td>
+          <td><a href="{{a.getWebsiteUrl()}}"><img src={{a.getLogoImageSmall()}} style="width:42px;height:42px;border:0"></a></td>
+          <td><img ng-src="{{a.getLogoImageSmall()}}"  height="42" /></td>
+          <td><img ng-src="{{a.getLogoImageMedium()}}" height="42" /></td>
+          <td><img ng-src="{{a.getLogoImageLarge()}}"  height="42" /></td>
+          <td>{{a.getPhone()}}</td>
+          <td>{{a.getStoreName()}}</td>
+          <td>{{a.getHeaderBackgroundImage()}}</td>
+          <td>{{a.getManagerid()}}</td>
+          <td>{{a.getShoppingCentreid()}}</td>
+          <td>{{a.getStoreDefaultContentPage1()}}</td>
+          <td>{{a.getZoneid()}}</td>
+        </tr>
 
-      <tr >
-        <th class="sorttable_numeric">Retailer ID</th>
-        <th>Default Content Page 1</th>
-        <th>Default Content Page 2</th>
-        <th>Default Content Page 3</th>
-        <th>Default Loyalty Reward Image</th>
-        <th>Facebook URL</th>
-        <th>Twitter URL</th>
-        <th>Website URL</th>
-        <th>Logo Image Small</th>
-        <th>Logo Image Medium</th>
-        <th>Logo Image Large</th>
-        <th>Phone</th>
-        <th>Store Name</th>
-        <th>Header Background Image</th>
-        <th>Manager ID</th>
-        <th>Shopping Centre ID</th>
-        <th>Store Default Content Page 1</th>
-        <th>Zone ID</th>
-
-      </tr>
-
-      <tr ng-repeat="a in retailers" >
-        <td>{{a.getRetailerid()}}</td>
-        <td>{{a.getDefaultContentPage1()}}</td>
-        <td>{{a.getDefaultContentPage2()}}</td>
-        <td>{{a.getDefaultContentPage3()}}</td>
-        <td>{{a.getDefaultLoyaltyRewardImage()}}</td>
-        <td><a href="{{a.getFacebookUrl()}}"><img src={{facebookImage}} style="width:42px;height:42px;border:0"></a></td>
-        <td><a href="{{a.getTwitterUrl()}}"><img src={{twitterImage}} style="width:42px;height:42px;border:0"></a></td>
-        <td><a href="{{a.getWebsiteUrl()}}"><img src={{a.getLogoImageSmall()}} style="width:42px;height:42px;border:0"></a></td>
-        <td><img ng-src="{{a.getLogoImageSmall()}}"  height="42" /></td>
-        <td><img ng-src="{{a.getLogoImageMedium()}}" height="42" /></td>
-        <td><img ng-src="{{a.getLogoImageLarge()}}"  height="42" /></td>
-        <td>{{a.getPhone()}}</td>
-        <td>{{a.getStoreName()}}</td>
-        <td>{{a.getHeaderBackgroundImage()}}</td>
-        <td>{{a.getManagerid()}}</td>
-        <td>{{a.getShoppingCentreid()}}</td>
-        <td>{{a.getStoreDefaultContentPage1()}}</td>
-        <td>{{a.getZoneid()}}</td>
-      </tr>
-      <!-- Now show table for order items with this order -->
-
+      </tbody>
     </table>
   </div>
 
 </div>
+<script>
+$(document).ready(function() {
+  $('#example').DataTable({
+    paging:           true,
+    deferRender:      true,
+    scrollY:          300,
+    scrollX:          300,
+    scroller:         true,
+    loadingIndicator: true,
+    searching:        false
+    }
+  );
+} );
+</script>

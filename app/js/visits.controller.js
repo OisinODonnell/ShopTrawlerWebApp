@@ -4,33 +4,27 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
   function ( DataFactory,$scope,Common,$rootScope) {
     let vm = this;
 
-    $scope.test="";
-    $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
-
     // placeholders
-    $scope.dropdownCategories    = [];
-    $scope.dropdownmanufacturers = [];
-    $scope.visits       = 0;
-    $scope.visitId      = 0;
-    $scope.type = "HOUR"; // HOUR, DAY, WEEK, MONTH
-    $scope.users = [];
-    $scope.retailers = [];
+    $scope.visits                 = [];
+    $scope.visitId                = 0;
+    $scope.type                   = "HOUR"; // HOUR, DAY, WEEK, MONTH
+    $scope.users                  = [];
+    $scope.retailers              = [];
 
     // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
     // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
     Common.reloadJs("lib/sorttable.js");
 
-    if ($rootScope.currentUser.type === "Administrator")
+    if ($rootScope.currentUser.type === "Administrator") {
       ListVisits();
-    else
+    } else {
       ListVisitsByRetailer($rootScope.currentUser.userid);
-
+    }
 
 
     function ListVisits() {
       vm.dataLoading = true;
       let visit    = new Visit();
-
       DataFactory.listVisits()
         .then( function(response) {
           // extract collections
@@ -80,6 +74,5 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
-
 
   }]);

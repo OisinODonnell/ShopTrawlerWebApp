@@ -1,36 +1,27 @@
-<!-- script brought in here because when placed in index.html it did not work-->
-<!--<script src="../../lib/sorttable.js"></script>-->
 
 <div class="col-md-14 col-md-offset-1" >
   <div class="tg">
-    <table  id="example" class="sdisplay " >
-      <tr>
-        <th >Beacon ID</th>
-        <th>UUID</th>
-        <th>Major</th>
-        <th>Minor</th>
-        <th>Location ID</th>
-        <th>Transmit Power</th>
-
-      </tr>
-      <tr ng-repeat="a in beacons" >
-        <td>{{a.getBeaconid()   }}  </td>
-        <td>{{a.getUuid()     }}   </td>
-        <td>{{a.getMajor()     }}    </td>
-        <td>{{a.getMinor()     }}    </td>
-        <td>{{a.getLocationid()}}    </td>
-        <td>{{a.getTransmitPower()}}</td>
-      </tr>
-      <!-- Now show table for order items with this order -->
-
+    <table class="sortable" >
+      <thead>
+        <tr>
+          <td>Beacon ID</td>
+          <td>UUID</td>
+          <td>Major</td>
+          <td>Minor</td>
+          <td>Location ID</td>
+          <td>Transmit Power</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="a in beacons">
+          <td>{{a.getBeaconid() }}     </td>
+          <td>{{a.getUuid()     }}     </td>
+          <td>{{a.getMajor()    }}     </td>
+          <td>{{a.getMinor()    }}     </td>
+          <td>{{a.getLocationid()}}    </td>
+          <td>{{a.getTransmitPower()}} </td>
+        </tr>
+      </tbody>
     </table>
-    <!--<input type="button" value="Edit" data-ng-click="enableEdit();" />-->
-    <!--<input type="button" value="Save" data-ng-click="saveValues();" />-->
-    <script>
-      $(document).ready(function() {
-        $('#example').DataTable();
-      } );
-    </script>
   </div>
-
 </div>
