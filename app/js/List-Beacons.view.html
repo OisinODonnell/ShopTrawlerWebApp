@@ -3,9 +3,9 @@
 
 <div class="col-md-14 col-md-offset-1" >
   <div class="tg">
-    <table class="sortable" >
-      <tr >
-        <th class="sorttable_numeric">Beacon ID</th>
+    <table  id="example" class="sdisplay " >
+      <tr>
+        <th >Beacon ID</th>
         <th>UUID</th>
         <th>Major</th>
         <th>Minor</th>
@@ -14,16 +14,23 @@
 
       </tr>
       <tr ng-repeat="a in beacons" >
-        <td>{{a.getBeaconid()}}</td>
-        <td>{{a.getUuid()}}</td>
-        <td>{{a.getMajor()}}</td>
-        <td>{{a.getMinor()}}</td>
-        <td>{{a.getLocationid()}}</td>
+        <td>{{a.getBeaconid()   }}  </td>
+        <td>{{a.getUuid()     }}   </td>
+        <td>{{a.getMajor()     }}    </td>
+        <td>{{a.getMinor()     }}    </td>
+        <td>{{a.getLocationid()}}    </td>
         <td>{{a.getTransmitPower()}}</td>
       </tr>
       <!-- Now show table for order items with this order -->
 
     </table>
+    <!--<input type="button" value="Edit" data-ng-click="enableEdit();" />-->
+    <!--<input type="button" value="Save" data-ng-click="saveValues();" />-->
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable();
+      } );
+    </script>
   </div>
 
 </div>
