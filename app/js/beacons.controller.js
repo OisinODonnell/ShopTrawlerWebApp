@@ -2,7 +2,6 @@
 myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootScope',
   function ( DataFactory,$scope,Common,$rootScope) {
     let vm = this;
-
     $scope.test="";
     $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
 
@@ -12,6 +11,8 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootSco
     $scope.beacons      = [];
     $scope.beaconId     = 0;
     $scope.beacon       = {};
+    $scope.isReadonly = true;
+    $rootScope.beacons = [];
 
 
     // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
@@ -32,7 +33,7 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootSco
       let beacon = new Beacon();
       DataFactory.listBeacons()
         .then( function(response) {
-            $scope.beacons = Common.createObjects(response.data, beacon);
+            $rootScope.beacons = Common.createObjects(response.data, beacon);
           },
           function (error) { $scope.status = 'Unable to load Beacons ' + error.message; });
       vm.dataLoading = false;
@@ -59,5 +60,7 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootSco
           function (error) { $scope.status = 'Unable to set beacon ' + error.message; });
       vm.dataLoading = false;
     }
+
+
 
   }]);
