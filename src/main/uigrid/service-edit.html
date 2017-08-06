@@ -1,0 +1,36 @@
+<div>
+  <div class="modal-header">
+    <h3 class="modal-title">Edit Row</h3>
+  </div>
+  <div class="modal-body">
+
+    <form name="serviceForm">
+
+    <div class="block">      <label>Visit Id</label>        <input class="input" type="text" disabled value="{{vm.entity.visitid}}" />
+    </div>
+    <div class="block">      <label>Entry Time</label>      <input class="input" type="text" ng-model="vm.entity.entryTime"/>
+    </div>
+    <div class="block">      <label>Exit Time</label>       <input class="input" type="text" ng-model="vm.entity.exitTime"/>
+    </div>
+    <div class="block">      <label>User Credited With Visit</label>      <input class="input" type="text" ng-model="vm.entity.userCreditedWithVisit"/>
+    </div>
+    <div class="block">      <label>Duration</label>        <input class="input" type="text" ng-model="vm.entity.duration"/>
+    </div>
+    <div class="block">      <label>User ID</label>         <input class="input" type="text" ng-model="vm.entity.userid"/>
+    </div>
+    <div class="block">      <label>Zone ID</label>         <input class="input" type="text" ng-model="vm.entity.zoneid"/>
+    </div>
+    <div class="block">      <label>Fullname</label>        <input class="input" type="text" ng-model="vm.entity.fullname"/>
+    </div>
+    <div class="block">      <label>Store Name</label>      <input class="input" type="text" ng-model="vm.entity.storeName"/>
+    </div>
+
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="vm.save()">Save</button>
+    <button class="btn btn-primary" ng-click="vm.remove()">Delete</button>
+    <button class="btn btn-primary" ng-click="$close()">Cancel</button>
+  </div>
+</div>

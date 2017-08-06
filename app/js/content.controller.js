@@ -7,11 +7,11 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
 
     // placeholders
-    $scope.dropdownCategories    = [];
+    $scope.dropdownCategories = [];
     $scope.dropdownmanufacturers = [];
-    $scope.contents       = [];
-    $scope.contentId     = 0;
-    $scope.content       = {};
+    $scope.contents = [];
+    $scope.contentId = 0;
+    $scope.content = {};
 
 
     // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
@@ -22,20 +22,18 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
 
     let factory = {
       ListContents : ListContents, // all users
-      AddContent  : AddContent,
-      GetContent  : GetContent,  // single user
+      AddContent   : AddContent,
+      GetContent   : GetContent,  // single user
     };
-
     return factory;
-
-
 
     function ListContents() {
       vm.dataLoading = true;
       let content = new Content();
-      DataFactory.listContents()
+      DataFactory.listContent()
         .then( function(response) {
             $scope.contents = Common.createObjects(response.data, content);
+
           },
           function (error) { $scope.status = 'Unable to load Contents ' + error.message; });
       vm.dataLoading = false;

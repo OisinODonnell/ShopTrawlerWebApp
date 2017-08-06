@@ -1219,11 +1219,9 @@ function ngViewFillContentFactory($compile, $controller, $route) {
         $element.children().data('$ngControllerController', controller);
       }
       scope[current.resolveAs || '$resolve'] = locals;
-
       link(scope);
     }
   };
 }
-
 
 })(window, window.angular);

@@ -1,12 +1,23 @@
 <div class="col-md-14 col-md-offset-1" >
   <div class="tg">
-    <table id="example" class="display">
+    <div id="serviceGrid"
+         ui-grid-move-columns
+         ui-grid-selection
+         ui-grid-resize-columns
+         ui-grid-pinning
+         ui-grid-exporter
+         ui-grid-auto-resize
+         ui-grid-edit
+         ui-grid="vm.serviceGrid.visits" class="influxGrid">
+
+    </div>
+    <table data-ng-table="visitsTable" class="table table-striped">
       <thead>
       <tr>
             <td >Visit ID</td>
             <td>Entry Time</td>
             <td>Exit Time</td>
-            <td>User Credite For Visit</td>
+            <td>User Credited For Visit</td>
             <td>Duration</td>
             <td>User ID</td>
             <td>Zone ID</td>
@@ -29,7 +40,11 @@
           <!-- Now show table for order items with this order -->
         </tbody>
       </table>
+
     </div>
+
 </div>
+
+
 
 

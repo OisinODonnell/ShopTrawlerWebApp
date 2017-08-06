@@ -2,7 +2,7 @@
 TODO: Add Delete, Edit and Create Elements for each entity.
  */
 
-let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
+let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngAnimate', 'ui.grid', 'ui.grid.moveColumns', 'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit'])
     .config(config)
     .run(run);
 
@@ -115,7 +115,7 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash'])
           // Contents
         .when('/Contents/List', {
           controller: 'ContentsController',
-          templateUrl: 'js/List-Contents.view.html',
+          templateUrl: 'js/List-Content.view.html',
           // requireLogin: true,
           // permissions: [ "administration" ],
           controllerAs: 'ac'

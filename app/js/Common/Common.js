@@ -1,5 +1,5 @@
 /**
- * Created by oisin 07/05/2017.
+ * Created by oisin 07/08/2017.
  */
 
 myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
@@ -210,7 +210,6 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
     });
     return retailer.storeName;
   };
-
 
   return lib;
 
