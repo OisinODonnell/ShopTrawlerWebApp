@@ -6,17 +6,15 @@
 
     <form name="serviceForm">
 
-      <div class="block">      <label>userid </label>        <input class="input" type="text" disabled value="{{vm.entity.userid}}" />
-      </div>
-      <div class="block">      <label>retailerid </label>    <input class="input" type="text" disabled value="{{vm.entity.retailerid"}}/>
-      </div>
+      <div class="block">      <label>userid </label>        <input class="input" type="text" disabled value="{{vm.entity.userid}}" />      </div>
+      <div class="block">      <label>retailerid </label>    <input class="input" type="text" disabled value="{{vm.entity.retailerid"}}/>   </div>
 
     </form>
 
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="vm.save()">Save</button>
-    <button class="btn btn-primary" ng-click="vm.remove()">Delete</button>
+    <button class="btn btn-primary" ng-click="vm.saveFavourite()">Save</button>
+    <button class="btn btn-primary" ng-click="vm.removeFavourite()">Delete</button>
     <button class="btn btn-primary" ng-click="$close()">Cancel</button>
   </div>
 </div>

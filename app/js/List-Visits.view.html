@@ -1,6 +1,12 @@
 <div class="col-md-14 col-md-offset-1" >
   <div class="tg">
-    <div id="serviceGrid"
+
+    <div style="padding-left: 30px;">
+      <button type="button" id="addRow" class="btn btn-success" ng-click="addRow()">Add Row</button>
+    </div>
+    <br />
+
+    <div id="serviceGrid" class="shopTrawler"
          ui-grid-move-columns
          ui-grid-selection
          ui-grid-resize-columns
@@ -8,38 +14,39 @@
          ui-grid-exporter
          ui-grid-auto-resize
          ui-grid-edit
-         ui-grid="vm.serviceGrid.visits" class="influxGrid">
+         ui-grid-pagination
+         ui-grid="vm.serviceGrid" >
 
     </div>
-    <table data-ng-table="visitsTable" class="table table-striped">
-      <thead>
-      <tr>
-            <td >Visit ID</td>
-            <td>Entry Time</td>
-            <td>Exit Time</td>
-            <td>User Credited For Visit</td>
-            <td>Duration</td>
-            <td>User ID</td>
-            <td>Zone ID</td>
-            <td>Users Fullname</td>
-            <td>Store name</td>
-          </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="a in visits">
-            <td>{{a.getVisitid()}}</td>
-            <td>{{a.getEntryTimeReadable()}}</td>
-            <td>{{a.getExitTimeReadable()}}</td>
-            <td>{{a.getUserCreditedForVisit()}}</td>
-            <td>{{a.getDuration()}}</td>
-            <td>{{a.getUserid()}}</td>
-            <td>{{a.getZoneid()}}</td>
-            <td>{{a.fullname}}</td>
-            <td>{{a.storeName}}</td>
-          </tr>
-          <!-- Now show table for order items with this order -->
-        </tbody>
-      </table>
+    <!--<table data-ng-table="visitsTable" class="table table-striped">-->
+      <!--<thead>-->
+      <!--<tr>-->
+            <!--<td >Visit ID</td>-->
+            <!--<td>Entry Time</td>-->
+            <!--<td>Exit Time</td>-->
+            <!--<td>User Credited For Visit</td>-->
+            <!--<td>Duration</td>-->
+            <!--<td>User ID</td>-->
+            <!--<td>Zone ID</td>-->
+            <!--<td>Users Fullname</td>-->
+            <!--<td>Store name</td>-->
+          <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr ng-repeat="a in visits">-->
+            <!--<td>{{a.getVisitid()}}</td>-->
+            <!--<td>{{a.getEntryTimeReadable()}}</td>-->
+            <!--<td>{{a.getExitTimeReadable()}}</td>-->
+            <!--<td>{{a.getUserCreditedForVisit()}}</td>-->
+            <!--<td>{{a.getDuration()}}</td>-->
+            <!--<td>{{a.getUserid()}}</td>-->
+            <!--<td>{{a.getZoneid()}}</td>-->
+            <!--<td>{{a.fullname}}</td>-->
+            <!--<td>{{a.storeName}}</td>-->
+          <!--</tr>-->
+          <!--&lt;!&ndash; Now show table for order items with this order &ndash;&gt;-->
+        <!--</tbody>-->
+      <!--</table>-->
 
     </div>
 

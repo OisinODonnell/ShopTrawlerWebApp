@@ -1,9 +1,12 @@
 ﻿/*
 TODO: Add Delete, Edit and Create Elements for each entity.
+TODO: Change margins of table to fit in centre but not to either edge of screen
  */
 
-let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngAnimate', 'ui.grid', 'ui.grid.moveColumns', 'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit'])
-    .config(config)
+let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngTouch', 'ngAnimate', 'ui.grid', 'ui.grid.moveColumns',
+                                    'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit', 'ui.grid.pagination'])
+
+  .config(config)
     .run(run);
 
   config.$inject = ['$routeProvider','FlashProvider'];
@@ -12,6 +15,7 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngAnimate'
       FlashProvider.setTimeout(2000);
       FlashProvider.setShowClose(true);
 
+      // setup routes for application
       $routeProvider
 
         .when('/', {
@@ -38,7 +42,6 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngAnimate'
           controllerAs: 'vm',
           requireLogin: true
         })
-
         .when('/logout', {
           controller: 'HomeController',
           templateUrl: 'js/login/home.view.html',
@@ -46,8 +49,6 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngAnimate'
           redirectTo: '/login',
           requireLogin: true
         })
-          // new routes
-
         //  ShoppingCentre
         .when('/ShoppingCentres/List', {
           controller: 'ShoppingCentresController',

@@ -6,27 +6,20 @@
 
     <form name="serviceForm">
 
-      <div class="block">      <label>Content ID </label>  <input class="input" type="text" disabled value="{{vm.entity.contentid}}" />
-      </div>
-      <div class="block">      <label>End Date</label>     <input class="input" type="text" ng-model="vm.entity.endDate"/>
-      </div>
-      <div class="block">      <label>Page 1</label>       <input class="input" type="text" ng-model="vm.entity.page1"/>
-      </div>
-      <div class="block">      <label>Page 2 </label>      <input class="input" type="text" ng-model="vm.entity.page2"/>
-      </div>
-      <div class="block">      <label>Page 3 </label>      <input class="input" type="text" ng-model="vm.entity.page3"/>
-      </div>
-      <div class="block">      <label>Retailer ID </label> <input class="input" type="text" ng-model="vm.entity.retailerid"/>
-      </div>
-      <div class="block">      <label>Start Date</label>   <input class="input" type="text" ng-model="vm.entity.startDate"/>
-      </div>
+      <div class="block">      <label>Content ID </label>  <input class="input" disabled value="{{vm.entity.contentid}}"/></div>
+      <div class="block">      <label>End Date</label>     <input class="input" ng-model="vm.entity.endDate"/>          </div>
+      <div class="block">      <label>Page 1</label>       <input class="input" ng-model="vm.entity.page1"/>            </div>
+      <div class="block">      <label>Page 2 </label>      <input class="input" ng-model="vm.entity.page2"/>            </div>
+      <div class="block">      <label>Page 3 </label>      <input class="input" ng-model="vm.entity.page3"/>            </div>
+      <div class="block">      <label>Retailer ID </label> <input class="input" ng-model="vm.entity.retailerid"/>       </div>
+      <div class="block">      <label>Start Date</label>   <input class="input" ng-model="vm.entity.startDate"/>        </div>
 
     </form>
 
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="vm.save()">Save</button>
-    <button class="btn btn-primary" ng-click="vm.remove()">Delete</button>
+    <button class="btn btn-primary" ng-click="vm.saveContent()">Save</button>
+    <button class="btn btn-primary" ng-click="vm.removeContent()">Delete</button>
     <button class="btn btn-primary" ng-click="$close()">Cancel</button>
   </div>
 </div>

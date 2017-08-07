@@ -6,19 +6,16 @@
 
     <form name="serviceForm">
 
-      <div class="block">      <label>Zone ID</label>        <input class="input" type="text" disabled value="{{vm.entity.zoneid}}" />
-      </div>
-      <div class="block">      <label>Beacon ID </label>      <input class="input" type="text" ng-model="vm.entity.beaconid"/>
-      </div>
-      <div class="block">      <label>Zone Name </label>      <input class="input" type="text" ng-model="vm.entity.zoneName"/>
-      </div>
+      <div class="block">      <label>Zone ID</label>         <input class="input" type="text" disabled value="{{vm.entity.zoneid}}" /> </div>
+      <div class="block">      <label>Beacon ID </label>      <input class="input" type="text" ng-model="vm.entity.beaconid"/>          </div>
+      <div class="block">      <label>Zone Name </label>      <input class="input" type="text" ng-model="vm.entity.zoneName"/>          </div>
 
     </form>
 
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="vm.save()">Save</button>
-    <button class="btn btn-primary" ng-click="vm.remove()">Delete</button>
+    <button class="btn btn-primary" ng-click="vm.saveZone()">Save</button>
+    <button class="btn btn-primary" ng-click="vm.removeZone()">Delete</button>
     <button class="btn btn-primary" ng-click="$close()">Cancel</button>
   </div>
 </div>
