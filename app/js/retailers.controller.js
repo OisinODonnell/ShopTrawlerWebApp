@@ -3,20 +3,13 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
 
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
-
-    $scope.test="";
-    $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
+    $scope.vm = vm;
 
     // placeholders
-    $scope.dropdownCategories    = [];
-    $scope.dropdownmanufacturers = [];
     $scope.retailers      = {};
     $scope.retailerId     = 0;
     $scope.retailer       = {};
     $scope.changedRetailer = {};
-
-
-    $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowRetailer;
     vm.serviceGrid = Globals.GridDefaults;
@@ -25,22 +18,38 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
     ListRetailers();
 
     let factory = {
-      ListRetailers : ListRetailers, // all users
-      GetRetailer   : GetRetailer,
-      EditRetailer  : EditRetailer,  // single user
+      ListRetailers  : ListRetailers, // all users
+      GetRetailer    : GetRetailer,
+      EditRetailer   : EditRetailer,  // single user
       UpdateRetailer : UpdateRetailer,
     };
 
+    function updateGridOptions(collection, defaults) {
+      // set of css options changing only in height for each row of collection
+      let shopTrawlers =
+        [ "",   "shopTrawler1",  "shopTrawler2",  "shopTrawler3",  "shopTrawler4",  "shopTrawler5",
+                "shopTrawler6",  "shopTrawler7",  "shopTrawler8",  "shopTrawler9",  "shopTrawler" ];
 
+      if ( collection.length <= 10 ) {
+        $scope.gridStyle = shopTrawlers[collection.length];
+        defaults.enablePagination = false;
+        defaults.enableExpandAll = true;
+
+      }
+      return defaults;
+    }
 
     function ListRetailers() {
       vm.dataLoading = true;
+      let retailers;
       let retailer = new Retailer();
       DataFactory.listRetailers()
         .then( function(response) {
-            $scope.retailers = Common.createObjects(response.data, retailer);
+            retailers = Common.createObjects(response.data, retailer);
+
+            // vm.serviceGrid = updateGridOptions(retailers, vm.serviceGrid);
+            $scope.retailers = retailers;
             vm.serviceGrid.data = $scope.retailers;
-            $scope.gridStyle = Common.gridStyle($scope.retailers.length);
           },
           function (error) { $scope.status = 'Unable to load Retailers ' + error.message; });
       vm.dataLoading = false;
@@ -58,8 +67,6 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
           function (error) { $scope.status = 'Unable to load Retailer ' + error.message; });
       vm.dataLoading = false;
     }
-
-
 
     function EditRetailer(id) {
       vm.dataLoading = true;
@@ -83,7 +90,6 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       vm.dataLoading = false;
     }
 
-
     $scope.addRow = function () {
       let newService = Globals.addRowRetailer;
       let rowTmp = {};
@@ -91,5 +97,5 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       vm.editRow($scope.vm.serviceGrid, rowTmp);
     };
 
-    return factory;
-  }]);
+  return factory;
+}]);

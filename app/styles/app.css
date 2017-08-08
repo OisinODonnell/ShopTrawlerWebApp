@@ -161,7 +161,7 @@ body {
 input.qtyplus { width:25px; height:25px;}
 input.qtyminus { width:25px; height:25px;}
 body{
-  background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');
+  /*background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');*/
   /*padding:50px;*/
 }
 #login-dp{
@@ -217,9 +217,46 @@ body{
 }
 .influxGrid {
   width: 800px;
-  height: 800px;
+  height: 420px;
 }
 .shopTrawler {
-  width: 800px;
-  height: 800px;
+  width: 1000px;
+  height: 420px;
 }
+.shopTrawler1 {
+  width: 1000px;
+  height: 150px;
+}
+.shopTrawler2 {
+  width: 1000px;
+  height: 180px;
+}
+.shopTrawler3 {
+  width: 1000px;
+  height: 210px;
+}
+.shopTrawler4 {
+  width: 1000px;
+  height: 240px;
+}
+.shopTrawler5 {
+  width: 1000px;
+  height: 270px;
+}
+.shopTrawler6 {
+  width: 1000px;
+  height: 300px;
+}
+.shopTrawler7 {
+  width: 1000px;
+  height: 330px;
+}
+.shopTrawler8 {
+  width: 1000px;
+  height: 360px;
+}
+.shopTrawler9 {
+  width: 1000px;
+  height: 390px;
+}
+

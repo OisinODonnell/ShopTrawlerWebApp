@@ -213,9 +213,6 @@ myApp.factory('Common',[ '$rootScope','Globals',  function ($rootScope, Globals)
 
   };
 
-
-
-
   return lib;
 
 }]);
