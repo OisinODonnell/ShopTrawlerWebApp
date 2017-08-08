@@ -1,22 +1,28 @@
-<div class="col-md-14 col-md-offset-1" >
-  <div class="tg">
+<div class="container-fluid">
 
-    <div  >
-      <button type="button" id="addRow" class="btn btn-success" ng-click="addRow()">Add New Row</button>
-    </div>
-    <br />
+  <div class="col-sm-1" >
+    <div class="tg">
+      <!--ui-grid-exporter-->
+      <!--ui-grid-column-resizer-->
+      <!--ui-grid-expandable-row-->
+      <!--ui-grid-infinite-scroll-->
+      <!--ui-grid-viewport-->
+      <!--ui-grid-auto-resize-->
+      <!--ui-grid-resize-columns-->
+      <div>
+        <button type="button" id="addRow" class="btn btn-success" ng-click="addRow()">Add New Row</button>
+      </div>
+      <br/>
 
-    <div  id="serviceGrid" class="shopTrawler" style="{{gridStyle}}"
-         ui-grid-move-columns
-         ui-grid-selection
-         ui-grid-resize-columns
-         ui-grid-pinning
-         ui-grid-exporter
-         ui-grid-auto-resize
-         ui-grid-edit
-         ui-grid-pagination
-         ui-grid="vm.serviceGrid" >
+      <div  id="serviceGrid" class="shopTrawler" style="{{gridStyle}}"
+           ui-grid-pagination
+           ui-grid-move-columns
+           ui-grid-edit
+           ui-grid-pinning
+           ui-grid-selection
+           ui-grid="vm.serviceGrid" >
 
+      </div>
     </div>
   </div>
 </div>
