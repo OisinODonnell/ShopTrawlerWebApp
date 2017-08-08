@@ -1,7 +1,7 @@
 myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScope',
                                       '$uibModal','RowEditor', 'uiGridConstants','Globals',
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
-    let vm = this;
+      let vm = this;
 
     // placeholders
     $scope.visits = [];
@@ -40,6 +40,7 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
 
           $scope.visits = visits;
           vm.serviceGrid.data = visits;
+          $scope.gridStyle = Common.gridStyle(visits.length);
 
         },
         function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
@@ -63,31 +64,24 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
               visit.fullname = Common.findUsersName(userid);
               // note retailerid === zoneid
               visit.storeName = Common.findStoreName(zoneid);
-
               visits[key] = visit;
             });
 
             $scope.visits = visits;
-            $scope.vm.serviceGrid.data = visits;
+            vm.serviceGrid.data = visits;
+            $scope.gridStyle = Common.gridStyle(visits.length);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
 
     $scope.addRow = function () {
-      let newService = {
-        "enterTime": "",
-        "exitTime": "",
-        "userCreditedWithVisit": "",
-        "duration": "0",
-        "userid": "",
-        "zoneid": "",
-        "fullname": "",
-        "storename": ""
-      };
+      let newService = Globals.addRowVisit;
       let rowTmp = {};
       rowTmp.entity = newService;
+      let x = $(".modal-title").text;
       vm.editRow($scope.vm.serviceGrid, rowTmp);
+      Common.changeToAddRow();
     };
 
   }]);

@@ -2,7 +2,7 @@
  * Created by oisin 07/08/2017.
  */
 
-myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
+myApp.factory('Common',[ '$rootScope','Globals',  function ($rootScope, Globals) {
 
   let lib = {};
 
@@ -36,7 +36,7 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
   };
 
 
-  /**
+  /*******************************************************
    * Add 'ies' to any word passed ending in y
    * add 's' to any other word
    */
@@ -51,7 +51,7 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
     return word;
   };
 
-  /**
+  /********************************************************
    * Take a word and return the same word with the first word in lower case.
    * ie Accounts -> accounts
    */
@@ -69,38 +69,7 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
 
   lib.getUserAuthenticated = () => $rootScope.userIsAuthenticated;
 
-  /**
-   *
-   * @param table body
-   * @param col to sort
-   * @param ascending or descending
-   */
-
-  // lib.sort_table = (tbody, col, asc) => {
-  //   let rows = tbody.rows,
-  //       rlen = rows.length,
-  //       arr  = new Array(),
-  //       i, j, cells, clen;
-  //   // fill the array with values from the table
-  //   for (i = 0; i < rlen; i++) {
-  //     cells    = rows[ i ].cells;
-  //     clen     = cells.length;
-  //     arr[ i ] = new Array();
-  //     for (j = 0; j < clen; j++) {
-  //       arr[ i ][ j ] = cells[ j ].innerHTML;
-  //     }
-  //   }
-    // sort the array by the specified column number (col) and order (asc)
-  //   arr.sort(function (a, b) {
-  //     return (a[ col ] == b[ col ]) ? 0 : ((a[ col ] > b[ col ]) ? asc : -1 * asc);
-  //   });
-  //   // replace existing rows with new rows created from the sorted array
-  //   for (i = 0; i < rlen; i++) {
-  //     rows[ i ].innerHTML = "<td>" + arr[ i ].join("</td><td>") + "</td>";
-  //   }
-  // };
-
-  /**
+  /************************************************************
    * Get average rating for stock item
    * @param $scope
    *
@@ -130,7 +99,7 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
 };
 
 
-  /**
+  /*****************************************************************************
    * These methods change the state of the attributes which control the navbar
    */
 
@@ -151,6 +120,11 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
     $('<script/>').attr('src', src).appendTo('body');
   };
 
+  /************************************************************************
+   * Take the mySql timestamp and change into a human readable date string
+   * @param date
+   * @returns {string}
+   */
   lib.getReadableDate = (date) => {
     let newDate = "";
     let parts = date.split(" ");
@@ -175,10 +149,10 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
 
     return newDate;
   };
-  /**
-   *
+  /*****************************************************************
+   * Using the userid , serach for user in db, return users full name
    * @param id (userid)
-   * @returns {UsersName} or ""
+   * @returns {String} or ""
    */
   lib.findUsersName = (id) => {
     if (id == undefined) return "";
@@ -194,7 +168,7 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
   };
 
   /**
-   *
+   * using retailerid search through db, if found, return storename.
    * @param id (retailerid)
    * @returns {storeName} or ""
    */
@@ -210,6 +184,37 @@ myApp.factory('Common',[ '$rootScope',  function ($rootScope) {
     });
     return retailer.storeName;
   };
+
+  /**************************************************
+   *  Calculate size of grid in pixels to display
+   *  if the rows < 10 then change the grid dynamically in size
+   *  based on rows *
+   *  This augments the gridStyle for the uiGrids
+   *
+   * @param rows ... number of rows returned from db.
+   * @param extraRows ... (4) Allowing for the header and footer of the table
+   * @param pixels ... pixels per row ~(usually 30)
+   * @returns (String)  Style to be applied
+   */
+  lib.gridStyle = (rows) => {
+    let extraRows = Globals.extraRows;
+    let pixels = Globals.rowHeightPixels;
+    let size = 420; // default size of grid when rows >= 10
+    if (rows < 10)  size = (rows + extraRows) * pixels;
+    let style = Globals.gridStyle + " Height: " + size + "px;";
+    return style;
+  };
+
+  lib.changeToAddRow = () =>{
+    let doc = $(this);
+    let x = doc.getElementsByClassName("modal-title");  // Find the element
+    x.innerHTML="Add Row";
+    // let x = $(".modal-title").text;
+
+  };
+
+
+
 
   return lib;
 

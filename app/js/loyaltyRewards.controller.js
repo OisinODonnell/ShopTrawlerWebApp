@@ -1,6 +1,7 @@
-
 myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common,$rootScope) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
     $scope.test="";
@@ -14,9 +15,11 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
     $scope.loyaltyRewardId       = 0;
     $scope.retailerId            = 0;
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    $scope.vm = vm;
+
+    vm.editRow = RowEditor.editRowLoyaltyReward;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.LoyaltyRewardColumnDefs;
 
     if ($rootScope.currentUser.type === "Administrator")
       ListLoyaltyRewards();
@@ -34,7 +37,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       GetLoyaltyReward : GetLoyaltyReward,
     };
 
-    return factory;
+
 
 
 
@@ -50,6 +53,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
             loyaltyRewards[key] = loyaltyReward;
           });
           $scope.loyaltyRewards = loyaltyRewards;
+          vm.serviceGrid.data = $scope.loyaltyRewards;
         },
         function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
       vm.dataLoading = false;
@@ -66,7 +70,8 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
               loyaltyReward.storeName = Common.findStoreName(loyaltyReward.retailerid);
               loyaltyRewards[key] = loyaltyReward;
             });
-            $scope.loyaltyRewards = loyaltyRewards;
+            vm.serviceGrid.data = loyaltyRewards;
+            $scope.gridStyle = Common.gridStyle(loyaltyRewards.length);
           },
           function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
       vm.dataLoading = false;
@@ -95,6 +100,14 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
     }
 
 
+    $scope.addRow = function () {
+      let newService = Globals.addRowLoyaltyReward;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
+
+    return factory;
 
 
 

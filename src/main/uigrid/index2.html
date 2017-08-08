@@ -2,28 +2,21 @@
 <html>
 
 <head>
-  <link rel="styleSheet" href="http://ui-grid.info/release/ui-grid.css" />
+  <link rel="styleSheet" href="http://ui-grid.info/release/ui-grid.min.css" />
   <link rel="styleSheet" href="style.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-touch.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-touch.min.js"></script>
   <script src="http://ui-grid.info/release/ui-grid.js"></script>
   <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
-  <!--<script src="../../../app/js/controllers/factory.js"></script>-->
-  <!--<script src="../../../app/js/Common/Common.js"></script>-->
-  <script src="script.js"></script>
-  <Script src="../../../app/Models/User.js"></Script>
-  <Script src="../../../app/Models/Visit.js"></Script>
-  <script src="../../../app/js/Common/UiGrids.js"></script>
-  <script src="../../../app/js/Common/Globals.js"></script>
-  <script src="../../../app/js/Common/Common.js"></script>
-  <script src="../../../app/js/RowEditControllers.js"></script>
+
+  <script src="script2.js"></script>
 
 </head>
 
-<body ng-app="MyApp">
+<body ng-app="influx">
 
-<div ng-controller="VisitsController as vm">
+<div ng-controller="MainCtrl as vm">
   <div style="padding-left: 30px;">
     <button type="button" id="addRow" class="btn btn-success" ng-click="addRow()">Add Row</button>
   </div>
@@ -36,7 +29,7 @@
        ui-grid-pinning
        ui-grid-exporter
        ui-grid-auto-resize
-       ui-grid-row-edit
+
        ui-grid-edit
        ui-grid="vm.serviceGrid" class="influxGrid"></div>
 </div>

@@ -1,21 +1,16 @@
 myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common,$rootScope) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
-    // placeholders
+    $scope.vm = vm;
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    vm.editRow = RowEditor.editRowBeacon;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.BeaconColumnDefs;
 
     ListBeacons();
-
-    // let factory = {
-    //   ListBeacons : ListBeacons, // all users
-    //   AddBeacon   : AddBeacon,
-    //   GetBeacon   : GetBeacon,  // single user
-    // };
-    // return factory;
 
     function ListBeacons() {
       vm.dataLoading = true;
@@ -23,6 +18,8 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootSco
       DataFactory.listBeacons()
         .then( function(response) {
             $rootScope.beacons = Common.createObjects(response.data, beacon);
+            vm.serviceGrid.data = $rootScope.beacons;
+            $scope.gridStyle = Common.gridStyle($rootScope.beacons.length);
           },
           function (error) { $scope.status = 'Unable to load Beacons ' + error.message; });
       vm.dataLoading = false;
@@ -49,5 +46,12 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootSco
           function (error) { $scope.status = 'Unable to set beacon ' + error.message; });
       vm.dataLoading = false;
     }
+
+    $scope.addRow = function () {
+      let newService = Globals.addRowBeacon;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
 
   }]);

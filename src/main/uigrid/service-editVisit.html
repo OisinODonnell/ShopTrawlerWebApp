@@ -3,19 +3,44 @@
     <h3 class="modal-title">Edit Row</h3>
   </div>
   <div class="modal-body">
-    <form name="serviceForm">
 
-      <div class="block">  <label>Visit Id</label>     <input title="ID"         class="input" disabled value="{{vm.entity.visitid}}" /></div>
-      <div class="block">  <label>Entry Time</label>   <input title="Entry Time" class="input" ng-model="vm.entity.entryTime"/>         </div>
-      <div class="block">  <label>Exit Time</label>    <input title="Exit Time"  class="input" ng-model="vm.entity.exitTime"/>          </div>
-      <div class="block">  <label>User Credited With Visit</label>  <input title="ID"class="input" ng-model="vm.entity.userCreditedWithVisit"/></div>
-      <div class="block">  <label>Duration</label>     <input title="Duration"   class="input" g-model="vm.entity.duration"/>           </div>
-      <div class="block">  <label>User ID</label>      <input title="User ID"    class="input" ng-model="vm.entity.userid"/>            </div>
-      <div class="block">  <label>Zone ID</label>      <input title="Zone ID"    class="input" ng-model="vm.entity.zoneid"/>            </div>
-      <div class="block">  <label>Fullname</label>     <input title="Fullname"   class="input" ng-model="vm.entity.fullname"/>          </div>
-      <div class="block">  <label>Store Name</label>   <input title="Store Name" class="input" ng-model="vm.entity.storeName"/>         </div>
+    <form name"serviceForm">
+
+    <div class="block">
+      <label>Id</label>
+      <input class="input" type="text" disabled value="{{vm.entity.id}}" />
+    </div>
+    <div class="block">
+      <label>exposedws</label>
+      <input class="input" type="text" ng-model="vm.entity.exposedws"/>
+    </div>
+    <div class="block">
+      <label>exposedoperation</label>
+      <input class="input" type="text" ng-model="vm.entity.exposedoperation"/>
+    </div>
+    <div class="block">
+      <label>version</label>
+      <input class="input" type="text" ng-model="vm.entity.version"/>
+    </div>
+    <div class="block">
+      <label>category</label>
+      <input class="input" type="text" ng-model="vm.entity.category"/>
+    </div>
+    <div class="block">
+      <label>exposednamespace</label>
+      <input class="input" type="text" ng-model="vm.entity.exposednamespace"/>
+    </div>
+    <div class="block">
+      <label>path</label>
+      <input class="input" type="text" ng-model="vm.entity.path"/>
+    </div>
+    <div class="block">
+      <label>provider</label>
+      <input class="input" type="text" ng-model="vm.entity.provider"/>
+    </div>
 
     </form>
+
   </div>
   <div class="modal-footer">
     <button class="btn btn-primary" ng-click="vm.save()">Save</button>

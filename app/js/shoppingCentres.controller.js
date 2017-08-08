@@ -1,6 +1,7 @@
-
 myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory, $scope,Common,$rootScope) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
     $scope.test="";
@@ -15,9 +16,11 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','
     $scope.administrator = "";
 
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    $scope.vm = vm;
+
+    vm.editRow = RowEditor.editRowShoppingCentre;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.ShoppingCentreColumnDefs;
 
     ListShoppingCentres();
 
@@ -25,14 +28,19 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','
       ListShoppingCentres   : ListShoppingCentres,
       ListShoppingCentreBy  : ListShoppingCentreBy,
     };
-    return factory;
 
     function ListShoppingCentres() {
+      let shoppingCentres;
       vm.dataLoading = true;
       let shoppingCentre = new ShoppingCentre();
       DataFactory.listShoppingCentres()
         .then( function(response) {
-            $scope.shoppingCentres = Common.createObjects(response.data, shoppingCentre);
+            shoppingCentres = Common.createObjects(response.data, shoppingCentre);
+            shoppingCentres[0].fullname = Common.findUsersName(shoppingCentres[0].getAdminid());
+            vm.serviceGrid.data = shoppingCentres;
+            $scope.shoppingCentres = shoppingCentres;
+            $scope.gridStyle = Common.gridStyle($scope.shoppingCentres.length);
+
           },
           function (error) { $scope.status = 'Unable to load Shopping centres ' + error.message; });
       vm.dataLoading = false;
@@ -40,11 +48,23 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','
     function ListShoppingCentreBy(type) {
       vm.dataLoading = true;
       let shoppingCentre = new ShoppingCentre();
-      DataFactory.getShoppingCentres(type)
+      DataFactory.getShoppingCentre(type)
         .then( function(response) {
             $scope.shoppingCentres = Common.createObjects(response.data, shoppingCentre);
+            vm.serviceGrid.data = $scope.shoppingCentres;
+            $scope.gridStyle = Common.gridStyle($scope.shoppingCentres.length);
           },
           function (error) { $scope.status = 'Unable to load Shopping Centre ' + error.message; });
       vm.dataLoading = false;
     }
+
+
+    $scope.addRow = function () {
+      let newService = Globals.addRowShoppingCentre;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
+
+    return factory;
   }]);

@@ -1,6 +1,7 @@
-
 myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common, $rootScope) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
     $scope.test="";
@@ -13,10 +14,12 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
     $scope.bonusCodeId     = 0;
     $scope.bonusCode       = {};
 
+    $scope.vm = vm;
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    vm.editRow = RowEditor.editRowBonusCode;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.BonusCodeColumnDefs;
+
 
     if ($rootScope.currentUser.type === "Administrator")
       ListBonusCodes();
@@ -31,7 +34,7 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
       GetBonusCodes  : GetBonusCodes,  // single mobil user
     };
 
-    return factory;
+
 
     function ListBonusCodes() {
       vm.dataLoading = true;
@@ -46,6 +49,9 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
               bonusCodes[key] = bonusCode;
             });
             $scope.bonusCodes = bonusCodes;
+            vm.serviceGrid.data = bonusCodes;
+            $scope.gridStyle = Common.gridStyle(bonusCodes.length)
+
           },
           function (error) { $scope.status = 'Unable to load BonusCodes ' + error.message; });
       vm.dataLoading = false;
@@ -65,6 +71,8 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
 
             });
             $scope.bonusCodes = bonusCodes;
+            vm.serviceGrid.data = bonusCodes;
+            $scope.gridStyle = Common.gridStyle(bonusCodes.length)
           },
           function (error) { $scope.status = 'Unable to load BonusCodes ' + error.message; });
       vm.dataLoading = false;
@@ -131,6 +139,12 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
           function (error) { $scope.status = 'Unable to set bonusCode ' + error.message; });
     }
 
+    $scope.addRow = function () {
+      let newService = Globals.addRowBonusCode;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
 
-
+    return factory;
   }]);

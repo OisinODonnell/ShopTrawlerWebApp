@@ -1,6 +1,7 @@
+myApp.controller('ContentController', ['DataFactory','$scope','Common','$rootScope',
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
 
-myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common,$rootScope) {
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
     $scope.test="";
@@ -13,10 +14,11 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     $scope.contentId = 0;
     $scope.content = {};
 
+    $scope.vm = vm;
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    vm.editRow = RowEditor.editRowContent;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.ContentColumnDefs;
 
     ListContents();
 
@@ -25,7 +27,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       AddContent   : AddContent,
       GetContent   : GetContent,  // single user
     };
-    return factory;
+
 
     function ListContents() {
       vm.dataLoading = true;
@@ -33,7 +35,8 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       DataFactory.listContent()
         .then( function(response) {
             $scope.contents = Common.createObjects(response.data, content);
-
+            vm.serviceGrid.data = $scope.content;
+            $scope.gridStyle = Common.gridStyle($scope.content.length)
           },
           function (error) { $scope.status = 'Unable to load Contents ' + error.message; });
       vm.dataLoading = false;
@@ -45,6 +48,8 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       DataFactory.getContent(contentId)
         .then( function(response) {
             $scope.content = Common.createObjects(response.data, content);
+            vm.serviceGrid.data = $scope.content;
+            $scope.gridStyle = Common.gridStyle($scope.content.length)
           },
           function (error) { $scope.status = 'Unable to load Content ' + error.message; });
       vm.dataLoading = false;
@@ -62,5 +67,14 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
           function (error) { $scope.status = 'Unable to set content ' + error.message; });
       vm.dataLoading = false;
     }
+
+    $scope.addRow = function () {
+      let newService = Globals.addRowContent;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
+
+    return factory;
 
   }]);

@@ -1,6 +1,7 @@
-
 myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common,$rootScope) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
     $scope.test="";
@@ -17,9 +18,11 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
     $scope.userId           = 0;
 
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    $scope.vm = vm;
+
+    vm.editRow = RowEditor.editRowUserPoint;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.UserPointColumnDefs;
 
 
     if ($rootScope.currentUser.type === "Administrator")
@@ -37,8 +40,6 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
       getUserPoints  : getUserPoints,  // single user
     };
 
-    return factory;
-
 
     function ListUserPoints() {
       vm.dataLoading = true;
@@ -54,6 +55,8 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
               userPoints[key] = userPoint;
             });
             $scope.userPoints = userPoints;
+            vm.serviceGrid.data = $scope.userPoints;
+            $scope.gridStyle = Common.gridStyle(userPoints.length);
           },
           function (error) { $scope.status = 'Unable to load UserPoints ' + error.message;
           }
@@ -73,7 +76,8 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
               userPoints[key] = userPoint;
 
             });
-            $scope.userPoints = userPoints;
+            vm.serviceGrid.data = userPoints;
+            $scope.gridStyle = Common.gridStyle(userPoints.length);
           },
 
           function (error) { $scope.status = 'Unable to load UserPoints ' + error.message;
@@ -94,7 +98,9 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
               userPoints[key] = userPoint;
 
             });
-            $scope.userPoints = userPoints;
+            $scope.userPoint = userPoints;
+            vm.userPoints = userPoints;
+            $scope.gridStyle = Common.gridStyle(userPoints.length);
           },
 
           function (error) { $scope.status = 'Unable to load UserPoints ' + error.message;
@@ -108,6 +114,7 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
       DataFactory.getUserPoints(userId)
         .then(function (response) {
             $scope.userPoint = Common.createObjects(response.data, userPoint);
+            vm.userPoints = userPoints;
           },
           function (error) { $scope.status = 'Unable to set user points ' + error.message; });
       vm.dataLoading = false;
@@ -124,5 +131,14 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
           function (error) { $scope.status = 'Unable to set user points ' + error.message; });
       vm.dataLoading = false;
     }
+
+    $scope.addRow = function () {
+      let newService = Globals.addRowUserPoint;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
+
+    return factory;
 
   }]);

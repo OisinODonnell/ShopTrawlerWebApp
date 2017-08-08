@@ -1,12 +1,12 @@
 <div class="col-md-14 col-md-offset-1" >
   <div class="tg">
 
-    <div style="padding-left: 30px;">
-      <button type="button" id="addRow" class="btn btn-success" ng-click="addRow()">Add Row</button>
+    <div  >
+      <button type="button" id="addRow" class="btn btn-success" ng-click="addRow()">Add New Row</button>
     </div>
     <br />
 
-    <div id="serviceGrid" class="shopTrawler"
+    <div  id="serviceGrid" class="shopTrawler" style="{{gridStyle}}"
          ui-grid-move-columns
          ui-grid-selection
          ui-grid-resize-columns
@@ -18,8 +18,7 @@
          ui-grid="vm.serviceGrid" >
 
     </div>
-    </div>
-
+  </div>
 </div>
 
 

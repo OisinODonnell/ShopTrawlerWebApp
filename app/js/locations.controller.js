@@ -1,6 +1,6 @@
-
 myApp.controller('LocationsController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common, $rootScope) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
     $scope.test="";
@@ -15,20 +15,19 @@ myApp.controller('LocationsController', ['DataFactory','$scope','Common','$rootS
     $scope.retailerId       = 0;
     $scope.newLocation      = {};
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    $scope.vm = vm;
+
+    vm.editRow = RowEditor.editRowLocation;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.LocationColumnDefs;
 
     ListLocations();
 
     let factory = {
-      ListLocations    : ListLocations,
-      AddLocation  : AddLocation,
-      GetLocation : GetLocation,
+      ListLocations  : ListLocations,
+      AddLocation    : AddLocation,
+      GetLocation    : GetLocation,
     };
-
-    return factory;
-
 
 
     function ListLocations() {
@@ -37,6 +36,8 @@ myApp.controller('LocationsController', ['DataFactory','$scope','Common','$rootS
       DataFactory.listLocations()
         .then( function(response) {
             $scope.locations = Common.createObjects(response.data, location);
+            vm.serviceGrid.data = $scope.locations;
+            $scope.gridStyle = Common.gridStyle($scope.locations.length);
           },
           function (error) { $scope.status = 'Unable to load Locations ' + error.message; });
       vm.dataLoading = false;
@@ -48,6 +49,8 @@ myApp.controller('LocationsController', ['DataFactory','$scope','Common','$rootS
       DataFactory.addLocation(newLocation)
         .then( function(response) {
             $scope.locations = Common.createObjects(response.data, location);
+            vm.serviceGrid.data = $scope.locations;
+
           },
           function (error) { $scope.status = 'Unable to add Location ' + error.message; });
       vm.dataLoading = false;
@@ -59,13 +62,20 @@ myApp.controller('LocationsController', ['DataFactory','$scope','Common','$rootS
       DataFactory.getLocation(id)
         .then( function(response) {
             $scope.location = Common.createObjects(response.data, location);
+            $scope.gridStyle = Common.gridStyle($scope.locations.length);
           },
           function (error) { $scope.status = 'Unable to load Location ' + error.message; });
       vm.dataLoading = false;
     }
 
 
+    $scope.addRow = function () {
+      let newService = Globals.addRowLocation;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
 
-
+    return factory;
 
   }]);

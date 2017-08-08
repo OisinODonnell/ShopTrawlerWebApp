@@ -1,5 +1,6 @@
 myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common,$rootScope) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
     $scope.test="";
@@ -12,9 +13,11 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
     $scope.userid      = 0;
 
 
-    // THis script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    $scope.vm = vm;
+
+    vm.editRow = RowEditor.editRowUser;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.UserColumnDefs;
 
     ListUsers();
 
@@ -23,7 +26,6 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
       AddRetailManager  : AddRetailManager,
       AddUser           : AddUser,
     };
-    return factory;
 
 
     function ListUsers() {
@@ -32,11 +34,14 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
       DataFactory.listUsers()
         .then( function(response) {
             $rootScope.users = Common.createObjects(response.data, user);
+            vm.serviceGrid.data = $rootScope.users;
+            $scope.gridStyle = Common.gridStyle($rootScope.users.length);
           },
           function (error) { $scope.status = 'Unable to load User data ' + error.message; }
         );
       vm.dataLoading = false;
     }
+
 
     /*
     Add new user, return updated list of users into rootScope
@@ -47,6 +52,8 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
       DataFactory.addRetailManager(newUser)
         .then( function(response) {
             $rootScope.users = Common.createObjects(response.data, user);
+            vm.serviceGrid.data = $rootScope.users;
+
           },
           function (error) { $scope.status = 'Unable to add new user (manager) ' + error.message; }
         );
@@ -69,4 +76,13 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
 
     }
 
+
+    $scope.addRow = function () {
+      let newService = Globals.addRowUser;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
+
+    return factory;
   }]);

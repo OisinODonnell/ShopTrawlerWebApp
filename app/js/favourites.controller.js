@@ -1,10 +1,8 @@
-
 myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common,$rootScope) {
-    let vm = this;
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
 
-    $scope.test="";
-    $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
+    let vm = this;
 
     // placeholders
     $scope.dropdownCategories    = [];
@@ -13,10 +11,11 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
     $scope.userId           = 0;
     $scope.retailerId       = {};
 
+    $scope.vm = vm;
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    vm.editRow = RowEditor.editRowFavourite;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.FavouriteColumnDefs;
 
     if ($rootScope.currentUser.type === "Administrator")
       ListFavourites();
@@ -33,10 +32,6 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
       AddFavourite              : AddFavourite,
     };
 
-    return factory;
-
-
-
     function ListFavourites() {
       vm.dataLoading = true;
       let favourites;
@@ -49,10 +44,10 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
             favourite.fullname = Common.findUsersName(favourite.userid);
             favourite.storeName = Common.findStoreName(favourite.retailerid);
             favourites[key] = favourite;
-
           });
           $scope.favourites = favourites;
-          },
+          vm.serviceGrid.data = favourites;
+        },
           function (error) { $scope.status = 'Unable to load Favourites ' + error.message; });
       vm.dataLoading = false;
     }
@@ -72,6 +67,8 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
 
             });
             $scope.favourites = favourites;
+            vm.serviceGrid.data = favourites;
+            $scope.gridStyle = Common.gridStyle(favourites.length);
           },
           function (error) { $scope.status = 'Unable to load Favourites ' + error.message; });
       vm.dataLoading = false;
@@ -92,6 +89,9 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
 
             });
             $scope.favourites = favourites;
+            vm.serviceGrid.data = favourites;
+            $scope.gridStyle = Common.gridStyle(favourites.length);
+
           },
           function (error) { $scope.status = 'Unable to load Favourites ' + error.message; });
       vm.dataLoading = false;
@@ -109,5 +109,14 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
           function (error) { $scope.status = 'Unable to set favourite ' + error.message; });
       vm.dataLoading = false;
     }
+
+    $scope.addRow = function () {
+      let newService = Globals.addRowFavourite;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
+
+    return factory;
 
   }]);

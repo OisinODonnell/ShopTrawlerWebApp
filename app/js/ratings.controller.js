@@ -1,6 +1,7 @@
-
 myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common,$rootScope) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
     $scope.test="";
@@ -14,9 +15,11 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
     $scope.retailerId     = 0;
     $scope.rating         = {};
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    $scope.vm = vm;
+
+    vm.editRow = RowEditor.editRowRating;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.RatingColumnDefs;
 
     if ($rootScope.currentUser.type === "Administrator")
       ListRatings();
@@ -32,8 +35,6 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
       AddRating             : AddRating,
       ListRatingsByUser     : ListRatingsByUser,
     };
-
-    return factory;
 
 
 
@@ -51,6 +52,8 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
 
           });
           $scope.ratings = ratings;
+          vm.serviceGrid.data = ratings;
+            $scope.gridStyle = Common.gridStyle(ratings.length);
         },
         function (error) { $scope.status = 'Unable to load Ratings ' + error.message; });
       vm.dataLoading = false;
@@ -69,6 +72,8 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
               ratings[key] = rating;
             });
             $scope.ratings = ratings;
+            vm.serviceGrid.data = ratings;
+            $scope.gridStyle = Common.gridStyle(ratings.length);
           },
           function (error) { $scope.status = 'Unable to load Ratings ' + error.message; });
       vm.dataLoading = false;
@@ -97,6 +102,14 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
     }
 
 
+    $scope.addRow = function () {
+      let newService = Globals.addRowRating;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
+
+    return factory;
 
 
   }]);

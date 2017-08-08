@@ -1,5 +1,5 @@
 ﻿a {
-    cursor: pointer;
+  cursor: pointer;
 }
 .tg  {border-collapse:collapse;border-spacing:2px;border-color:#ffbcfe;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:15px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
@@ -171,7 +171,7 @@ input.qtyplus { width:25px; height:25px;}
 input.qtyminus { width:25px; height:25px;}
 body{
   background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');
-  padding:50px;
+  /*padding:50px;*/
 }
 #login-dp{
   min-width: 250px;

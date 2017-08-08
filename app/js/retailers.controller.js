@@ -1,6 +1,7 @@
-
 myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common,$rootScope) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
     $scope.test="";
@@ -15,9 +16,11 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
     $scope.changedRetailer = {};
 
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    $scope.vm = vm;
+
+    vm.editRow = RowEditor.editRowRetailer;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.RetailerColumnDefs;
 
     ListRetailers();
 
@@ -28,8 +31,6 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       UpdateRetailer : UpdateRetailer,
     };
 
-    return factory;
-
 
 
     function ListRetailers() {
@@ -38,6 +39,8 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       DataFactory.listRetailers()
         .then( function(response) {
             $scope.retailers = Common.createObjects(response.data, retailer);
+            vm.serviceGrid.data = $scope.retailers;
+            $scope.gridStyle = Common.gridStyle($scope.retailers.length);
           },
           function (error) { $scope.status = 'Unable to load Retailers ' + error.message; });
       vm.dataLoading = false;
@@ -49,6 +52,8 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       DataFactory.getRetailer(id)
         .then( function(response) {
             $scope.retailers = Common.createObjects(response.data, retailer);
+            vm.serviceGrid.data = $scope.retailers;
+
           },
           function (error) { $scope.status = 'Unable to load Retailer ' + error.message; });
       vm.dataLoading = false;
@@ -78,4 +83,13 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       vm.dataLoading = false;
     }
 
+
+    $scope.addRow = function () {
+      let newService = Globals.addRowRetailer;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
+
+    return factory;
   }]);

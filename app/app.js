@@ -19,179 +19,56 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngTouch', 
       $routeProvider
 
         .when('/', {
-          controller:   'LoginController',
-          templateUrl:  'js/login/login.view.html',
-          controllerAs: 'vm',
-          requireLogin: false
+          controller  : 'LoginController',templateUrl :  'js/login/login.view.html',
+          controllerAs: 'vm',             requireLogin: false
         })
         .when('/login', {
-          controller:   'LoginController',
-          templateUrl:  'js/login/login.view.html',
-          controllerAs: 'vm',
-          requireLogin: false
+          controller  : 'LoginController',templateUrl :  'js/login/login.view.html',
+          controllerAs: 'vm',             requireLogin: false
         })
         .when('/register', {
-          controller:   'LoginController',
-          templateUrl:  'js/login/register.view.html',
-          controllerAs: 'vm',
-          requireLogin: false
+          controller  : 'LoginController',templateUrl :  'js/login/register.view.html',
+          controllerAs: 'vm',             requireLogin: false
         })
         .when('/home', {
-          controller:   'HomeController',
-          templateUrl:  'js/login/home.view.html',
-          controllerAs: 'vm',
-          requireLogin: true
+          controller  : 'HomeController', templateUrl :  'js/login/home.view.html',
+          controllerAs: 'vm',             requireLogin: true
         })
         .when('/logout', {
-          controller: 'HomeController',
-          templateUrl: 'js/login/home.view.html',
-          controllerAs: 'vm',
-          redirectTo: '/login',
-          requireLogin: true
+          controller:  'HomeController',  templateUrl : 'js/login/home.view.html',
+          controllerAs: 'vm',             redirectTo  : '/login',          requireLogin: true
         })
         //  ShoppingCentre
-        .when('/ShoppingCentres/List', {
-          controller: 'ShoppingCentresController',
-          templateUrl: 'js/List-ShoppingCentres.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/ShoppingCentres/List',{controller: 'ShoppingCentresController',templateUrl: 'js/List.view.html', controllerAs: 'ac' })
           // Users
-        .when('/Users/List', {
-          controller: 'UsersController',
-          templateUrl: 'js/List-Users.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
-        // Users
-        .when('/Users/Retailer', {
-          controller: 'UsersController',
-          templateUrl: 'js/List-Users.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/Users/List', {         controller: 'UsersController',     templateUrl: 'js/List.view.html',controllerAs: 'ac' })
+        .when('/Users/Retailer', {     controller: 'UsersController',     templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // Retailers
-        .when('/Retailers/List', {
-          controller: 'RetailersController',
-          templateUrl: 'js/List-Retailers.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/Retailers/List', {     controller: 'RetailersController', templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // Visits
-        .when('/Visits/List', {
-          controller: 'VisitsController',
-          templateUrl: 'js/List-Visits.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
-        // Visits
-        .when('/Visits/Retailer', {
-          controller: 'VisitsController',
-          templateUrl: 'js/List-Visits.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/Visits/List', {        controller: 'VisitsController',    templateUrl: 'js/List.view.html',controllerAs: 'ac' })
+        .when('/Visits/Retailer', {    controller: 'VisitsController',    templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // UserPoints
-        .when('/UserPoints/Retailer', {
-          controller: 'UserPointsController',
-          templateUrl: 'js/List-UserPoints.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/UserPoints/Retailer', {controller: 'UserPointsController',templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // LoyaltyRewards
-        .when('/LoyaltyRewards/Retailer', {
-          controller: 'LoyaltyRewardsController',
-          templateUrl: 'js/List-LoyaltyRewards.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/LoyaltyRewards/Retailer', {controller: 'LoyaltyRewardsController', templateUrl: 'js/List.view.html', controllerAs: 'ac' })
           // Contents
-        .when('/Contents/List', {
-          controller: 'ContentsController',
-          templateUrl: 'js/List-Content.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
-        .when('/Contents/Retailer', {
-          controller: 'ContentsController',
-          templateUrl: 'js/List-Contents.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/Contents/List', {      controller: 'ContentsController',  templateUrl: 'js/List.view.html',controllerAs: 'ac' })
+        .when('/Contents/Retailer', {  controller: 'ContentsController',  templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // BonusCodes
-        .when('/BonusCodes/Retailer', {
-          controller: 'BonusCodesController',
-          templateUrl: 'js/List-BonusCodes.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/BonusCodes/Retailer', {controller: 'BonusCodesController',templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // Locations
-        .when('/Locations/List', {
-          controller: 'LocationsController',
-          templateUrl: 'js/List-Locations.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/Locations/List', {     controller: 'LocationsController', templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // Beacons
-        .when('/Beacons/List', {
-          controller: 'BeaconsController',
-          templateUrl: 'js/List-Beacons.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/Beacons/List', {       controller: 'BeaconsController',   templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // Zones
-        .when('/Zones/List', {
-          controller: 'ZonesController',
-          templateUrl: 'js/List-Zones.view.html',
-          // requireLogin: true,
-          // permissions: [ "administration" ],
-          controllerAs: 'ac'
-        })
+        .when('/Zones/List', {         controller: 'ZonesController',     templateUrl: 'js/List.view.html',controllerAs: 'ac' })
         // Ratings
-        .when('/Ratings/List', {
-          controller: 'RatingsController',
-          templateUrl: 'js/List-Ratings.view.html',
-          // requireLogin: true,
-          // permissions: [ "Administration" ],
-          controllerAs: 'ac'
-        })
-        // Ratings
-        .when('/Ratings/Retailer', {
-          controller: 'RatingsController',
-          templateUrl: 'js/List-Ratings.view.html',
-          // requireLogin: true,
-          // permissions: [ "Retailer" ],
-          controllerAs: 'ac'
-        })
+        .when('/Ratings/List', {       controller: 'RatingsController',   templateUrl: 'js/List.view.html',controllerAs: 'ac' })
+        .when('/Ratings/Retailer', {   controller: 'RatingsController',   templateUrl: 'js/List.view.html',controllerAs: 'ac' })
         // Favourites
-        .when('/Favourites/List', {
-          controller: 'FavouritesController',
-          templateUrl: 'js/List-Favourites.view.html',
-          // requireLogin: true,
-          // permissions: [ "Administration" ],
-          controllerAs: 'ac'
-        })
-        // Favourites
-        .when('/Favourites/Retailer', {
-          controller: 'FavouritesController',
-          templateUrl: 'js/List-Favourites.view.html',
-          // requireLogin: true,
-          // permissions: [ "Retailer" ],
-          controllerAs: 'ac'
-        })
+        .when('/Favourites/List', {    controller: 'FavouritesController',templateUrl: 'js/List.view.html',controllerAs: 'ac' })
+        .when('/Favourites/Retailer', {controller: 'FavouritesController',templateUrl: 'js/List.view.html',controllerAs: 'ac' })
 
          .otherwise({ redirectTo: '/login' });
   }

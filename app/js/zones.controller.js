@@ -1,6 +1,7 @@
-
 myApp.controller('ZonesController', ['DataFactory','$scope','Common','$rootScope',
-  function ( DataFactory,$scope,Common, $rootScope) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
     $scope.test="";
@@ -12,10 +13,11 @@ myApp.controller('ZonesController', ['DataFactory','$scope','Common','$rootScope
     $scope.zones       = [];
     $scope.zoneid      = 0;
 
+    $scope.vm = vm;
 
-    // This script is loaded in the index.html file, but fails to kick in when required when using a number of tables
-    // Forcing a reload just prior to use, appears to bring is back into the dom and is now available within the tables.
-    Common.reloadJs("lib/sorttable.js");
+    vm.editRow = RowEditor.editRowZone;
+    vm.serviceGrid = Globals.GridDefaults;
+    vm.serviceGrid.columnDefs = Globals.ZoneColumnDefs;
 
     ListZones();
 
@@ -25,7 +27,6 @@ myApp.controller('ZonesController', ['DataFactory','$scope','Common','$rootScope
       GetZone     : GetZone,
     };
 
-    return factory;
 
     function ListZones() {
       vm.dataLoading = true;
@@ -33,6 +34,8 @@ myApp.controller('ZonesController', ['DataFactory','$scope','Common','$rootScope
       DataFactory.listZones()
         .then( function(response) {
             $scope.zones = Common.createObjects(response.data, zone);
+            vm.serviceGrid.data = $scope.zones;
+            $scope.gridStyle = Common.gridStyle($scope.zones.length);
           },
           function (error) { $scope.status = 'Unable to load Zones ' + error.message; });
       vm.dataLoading = false;
@@ -45,6 +48,7 @@ myApp.controller('ZonesController', ['DataFactory','$scope','Common','$rootScope
       DataFactory.getZone(id)
         .then( function(response) {
             $scope.zones = Common.createObjects(response.data, zone);
+            vm.serviceGrid.data = $scope.zones;
           },
           function (error) { $scope.status = 'Unable to load Zone data ' + error.message; });
       vm.dataLoading = false;
@@ -62,5 +66,14 @@ myApp.controller('ZonesController', ['DataFactory','$scope','Common','$rootScope
       vm.dataLoading = false;
 
     }
+
+    $scope.addRow = function () {
+      let newService = Globals.addRowZone;
+      let rowTmp = {};
+      rowTmp.entity = newService;
+      vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
+
+    return factory;
 
   }]);

@@ -1,9 +1,10 @@
-// Row editors for each Entity
-
 myApp.service('RowEditor', RowEditor);
 RowEditor.$inject = [ '$http', '$rootScope', '$uibModal' ];
 function RowEditor($http, $rootScope, $uibModal) {
   let service = {};
+
+  // row editor created for each entity
+
 
   service.editRowVisit          = editRowVisit;
   service.editRowZone           = editRowZone;
