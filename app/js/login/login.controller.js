@@ -39,20 +39,27 @@
       $rootScope.mob = false;
       $rootScope.loggedIn = false;
 
-      let functions  = {};
+      let auth  = {
+        Login             : Login,
+        Logout            : Logout,
+        Register          : Register,
+        RegisterAdmin     : RegisterAdmin,
+        RegisterRetailer  : RegisterRetailer,
+        ListRetailers     : ListRetailers
+
+      };
 
       (function initController() {
           // reset login status
           AuthenticationService.clearCredentials();
+          ListRetailers();
       })();
 
-      functions.login  = () =>  {
+      function Login  ()  {
         vm.dataLoading = true;
         $rootScope.admin =  false;
         $rootScope.loggedIn = false;
-
         vm.user = "username="+$scope.vm.username+"&password="+$scope.vm.password;
-
         DataFactory.login($scope.vm.username,$scope.vm.password)
           .then(function (response) {
             if (response.data.success === "1") {
@@ -86,23 +93,22 @@
               $location.path('/login');
             }
         })
-    };
+      }
 
       // determine whether an admin or customer account is being created
-      functions.register = () => {
+      function Register() {
         vm.dataLoading = true;
         $rootScope.loggedIn = false;
         setAdmin(false);
         setLoggedIn(false);
         "use strict";
         if ($scope.vm.isAdmin)
-          functions.registerAdmin();
+          RegisterAdmin();
         else
-          functions.registerCust();
-      };
+          RegisterRetailer();
+      }
 
-      functions.registerAdmin = () => {
-
+      function RegisterAdmin() {
         DataFactory.registerAdmin($scope.vm.firstname, $scope.vm.surname,$scope.vm.email, $scope.vm.password,"Administrator")
           .then(function (response) {
           if (response.data.success === "1") {
@@ -115,27 +121,25 @@
             vm.dataLoading = false;
           }
         });
-      };
+      }
 
-      functions.registerRetailer = () => {
-
-        DataFactory.registerCust($scope.vm.firstname, $scope.vm.surname, $scope.vm.email, $scope.vm.password, "Retailer",
+      function RegisterRetailer() {
+        DataFactory.registerRetailer($scope.vm.firstname, $scope.vm.surname, $scope.vm.email, $scope.vm.password, "Retailer",
           $scope.vm.phone,$scope.vm.retailer )
         .then(function (response) {
           if (response.data.success === "1") {
             id = Flash.create('success', response.data.message, $rootScope.flash.autoHide,
-              {class: 'custom-class', id: 'custom-id'}, true);
+                  {class: 'custom-class', id: 'custom-id'}, true);
             $location.path('/login');
           } else {
             id = Flash.create('danger', response.data.message, $rootScope.flash.autoHide,
-              {class: 'custom-class', id: 'custom-id'}, true);
+                  {class: 'custom-class', id: 'custom-id'}, true);
             vm.dataLoading = false;
           }
-        })
-        };
+        });
+      }
 
-
-      functions.logout = () => {
+      function Logout() {
         vm.dataLoading = true;
         if (isLoggedIn()) {
           AuthenticationService.logout(vm.username, vm.loggedInUserTime, function (response) {
@@ -158,7 +162,18 @@
           });
         }
         $location.path('/login');
-      };
+      }
+
+      function ListRetailers() {
+        // get list of retailers to use in form
+        DataFactory.listRetailers()
+          .then(function (retailers) {
+              vm.allRetailers = retailers.data;
+              $rootScope.retailers = retailers.data;
+            }, // error handling function for  listRetailers()
+            function (error) { $scope.status = 'Unable to load Retailers ' + error.message;   }
+          );
+      }
 
       // selectively enables disables elements bon the navbar depending on
       // whether the user is logged in or if = Administrator or Customer
@@ -181,7 +196,7 @@
       const getFirstname = () => { return vm.firstname; }
 
       const resetUserLoginDetails = () => {
-        $rootScope.userType = "CUSTOMER";
+        $rootScope.userType = "Retailer";
         $rootScope.loggedInUserTime = "";
         $rootScope.loggedInUserId = "";
         $rootScope.loggedInUserName = "";
@@ -196,5 +211,5 @@
         $rootScope.loggedInUserName = $scope.vm.username;
       };
 
-      return functions;
+      return auth;
 }]);

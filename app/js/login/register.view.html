@@ -47,6 +47,9 @@
         <div class="form-group" ng-class="{ 'has-error': form.retailer.$dirty && form.retailer.$error.required }">
           <label for="retailer">Retailer</label>
           <input type="text" placeholder="Retailer" name="retailer" id="retailer" class="form-control" ng-model="vm.retailer"  />
+          <select ng-model="retailer">
+            <option ng-repeat="obj in retailers" value="{{obj.storename}}">{{obj.storename}}</option>
+          </select>
         </div>
 
       </div>

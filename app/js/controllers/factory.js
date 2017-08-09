@@ -6,13 +6,13 @@ myApp.factory('DataFactory', ['$http', function ($http) {
 
     // login/logout/register
 
-    factory.login       = (username, password)    =>
+    factory.login            = (username, password)    =>
       $http.get(urlBase  + '/login/' + username + '/' + password );
 
-    factory.registerAdmin    = (name, email, password, accountType ) =>
-      $http.get( urlBase + '/Login/register/' + name + '/' + email + '/' + password + '/' + accountType);
+    factory.registerAdmin    = (firstname, surname, emailAddress, password, type ) =>
+      $http.get( urlBase + '/Login/register/' + firstname + '/' + surname + '/' + emailAddress + '/' + password + '/' + type);
 
-    factory.registerCust    = (name, email, password, accountType, phone, loyaltyCard, addressStreet, addressCity, addressCountry, paymentType) =>
+    factory.registerRetailer = (name, email, password, accountType, phone, loyaltyCard, addressStreet, addressCity, addressCountry, paymentType) =>
       $http.get( urlBase + '/Login/register/' + name + '/' + email + '/' + password + '/' + accountType + '/' + phone + '/' + loyaltyCard +
         '/' + addressStreet + '/' + addressCity + '/' + addressCountry + '/' + paymentType );
 

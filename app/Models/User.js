@@ -5,7 +5,7 @@
 
 class User {
 
-  constructor (userid, firstname, surname, emailAddress, phone, gender, password, type, yob)
+  constructor (userid, firstname, surname, emailAddress, phone, gender, password, type, yob, active)
   {
     this.userid	        = this.setUserid        (userid);
     this.firstname	    = this.setFirstname     (firstname);
@@ -16,6 +16,7 @@ class User {
     this.password	      = this.setPassword      (password);
     this.type	          = this.setType          (type);
     this.yob	          = this.setYob           (yob);
+    this.active	        = this.setActive        (active);
 
     this.bonusCodesByUserid	    = this.setBonusCodesByUserid    ([]);
     this.favouritesByUserid	    = this.setFavouritesByUserid    ([]);
@@ -45,6 +46,8 @@ class User {
   setPassword     (x) { this.password         = x ? x : ""; }
   getYob          ()  { return this.yob;                    }
   setYob          (x) { this.yob              = x ? x : ""; }
+  getActive       ()  { return this.active;                 }
+  setActive       (x) { this.active           = x ? x : ""; }
 
   getBonusCodesByUserid  ()  { return this.bonusCodesByUserid;              }
   setBonusCodesByUserid  (x) { this.bonusCodesByUserid        = x ? x : []; }
@@ -58,7 +61,6 @@ class User {
   setVisitsByUserid      (x) { this.visitsByUserid            = x ? x : []; }
 
   getFullname            ()  { return this.firstname + " " + this.surname;  }
-
 
 }
 
