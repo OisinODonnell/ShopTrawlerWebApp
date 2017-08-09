@@ -171,7 +171,7 @@ function RowEditor($http, $rootScope, $uibModal) {
 
 // RowEditControllers for each entity
 myApp.controller('RowEditCtrl', RowEditCtrl);
-function RowEditCtrl($http, $uibModalInstance, grid, row) {
+function RowEditCtrl($http, $uibModalInstance, grid, row, DataFactory) {
   let vm = this;
   vm.entity = angular.copy(row.entity);
 
@@ -221,7 +221,7 @@ function RowEditCtrl($http, $uibModalInstance, grid, row) {
     $uibModalInstance.close(row.entity);
   }
   function removeVisit() {
-    console.dir(row)
+    console.dir(row);
     if (row.entity.id != '0') {
       row.entity = angular.extend(row.entity, vm.entity);
       let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
@@ -234,9 +234,16 @@ function RowEditCtrl($http, $uibModalInstance, grid, row) {
   }
   function saveUser() {
     if (row.entity.id == '0') {
-      /*
-       * $http.post('http://localhost:8080/service/save', row.entity).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot edit row (error in console)'); console.dir(response); });
-       */
+
+      DataFactory.addUser(row.entity)
+
+      DataFactory.addUser(row.entity).then(function(response) {
+        $uibModalInstance.close(row.entity);
+      }).error(function(response) {
+        alert('Cannot edit row (error in console)');
+        console.dir(response);
+      });
+
       row.entity = angular.extend(row.entity, vm.entity);
       //real ID come back from response after the save in DB
       row.entity.id = Math.floor(100 + Math.random() * 1000);
@@ -255,11 +262,11 @@ function RowEditCtrl($http, $uibModalInstance, grid, row) {
       row.entity = angular.extend(row.entity, vm.entity);
       let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
       grid.appScope.vm.serviceGrid.data.splice(index, 1);
-      /*
-       * $http.delete('http://localhost:8080/service/delete/'+row.entity.id).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
-       */
-    }
-    $uibModalInstance.close(row.entity);
+
+      DataFactory.deleteUserById(row.entity.userid).then(function(response) {
+          $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
+           }
+      $uibModalInstance.close(row.entity);
   }
   function saveUserPoint() {
     if (row.entity.id == '0') {

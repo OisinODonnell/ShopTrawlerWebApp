@@ -9,8 +9,8 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     factory.login            = (username, password)    =>
       $http.get(urlBase  + '/login/' + username + '/' + password );
 
-    factory.registerAdmin    = (firstname, surname, emailAddress, password, type ) =>
-      $http.get( urlBase + '/Login/register/' + firstname + '/' + surname + '/' + emailAddress + '/' + password + '/' + type);
+    factory.registerAdmin    = (firstname, surname, emailAddress, password, type, phone ) =>
+      $http.get( urlBase + '/Login/register/' + firstname + '/' + surname + '/' + emailAddress + '/' + password + '/' + type + '/' + phone);
 
     factory.registerRetailer = (name, email, password, accountType, phone, loyaltyCard, addressStreet, addressCity, addressCountry, paymentType) =>
       $http.get( urlBase + '/Login/register/' + name + '/' + email + '/' + password + '/' + accountType + '/' + phone + '/' + loyaltyCard +
@@ -87,7 +87,7 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     factory.addRetailManager              = (user)                 => $http.get(urlBase + '/User/' + user);
     factory.getUserByEmailAddress         = (email)                => $http.get(urlBase + '/User/ByEmail/' + email);
     factory.deleteUserById                = (id)                   => $http.get(urlBase + '/User/delete/' + id);
-    factory.deleteUserByEmailAddress      = (email)                => $http.get(urlBase + '/User/delete/' + email);
+    factory.deleteUserByEmailAddress      = (email)                => $http.get(urlBase + '/User/deleteByEmail/' + email);
     factory.deleteUserByUser              = (user)                 => $http.get(urlBase + '/User/delete/' + user);
     factory.updateUser                    = (user)                 => $http.get(urlBase + '/User/update/' + user );
 

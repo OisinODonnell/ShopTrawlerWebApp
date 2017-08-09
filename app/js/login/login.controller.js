@@ -81,7 +81,7 @@
               vm.username = $scope.vm.username;
               setLoggedIn(true);
 
-              // finally set where to go next
+              // finally, set where to go next
               $location.path('/home');
 
             } else {
@@ -109,7 +109,7 @@
       }
 
       function RegisterAdmin() {
-        DataFactory.registerAdmin($scope.vm.firstname, $scope.vm.surname,$scope.vm.email, $scope.vm.password,"Administrator")
+        DataFactory.registerAdmin($scope.vm.firstname, $scope.vm.surname,$scope.vm.emailAddress, $scope.vm.password,"Administrator",$scope.vm.phone)
           .then(function (response) {
           if (response.data.success === "1") {
             id = Flash.create('success', response.data.message, $rootScope.flash.autoHide,
