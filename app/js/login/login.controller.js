@@ -124,8 +124,7 @@
       }
 
       function RegisterRetailer() {
-        DataFactory.registerRetailer($scope.vm.firstname, $scope.vm.surname, $scope.vm.email, $scope.vm.password, "Retailer",
-          $scope.vm.phone,$scope.vm.retailer )
+        DataFactory.registerRetailer($scope.vm)
         .then(function (response) {
           if (response.data.success === "1") {
             id = Flash.create('success', response.data.message, $rootScope.flash.autoHide,

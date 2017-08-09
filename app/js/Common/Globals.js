@@ -292,7 +292,7 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field : 'getFirstname()', width : 200,  displayName : 'Firstname',      },
+      {  field : 'getFirstname()', width : 200,   displayName : 'Firstname',     },
       {  field : 'getSurname()',   width : 200,   displayName : 'Surname',       },
       {  field : 'getEmailAddress()',   width : 200,   displayName : 'Email Address', },
       {  field : 'getPhone()',     width : 150,   displayName : 'Phone',         },
@@ -300,7 +300,7 @@ myApp.value('Globals', {
       {  field : 'getPassword()',  width : 200,   displayName : 'Password',      },
       {  field : 'getType()',      width : 200,   displayName : 'Type',          },
       {  field : 'getYob()',       width : 100,   displayName : 'Yob',           },
-      {  field : 'getActive()',    width : 100,   displayName : 'Active', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.isActive">'}
+      {  field : 'getActive()',    width : 100,   displayName : 'Active', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.active">'}
     ],
 
   "addRowUser" : {

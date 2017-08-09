@@ -235,12 +235,10 @@ function RowEditCtrl($http, $uibModalInstance, grid, row, DataFactory) {
   function saveUser() {
     if (row.entity.id == '0') {
 
-      DataFactory.addUser(row.entity)
-
       DataFactory.addUser(row.entity).then(function(response) {
         $uibModalInstance.close(row.entity);
       }).error(function(response) {
-        alert('Cannot edit row (error in console)');
+        alert('Cannot add new user (error in console)');
         console.dir(response);
       });
 
@@ -264,7 +262,10 @@ function RowEditCtrl($http, $uibModalInstance, grid, row, DataFactory) {
       grid.appScope.vm.serviceGrid.data.splice(index, 1);
 
       DataFactory.deleteUserById(row.entity.userid).then(function(response) {
-          $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
+          $uibModalInstance.close(row.entity);
+      }).error(function(response) {
+        alert('Cannot delete row (error in console)'); console.dir(response);
+      });
            }
       $uibModalInstance.close(row.entity);
   }
