@@ -530,20 +530,34 @@ function RowEditCtrl($http, $uibModalInstance, grid, row, DataFactory) {
     }
     $uibModalInstance.close(row.entity);
   }
+
+
   function saveShoppingCentre() {
-    if (row.entity.id == '0') {
-      /*
-       * $http.post('http://localhost:8080/service/save', row.entity).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot edit row (error in console)'); console.dir(response); });
-       */
+    if (vm.entity.shoppingCentreid == '0') {
+
+      row.entity = angular.extend(row.entity, vm.entity);
+      DataFactory.addShoppingCentre(vm.entity)
+        .then(function(response) {
+          $uibModalInstance.close(row.entity);
+        }).error(function(response) {
+        alert('Cannot update ShoppingCentre (error in console)');
+        console.dir(response);
+      });
+
       row.entity = angular.extend(row.entity, vm.entity);
       //real ID come back from response after the save in DB
       row.entity.id = Math.floor(100 + Math.random() * 1000);
       grid.data.push(row.entity);
     } else {
       row.entity = angular.extend(row.entity, vm.entity);
-      /*
-       * $http.post('http://localhost:8080/service/save', row.entity).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot edit row (error in console)'); console.dir(response); });
-       */
+      DataFactory.updateShoppingCentre(row.entity)
+        .then(function(response) {
+          $uibModalInstance.close(row.entity);
+        }).error(function(response) {
+        alert('Cannot update ShoppingCentre (error in console)');
+        console.dir(response);
+      });
+
     }
     $uibModalInstance.close(row.entity);
   }

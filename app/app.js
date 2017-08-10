@@ -1,6 +1,26 @@
 ﻿/*
 TODO: Add Delete, Edit and Create Elements for each entity.
-TODO: Change margins of table to fit in centre but not to either edge of screen
+      Not needed for every entity (CRUD) A=Admin R=Retailer G=Generate /=done S=summary Reports x = no operation required
+
+      BonusCode     A-x       R-R/UG
+      Beacon        A-R/      R-x/
+      Content       A-U       R-R/CU
+      LoyaltyReward A-U       R-R/CU
+      UserPoint     A-x/      R-R/
+      User          A-R/UD    R-U
+      Retailer      A-R/CUD   R-U
+      Rating        A-R/      R-R/S
+      Zone          A-R/      R-x/
+      Favourite     A-x/      R-R/
+      ShoppingCentres A-R/U   R-x/
+      Visit         A-R/      R-R/S
+      Location      A-R/      R-x/
+
+TODO_ : Change margins of table to fit in centre but not to either edge of screen
+      Layout changed to use a table rather than bootstrap screen layout.
+
+TODO
+
  */
 
 let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngTouch', 'ngAnimate', 'ui.grid', 'ui.grid.moveColumns',
@@ -43,18 +63,22 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngTouch', 
           // Users
         .when('/Users/List', {         controller: 'UsersController',     templateUrl: 'js/List.view.html',controllerAs: 'ac' })
         .when('/Users/Retailer', {     controller: 'UsersController',     templateUrl: 'js/List.view.html',controllerAs: 'ac' })
+      .when('/Users/Approve', {      controller: 'UsersController',     templateUrl: 'js/Approve.User.view.html',controllerAs: 'ac' })
           // Retailers
         .when('/Retailers/List', {     controller: 'RetailersController', templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // Visits
         .when('/Visits/List', {        controller: 'VisitsController',    templateUrl: 'js/List.view.html',controllerAs: 'ac' })
         .when('/Visits/Retailer', {    controller: 'VisitsController',    templateUrl: 'js/List.view.html',controllerAs: 'ac' })
+      .when('/Visits/Report', {      controller: 'VisitsController',    templateUrl: 'js/Report.Visit.view.html',controllerAs: 'ac' })
           // UserPoints
         .when('/UserPoints/Retailer', {controller: 'UserPointsController',templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // LoyaltyRewards
         .when('/LoyaltyRewards/Retailer', {controller: 'LoyaltyRewardsController', templateUrl: 'js/List.view.html', controllerAs: 'ac' })
+      .when('/LoyaltyRewards/Approve', {controller: 'LoyaltyRewardsController', templateUrl: 'js/Approve.LoyaltyReward.view.html', controllerAs: 'ac' })
           // Contents
         .when('/Contents/List', {      controller: 'ContentsController',  templateUrl: 'js/List.view.html',controllerAs: 'ac' })
         .when('/Contents/Retailer', {  controller: 'ContentsController',  templateUrl: 'js/List.view.html',controllerAs: 'ac' })
+      .when('/Contents/Approve', {   controller: 'ContentsController',  templateUrl: 'js/Approve.Content.view.html',controllerAs: 'ac' })
           // BonusCodes
         .when('/BonusCodes/Retailer', {controller: 'BonusCodesController',templateUrl: 'js/List.view.html',controllerAs: 'ac' })
           // Locations

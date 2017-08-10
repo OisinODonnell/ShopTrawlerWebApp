@@ -1,4 +1,4 @@
-myApp.controller('ContentController', ['DataFactory','$scope','Common','$rootScope',
+myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootScope',
   '$uibModal','RowEditor', 'uiGridConstants','Globals',
 
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
@@ -20,7 +20,11 @@ myApp.controller('ContentController', ['DataFactory','$scope','Common','$rootSco
     vm.serviceGrid = Globals.GridDefaults;
     vm.serviceGrid.columnDefs = Globals.ContentColumnDefs;
 
-    ListContents();
+    if ($rootScope.currentUser.type === "Administrator")
+      ListContents();
+    else
+      ListContentByRetailer($rootScope.currentUser.userid);
+
 
     let factory = {
       ListContents : ListContents, // all users
@@ -35,7 +39,19 @@ myApp.controller('ContentController', ['DataFactory','$scope','Common','$rootSco
       DataFactory.listContent()
         .then( function(response) {
             $scope.contents = Common.createObjects(response.data, content);
-            vm.serviceGrid.data = $scope.content;
+            vm.serviceGrid.data = $scope.contents;
+            $scope.gridStyle = Common.gridStyle($scope.content.length)
+          },
+          function (error) { $scope.status = 'Unable to load Contents ' + error.message; });
+      vm.dataLoading = false;
+    }
+    function ListContentByRetailer(id) {
+      vm.dataLoading = true;
+      let content = new Content();
+      DataFactory.listContentByRetailer(id)
+        .then( function(response) {
+            $scope.contents = Common.createObjects(response.data, content);
+            vm.serviceGrid.data = $scope.contents;
             $scope.gridStyle = Common.gridStyle($scope.content.length)
           },
           function (error) { $scope.status = 'Unable to load Contents ' + error.message; });

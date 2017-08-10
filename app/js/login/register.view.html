@@ -3,11 +3,13 @@
     <form name="form" ng-submit="vm.Register()" role="form">
 
       <table style="width:300px" >
-        <tr> <td>
+
       <!-- Select whether this is an admin account. Hide following fields if admin is selected-->
+      <tr> <td>
       <div class="checkbox" >
-        <label><input ng-model="vm.isAdmin" type="checkbox" id="isAdmin"> Create an Administrator Account</label>
+        <label><input ng-model="vm.isAdmin" type="checkbox" id="isAdmin">Create an Administrator Account</label>
       </div>  </td>  </tr>
+
         <tr>   <td>
       <div class="form-group" ng-class="{ 'has-error': form.firstname.$dirty && form.firstname.$error.required }">
         <input placeholder="Firstname"  name="name" id="firstname" class="form-control" ng-model="vm.firstname" required />
@@ -42,10 +44,12 @@
       <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
         <input placeholder="Phone Number" name="phone" id="phone" class="form-control" ng-model="vm.phone"  />
       </div> <br/> </td>  </tr>
+
         <tr>   <td>
           <div class="form-group" ng-class="{ 'has-error': form.yob.$dirty && form.yob.$error.required }">
             <input placeholder="Year of Birth" name="yob" id="yob" class="form-control" ng-model="vm.yob"  />
           </div> <br/> </td>  </tr>
+
         <tr>   <td>
       <div class="form-group" ng-class="{ 'has-error': form.gender.$dirty && form.gender.$error.required }">
         <label>Gender</label>
@@ -53,18 +57,18 @@
           <option value="male">Male</option><option value="female">Female</option>
         </select>
       </div></td></tr>
-
-      <div data-ng-show="!vm.isAdmin === true" >
         <tr> <td>
+      <div data-ng-show="!vm.isAdmin === true" >
+
         <!-- Create drop down menu of Registered Retailers for manager to p;ick from-->
         <div class="form-group" ng-class="{ 'has-error': form.retailer.$dirty && form.retailer.$error.required }">
           <label>Retailer</label>
           <select type="text" placeholder="Retailer" name="retailer" ng-model="vm.retailer" class="grey_color">
             <option ng-repeat="store in retailers" value="{{store.retailerid}}">{{store.storeName}}</option>
           </select>
-        </div> </td> </tr>
+        </div>
+      </div> </td> </tr>
 
-      </div>
         <tr> <td>
         <div class="form-group form-actions col-xs-8">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>

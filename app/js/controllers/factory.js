@@ -10,12 +10,12 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     factory.logout      = (id, startTime )      =>  $http.get( urlBase + '/Login/logout/' + id + '/' + startTime );
 
     factory.registerAdmin    = ( a ) =>
-      $http.get( urlBase + '/Login/register/Admin/' + a.firstname + '/' + a.surname + '/' + a.emailAddress +
-                                                '/' + a.password + '/' + "Administrator" + '/' + a.phone );
+      $http.get( urlBase + '/Login/register/Admin/' + a.firstname + '/' + a.surname + '/' + a.password + '/' + "Administrator" +
+                                                          '/' + a.phone + '/' + a.gender + '/' + a.yob + '/' + a.emailAddress );
 
     factory.registerRetailer = ( r ) =>
       $http.get( urlBase + '/Login/register/Retailer/' + r.firstname + '/'+ r.surname  + '/' + r.password + '/' + "Retailer" +
-                              '/' + r.phone + '/' + r.retailer  + '/' + r.gender + '/' + r.yob + '/' + r.emailAddress);
+                                         '/' + r.phone + '/' + r.retailer  + '/' + r.gender + '/' + r.yob + '/' + r.emailAddress);
 
     // ShoppingCentre
     factory.listShoppingCentres           = ()              => $http.get(urlBase + '/ShoppingCentres' );
@@ -105,7 +105,7 @@ myApp.factory('DataFactory', ['$http', function ($http) {
     factory.updateBeacon                  = (beacon)        => $http.get(urlBase + '/Beacon/update/' + beacon );
 
     // Content
-    factory.listContent                   = ()              => $http.get(urlBase + '/Content' );
+    factory.listContent                   = ()              => $http.get(urlBase + '/Content/' );
     factory.listContentByRetailer         = (id)            => $http.get(urlBase + '/Content/Retailer/' + id );
     factory.getContent                    = (id)            => $http.get(urlBase + '/Content/' + id );
     factory.addContent                    = (content)       => $http.get(urlBase + '/Content/' + content );

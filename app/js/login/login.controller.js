@@ -109,7 +109,7 @@
       }
 
       function RegisterAdmin() {
-        DataFactory.registerAdmin($scope.vm.firstname, $scope.vm.surname,$scope.vm.emailAddress, $scope.vm.password,"Administrator",$scope.vm.phone)
+        DataFactory.registerAdmin($scope.vm)
           .then(function (response) {
           if (response.data.success === "1") {
             id = Flash.create('success', response.data.message, $rootScope.flash.autoHide,
