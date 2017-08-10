@@ -1,26 +1,28 @@
-myApp.service('RowEditor', RowEditor);
-RowEditor.$inject = [ '$http', '$rootScope', '$uibModal' ];
-function RowEditor($http, $rootScope, $uibModal) {
-  let service = {};
+// myApp.service('RowEditor', RowEditor);
+// RowEditor.$inject = [ '$http', '$rootScope', '$uibModal', 'DataFactory'];
+// function RowEditor($http, $rootScope, $uibModal, DataFactory) {
 
-  // row editor created for each entity
+myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
+  function ($http, $rootScope, $uibModal) {
 
 
-  service.editRowVisit          = editRowVisit;
-  service.editRowZone           = editRowZone;
-  service.editRowUser           = editRowUser;
-  service.editRowRetailer       = editRowRetailer;
-  service.editRowBeacon         = editRowBeacon;
-  service.editRowLocation       = editRowLocation;
-  service.editRowBonusCode      = editRowBonusCode;
-  service.editRowFavourite      = editRowFavourite;
-  service.editRowLoyaltyReward  = editRowLoyaltyReward;
-  service.editRowRating         = editRowRating;
-  service.editRowShoppingCentre = editRowShoppingCentre;
-  service.editRowContent        = editRowContent;
-  service.editRowUserPoint      = editRowUserPoint;
 
-  return service;
+    let service = {
+  editRowVisit : editRowVisit,
+  editRowZone : editRowZone,
+  editRowUser : editRowUser,
+  editRowRetailer : editRowRetailer,
+  editRowBeacon : editRowBeacon,
+  editRowLocation : editRowLocation,
+  editRowBonusCode : editRowBonusCode,
+  editRowFavourite : editRowFavourite,
+  editRowLoyaltyReward : editRowLoyaltyReward,
+  editRowRating : editRowRating,
+  editRowShoppingCentre : editRowShoppingCentre,
+  editRowContent : editRowContent,
+  editRowUserPoint : editRowUserPoint,
+  };
+
 
   function editRowVisit(grid, row) {
     $uibModal.open({
@@ -166,42 +168,133 @@ function RowEditor($http, $rootScope, $uibModal) {
     });
   }
 
+  return service;
 
-}
+}]);
 
 // RowEditControllers for each entity
+
 myApp.controller('RowEditCtrl', RowEditCtrl);
-function RowEditCtrl($http, $uibModalInstance, grid, row, DataFactory) {
+RowEditCtrl.$inject = [ '$http', '$uibModalInstance' ];
+function RowEditCtrl($http ,  $uibModalInstance, grid, row) {
   let vm = this;
   vm.entity = angular.copy(row.entity);
 
-  vm.saveVisit          = saveVisit;
-  vm.saveUser           = saveUser;
-  vm.saveUserPoint      = saveUserPoint;
-  vm.saveRetailer       = saveRetailer;
-  vm.saveBonusCode      = saveBonusCode;
-  vm.saveFavourite      = saveFavourite;
-  vm.saveLoyaltyReward  = saveLoyaltyReward;
-  vm.saveLocation       = saveLocation;
-  vm.saveBeacon         = saveBeacon;
-  vm.saveZone           = saveZone;
-  vm.saveRating         = saveRating;
-  vm.saveShoppingCentre = saveShoppingCentre;
-  vm.saveContent        = saveContent;
+  let urlBase = "http://localhost:8080";
 
-  vm.removeVisit          = removeVisit;
-  vm.removeUser           = removeUser;
-  vm.removeUserPoint      = removeUserPoint;
-  vm.removeRetailer       = removeRetailer;
-  vm.removeBonusCode      = removeBonusCode;
-  vm.removeFavourite      = removeFavourite;
-  vm.removeLoyaltyReward  = removeLoyaltyReward;
-  vm.removeLocation       = removeLocation;
-  vm.removeBeacon         = removeBeacon;
-  vm.removeZone           = removeZone;
-  vm.removeRating         = removeRating;
-  vm.removeShoppingCentre = removeShoppingCentre;
-  vm.removeContent        = removeContent;
+  let rowEditors = {
+    saveVisit : saveVisit,
+    saveUser : saveUser,
+    saveUserPoint : saveUserPoint,
+    saveRetailer : saveRetailer,
+    saveBonusCode : saveBonusCode,
+    saveFavourite : saveFavourite,
+    saveLoyaltyReward : saveLoyaltyReward,
+    saveLocation : saveLocation,
+    saveBeacon : saveBeacon,
+    saveZone : saveZone,
+    saveShoppingCentre : saveShoppingCentre,
+    saveContent : saveContent,
+    saveRating : saveRating,
+
+    removeVisit : removeVisit,
+    removeUser : removeUser,
+    removeUserPoint : removeUserPoint,
+    removeRetailer : removeRetailer,
+    removeBonusCode : removeBonusCode,
+    removeFavourite : removeFavourite,
+    removeLoyaltyReward : removeLoyaltyReward,
+    removeLocation : removeLocation,
+    removeBeacon : removeBeacon,
+    removeShoppingCentre : removeShoppingCentre,
+    removeZone : removeZone,
+    removeContent : removeContent,
+    removeRating : removeRating,
+
+};
+
+
+
+  function removeShoppingCentre() {
+    console.dir(row);
+    if (row.entity.id != '0') {
+      row.entity = angular.extend(row.entity, vm.entity);
+      let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
+      grid.appScope.vm.serviceGrid.data.splice(index, 1);
+      /*
+       * $http.delete('http://localhost:8080/service/delete/'+row.entity.id).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
+       */
+    }
+    $uibModalInstance.close(row.entity);
+  }
+  function saveRating() {
+    if (row.entity.id == '0') {
+      /*
+       * $http.post('http://localhost:8080/service/save', row.entity).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot edit row (error in console)'); console.dir(response); });
+       */
+      row.entity = angular.extend(row.entity, vm.entity);
+      //real ID come back from response after the save in DB
+      row.entity.id = Math.floor(100 + Math.random() * 1000);
+      grid.data.push(row.entity);
+    } else {
+      row.entity = angular.extend(row.entity, vm.entity);
+      /*
+       * $http.post('http://localhost:8080/service/save', row.entity).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot edit row (error in console)'); console.dir(response); });
+       */
+    }
+    $uibModalInstance.close(row.entity);
+  }
+
+  function removeRating() {
+    console.dir(row)
+    if (row.entity.id != '0') {
+      row.entity = angular.extend(row.entity, vm.entity);
+      let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
+      grid.appScope.vm.serviceGrid.data.splice(index, 1);
+      /*
+       * $http.delete('http://localhost:8080/service/delete/'+row.entity.id).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
+       */
+    }
+    $uibModalInstance.close(row.entity);
+  }
+
+
+  function saveShoppingCentre() {
+    if (vm.entity.shoppingCentreid === 0) { // implies a new entity
+
+      row.entity = angular.extend(row.entity, vm.entity);
+      // Add Shopping Centre
+      $http.put(urlBase + '/ShoppingCentre/update/' + vm.entity.shoppingCentreid,vm.entity )
+        .then(function(response) {
+          $uibModalInstance.close(row.entity);
+        })
+        .error(function(response) {
+          alert('Cannot add ShoppingCentre (error in console)');
+          console.dir(response);
+        });
+
+      row.entity = angular.extend(row.entity, vm.entity);
+      //real ID come back from response after the save in DB
+      row.entity.id = Math.floor(100 + Math.random() * 1000);
+      grid.data.push(row.entity);
+
+    } else { // changed entity
+
+      row.entity = angular.extend(row.entity, vm.entity);
+
+      // update Shopping Centre
+      $http.put(urlBase + '/ShoppingCentre/update/' + vm.entity.shoppingCentreid,vm.entity )
+      // $http.get(urlBase + '/ShoppingCentre/update/' + vm.entity )
+        .then(function(response) {
+          $uibModalInstance.close(row.entity);
+        },
+          function(response) {
+            alert('Cannot update ShoppingCentre (error in console)');
+            console.dir(response);
+      });
+    }
+    $uibModalInstance.close(row.entity);
+  }
 
   function saveVisit() {
     if (row.entity.id == '0') {
@@ -501,78 +594,9 @@ function RowEditCtrl($http, $uibModalInstance, grid, row, DataFactory) {
     }
     $uibModalInstance.close(row.entity);
   }
-  function saveRating() {
-    if (row.entity.id == '0') {
-      /*
-       * $http.post('http://localhost:8080/service/save', row.entity).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot edit row (error in console)'); console.dir(response); });
-       */
-      row.entity = angular.extend(row.entity, vm.entity);
-      //real ID come back from response after the save in DB
-      row.entity.id = Math.floor(100 + Math.random() * 1000);
-      grid.data.push(row.entity);
-    } else {
-      row.entity = angular.extend(row.entity, vm.entity);
-      /*
-       * $http.post('http://localhost:8080/service/save', row.entity).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot edit row (error in console)'); console.dir(response); });
-       */
-    }
-    $uibModalInstance.close(row.entity);
-  }
-  function removeRating() {
-    console.dir(row)
-    if (row.entity.id != '0') {
-      row.entity = angular.extend(row.entity, vm.entity);
-      let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
-      grid.appScope.vm.serviceGrid.data.splice(index, 1);
-      /*
-       * $http.delete('http://localhost:8080/service/delete/'+row.entity.id).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
-       */
-    }
-    $uibModalInstance.close(row.entity);
-  }
 
 
-  function saveShoppingCentre() {
-    if (vm.entity.shoppingCentreid == '0') {
 
-      row.entity = angular.extend(row.entity, vm.entity);
-      DataFactory.addShoppingCentre(vm.entity)
-        .then(function(response) {
-          $uibModalInstance.close(row.entity);
-        }).error(function(response) {
-        alert('Cannot update ShoppingCentre (error in console)');
-        console.dir(response);
-      });
-
-      row.entity = angular.extend(row.entity, vm.entity);
-      //real ID come back from response after the save in DB
-      row.entity.id = Math.floor(100 + Math.random() * 1000);
-      grid.data.push(row.entity);
-    } else {
-      row.entity = angular.extend(row.entity, vm.entity);
-      DataFactory.updateShoppingCentre(row.entity)
-        .then(function(response) {
-          $uibModalInstance.close(row.entity);
-        }).error(function(response) {
-        alert('Cannot update ShoppingCentre (error in console)');
-        console.dir(response);
-      });
-
-    }
-    $uibModalInstance.close(row.entity);
-  }
-  function removeShoppingCentre() {
-    console.dir(row)
-    if (row.entity.id != '0') {
-      row.entity = angular.extend(row.entity, vm.entity);
-      let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
-      grid.appScope.vm.serviceGrid.data.splice(index, 1);
-      /*
-       * $http.delete('http://localhost:8080/service/delete/'+row.entity.id).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
-       */
-    }
-    $uibModalInstance.close(row.entity);
-  }
   function saveContent() {
     if (row.entity.id == '0') {
       /*
@@ -602,4 +626,18 @@ function RowEditCtrl($http, $uibModalInstance, grid, row, DataFactory) {
     }
     $uibModalInstance.close(row.entity);
   }
+
+  return rowEditors;
+
+
+  function paramString(entity) {
+
+
+
+
+
+  }
+
+
+
 }

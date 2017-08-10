@@ -2,7 +2,7 @@ myApp.value('Globals', {
   "extraRows" : 4,
   "rowHeightPixels" : 30,
   "gridStyle" : "Width:1000px; ",
-  "URL_BASE": "http://localhost:8080/",
+  "URL_BASE": "http://localhost:8080",
   "GridDefaults": {
     enableRowSelection        : true,
     enableRowHeaderSelection  : false,
@@ -31,19 +31,19 @@ myApp.value('Globals', {
   },
 
   "VisitColumnDefs" : [ {
-      field : 'getVisitid()',                displayName : 'Visit ID',
+      field : 'visitid',                displayName : 'Visit ID',
       enableSorting : true,                  enableCellEdit : false,
       type : 'number',
       width : 60,
       },
-      { field : 'getEntryTimeReadable()',    width : 200,    displayName : 'Entry Time',enableCellEdit : false,type:"date", },
-      { field : 'getExitTimeReadable()',     width : 200,    displayName : 'Exit Time',enableCellEdit : false,type:"date",  },
-      { field : 'getUserCreditedForVisit()', width : 100,    displayName : 'User Credited For Visit',enableCellEdit : true, },
-      { field : 'getDuration()',             width : 100,    displayName : 'Duration',enableCellEdit : false,               },
-      { field : 'getUserid()',               width : 100,    displayName : 'User ID',enableCellEdit : false,                },
-      { field : 'getZoneid()',               width : 100,    displayName : 'Zone ID',enableCellEdit : false,                },
-      { field : 'fullname',                  width : 200,    displayName : 'Fullname',enableCellEdit : false,               },
-      { field : 'storeName',                 width : 200,    displayName : 'Store Name',enableCellEdit : false,             }
+      { field : 'entryTimeReadable',    width : 200,    displayName : 'Entry Time',enableCellEdit : false,type:"date", },
+      { field : 'exitTimeReadable',     width : 200,    displayName : 'Exit Time',enableCellEdit : false,type:"date",  },
+      { field : 'userCreditedForVisit', width : 100,    displayName : 'User Credited For Visit',enableCellEdit : true, },
+      { field : 'duration',             width : 100,    displayName : 'Duration',enableCellEdit : false,               },
+      { field : 'userid',               width : 100,    displayName : 'User ID',enableCellEdit : false,                },
+      { field : 'zoneid',               width : 100,    displayName : 'Zone ID',enableCellEdit : false,                },
+      { field : 'fullname',             width : 200,    displayName : 'Fullname',enableCellEdit : false,               },
+      { field : 'storeName',            width : 200,    displayName : 'Store Name',enableCellEdit : false,             }
     ],
 
   "addRowVisit" : {
@@ -65,11 +65,11 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field: 'getLocationid()',    width : 100,     displayName: 'Location ID',enableCellEdit : false,     },
-      {  field: 'getMajor()',         width : 100,     displayName: 'Major',                                  },
-      {  field: 'getMinor()',         width : 100,     displayName: 'Minor',                                  },
-      {  field: 'getTransmitPower()', width : 100,     displayName: 'Transmit Power',                         },
-      {  field: 'getUuid()',          width : 300,     displayName: 'UUID',enableCellEdit : false,            }
+      {  field: 'locationid',    width : 100,     displayName: 'Location ID',enableCellEdit : false,     },
+      {  field: 'major',         width : 100,     displayName: 'Major',                                  },
+      {  field: 'minor',         width : 100,     displayName: 'Minor',                                  },
+      {  field: 'transmitPower', width : 100,     displayName: 'Transmit Power',                         },
+      {  field: 'uuid',          width : 300,     displayName: 'UUID',enableCellEdit : false,            }
     ],
 
   "addRowBeacon"    : {
@@ -81,15 +81,15 @@ myApp.value('Globals', {
     },
 
   "BonusCodeColumnDefs" : [{
-      field : 'getBonusCodeid()',          displayName : 'Bonus Code ID',
+      field : 'BonusCodeid',          displayName : 'Bonus Code ID',
       enableSorting : true,                enableCellEdit : false,
       type  : 'number',
       width : 100,
       },
       {  field : 'storeName',              width : 200,displayName : 'Retailer ID',enableCellEdit : false,          },
-      {  field : 'getValue()',             width : 100,displayName : 'Value',enableCellEdit : false,                },
+      {  field : 'Value',             width : 100,displayName : 'Value',enableCellEdit : false,                },
       {  field : 'fullname',               width : 200,displayName : 'User ID',enableCellEdit : false,              },
-      {  field : 'getDateTimeReadable()',  width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
+      {  field : 'DateTimeReadable',  width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
     ],
 
   "addRowBonusCode" : {
@@ -102,17 +102,17 @@ myApp.value('Globals', {
 
 
   "ContentColumnDefs" : [{
-      field : 'getContentid()',            displayName    : 'Content ID',
+      field : 'contentid',            displayName    : 'Content ID',
       enableSorting : true,                enableCellEdit : false,
       type  : 'number',
       width : 100,
       },
-      {  field : 'getEndDateReadable()',   width : 200,displayName : 'End Date',type:"date",                  },
-      {  field : 'getPage1()',             width : 200,displayName : 'Page 1',                                },
-      {  field : 'getPage2()',             width : 200,displayName : 'Page 2',                                },
-      {  field : 'getPage3()',             width : 200,displayName : 'Page 3',                                },
-      {  field : 'getRetailerid()',        width : 100,displayName : 'Retailer ID',enableCellEdit : false,    },
-      {  field : 'getStartDateReadable()', width : 200,displayName : 'Start Date',type:"date",                }
+      {  field : 'endDateReadable',   width : 200,displayName : 'End Date',type:"date",                  },
+      {  field : 'page1',             width : 200,displayName : 'Page 1',                                },
+      {  field : 'page2',             width : 200,displayName : 'Page 2',                                },
+      {  field : 'page3',             width : 200,displayName : 'Page 3',                                },
+      {  field : 'retailerid',        width : 100,displayName : 'Retailer ID',enableCellEdit : false,    },
+      {  field : 'startDateReadable', width : 200,displayName : 'Start Date',type:"date",                }
     ],
   "addRowContent" : {
     "contentid"   : "",
@@ -139,17 +139,17 @@ myApp.value('Globals', {
   },
 
   "LocationColumnDefs" : [{
-      field : 'getLocationid()',           displayName    : 'locationid',
+      field : 'locationid',           displayName    : 'locationid',
       enableSorting : true,                enableCellEdit : false,
       type  : 'number',
       width : 100,
       },
-      {  field : 'getAltitude()',          width : 100,displayName : 'Altitude',                                  },
-      {  field : 'getGpsLongtitude()',     width : 100,displayName : 'GPS Longtitude',                            },
-      {  field : 'getGpsLatitude()',       width : 100,displayName : 'GPS Latitude',                              },
-      {  field : 'getLocationInShoppingCentre()',  width : 100,displayName : 'Location In Shopping Centre',       },
-      {  field : 'getLocationType()',      width : 200,displayName : 'Location Type',                             },
-      {  field : 'getShoppingCentreid()',  width : 100,displayName : 'Shopping Centre ID',enableCellEdit : false, }
+      {  field : 'altitude',          width : 100,displayName : 'Altitude',                                  },
+      {  field : 'gpsLongtitude',     width : 100,displayName : 'GPS Longtitude',                            },
+      {  field : 'gpsLatitude',       width : 100,displayName : 'GPS Latitude',                              },
+      {  field : 'locationInShoppingCentre',  width : 100,displayName : 'Location In Shopping Centre',       },
+      {  field : 'locationType',      width : 200,displayName : 'Location Type',                             },
+      {  field : 'shoppingCentreid',  width : 100,displayName : 'Shopping Centre ID',enableCellEdit : false, }
     ],
 
   "addRowLocation" : {
@@ -164,18 +164,18 @@ myApp.value('Globals', {
 
 
   "LoyaltyRewardColumnDefs" : [{
-      field : 'getLoyaltyRewardid()',      displayName    : 'Loyalty Reward ID',
+      field : 'loyaltyRewardid',      displayName    : 'Loyalty Reward ID',
       enableSorting : true,                enableCellEdit : false,
       type  : 'number',
       width : 100,
       },
-      {  field : 'getEndDateReadable()',   width : 200, displayName : 'End Date',type:"date",               },
-      {  field : 'getPointsPerVisit()',    width : 100, displayName : 'Points Per Visit',                   },
-      {  field : 'getRewardImage()',       width : 200, displayName : 'Reward Image',                       },
+      {  field : 'endDateReadable',   width : 200, displayName : 'End Date',type:"date",               },
+      {  field : 'pointsPerVisit',    width : 100, displayName : 'Points Per Visit',                   },
+      {  field : 'rewardImage',       width : 200, displayName : 'Reward Image',                       },
       {  field : 'storeName',              width : 200, displayName : 'Retailer ID',enableCellEdit : false, },
-      {  field : 'getRewardTitle()',       width : 200, displayName : 'Reward Title',                       },
-      {  field : 'getStartDateReadable()', width : 200, displayName : 'Start Date',type:"date",             },
-      {  field : 'getVisitTime()',         width : 100, displayName : 'Visit Time',                         }
+      {  field : 'rewardTitle',       width : 200, displayName : 'Reward Title',                       },
+      {  field : 'startDateReadable', width : 200, displayName : 'Start Date',type:"date",             },
+      {  field : 'visitTime',         width : 100, displayName : 'Visit Time',                         }
     ],
 
   "addRowLoyaltyReward" : {
@@ -196,10 +196,10 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field : 'getDateReadable()',   width : 200,   displayName : 'Date',type:"date",                  },
+      {  field : 'dateReadable',   width : 200,   displayName : 'Date',type:"date",                  },
       {  field : 'storeName',           width : 200,   displayName : 'Retailer ID',enableCellEdit : false,},
-      {  field : 'getRating()',         width : 100,   displayName : 'Rating',                            },
-      {  field : 'getReview()',         width : 500,   displayName : 'Review',                            }
+      {  field : 'rating',         width : 100,   displayName : 'Rating',                            },
+      {  field : 'review',         width : 500,   displayName : 'Review',                            }
     ],
 
   "addRowRating" : {
@@ -211,28 +211,28 @@ myApp.value('Globals', {
   },
 
   "RetailerColumnDefs" : [{
-      field : 'getRetailerid()',           displayName    : 'Retailer ID',
+      field : 'retailerid',           displayName    : 'Retailer ID',
       enableSorting : true,                enableCellEdit : false,
       type  : 'number',
       width : 100,
       },
-      {  field : 'getDefaultContentPage1()',width : 200, displayName : 'Default Content Page1',                     },
-      {  field : 'getDefaultContentPage2()',width : 200, displayName : 'Default Content Page2',                     },
-      {  field : 'getDefaultContentPage3()',width : 200, displayName : 'Default Content Page3',                     },
-      {  field : 'getDefaultLoyaltyRewardImage()', width : 200,displayName : 'Default Loyalty Reward Image',        },
-      {  field : 'getFacebookUrl()',       width : 200, displayName : 'Facebook Url',                               },
-      {  field : 'getTwitterUrl()',        width : 200, displayName : 'Twitter Url',                                },
-      {  field : 'getWebsiteUrl()',        width : 200, displayName : 'Website Url',                                },
-      {  field : 'getLogoImageSmall()',    width : 400, displayName : 'Logo Image Small',                           },
-      {  field : 'getLogoImageLarge()',    width : 400, displayName : 'Logo Image Large',                           },
-      {  field : 'getLogoImageMedium()',   width : 400, displayName : 'Logo Image Medium',                          },
-      {  field : 'getPhone()',             width : 150, displayName : 'Phone',                                      },
-      {  field : 'getStoreName()',         width : 150, displayName : 'Store Name',                                 },
-      {  field : 'getHeaderBackgroundImage()', width : 200,displayName : 'Header Background Image',                 },
-      {  field : 'getManagerid()',         width : 100, displayName : 'Manager ID',enableCellEdit : false,          },
-      {  field : 'getShoppingCentreid()',  width : 100, displayName : 'Shopping Centre ID',enableCellEdit : false,  },
-      {  field : 'getStoreDefaultContentPage1()',  width : 200,displayName : 'Store Default Content Page1',         },
-      {  field : 'getZoneid()',            width : 100, displayName : 'Zone ID',enableCellEdit : false              }
+      {  field : 'defaultContentPage1',width : 200, displayName : 'Default Content Page1',                     },
+      {  field : 'defaultContentPage2',width : 200, displayName : 'Default Content Page2',                     },
+      {  field : 'defaultContentPage3',width : 200, displayName : 'Default Content Page3',                     },
+      {  field : 'defaultLoyaltyRewardImage', width : 200,displayName : 'Default Loyalty Reward Image',        },
+      {  field : 'facebookUrl',       width : 200, displayName : 'Facebook Url',                               },
+      {  field : 'twitterUrl',        width : 200, displayName : 'Twitter Url',                                },
+      {  field : 'websiteUrl',        width : 200, displayName : 'Website Url',                                },
+      {  field : 'logoImageSmall',    width : 400, displayName : 'Logo Image Small',                           },
+      {  field : 'logoImageLarge',    width : 400, displayName : 'Logo Image Large',                           },
+      {  field : 'logoImageMedium',   width : 400, displayName : 'Logo Image Medium',                          },
+      {  field : 'phone',             width : 150, displayName : 'Phone',                                      },
+      {  field : 'storeName',         width : 150, displayName : 'Store Name',                                 },
+      {  field : 'headerBackgroundImage', width : 200,displayName : 'Header Background Image',                 },
+      {  field : 'managerid',         width : 100, displayName : 'Manager ID',enableCellEdit : false,          },
+      {  field : 'shoppingCentreid',  width : 100, displayName : 'Shopping Centre ID',enableCellEdit : false,  },
+      {  field : 'storeDefaultContentPage1',  width : 200,displayName : 'Store Default Content Page1',         },
+      {  field : 'zoneid',            width : 100, displayName : 'Zone ID',enableCellEdit : false              }
     ],
 
   "addRowRetailer" : {
@@ -257,20 +257,20 @@ myApp.value('Globals', {
   },
 
   "ShoppingCentreColumnDefs" : [{
-      field : 'getShoppingCentreid()',  displayName : 'Shopping Centre ID',
+      field : 'shoppingCentreid',  displayName : 'Shopping Centre ID',
       enableSorting : true,             enableCellEdit : false,
       type  : 'number',
       width : 100,
       },
       {  field : 'fullname',            width : 200,displayName : 'Admin ID',enableCellEdit : false,  },
-      {  field : 'getContentPage()',    width : 200,    displayName : 'Content Page',                 },
-      {  field : 'getPhone()',          width : 150,    displayName : 'Phone',                        },
-      {  field : 'getFacebookUrl()',    width : 200,    displayName : 'Facebook Url',                 },
-      {  field : 'getTwitterUrl()',     width : 200,    displayName : 'Twitter Url',                  },
-      {  field : 'getWebsiteUrl()',     width : 200,   displayName : 'Website Url',                   },
-      {  field : 'getLogoImageSmall()', width : 400,   displayName : 'Logo Image Small',              },
-      {  field : 'getLogoImageMedium()',width : 400,   displayName : 'Logo Image Medium',             },
-      {  field : 'getLogoImageLarge()', width : 400,   displayName : 'Logo Image Large',              }
+      {  field : 'contentPage',    width : 200,    displayName : 'Content Page',                 },
+      {  field : 'phone',          width : 150,    displayName : 'Phone',                        },
+      {  field : 'facebookUrl',    width : 200,    displayName : 'Facebook Url',                 },
+      {  field : 'twitterUrl',     width : 200,    displayName : 'Twitter Url',                  },
+      {  field : 'websiteUrl',     width : 200,   displayName : 'Website Url',                   },
+      {  field : 'logoImageSmall', width : 400,   displayName : 'Logo Image Small',              },
+      {  field : 'logoImageMedium',width : 400,   displayName : 'Logo Image Medium',             },
+      {  field : 'logoImageLarge', width : 400,   displayName : 'Logo Image Large',              }
     ],
 
   "addRowShoppingCentre" : {
@@ -287,20 +287,20 @@ myApp.value('Globals', {
   },
 
   "UserColumnDefs" : [{
-      field : 'getUserid()',       displayName    : 'User ID',
+      field : 'userid',       displayName    : 'User ID',
       enableSorting : true,        enableCellEdit : false,
       type  : 'number',
       width : 100,
       },
-      {  field : 'getFirstname()', width : 200,   displayName : 'Firstname',     },
-      {  field : 'getSurname()',   width : 200,   displayName : 'Surname',       },
-      {  field : 'getEmailAddress()',   width : 200,   displayName : 'Email Address', },
-      {  field : 'getPhone()',     width : 150,   displayName : 'Phone',         },
-      {  field : 'getGender()',    width : 200,   displayName : 'Gender',        },
-      {  field : 'getPassword()',  width : 200,   displayName : 'Password',      },
-      {  field : 'getType()',      width : 200,   displayName : 'Type',          },
-      {  field : 'getYob()',       width : 100,   displayName : 'Yob',           },
-      {  field : 'getActive()',    width : 100,   displayName : 'Active', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.active">'}
+      {  field : 'firstname', width : 200,   displayName : 'Firstname',     },
+      {  field : 'surname',   width : 200,   displayName : 'Surname',       },
+      {  field : 'emailAddress',   width : 200,   displayName : 'Email Address', },
+      {  field : 'phone',     width : 150,   displayName : 'Phone',         },
+      {  field : 'gender',    width : 200,   displayName : 'Gender',        },
+      {  field : 'password',  width : 200,   displayName : 'Password',      },
+      {  field : 'type',      width : 200,   displayName : 'Type',          },
+      {  field : 'yob',       width : 100,   displayName : 'Yob',           },
+      {  field : 'active',    width : 100,   displayName : 'Active', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.active">'}
     ],
 
   "addRowUser" : {
@@ -323,7 +323,7 @@ myApp.value('Globals', {
       width : 100,
       },
       {  field : 'storeName',      width : 300,  displayName : 'Retailer ID',enableCellEdit : false,  },
-      {  field : 'getPoints()',    width : 100,  displayName : 'Points',                              }
+      {  field : 'points',    width : 100,  displayName : 'Points',                              }
     ],
 
   "addRowUserPoint" : {
@@ -333,13 +333,13 @@ myApp.value('Globals', {
   },
 
   "ZoneColumnDefs" : [{
-      field : 'getZoneid()',       displayName    : 'Zone ID',
+      field : 'zoneid',       displayName    : 'Zone ID',
       enableSorting : true,        enableCellEdit : false,
       type  : 'number',
       width : 100,
       },
-      {  field : 'getBeaconid()',  width : 100,      displayName : 'Beacon ID',enableCellEdit : false,  },
-      {  field : 'getZoneName()',  width : 200,      displayName : 'Zone Name',                         }
+      {  field : 'beaconid',  width : 100,      displayName : 'Beacon ID',enableCellEdit : false,  },
+      {  field : 'zoneName',  width : 200,      displayName : 'Zone Name',                         }
     ],
 
   "addRowZone" : {

@@ -1,7 +1,3 @@
-/**
- * Created by oisin 07/08/2017.
- */
-
 myApp.factory('Common',[ '$rootScope','Globals',  function ($rootScope, Globals) {
 
   let lib = {};
@@ -107,11 +103,11 @@ myApp.factory('Common',[ '$rootScope','Globals',  function ($rootScope, Globals)
   lib.isSelected  = checkTab => $rootScope.tab === checkTab;
 
   lib.isAdmin     = ()       => $rootScope.admin;
-  lib.isCust      = ()       => !$rootScope.admin;
+  lib.isRetailer  = ()       => !$rootScope.admin;
   lib.isLoggedIn  = ()       => $rootScope.loggedIn;
   lib.setLoggedIn = state    => $rootScope.loggedIn = state;
   lib.setAdmin    = state    => $rootScope.admin    = state;
-  lib.setCust     = state    => $rootScope.retailer     = state;
+  lib.setRetailer = state    => $rootScope.retailer     = state;
 
 
   lib.reloadJs = (src) =>  {

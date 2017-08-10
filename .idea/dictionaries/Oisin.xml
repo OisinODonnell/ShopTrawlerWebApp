@@ -2,6 +2,7 @@
   <dictionary name="Oisin">
     <words>
       <w>firstname</w>
+      <w>retailerid</w>
     </words>
   </dictionary>
 </component>

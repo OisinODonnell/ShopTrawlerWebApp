@@ -1,41 +1,44 @@
-﻿/*
-TODO: Add Delete, Edit and Create Elements for each entity.
-      Not needed for every entity (CRUD) A=Admin R=Retailer G=Generate /=done S=summary Reports x = no operation required
-
-      BonusCode     A-x       R-R/UG
-      Beacon        A-R/      R-x/
-      Content       A-U       R-R/CU
-      LoyaltyReward A-U       R-R/CU
-      UserPoint     A-x/      R-R/
-      User          A-R/UD    R-U
-      Retailer      A-R/CUD   R-U
-      Rating        A-R/      R-R/S
-      Zone          A-R/      R-x/
-      Favourite     A-x/      R-R/
-      ShoppingCentres A-R/U   R-x/
-      Visit         A-R/      R-R/S
-      Location      A-R/      R-x/
-
-TODO_ : Change margins of table to fit in centre but not to either edge of screen
-      Layout changed to use a table rather than bootstrap screen layout.
-
-TODO
-
- */
+﻿//
+// TODO: Add Delete, Edit and Create Elements for each entity.
+//       Not needed for every entity (CRUD) A=Admin R=Retailer G=Generate /=done S=summary Reports x = no operation required
+//
+//       BonusCode     A-x       R-R/UG
+//       Beacon        A-R/      R-x/
+//       Content       A-U       R-R/CU
+//       LoyaltyReward A-U       R-R/CU
+//       UserPoint     A-x/      R-R/
+//       User          A-R/UD    R-U
+//       Retailer      A-R/CUD   R-U
+//       Rating        A-R/      R-R/S
+//       Zone          A-R/      R-x/
+//       Favourite     A-x/      R-R/
+//       ShoppingCentres A-R/U   R-x/
+//       Visit         A-R/      R-R/S
+//       Location      A-R/      R-x/
+//
+// TODO_ : Change margins of table to fit in centre but not to either edge of screen
+//       Layout changed to use a table rather than bootstrap screen layout.
+//
+//
+//
+//
 
 let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngTouch', 'ngAnimate', 'ui.grid', 'ui.grid.moveColumns',
-                                    'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit', 'ui.grid.pagination'])
-
+  'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit', 'ui.grid.pagination'])
   .config(config)
-    .run(run);
+  .run(run);
 
   config.$inject = ['$routeProvider','FlashProvider'];
-    function config($routeProvider,FlashProvider) {
+    function config($routeProvider,FlashProvider, $locationProvider, $httpProvider) {
+
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
 
       FlashProvider.setTimeout(2000);
       FlashProvider.setShowClose(true);
 
-      // setup routes for application
+      //setup routes for application
       $routeProvider
 
         .when('/', {
@@ -95,6 +98,8 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngTouch', 
         .when('/Favourites/Retailer', {controller: 'FavouritesController',templateUrl: 'js/List.view.html',controllerAs: 'ac' })
 
          .otherwise({ redirectTo: '/login' });
+
+      // $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
   }
 
   run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
@@ -116,3 +121,5 @@ let myApp =  angular.module('app', ['ngRoute','ngCookies','ngFlash', 'ngTouch', 
       }
     });
   }
+
+
