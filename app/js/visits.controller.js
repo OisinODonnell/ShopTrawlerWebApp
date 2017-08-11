@@ -15,6 +15,10 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
     vm.editRow = RowEditor.editRowVisit;
     vm.serviceGrid = Globals.GridDefaults;
     vm.serviceGrid.columnDefs = Globals.VisitColumnDefs;
+    let durationColWithAvg = {  name: 'avgRating', field: 'duration',  width: 100, aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Duration' };
+    vm.serviceGrid.columnDefs.splice(3, 0, durationColWithAvg);
+
+
 
     ListVisits();
 
