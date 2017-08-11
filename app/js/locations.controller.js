@@ -5,6 +5,17 @@ myApp.controller('LocationsController', ['DataFactory','$scope','Common','$rootS
 
     $scope.test="";
     $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
+    $scope.allowAddRow = true; //  view is affected
+    $scope.allowEditRow = true; // action below
+
+    if ($rootScope.isAdmin) {
+      $scope.allowAddRow = false; //  view is affected
+      $scope.allowEditRow = false; // action below
+    } else {
+      $scope.allowAddRow = false; //  view is affected
+      $scope.allowEditRow = false; // action below
+    }
+
 
     // placeholders
     $scope.dropdownCategories    = [];
@@ -20,7 +31,10 @@ myApp.controller('LocationsController', ['DataFactory','$scope','Common','$rootS
     vm.editRow = RowEditor.editRowLocation;
     vm.serviceGrid = Globals.GridDefaults;
     vm.serviceGrid.columnDefs = Globals.LocationColumnDefs;
-
+    if ($scope.allowEditRow) {
+      // allow this entity to be edited by double clicking the row
+      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
+    }
     ListLocations();
 
     let factory = {

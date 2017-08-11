@@ -5,6 +5,14 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
     let vm = this;
     $scope.vm = vm;
 
+    if ($rootScope.isAdmin) {
+      $scope.allowAddRow = true; //  view is affected
+      $scope.allowEditRow = true; // action below
+    } else {
+      $scope.allowAddRow = false; //  view is affected
+      $scope.allowEditRow = true; // action below
+    }
+
     // placeholders
     $scope.retailers      = {};
     $scope.retailerId     = 0;
@@ -14,7 +22,10 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
     vm.editRow = RowEditor.editRowRetailer;
     vm.serviceGrid = Globals.GridDefaults;
     vm.serviceGrid.columnDefs = Globals.RetailerColumnDefs;
-
+    if ($scope.allowEditRow) {
+      // allow this entity to be edited by double clicking the row
+      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
+    }
     ListRetailers();
 
     let factory = {

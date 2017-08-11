@@ -6,6 +6,15 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
     $scope.test="";
     $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
 
+    if ($rootScope.isAdmin) {
+      $scope.allowAddRow = false; //  view is affected
+      $scope.allowEditRow = false; // action below
+    } else {
+      $scope.allowAddRow = false; //  view is affected
+      $scope.allowEditRow = true; // action below
+    }
+
+
     // placeholders
     $scope.dropdownCategories    = [];
     $scope.dropdownmanufacturers = [];
@@ -18,7 +27,10 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
     vm.editRow = RowEditor.editRowUser;
     vm.serviceGrid = Globals.GridDefaults;
     vm.serviceGrid.columnDefs = Globals.UserColumnDefs;
-
+    if ($scope.allowEditRow) {
+      // allow this entity to be edited by double clicking the row
+      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
+    }
     ListUsers();
 
     let factory = {

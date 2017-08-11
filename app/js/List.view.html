@@ -3,8 +3,11 @@
   <div class="col-sm-1" >
     <div class="tg">
 
-      <div>
-        <button type="button" id="addRow" class="btn btn-success" ng-click="addRow()">Add New Row</button>
+
+      <div ng-if="allowAddRow">
+        <div>
+          <button type="button" id="addRow" class="btn btn-success" ng-click="addRow()">Add New Row</button>
+        </div>
       </div>
       <br/>
 

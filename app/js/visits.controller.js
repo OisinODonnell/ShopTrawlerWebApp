@@ -10,6 +10,15 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
     $scope.users = [];
     $scope.retailers = [];
 
+    if ($rootScope.isAdmin) {
+      $scope.allowAddRow = false; //  view is affected
+      $scope.allowEditRow = false; // action below
+    } else {
+      $scope.allowAddRow = false; //  view is affected
+      $scope.allowEditRow = false; // action below
+    }
+
+
     $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowVisit;
@@ -17,9 +26,10 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
     vm.serviceGrid.columnDefs = Globals.VisitColumnDefs;
     let durationColWithAvg = {  name: 'avgRating', field: 'duration',  width: 100, aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Duration' };
     vm.serviceGrid.columnDefs.splice(3, 0, durationColWithAvg);
-
-
-
+    if ($scope.allowEditRow) {
+      // allow this entity to be edited by double clicking the row
+      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
+    }
     ListVisits();
 
     function ListVisits() {

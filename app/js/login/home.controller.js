@@ -9,6 +9,7 @@
     let admin = false;
     let loggedIn = false;
     vm.isAdmin = isAdmin;
+    $rootScope.isAdmin = isAdmin;
     vm.deleteUser = deleteUser;
     $rootScope.users = [];
     $rootScope.retailers = [];

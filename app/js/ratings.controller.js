@@ -15,6 +15,16 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
     $scope.retailerId     = 0;
     $scope.rating         = {};
 
+    if ($rootScope.isAdmin) {
+      $scope.allowAddRow = false; //  view is affected
+      $scope.allowEditRow = false; // action below
+    } else {
+      $scope.allowAddRow = false; //  view is affected
+      $scope.allowEditRow = false; // action below
+    }
+
+
+
     $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowRating;
@@ -22,7 +32,10 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
     vm.serviceGrid.columnDefs = Globals.RatingColumnDefs;
     let ratingColWithAvg = {  name: 'avgRating', field: 'rating',  width: 100, aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Rating' };
     vm.serviceGrid.columnDefs.splice(2, 0, ratingColWithAvg);
-
+    if ($scope.allowEditRow) {
+      // allow this entity to be edited by double clicking the row
+      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
+    }
 
 
     if ($rootScope.currentUser.type === "Administrator")
