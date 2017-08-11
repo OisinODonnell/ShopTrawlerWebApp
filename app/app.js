@@ -19,9 +19,32 @@
 // TODO_ : Change margins of table to fit in centre but not to either edge of screen
 //       Layout changed to use a table rather than bootstrap screen layout.
 //
-//
-//
-//
+// Admin  Beacons: Remove Add/Edit
+//        Content: Show content yet to be approved
+//        LoyaltyRewards: Add menu item
+//                        Show content yet to be approved
+//        Users: Remove Edit/Add
+//        Retailer : Row contents do not appear when row is clicked
+//        Rating :  Add menu item
+//                  Add new item for Rating Summary per Retailer
+//                  Remove Add/Edit
+//        Zone: Remove Add/Edit
+//        SC: Remove Add
+//        Location: Remove Add-Edit
+// Retailer
+//        Favourites Remove Add/Edit
+//        Ratings: Show report . or show avg in footer under rating column
+//        BonusCodes (is empty except for retailer name
+//                    Add 'Generate BonusCodes'
+//                    Remove Add/Edit
+//        UserPoints: Remove Edit/Add
+//        Users ... Block access except to Stores manager
+//        Visits : entry / exit time empty
+//                  add some susers as credited with visits
+//                  remove usercreditedwithvisit field
+//                  Provide Monthly/weekly report/daily
+//                  + Add in alot more data (2000 over one year)
+
 
 let myApp =  angular.module('app', ['ngRoute','routes','ngCookies','ngFlash', 'ngTouch', 'ngAnimate', 'ui.grid', 'ui.grid.moveColumns',
   'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit', 'ui.grid.pagination'])

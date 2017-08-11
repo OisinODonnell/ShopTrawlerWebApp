@@ -90,6 +90,7 @@ angular.module('routes', []).config(function ($routeProvider) {
     // Ratings
     .when('/Ratings/List', {controller: 'RatingsController', templateUrl: 'js/List.view.html', controllerAs: 'ac'})
     .when('/Ratings/Retailer', {controller: 'RatingsController', templateUrl: 'js/List.view.html', controllerAs: 'ac'})
+
     // Favourites
     .when('/Favourites/List', {
       controller: 'FavouritesController',

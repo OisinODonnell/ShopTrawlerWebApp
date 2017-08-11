@@ -20,6 +20,10 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
     vm.editRow = RowEditor.editRowRating;
     vm.serviceGrid = Globals.GridDefaults;
     vm.serviceGrid.columnDefs = Globals.RatingColumnDefs;
+    let ratingColWithAvg = {  name: 'avgRating', field: 'rating',  width: 100, aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Rating' };
+    vm.serviceGrid.columnDefs.splice(2, 0, ratingColWithAvg);
+
+
 
     if ($rootScope.currentUser.type === "Administrator")
       ListRatings();

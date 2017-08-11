@@ -2,7 +2,9 @@ myApp.value('Globals', {
   "extraRows" : 4,
   "rowHeightPixels" : 30,
   "gridStyle" : "Width:1000px; ",
-  "URL_BASE": "http://localhost:8080",
+  "URL_BASE": "http://147.252.81.7:8080",
+  "URL_BASE1": "http://147.252.148.47:8080",
+  "URL_BASE2": "http://localhost:8080",
   "GridDefaults": {
     enableRowSelection        : true,
     enableRowHeaderSelection  : false,
@@ -17,6 +19,7 @@ myApp.value('Globals', {
     enableInfiniteScroll      : true,
     enableColumnMoving        : true,
     enableColumnResizing      : true,
+    showColumnFooter          : true,
 
     enableGridMenu            : true,
     enablePaging              : true,
@@ -36,8 +39,8 @@ myApp.value('Globals', {
       type : 'number',
       width : 60,
       },
-      { field : 'entryTimeReadable',    width : 200,    displayName : 'Entry Time',enableCellEdit : false,type:"date", },
-      { field : 'exitTimeReadable',     width : 200,    displayName : 'Exit Time',enableCellEdit : false,type:"date",  },
+      { field : 'getEntryTimeReadable()',    width : 200,    displayName : 'Entry Time',enableCellEdit : false,type:"date", },
+      { field : 'getExitTimeReadable()',     width : 200,    displayName : 'Exit Time',enableCellEdit : false,type:"date",  },
       { field : 'userCreditedForVisit', width : 100,    displayName : 'User Credited For Visit',enableCellEdit : true, },
       { field : 'duration',             width : 100,    displayName : 'Duration',enableCellEdit : false,               },
       { field : 'userid',               width : 100,    displayName : 'User ID',enableCellEdit : false,                },
@@ -89,7 +92,7 @@ myApp.value('Globals', {
       {  field : 'storeName',              width : 200,displayName : 'Retailer ID',enableCellEdit : false,          },
       {  field : 'Value',             width : 100,displayName : 'Value',enableCellEdit : false,                },
       {  field : 'fullname',               width : 200,displayName : 'User ID',enableCellEdit : false,              },
-      {  field : 'DateTimeReadable',  width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
+      {  field : 'getDateTimeReadable()',  width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
     ],
 
   "addRowBonusCode" : {
@@ -107,12 +110,12 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field : 'endDateReadable',   width : 200,displayName : 'End Date',type:"date",                  },
+      {  field : 'getEndDateReadable()',   width : 200,displayName : 'End Date',type:"date",                  },
       {  field : 'page1',             width : 200,displayName : 'Page 1',                                },
       {  field : 'page2',             width : 200,displayName : 'Page 2',                                },
       {  field : 'page3',             width : 200,displayName : 'Page 3',                                },
       {  field : 'retailerid',        width : 100,displayName : 'Retailer ID',enableCellEdit : false,    },
-      {  field : 'startDateReadable', width : 200,displayName : 'Start Date',type:"date",                }
+      {  field : 'getStartDateReadable()', width : 200,displayName : 'Start Date',type:"date",                }
     ],
   "addRowContent" : {
     "contentid"   : "",
@@ -169,12 +172,12 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field : 'endDateReadable',   width : 200, displayName : 'End Date',type:"date",               },
+      {  field : 'getEndDateReadable()',   width : 200, displayName : 'End Date',type:"date",               },
       {  field : 'pointsPerVisit',    width : 100, displayName : 'Points Per Visit',                   },
       {  field : 'rewardImage',       width : 200, displayName : 'Reward Image',                       },
       {  field : 'storeName',              width : 200, displayName : 'Retailer ID',enableCellEdit : false, },
       {  field : 'rewardTitle',       width : 200, displayName : 'Reward Title',                       },
-      {  field : 'startDateReadable', width : 200, displayName : 'Start Date',type:"date",             },
+      {  field : 'getStartDateReadable()', width : 200, displayName : 'Start Date',type:"date",             },
       {  field : 'visitTime',         width : 100, displayName : 'Visit Time',                         }
     ],
 
@@ -196,10 +199,10 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field : 'dateReadable',   width : 200,   displayName : 'Date',type:"date",                  },
+      {  field : 'getDateReadable()',   width : 200,   displayName : 'Date',type:"date",                  },
       {  field : 'storeName',           width : 200,   displayName : 'Retailer ID',enableCellEdit : false,},
-      {  field : 'rating',         width : 100,   displayName : 'Rating',                            },
-      {  field : 'review',         width : 500,   displayName : 'Review',                            }
+      {  field : 'review',         width : 500,   displayName : 'Review',                            },
+
     ],
 
   "addRowRating" : {
