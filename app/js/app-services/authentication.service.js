@@ -7,9 +7,8 @@
     service.setCredentials = setCredentials;
     service.clearCredentials = clearCredentials;
 
-
     function setCredentials(username, password){
-        let authdata = Base64.encode(username + ':' + password);
+        let authdata = btoa(username + ':' + password);
         $rootScope.globals = {
             currentUser: {
                 username: username,

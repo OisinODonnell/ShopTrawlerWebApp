@@ -4,9 +4,6 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
-    $scope.test="";
-    $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
-
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
@@ -15,27 +12,10 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
       $scope.allowEditRow = false; // action below
     }
 
-
-    // placeholders
-    $scope.dropdownCategories    = [];
-    $scope.dropdownmanufacturers = [];
-    $scope.userPoints       = 0;
-    $scope.userPointsId     = 0;
-    $scope.user             = {};
-    $scope.type             = "HOUR"; // HOUR, DAY, WEEK, MONTH
-    $scope.points           = 0;
-    $scope.userId           = 0;
-
-
     $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowUserPoint;
-    vm.serviceGrid = Globals.GridDefaults;
-    vm.serviceGrid.columnDefs = Globals.UserPointColumnDefs;
-    if ($scope.allowEditRow) {
-      // allow this entity to be edited by double clicking the row
-      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
-    }
+    vm.serviceGrid = Common.setupUiGrid(Globals.UserPointColumnDefs, $scope.allowEditRow )
 
     if ($rootScope.currentUser.type === "Administrator")
       ListUserPoints();
@@ -45,12 +25,12 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
       ListUserPointsByUser($rootScope.currentUser.userid);
 
 
-    let factory = {
-      ListUserPoints : ListUserPoints, // all users
-      ListUserPointsByRetailer : ListUserPointsByRetailer, // all users
-      AddUserPoints  : AddUserPoints,
-      getUserPoints  : getUserPoints,  // single user
-    };
+    // let factory = {
+    //   ListUserPoints : ListUserPoints, // all users
+    //   ListUserPointsByRetailer : ListUserPointsByRetailer, // all users
+    //   AddUserPoints  : AddUserPoints,
+    //   getUserPoints  : getUserPoints,  // single user
+    // };
 
 
     function ListUserPoints() {
@@ -150,7 +130,5 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
       rowTmp.entity = newService;
       vm.editRow($scope.vm.serviceGrid, rowTmp);
     };
-
-    return factory;
 
   }]);

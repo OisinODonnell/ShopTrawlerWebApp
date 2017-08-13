@@ -24,18 +24,14 @@
       $rootScope.loggedInUserTime = 0;
       $rootScope.type = "Mobile";
 
-      $scope.admin = false;
-      $scope.retailer = true;
-      $scope.loggedIn = false;
-
       $scope.username = "";
       $scope.password = "";
       $scope.vm = vm;
       let id = null;
 
       $rootScope.tab = 1;
-      $rootScope.admin = false;
-      $rootScope.retailer = true;
+      $rootScope.isAdmin = false;
+      $rootScope.isRetailer = true;
       $rootScope.mob = false;
       $rootScope.loggedIn = false;
 
@@ -52,12 +48,12 @@
       (function initController() {
           // reset login status
           AuthenticationService.clearCredentials();
-          ListRetailers();
+         // ListRetailers();
       })();
 
       function Login  ()  {
         vm.dataLoading = true;
-        $rootScope.admin =  false;
+        $rootScope.isAdmin =  false;
         $rootScope.loggedIn = false;
         vm.user = "username="+$scope.vm.username+"&password="+$scope.vm.password;
         DataFactory.login($scope.vm.username,$scope.vm.password)
@@ -182,22 +178,22 @@
       const selectTab   = setTab   => $rootScope.tab = setTab;
       const isSelected  = checkTab => $rootScope.tab === checkTab;
 
-      const isAdmin     = ()       => $rootScope.admin;
-      const isRetailer  = ()       => $rootScope.retailer;
-      const isMob       = ()       => $rootScope.mob;
+      // const isAdmin     = ()       => $rootScope.admin;
+      // const isRetailer  = ()       => $rootScope.retailer;
+      // const isMob       = ()       => $rootScope.mob;
 
       const isLoggedIn  = ()       => $rootScope.loggedIn;
-      const setLoggedIn = state    => $rootScope.loggedIn = state;
-      const setAdmin    = state    => $rootScope.admin    = state;
-      const setRetailer = state    => $rootScope.retailer     = state;
-      const setMob      = state    => $rootScope.mob      = state;
+      const setLoggedIn = state    => $rootScope.loggedIn   = state;
+      const setAdmin    = state    => $rootScope.isAdmin    = state;
+      const setRetailer = state    => $rootScope.isRetailer = state;
+      const setMob      = state    => $rootScope.mob        = state;
 
       const getFirstname = () => { return vm.firstname; }
 
       const resetUserLoginDetails = () => {
-        $rootScope.userType = "Retailer";
+        $rootScope.userType         = "Retailer";
         $rootScope.loggedInUserTime = "";
-        $rootScope.loggedInUserId = "";
+        $rootScope.loggedInUserId   = "";
         $rootScope.loggedInUserName = "";
       };
 

@@ -102,12 +102,12 @@ myApp.factory('Common',[ '$rootScope','Globals',  function ($rootScope, Globals)
   lib.selectTab   = setTab   => $rootScope.tab = setTab;
   lib.isSelected  = checkTab => $rootScope.tab === checkTab;
 
-  lib.isAdmin     = ()       => $rootScope.admin;
-  lib.isRetailer  = ()       => !$rootScope.admin;
+  // lib.isAdmin     = ()       => $rootScope.admin;
+  // lib.isRetailer  = ()       => !$rootScope.admin;
   lib.isLoggedIn  = ()       => $rootScope.loggedIn;
   lib.setLoggedIn = state    => $rootScope.loggedIn = state;
-  lib.setAdmin    = state    => $rootScope.admin    = state;
-  lib.setRetailer = state    => $rootScope.retailer     = state;
+  lib.setAdmin    = state    => $rootScope.isAdmin    = state;
+  lib.setRetailer = state    => $rootScope.isRetailer     = state;
 
 
   lib.reloadJs = (src) =>  {
@@ -200,13 +200,32 @@ myApp.factory('Common',[ '$rootScope','Globals',  function ($rootScope, Globals)
     let style = Globals.gridStyle + " Height: " + size + "px;";
     return style;
   };
-
+  // attempt to change value of 'Edit Row' to 'Add Row' ... missing something to complete this.
   lib.changeToAddRow = () =>{
     let doc = $(this);
     let x = doc.getElementsByClassName("modal-title");  // Find the element
     x.innerHTML="Add Row";
     // let x = $(".modal-title").text;
 
+  };
+
+  // setup the UI Grid passing in the entity column defs and whether the user is admin or a retailer
+  lib.setupUiGrid = (EntityColumnDefs, authorised) => {
+
+    let serviceGrid = Globals.GridDefaults;
+    serviceGrid.columnDefs = EntityColumnDefs;
+    // Get height of grid to create ... although I can get the height it should be at, the grid does not respond yet.
+    let height = (Globals.extraRows + Globals.GridDefaults.minRowsToShow) * Globals.GridDefaults.rowHeight;
+    Globals.gridStyle = "{Width:1000px; Height:" + height + "px;}";
+    $rootScope.gridStyle = Globals.gridStyle;
+
+    if (authorised) {
+      // allow this entity to be edited by double clicking the row
+      serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
+    } else {
+      serviceGrid.rowTemplate = "";
+    }
+    return serviceGrid;
   };
 
   return lib;

@@ -1,22 +1,23 @@
-﻿myApp.controller('HomeController', ['$location', 'DataFactory','$rootScope','Common','$scope',
-  function ($location, DataFactory, $rootScope, Common, $scope) {
+﻿myApp.controller('HomeController', ['$location', 'DataFactory','$rootScope','Common','$scope','Globals',
+  function ($location, DataFactory, $rootScope, Common, $scope, Globals) {
     let vm = this;
 
     vm.user = null;
     vm.allUsers = [];
 
     this.tab = 1;
-    let admin = false;
+    let isAdmin = false;
     let loggedIn = false;
-    vm.isAdmin = isAdmin;
-    $rootScope.isAdmin = isAdmin;
+    // vm.isAdmin = isAdmin;
+    // $rootScope.isAdmin = vm.isAdmin;
     vm.deleteUser = deleteUser;
     $rootScope.users = [];
     $rootScope.retailers = [];
     $rootScope.currentUser = {};
     $rootScope.facebookImage = "http://findicons.com/files/icons/947/mini_social_networking/64/facebook.png";
     $rootScope.twitterImage = "http://findicons.com/files/icons/819/social_me/64/twitter.png";
-
+    $rootScope.addingRow = false;
+    $rootScope.urlBase = Globals.URL_BASE;
 
     let factory = {};
 
@@ -74,10 +75,10 @@
         });
     }
 
-    function isAdmin() {
-      "use strict";
-      let r = $rootScope.admin;
-      let b = Common.isAdmin();
-      return Common.isAdmin();
-    }
+    // function isAdmin() {
+    //   "use strict";
+    //   let r = $rootScope.admin;
+    //   let b = Common.isAdmin();
+    //   return Common.isAdmin();
+    // }
   }]);

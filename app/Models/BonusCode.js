@@ -28,7 +28,7 @@ class BonusCode {
   setValue         (x) { this.value             = x ? x : ""; }
 
 
-  getDateTimeReadable(){ return getReadableDate(this.dateTime); }
+  getDateTimeReadable () { return getReadableDate(this.dateTime); }
 
 
 }

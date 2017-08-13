@@ -3,8 +3,8 @@
  */
 myApp.service('NavController', function(){
   this.tab = 1;
-  let admin = false;
-  let cust = !admin;
+  let isAdmin = false;
+  let isRetailer = !admin;
   let loggedIn = false;
   let factory = {};
 
@@ -14,19 +14,19 @@ myApp.service('NavController', function(){
   factory.selectTab = (setTab) =>  this.tab = setTab;
   factory.isSelected = (checkTab) => this.tab === checkTab;
 
-  factory.showAdmin    = () => admin = true;
-  factory.hideAdmin    = () => admin = false;
-  factory.showCust     = () => admin = false;
-  factory.hideCust     = () => admin = true;
+  factory.showAdmin    = () => isAdmin = true;
+  factory.hideAdmin    = () => isAdmin = false;
+  factory.showCust     = () => isAdmin = false;
+  factory.hideCust     = () => isAdmin = true;
   factory.showLoggedIn = () => loggedIn = true;
   factory.hideLoggedIn = () => loggedIn = false;
 
-  factory.isAdmin     = ()    => admin;
-  factory.isCust      = ()    => !admin;
+  factory.isAdmin     = ()    => isAdmin;
+  factory.isCust      = ()    => !isAdmin;
   factory.isLoggedIn  = ()    => loggedIn;
   factory.setLoggedIn = state => loggedIn = state;
-  factory.setAdmin    = state => admin = state;
-  factory.setCust     = state => retailer  = state;
+  factory.setAdmin    = state => isAdmin = state;
+  factory.setCust     = state => isRetailer  = state;
 
   return factory;
 });

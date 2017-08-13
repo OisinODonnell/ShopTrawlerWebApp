@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="Maven: org.webjars:bootstrap:unknown">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/webjars/bootstrap/unknown/bootstrap-unknown.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/org/webjars/bootstrap/unknown/bootstrap-unknown-javadoc.jar!/" />
     </JAVADOC>

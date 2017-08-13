@@ -7,13 +7,6 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
     $scope.test="";
     $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
 
-    // placeholders
-    $scope.dropdownCategories    = [];
-    $scope.dropdownmanufacturers = [];
-    $scope.ratings        = 0;
-    $scope.userId         = 0;
-    $scope.retailerId     = 0;
-    $scope.rating         = {};
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
@@ -23,19 +16,15 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
       $scope.allowEditRow = false; // action below
     }
 
-
-
     $scope.vm = vm;
 
+    // setup grid
     vm.editRow = RowEditor.editRowRating;
-    vm.serviceGrid = Globals.GridDefaults;
-    vm.serviceGrid.columnDefs = Globals.RatingColumnDefs;
+    vm.serviceGrid = Common.setupUiGrid(Globals.RatingColumnDefs, $scope.allowEditRow );
+    // add rating with average in column footer
     let ratingColWithAvg = {  name: 'avgRating', field: 'rating',  width: 100, aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Rating' };
     vm.serviceGrid.columnDefs.splice(2, 0, ratingColWithAvg);
-    if ($scope.allowEditRow) {
-      // allow this entity to be edited by double clicking the row
-      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
-    }
+
 
 
     if ($rootScope.currentUser.type === "Administrator")
@@ -44,15 +33,6 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
       ListRatingsByRetailer($rootScope.currentUser.userid);
     else
       ListRatingsByUser($rootScope.currentUser.userid);
-
-
-    let factory = {
-      ListRatings           : ListRatings,
-      ListRatingsByRetailer : ListRatingsByRetailer,
-      AddRating             : AddRating,
-      ListRatingsByUser     : ListRatingsByUser,
-    };
-
 
 
     function ListRatings() {
@@ -118,15 +98,11 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
       vm.dataLoading = false;
     }
 
-
     $scope.addRow = function () {
       let newService = Globals.addRowRating;
       let rowTmp = {};
       rowTmp.entity = newService;
       vm.editRow($scope.vm.serviceGrid, rowTmp);
     };
-
-    return factory;
-
 
   }]);

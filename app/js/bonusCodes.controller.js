@@ -14,35 +14,19 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
       $scope.allowEditRow = false; // action below
     }
 
-    // placeholders
-    $scope.dropdownCategories    = [];
-    $scope.dropdownmanufacturers = [];
-    $scope.bonusCodes       = [];
-    $scope.bonusCodeId     = 0;
-    $scope.bonusCode       = {};
 
     $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowBonusCode;
-    vm.serviceGrid = Globals.GridDefaults;
-    vm.serviceGrid.columnDefs = Globals.BonusCodeColumnDefs;
-    if ($scope.allowEditRow) {
-      // allow this entity to be edited by double clicking the row
-      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
-    }
+    vm.serviceGrid = Common.setupUiGrid(Globals.BonusCodeColumnDefs, $scope.allowEditRow )
+
 
     if ($rootScope.currentUser.type === "Administrator")
       ListBonusCodes();
     else
       ListBonusCodesByRetailer($rootScope.currentUser.userid);
 
-    let factory = {
-      ListBonusCodes : ListBonusCodes, // all users
-      ListBonusCodesByRetailer : ListBonusCodesByRetailer, // from logged in retailer
-      AddBonusCode   : AddBonusCode,
-      GetBonusCode   : GetBonusCode,  // single user
-      GetBonusCodes  : GetBonusCodes,  // single mobil user
-    };
+
 
     function ListBonusCodes() {
       vm.dataLoading = true;
@@ -152,5 +136,4 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
       vm.editRow($scope.vm.serviceGrid, rowTmp);
     };
 
-    return factory;
   }]);

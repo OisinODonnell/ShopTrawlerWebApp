@@ -4,12 +4,6 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
-    // placeholders
-    $scope.dropdownCategories    = [];
-    $scope.dropdownmanufacturers = [];
-    $scope.favourites       = 0;
-    $scope.userId           = 0;
-    $scope.retailerId       = {};
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
@@ -23,12 +17,7 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
     $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowFavourite;
-    vm.serviceGrid = Globals.GridDefaults;
-    vm.serviceGrid.columnDefs = Globals.FavouriteColumnDefs;
-    if ($scope.allowEditRow) {
-      // allow this entity to be edited by double clicking the row
-      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
-    }
+    vm.serviceGrid = Common.setupUiGrid(Globals.FavouriteColumnDefs, $scope.allowEditRow )
 
     if ($rootScope.currentUser.type === "Administrator")
       ListFavourites();
@@ -36,14 +25,6 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
       ListFavouritesByRetailer($rootScope.currentUser.userid);
     else
       ListFavouritesByUser($rootScope.currentUser.userid);
-
-
-    let factory = {
-      ListFavourites            : ListFavourites, // all ufavourites
-      ListFavouritesByRetailer  : ListFavouritesByRetailer, // all favourites by retailer
-      ListFavouritesByUser      : ListFavouritesByUser, // all favourites by user
-      AddFavourite              : AddFavourite,
-    };
 
     function ListFavourites() {
       vm.dataLoading = true;
@@ -129,7 +110,5 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
       rowTmp.entity = newService;
       vm.editRow($scope.vm.serviceGrid, rowTmp);
     };
-
-    return factory;
 
   }]);

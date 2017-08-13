@@ -25,15 +25,15 @@
   <script src="lib/angular-flash.js"></script>
   <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
 
-
   <!--// application-->
   <script src="app.js"></script>
   <script src="routes.js"></script>
   <script src="js/Common/Globals.js"></script>
   <script src="js/RowEditControllers.js"></script>
+  <script src="js/app-services/authentication.service.js"></script>
+  <script src="js/app-services/authInterceptor.js"></script>
 
-
-<!--Login/Startup controllers-->
+  <!--Login/Startup controllers-->
   <script src="js/login/home.controller.js"></script>
   <script src="js/login/login.controller.js"></script>
   <script src="js/login/nav.controller.js"></script>
@@ -91,29 +91,31 @@
         </div>
         <div  class="col-sm-1 collapse navbar-collapse" id="navbar-crt-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#!/ShoppingCentres/List"     data-ng-show = "admin && loggedIn"    > ShoppingCentre </a>    </li>
-            <li><a href="#!/Locations/List"           data-ng-show = "admin && loggedIn"    > Locations      </a>    </li>
-            <li><a href="#!/Beacons/List"             data-ng-show = "admin && loggedIn"    > Beacons        </a>    </li>
-            <li><a href="#!/Zones/List"               data-ng-show = "admin && loggedIn"    > Zones          </a>    </li>
-            <li><a href="#!/Users/List"               data-ng-show = "admin && loggedIn"    > Users          </a>    </li>
-            <li><a href="#!/Retailers/List"           data-ng-show = "admin && loggedIn"    > Retailers      </a>    </li>
-            <li><a href="#!/Ratings/List"             data-ng-show = "admin && loggedIn"    > Ratings        </a>    </li>
-            <li><a href="#!/Visits/List"              data-ng-show = "admin && loggedIn"    > Visits         </a>    </li>
 
-            <li><a href="#!/Users/Approve"            data-ng-show = "admin && loggedIn"    > Enable New Users</a>   </li>
-            <li><a href="#!/Contents/Approve"         data-ng-show = "admin && loggedIn"    > Approve Content </a>   </li>
-            <li><a href="#!/LoyaltyRewards/Approve"   data-ng-show = "admin && loggedIn"    > Approve Loyalty Rewards </a>   </li>
+            <li><a href="#!/ShoppingCentres/List"     data-ng-show = "isAdmin && loggedIn"    > ShoppingCentre </a>    </li>
+            <li><a href="#!/Locations/List"           data-ng-show = "isAdmin && loggedIn"    > Locations      </a>    </li>
+            <li><a href="#!/Beacons/List"             data-ng-show = "isAdmin && loggedIn"    > Beacons        </a>    </li>
+            <li><a href="#!/Zones/List"               data-ng-show = "isAdmin && loggedIn"    > Zones          </a>    </li>
+            <li><a href="#!/Users/List"               data-ng-show = "isAdmin && loggedIn"    > Users          </a>    </li>
+            <li><a href="#!/Retailers/List"           data-ng-show = "isAdmin && loggedIn"    > Retailers      </a>    </li>
+            <li><a href="#!/Ratings/List"             data-ng-show = "isAdmin && loggedIn"    > Ratings Summary</a>    </li>
+            <li><a href="#!/Visits/List"              data-ng-show = "isAdmin && loggedIn"    > Visits         </a>    </li>
 
-            <li><a href="#!/Favourites/Retailer"      data-ng-show = "retailer && loggedIn" > Favourites    </a>    </li>
-            <li><a href="#!/LoyaltyRewards/Retailer"  data-ng-show = "retailer && loggedIn" > LoyaltyRewards</a>    </li>
-            <li><a href="#!/Ratings/Retailer"         data-ng-show = "retailer && loggedIn" > Ratings       </a>    </li>
-            <li><a href="#!/Contents/Retailer"        data-ng-show = "retailer && loggedIn" > Contents      </a>    </li>
-            <li><a href="#!/BonusCodes/Retailer"      data-ng-show = "retailer && loggedIn" > BonusCodes    </a>    </li>
-            <li><a href="#!/UserPoints/Retailer"      data-ng-show = "retailer && loggedIn" > UserPoints    </a>    </li>
-            <li><a href="#!/Users/Retailer"           data-ng-show = "retailer && loggedIn" > Users         </a>    </li>
-            <li><a href="#!/Visits/Retailer"          data-ng-show = "retailer && loggedIn" > Visits        </a>    </li>
+            <li><a href="#!/Users/Approve"            data-ng-show = "isAdmin && loggedIn"    > Enable New Users</a>   </li>
+            <li><a href="#!/Contents/Approve"         data-ng-show = "isAdmin && loggedIn"    > Approve Content </a>   </li>
+            <li><a href="#!/LoyaltyRewards/Approve"   data-ng-show = "isAdmin && loggedIn"    > Approve Loyalty Rewards </a>   </li>
 
-            <li><a href="#!/Visits/Report"            data-ng-show = "retailer && loggedIn" > Report Visits </a>    </li>
+            <li><a href="#!/Favourites/Retailer"      data-ng-show = "isRetailer && loggedIn" > Favourites    </a>    </li>
+            <li><a href="#!/LoyaltyRewards/Retailer"  data-ng-show = "isRetailer && loggedIn" > LoyaltyRewards</a>    </li>
+            <li><a href="#!/Ratings/Retailer"         data-ng-show = "isRetailer && loggedIn" > Ratings       </a>    </li>
+            <li><a href="#!/Contents/Retailer"        data-ng-show = "isRetailer && loggedIn" > Contents      </a>    </li>
+            <li><a href="#!/BonusCodes/Retailer"      data-ng-show = "isRetailer && loggedIn" > BonusCodes    </a>    </li>
+            <li><a href="#!/UserPoints/Retailer"      data-ng-show = "isRetailer && loggedIn" > UserPoints    </a>    </li>
+            <li><a href="#!/Users/Retailer"           data-ng-show = "isRetailer && loggedIn" > Users         </a>    </li>
+
+            <li><a href="#!/Visits/Retailer"          data-ng-show = "isRetailer && loggedIn" > Visits        </a>    </li>
+            <li><a href="#!/BonusCodes/Generate"      data-ng-show = "isRetailer && loggedIn" > Generate New Bonus Codes </a>    </li>
+            <li><a href="#!/Visits/Report"            data-ng-show = "isRetailer && loggedIn" > Report Visits </a>    </li>
 
           </ul>
         </div>

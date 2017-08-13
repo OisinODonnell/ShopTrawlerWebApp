@@ -3,13 +3,6 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
       let vm = this;
 
-    // placeholders
-    $scope.visits = [];
-    $scope.visitId = 0;
-    $scope.type = "HOUR"; // HOUR, DAY, WEEK, MONTH
-    $scope.users = [];
-    $scope.retailers = [];
-
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
@@ -18,18 +11,13 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
       $scope.allowEditRow = false; // action below
     }
 
-
     $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowVisit;
-    vm.serviceGrid = Globals.GridDefaults;
-    vm.serviceGrid.columnDefs = Globals.VisitColumnDefs;
+    vm.serviceGrid = Common.setupUiGrid(Globals.VisitColumnDefs, $scope.allowEditRow )
     let durationColWithAvg = {  name: 'avgRating', field: 'duration',  width: 100, aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Duration' };
     vm.serviceGrid.columnDefs.splice(3, 0, durationColWithAvg);
-    if ($scope.allowEditRow) {
-      // allow this entity to be edited by double clicking the row
-      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
-    }
+
     ListVisits();
 
     function ListVisits() {

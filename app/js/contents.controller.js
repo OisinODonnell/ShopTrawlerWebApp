@@ -15,35 +15,18 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       $scope.allowEditRow = true; // action below
     }
 
-    // placeholders
-    $scope.dropdownCategories = [];
-    $scope.dropdownmanufacturers = [];
-    $scope.contents = [];
-    $scope.contentId = 0;
-    $scope.content = {};
-
     $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowContent;
-    vm.serviceGrid = Globals.GridDefaults;
-    vm.serviceGrid.columnDefs = Globals.ContentColumnDefs;
+    vm.serviceGrid = Common.setupUiGrid(Globals.ContentColumnDefs, $scope.allowEditRow )
 
-    if ($scope.allowEditRow) {
-      // allow this entity to be edited by double clicking the row
-      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
-    }
+
 
     if ($rootScope.currentUser.type === "Administrator")
       ListContents();
     else
       ListContentByRetailer($rootScope.currentUser.userid);
 
-
-    let factory = {
-      ListContents : ListContents, // all users
-      AddContent   : AddContent,
-      GetContent   : GetContent,  // single user
-    };
 
 
     function ListContents() {
@@ -104,6 +87,5 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       vm.editRow($scope.vm.serviceGrid, rowTmp);
     };
 
-    return factory;
 
   }]);

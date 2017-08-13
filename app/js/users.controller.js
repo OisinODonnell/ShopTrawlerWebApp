@@ -15,29 +15,13 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
     }
 
 
-    // placeholders
-    $scope.dropdownCategories    = [];
-    $scope.dropdownmanufacturers = [];
-    $scope.users;
-    $scope.userid      = 0;
-
-
     $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowUser;
-    vm.serviceGrid = Globals.GridDefaults;
-    vm.serviceGrid.columnDefs = Globals.UserColumnDefs;
-    if ($scope.allowEditRow) {
-      // allow this entity to be edited by double clicking the row
-      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
-    }
+    vm.serviceGrid = Common.setupUiGrid(Globals.UserColumnDefs, $scope.allowEditRow )
+
     ListUsers();
 
-    let factory = {
-      ListUsers         : ListUsers,
-      AddRetailManager  : AddRetailManager,
-      AddUser           : AddUser,
-    };
 
 
     function ListUsers() {
@@ -96,5 +80,5 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
       vm.editRow($scope.vm.serviceGrid, rowTmp);
     };
 
-    return factory;
+
   }]);

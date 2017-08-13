@@ -5,9 +5,13 @@
 myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function ($http, $rootScope, $uibModal) {
 
+  let vm = this;
 
+  $rootScope.row = {};
 
-    let service = {
+  vm.editRowShoppingCentre = editRowShoppingCentre;
+
+  let service = {
   editRowVisit : editRowVisit,
   editRowZone : editRowZone,
   editRowUser : editRowUser,
@@ -25,6 +29,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
 
 
   function editRowVisit(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Visits-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -34,8 +39,11 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowZone(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Zones-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -45,8 +53,11 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowUser(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Users-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -56,8 +67,11 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowRetailer(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Retailers-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -67,8 +81,11 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowBeacon(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Beacons-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -78,8 +95,11 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowLocation(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Locations-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -89,8 +109,11 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowBonusCode(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-BonusCodes-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -102,6 +125,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     });
   }
   function editRowFavourite(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Favourites-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -113,6 +137,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     });
   }
   function editRowLoyaltyReward(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-LoyaltyRewards-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -122,8 +147,11 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowRating(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Ratings-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -135,6 +163,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     });
   }
   function editRowShoppingCentre(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-ShoppingCentres-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -144,8 +173,11 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowContent(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Contents-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -155,8 +187,11 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowUserPoint(grid, row) {
+    $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-UserPoints-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
@@ -166,6 +201,8 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
 
   return service;
@@ -174,13 +211,18 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
 
 // RowEditControllers for each entity
 
-myApp.controller('RowEditCtrl', RowEditCtrl);
-RowEditCtrl.$inject = [ '$http', '$uibModalInstance' ];
-function RowEditCtrl($http ,  $uibModalInstance, grid, row) {
+// myApp.controller('RowEditCtrl', RowEditCtrl);
+// RowEditCtrl.$inject = [ '$http', '$uibModalInstance', '$rootScope'];
+// function RowEditCtrl($http ,  $uibModalInstance, grid, row, $rootScope) {
+
+myApp.controller('RowEditCtrl',RowEditCtrl);
+RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
+  function RowEditCtrl($http ,  $uibModalInstance, grid, row) {
+
   let vm = this;
   vm.entity = angular.copy(row.entity);
 
-  let urlBase = "http://localhost:8080";
+  let urlBase = "http://localhost:8080"
 
   let rowEditors = {
     saveVisit : saveVisit,
@@ -264,6 +306,9 @@ function RowEditCtrl($http ,  $uibModalInstance, grid, row) {
 
       row.entity = angular.extend(row.entity, vm.entity);
       // Add Shopping Centre
+      let params = getEntity(row.entity);
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
+
       $http.put(urlBase + '/ShoppingCentre/update/' + vm.entity.shoppingCentreid,vm.entity )
         .then(function(response) {
           $uibModalInstance.close(row.entity);
@@ -280,10 +325,23 @@ function RowEditCtrl($http ,  $uibModalInstance, grid, row) {
 
     } else { // changed entity
 
-      row.entity = angular.extend(row.entity, vm.entity);
+      row.entity = angular.extend(vm.entity, row.entity);
 
+      let params = getEntity(row.entity);
       // update Shopping Centre
-      $http.put(urlBase + '/ShoppingCentre/update/' + vm.entity.shoppingCentreid,vm.entity )
+      let updatedRow = row.entity;
+
+      $http.put(urlBase + '/ShoppingCentre/update/' + row.entity.shoppingCentreid,row.entity , {headers:{
+        'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+          'X-Random-Shit':'123123123'
+      }
+      })
+
+      // $http.put(urlBase + '/ShoppingCentre/update/' , params ,{headers: {
+      //   'Content-Type': 'application/json'}
+      // })
       // $http.get(urlBase + '/ShoppingCentre/update/' + vm.entity )
         .then(function(response) {
           $uibModalInstance.close(row.entity);
@@ -294,6 +352,17 @@ function RowEditCtrl($http ,  $uibModalInstance, grid, row) {
       });
     }
     $uibModalInstance.close(row.entity);
+  }
+
+  function getEntity(updates, attrList) {
+    let newEntity = attrList;
+    let str = "";
+    for(let key in updates) {
+      if (!$.isArray(updates[key])) {
+        str += "/" + updates[key]
+      }
+    }
+    return str;
   }
 
   function saveVisit() {
@@ -631,10 +700,18 @@ function RowEditCtrl($http ,  $uibModalInstance, grid, row) {
 
 
   function paramString(entity) {
+    let newEntity = {};
 
+    for (var key in entity) {
+      if (p.hasOwnProperty(key)) {
 
+        if (!entity[key].isArray())
+          newEntity.key = entity[key];
 
+      }
+    }
 
+  return newEntity
 
   }
 

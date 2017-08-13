@@ -4,9 +4,6 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
-    $scope.test="";
-    $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
-
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = true; // action below
@@ -15,30 +12,13 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','
       $scope.allowEditRow = false; // action below
     }
 
-    // placeholders
-    $scope.dropdownCategories    = [];
-    $scope.dropdownmanufacturers = [];
-    $scope.visits       = 0;
-    $scope.visitId      = 0;
-    $scope.type = "HOUR"; // HOUR, DAY, WEEK, MONTH
-    $scope.administrator = "";
-
 
     $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowShoppingCentre;
-    vm.serviceGrid = Globals.GridDefaults;
-    vm.serviceGrid.columnDefs = Globals.ShoppingCentreColumnDefs;
-    if ($scope.allowEditRow) {
-      // allow this entity to be edited by double clicking the row
-      vm.serviceGrid.rowTemplate = "<div ng-dblclick=\"grid.appScope.vm.editRow(grid, row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
-    }
-    ListShoppingCentres();
+    vm.serviceGrid = Common.setupUiGrid(Globals.ShoppingCentreColumnDefs, $scope.allowEditRow )
 
-    let factory = {
-      ListShoppingCentres   : ListShoppingCentres,
-      ListShoppingCentreBy  : ListShoppingCentreBy,
-    };
+    ListShoppingCentres();
 
     function ListShoppingCentres() {
       let shoppingCentres;
@@ -71,11 +51,11 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','
 
 
     $scope.addRow = function () {
+      $rootScope.addingRow = true;
       let newService = Globals.addRowShoppingCentre;
       let rowTmp = {};
       rowTmp.entity = newService;
       vm.editRow($scope.vm.serviceGrid, rowTmp);
     };
 
-    return factory;
   }]);

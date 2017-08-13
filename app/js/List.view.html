@@ -6,7 +6,7 @@
 
       <div ng-if="allowAddRow">
         <div>
-          <button type="button" id="addRow" class="btn btn-success" ng-click="addRow()">Add New Row</button>
+          <button type="button" id="addRow" class="btn btn-success" ng-click="addingRow=true; addRow()">Add New Row</button>
         </div>
       </div>
       <br/>
@@ -21,6 +21,7 @@
            ui-grid="vm.serviceGrid" >
 
       </div>
+      <div ng-dblclick="grid.appScope.vm.editRow(grid, row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader }" ui-grid-cell></div>
     </div>
   </div>
 </div>

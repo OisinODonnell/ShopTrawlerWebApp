@@ -1,4 +1,4 @@
-myApp.factory('DataFactory', ['$http','Globals', function($http, Globals) {
+myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Globals, $rootScope) {
 
     let factory   = {};
     const urlBase = Globals.URL_BASE;
@@ -18,6 +18,7 @@ myApp.factory('DataFactory', ['$http','Globals', function($http, Globals) {
 
     // ShoppingCentre
     factory.listShoppingCentres           = ()              => $http.get(urlBase + '/ShoppingCentres'               );
+
     factory.getShoppingCentre             = (id)            => $http.get(urlBase + '/ShoppingCentre/' + id          );
     factory.addShoppingCentre             = (shoppingCentre)=> $http.get(urlBase + '/ShoppingCentre/' + shoppingCentre );
     factory.deleteShoppingCentre          = (id)            => $http.get(urlBase + '/ShoppingCentre/delete/' + id   );
