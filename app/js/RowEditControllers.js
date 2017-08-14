@@ -267,6 +267,12 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
 
   let vm = this;
   vm.entity = angular.copy(row.entity);
+  vm.headers = {headers:{
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Retailer-Type, X-Requested-With',
+      'X-Random-Shit':'123123123'
+    }};
 
   let urlBase = "http://localhost:8080"
 
@@ -351,18 +357,15 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
   }
 
   function saveShoppingCentre() {
-    if (vm.entity.shoppingCentreid === 0) { // implies a new entity
+    if (vm.entity.shoppingCentreid == 0) { // implies a new entity
 
-      row.entity = angular.extend(row.entity, vm.entity);
-      // Add Shopping Centre
-      let params = getEntity(row.entity);
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
+      row.entity = angular.extend(vm.entity, row.entity);
 
-      $http.put(urlBase + '/ShoppingCentre/update/' + vm.entity.shoppingCentreid,vm.entity )
+      $http.post(urlBase + '/ShoppingCentre/create/' + row.entity.shoppingCentreid,vm.entity )
         .then(function(response) {
           $uibModalInstance.close(row.entity);
         })
-        .error(function(response) {
+         (function(response) {
           alert('Cannot add ShoppingCentre (error in console)');
           console.dir(response);
         });
@@ -376,22 +379,8 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
 
       row.entity = angular.extend(vm.entity, row.entity);
 
-      let params = getEntity(row.entity);
-      // update Shopping Centre
-      let updatedRow = row.entity;
+      $http.put(urlBase + '/ShoppingCentre/update/' + row.entity.shoppingCentreid,row.entity , vm.headers)
 
-      $http.put(urlBase + '/ShoppingCentre/update/' + row.entity.shoppingCentreid,row.entity , {headers:{
-        'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
-          'X-Random-Shit':'123123123'
-      }
-      })
-
-      // $http.put(urlBase + '/ShoppingCentre/update/' , params ,{headers: {
-      //   'Content-Type': 'application/json'}
-      // })
-      // $http.get(urlBase + '/ShoppingCentre/update/' + vm.entity )
         .then(function(response) {
           $uibModalInstance.close(row.entity);
         },
@@ -562,19 +551,40 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
     $uibModalInstance.close(row.entity);
   }
   function saveRetailer() {
-    if (row.entity.id == '0') {
-      /*
-       * $http.post('http://localhost:8080/service/save', row.entity).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot edit row (error in console)'); console.dir(response); });
-       */
+    if (vm.entity.retailerid === 0 || vm.entity.retailerid === "") { // implies a new entity
+
+      row.entity = angular.extend(vm.entity, row.entity);
+
+      $http.post(urlBase + '/Retailer/create/' , row.entity , vm.headers )
+        .then(function(response) {
+            $uibModalInstance.close(row.entity);
+            row.entity = angular.extend(row.entity, vm.entity);
+          },
+          function(response) {
+            alert('Cannot update retailer (error in console)');
+            console.dir(response);
+          });
+
+
+
       row.entity = angular.extend(row.entity, vm.entity);
       //real ID come back from response after the save in DB
       row.entity.id = Math.floor(100 + Math.random() * 1000);
       grid.data.push(row.entity);
-    } else {
-      row.entity = angular.extend(row.entity, vm.entity);
-      /*
-       * $http.post('http://localhost:8080/service/save', row.entity).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot edit row (error in console)'); console.dir(response); });
-       */
+
+    } else { // changed entity
+
+      row.entity = angular.extend(vm.entity, row.entity);
+
+      $http.put(urlBase + '/Retailer/update/' , row.entity , vm.headers )
+        .then(function(response) {
+            $uibModalInstance.close(row.entity);
+
+          },
+          function(response) {
+            alert('Cannot update retailer (error in console)');
+            console.dir(response);
+          });
     }
     $uibModalInstance.close(row.entity);
   }
@@ -584,6 +594,15 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
       row.entity = angular.extend(row.entity, vm.entity);
       let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
       grid.appScope.vm.serviceGrid.data.splice(index, 1);
+
+      $http.delete(urlBase + '/Retailer/delete/'+ row.entity.retailerid , vm.headers)
+        .then(function(response) {
+          $uibModalInstance.close(row.entity);
+        },
+        function(response) {
+          alert('Cannot delete retailer (error in console)');
+          console.dir(response);
+        });
       /*
        * $http.delete('http://localhost:8080/service/delete/'+row.entity.id).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
        */
@@ -729,7 +748,6 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
       }
       $uibModalInstance.close(row.entity);
     }
-
 
   function removeLoyaltyReward() {
     console.dir(row)
@@ -926,13 +944,9 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
   return newEntity
 
   }
-
-
   function removeRow(rowEntity, vmEntity) {
     row.entity = angular.extend(rowEntity, vmEntity);
     let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
     grid.appScope.vm.serviceGrid.data.splice(index, 1);
   }
-
-
 }
