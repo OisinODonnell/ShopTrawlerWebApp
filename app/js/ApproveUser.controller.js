@@ -1,30 +1,24 @@
-myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope',
+myApp.controller('ApproveUsersController', ['DataFactory','$scope','Common','$rootScope',
   '$uibModal','RowEditor', 'uiGridConstants','Globals',
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
+
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
-      $scope.allowEditRow = false; // action below
-    } else {
-      $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = true; // action below
+
+      vm.editRow = RowEditor.approveRowUser;
+      vm.serviceGrid = Common.setupUiGrid(Globals.ApproveUserColumnDefs, $scope.allowEditRow )
+      $scope.vm = vm;
+      ListUsersForApproval();
+
     }
 
-
-    $scope.vm = vm;
-
-    vm.editRow = RowEditor.editRowUser;
-    vm.serviceGrid = Common.setupUiGrid(Globals.UserColumnDefs, $scope.allowEditRow )
-
-    ListUsers();
-
-
-
-    function ListUsers() {
+    function ListUsersForApproval() {
       vm.dataLoading = true;
       let user = new User();
-      DataFactory.listUsers()
+      DataFactory.listUsersForApproval()
         .then( function(response) {
             $rootScope.users = Common.createObjects(response.data, user);
             vm.serviceGrid.data = $rootScope.users;
@@ -120,4 +114,4 @@ myApp.controller('ApproveUserController', ['DataFactory','$scope','Common','$roo
     }
 
 
-}]);
+  }]);

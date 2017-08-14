@@ -92,6 +92,18 @@ myApp.value('Globals', {
       {  field : 'getDateTimeReadable()',width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
     ],
 
+  "GenerateBonusCodeColumnDefs" : [{
+    field : 'bonusCodeid',             displayName    : 'Bonus Code ID',
+    enableSorting : true,              enableCellEdit : false,
+    type  : 'number',
+    width : 100,
+  },
+    {  field : 'storeName',            width : 200,displayName : 'Retailer ID', enableCellEdit : false,         },
+    {  field : 'value',                width : 100,displayName : 'Value',       enableCellEdit : false,         },
+    {  field : 'fullname',             width : 200,displayName : 'User ID',     enableCellEdit : false,         },
+    {  field : 'getDateTimeReadable()',width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
+  ],
+
   "addRowBonusCode" : {
     "bonusCodeid" : "",
     "retailerid"  : "",
@@ -114,6 +126,21 @@ myApp.value('Globals', {
       {  field : 'retailerid',            width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
       {  field : 'getStartDateReadable()',width : 200,displayName : 'Start Date',type:"date",                      }
     ],
+  "ApproveContentColumnDefs" : [{
+    field : 'contentid',                displayName    : 'Content ID',
+    enableSorting : true,               enableCellEdit : false,
+    type  : 'number',
+    width : 100,
+  },
+    {  field : 'getEndDateReadable()',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : false, },
+    {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : false,               },
+    {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : false,               },
+    {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : false,               },
+    {  field : 'retailerid',            width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
+    {  field : 'getStartDateReadable()',width : 200,displayName : 'Start Date' ,type:"date",   enableCellEdit  : false  },
+    {  field : 'approved',              width : 100, displayName: 'Approved?', type: 'byte',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+
+  ],
   "addRowContent" : {
     "contentid"   : "",
     "endDate"     : "",
@@ -177,6 +204,22 @@ myApp.value('Globals', {
       {  field : 'getStartDateReadable()',width : 200, displayName : 'Start Date',type:"date",enableCellEdit : false, },
       {  field : 'visitTime',             width : 100, displayName : 'Visit Time',            enableCellEdit : false, }
     ],
+
+  "ApproveLoyaltyRewardColumnDefs" : [{
+    field : 'loyaltyRewardid',          displayName    : 'Loyalty Reward ID',
+    enableSorting : true,               enableCellEdit : false,
+    type  : 'number',
+    width : 100,
+  },
+    {  field : 'getEndDateReadable()',  width : 200, displayName : 'End Date',type:"date",      enableCellEdit : false, },
+    {  field : 'pointsPerVisit',        width : 100, displayName : 'Points Per Visit',          enableCellEdit : false, },
+    {  field : 'rewardImage',           width : 200, displayName : 'Reward Image',              enableCellEdit : false, },
+    {  field : 'storeName',             width : 200, displayName : 'Retailer ID',               enableCellEdit : false, },
+    {  field : 'rewardTitle',           width : 200, displayName : 'Reward Title',              enableCellEdit : false, },
+    {  field : 'getStartDateReadable()',width : 200, displayName : 'Start Date',type:"date",    enableCellEdit : false, },
+    {  field : 'visitTime',             width : 100, displayName : 'Visit Time',                enableCellEdit : false, },
+    {  field : 'approved',              width : 100, displayName: 'Approved?', type: 'byte',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+  ],
 
   "addRowLoyaltyReward" : {
     "loyaltyRewardid" : "",
@@ -287,21 +330,37 @@ myApp.value('Globals', {
   },
 
   "UserColumnDefs" : [{
-      field : 'userid',           displayName    : 'User ID',
-      enableSorting : true,       enableCellEdit : false,
-      type  : 'number',
-      width : 100,
-      },
-      {  field : 'firstname',     width : 200, displayName : 'Firstname',     enableCellEdit : false,  },
-      {  field : 'surname',       width : 200, displayName : 'Surname',       enableCellEdit : false,  },
-      {  field : 'emailAddress',  width : 200, displayName : 'Email Address', enableCellEdit : false,  },
-      {  field : 'phone',         width : 150, displayName : 'Phone',         enableCellEdit : false,  },
-      {  field : 'gender',        width : 200, displayName : 'Gender',        enableCellEdit : false,  },
-      {  field : 'password',      width : 200, displayName : 'Password',      enableCellEdit : false,  },
-      {  field : 'type',          width : 200, displayName : 'Type',          enableCellEdit : false,  },
-      {  field : 'yob',           width : 100, displayName : 'Yob',           enableCellEdit : false,  },
-      {  field : 'active',        width : 100, displayName : 'Active', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.active">'}
-    ],
+    field : 'userid',           displayName    : 'User ID',
+    enableSorting : true,       enableCellEdit : false,
+    type  : 'number',
+    width : 100,
+  },
+    {  field : 'firstname',     width : 200, displayName : 'Firstname',     enableCellEdit : false,  },
+    {  field : 'surname',       width : 200, displayName : 'Surname',       enableCellEdit : false,  },
+    {  field : 'emailAddress',  width : 200, displayName : 'Email Address', enableCellEdit : false,  },
+    {  field : 'phone',         width : 150, displayName : 'Phone',         enableCellEdit : false,  },
+    {  field : 'gender',        width : 200, displayName : 'Gender',        enableCellEdit : false,  },
+    {  field : 'password',      width : 200, displayName : 'Password',      enableCellEdit : false,  },
+    {  field : 'type',          width : 200, displayName : 'Type',          enableCellEdit : false,  },
+    {  field : 'yob',           width : 100, displayName : 'Yob',           enableCellEdit : false,  },
+    {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'byte', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+  ],
+  "ApproveUserColumnDefs" : [{
+    field : 'userid',           displayName    : 'User ID',
+    enableSorting : true,       enableCellEdit : false,
+    type  : 'number',
+    width : 100,
+  },
+    {  field : 'firstname',     width : 200, displayName : 'Firstname',     enableCellEdit : false,  },
+    {  field : 'surname',       width : 200, displayName : 'Surname',       enableCellEdit : false,  },
+    {  field : 'emailAddress',  width : 200, displayName : 'Email Address', enableCellEdit : false,  },
+    {  field : 'phone',         width : 150, displayName : 'Phone',         enableCellEdit : false,  },
+    {  field : 'gender',        width : 200, displayName : 'Gender',        enableCellEdit : false,  },
+    {  field : 'password',      width : 200, displayName : 'Password',      enableCellEdit : false,  },
+    {  field : 'type',          width : 200, displayName : 'Type',          enableCellEdit : false,  },
+    {  field : 'yob',           width : 100, displayName : 'Yob',           enableCellEdit : false,  },
+    {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'byte', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+  ],
 
   "addRowUser" : {
     "userid"      : "",
@@ -313,7 +372,7 @@ myApp.value('Globals', {
     "password"    : "",
     "type"        : "",
     "yob"         : "",
-    "active"      : ""
+    "approved"    : ""
   },
 
   "UserPointColumnDefs" : [{
