@@ -36,25 +36,29 @@
 //        LoyaltyReward : add/update/delete
 //        Users (own record) : Update
 
-
-
-let myApp =  angular.module('app', ['ngRoute','routes','ngCookies','ngFlash', 'ngTouch', 'ngAnimate', 'ui.grid', 'ui.grid.moveColumns',
+let myApp =  angular.module('app', ['ng','ngRoute','routes','ngAria','ngCookies','ngFlash',  'ngAnimate', 'ui.grid', 'ui.grid.moveColumns', 'ngMaterial', 'ngMaterialDatePicker', //'ngTouch',
   'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit', 'ui.grid.pagination'])
   .config(config)
   .run(run);
 
-  config.$inject = ['FlashProvider'];
-    function config(FlashProvider, ) {
+
+
+  config.$inject = ['FlashProvider', '$compileProvider'];
+    function config(FlashProvider, $compileProvider) {
       FlashProvider.setTimeout(2000);
       FlashProvider.setShowClose(true);
-      FlashProvider
+      $compileProvider.preAssignBindingsEnabled(true);
   }
+
 
 
   run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
   function run($rootScope, $location, $cookies, $http ) {
     // keep user logged in after page refresh
     // $rootScope.globals.currentUser = "";
+
+    this.myDate = new Date();
+    this.isOpen = false;
 
     $rootScope.globals = $cookies.getObject('globals') || {};
 
@@ -94,3 +98,29 @@ myApp.factory('AuthInterceptor', ['$rootScope', function($rootScope) {
   };
 }]);
 
+// myApp.controller('AppCtrl', function() {
+//   this.myDate = new Date();
+//   this.isOpen = false;
+// });
+
+myApp.controller('AppCtrl', function($scope) {
+  $scope.myDate = new Date();
+  $scope.minDate = new Date(
+    $scope.myDate.getFullYear(),
+    $scope.myDate.getMonth() - 2,
+    $scope.myDate.getDate());
+  $scope.maxDate = new Date(
+    $scope.myDate.getFullYear(),
+    $scope.myDate.getMonth() + 2,
+    $scope.myDate.getDate());
+  $scope.onlyWeekendsPredicate = function(date) {
+    let day = date.getDay();
+    return day === 0 || day === 6;
+  };
+});
+
+myApp.config(['$mdDateLocaleProvider', function ($mdDateLocaleProvider) {
+  $mdDateLocaleProvider.formatDate = function(date) {
+    let m = moment(date);
+    return m.isValid()? m.format('DD-MM-YYYY') : '';
+  }}]);

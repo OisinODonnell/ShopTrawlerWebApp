@@ -4,8 +4,20 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
-    $scope.test="";
-    $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
+
+    $scope.myDate = new Date();
+    $scope.minDate = new Date(
+      $scope.myDate.getFullYear(),
+      $scope.myDate.getMonth() - 2,
+      $scope.myDate.getDate());
+    $scope.maxDate = new Date(
+      $scope.myDate.getFullYear(),
+      $scope.myDate.getMonth() + 2,
+      $scope.myDate.getDate());
+    $scope.onlyWeekendsPredicate = function(date) {
+      let day = date.getDay();
+      return day === 0 || day === 6;
+    };
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
@@ -17,6 +29,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
 
     $scope.vm = vm;
 
+    vm.globals = $rootScope.globals;
     vm.editRow = RowEditor.editRowLoyaltyReward;
     vm.serviceGrid = Common.setupUiGrid(Globals.LoyaltyRewardColumnDefs, $scope.allowEditRow )
 

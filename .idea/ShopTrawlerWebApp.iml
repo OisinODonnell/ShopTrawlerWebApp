@@ -131,5 +131,9 @@
     <orderEntry type="library" name="ui-bootstrap-tpls-2.5.0" level="application" />
     <orderEntry type="library" name="angular" level="application" />
     <orderEntry type="library" name="ui-bootstrap-tpls-0.13.4" level="application" />
+    <orderEntry type="library" name="angular-material" level="application" />
+    <orderEntry type="library" name="angular-aria" level="application" />
+    <orderEntry type="library" name="moment-with-locales" level="application" />
+    <orderEntry type="library" name="assets-cache" level="application" />
   </component>
 </module>

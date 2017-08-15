@@ -75,10 +75,4 @@
         });
     }
 
-    // function isAdmin() {
-    //   "use strict";
-    //   let r = $rootScope.admin;
-    //   let b = Common.isAdmin();
-    //   return Common.isAdmin();
-    // }
   }]);

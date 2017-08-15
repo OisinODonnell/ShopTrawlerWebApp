@@ -742,7 +742,6 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
       }
       $uibModalInstance.close(row.entity);
     }
-
   function removeLoyaltyReward() {
     console.dir(row)
     if (row.entity.id != '0') {

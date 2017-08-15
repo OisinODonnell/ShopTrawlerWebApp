@@ -48,7 +48,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
         .then( function(response) {
             $scope.contents = Common.createObjects(response.data, content);
             vm.serviceGrid.data = $scope.contents;
-            $scope.gridStyle = Common.gridStyle($scope.content.length)
+            $scope.gridStyle = Common.gridStyle($scope.contents.length)
           },
           function (error) { $scope.status = 'Unable to load Contents ' + error.message; });
       vm.dataLoading = false;

@@ -35,6 +35,9 @@
       $rootScope.mob = false;
       $rootScope.loggedIn = false;
 
+      let currentUser = {};
+
+
       let auth  = {
         Login             : Login,
         Logout            : Logout,
@@ -62,6 +65,7 @@
               // save user details so that the rest of the app can check them as required
 
               setUserLoginDetails(response.data);
+
 
               // show success
               id = Flash.create('success', response.data.message, $rootScope.flash.autoHide, {class: 'custom-class', id: 'custom-id'}, true);
@@ -199,6 +203,9 @@
 
       const setUserLoginDetails = (data) => {
         "use strict";
+
+        $rootScope.globals.currentUser = data;
+
 
         $rootScope.userType         = data.userType;
         $rootScope.loggedInUserTime = data.startTime;

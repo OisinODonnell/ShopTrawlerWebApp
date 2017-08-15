@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{ShopTrawlerWebApp/node_modules, angular, angular-animate, angular-touch, bootstrap, jquery-3.2.1, jquery.dataTables, ui-bootstrap-tpls-0.13.4, ui-bootstrap-tpls-2.5.0, ui-grid}" />
+    <file url="file://$PROJECT_DIR$" libraries="{ShopTrawlerWebApp/node_modules, angular, angular-animate, angular-aria, angular-material, angular-touch, assets-cache, bootstrap, jquery-3.2.1, jquery.dataTables, moment-with-locales, ui-bootstrap-tpls-0.13.4, ui-bootstrap-tpls-2.5.0, ui-grid}" />
     <file url="PROJECT" libraries="{ShopTrawlerWebApp/node_modules, angular, angular-animate, angular-cookies, angular-route, angular-touch, angular-ui-router, bootstrap, jquery-3.2.1, ui-bootstrap-tpls-2.5.0, ui-grid}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
