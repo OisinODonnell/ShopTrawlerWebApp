@@ -30,6 +30,7 @@ myApp.value('Globals', {
   },
 
 
+
   "VisitColumnDefs" : [ {
       field : 'visitid',                 displayName    : 'Visit ID',
       enableSorting : true,              enableCellEdit : false,

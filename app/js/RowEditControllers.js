@@ -7,36 +7,39 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
 
   let vm = this;
 
+  vm.controllerArray = [ '$http', '$uibModalInstance', 'grid', 'row','Flash', RowEditCtrl ];
+
   $rootScope.row = {};
 
   vm.editRowShoppingCentre = editRowShoppingCentre;
 
   let service = {
-  editRowVisit : editRowVisit,
-  editRowZone : editRowZone,
-  editRowUser : editRowUser,
-  editRowRetailer : editRowRetailer,
-  editRowBeacon : editRowBeacon,
-  editRowLocation : editRowLocation,
-  editRowBonusCode : editRowBonusCode,
-  editRowFavourite : editRowFavourite,
-  editRowLoyaltyReward : editRowLoyaltyReward,
-  editRowRating : editRowRating,
-  editRowShoppingCentre : editRowShoppingCentre,
-  editRowContent : editRowContent,
-  editRowUserPoint : editRowUserPoint,
+    editRowVisit: editRowVisit,
+    editRowZone: editRowZone,
+    editRowUser: editRowUser,
+    editRowRetailer: editRowRetailer,
+    editRowBeacon: editRowBeacon,
+    editRowLocation: editRowLocation,
+    editRowBonusCode: editRowBonusCode,
+    editRowFavourite: editRowFavourite,
+    editRowLoyaltyReward: editRowLoyaltyReward,
+    editRowRating: editRowRating,
+    editRowShoppingCentre: editRowShoppingCentre,
+    editRowContent: editRowContent,
+    editRowUserPoint: editRowUserPoint,
 
-  approveRowUser : approveRowUser,
-  approveRowContent : approveRowContent,
-  approveRowLoyaltyReward : approveRowLoyaltyReward,
+    approveRowUser: approveRowUser,
+    approveRowContent: approveRowContent,
+    approveRowLoyaltyReward: approveRowLoyaltyReward,
   };
+
 
 
   function editRowVisit(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Visits-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
@@ -50,7 +53,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Zones-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
@@ -64,7 +67,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Users-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
@@ -78,7 +81,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
       $rootScope.addingRow = false;
       $uibModal.open({
         templateUrl : 'js/Approve-Users-Service.html',
-        controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+        controller : vm.controllerArray,
         controllerAs : 'vm',
         resolve : {
           grid  : function() { return grid; },
@@ -92,7 +95,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Retailers-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
@@ -106,7 +109,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Beacons-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
@@ -120,7 +123,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Locations-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
@@ -134,31 +137,35 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-BonusCodes-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowFavourite(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Favourites-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
         row   : function() { return row;  }
       }
     });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
   }
   function editRowLoyaltyReward(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-LoyaltyRewards-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
@@ -172,7 +179,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
       $rootScope.addingRow = false;
       $uibModal.open({
         templateUrl : 'js/Approve-LoyaltyRewards-Service.html',
-        controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+        controller : vm.controllerArray,
         controllerAs : 'vm',
         resolve : {
           grid  : function() { return grid; },
@@ -186,7 +193,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Ratings-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
@@ -198,7 +205,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-ShoppingCentres-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
@@ -212,7 +219,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'js/Edit-Contents-Service.html',
-      controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+      controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
@@ -226,7 +233,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
       $rootScope.addingRow = false;
       $uibModal.open({
         templateUrl : 'js/Approve-Contents-Service.html',
-        controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
+        controller : vm.controllerArray,
         controllerAs : 'vm',
         resolve : {
           grid  : function() { return grid; },
@@ -255,15 +262,9 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
 
 }]);
 
-// RowEditControllers for each entity
-
-// myApp.controller('RowEditCtrl', RowEditCtrl);
-// RowEditCtrl.$inject = [ '$http', '$uibModalInstance', '$rootScope'];
-// function RowEditCtrl($http ,  $uibModalInstance, grid, row, $rootScope) {
-
 myApp.controller('RowEditCtrl',RowEditCtrl);
-RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
-  function RowEditCtrl($http ,  $uibModalInstance, grid, row) {
+RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
+  function RowEditCtrl($http ,  $uibModalInstance, grid, row, Flash) {
 
   let vm = this;
   vm.entity = angular.copy(row.entity);
@@ -273,7 +274,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
       'Access-Control-Allow-Headers': 'Retailer-Type, X-Requested-With',
       'X-Random-Shit':'123123123'
     }};
-
+  let id = null;
   let urlBase = "http://localhost:8080"
 
   let rowEditors = {
@@ -311,8 +312,6 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
 
 };
 
-
-
   function removeShoppingCentre() {
     console.dir(row);
     if (row.entity.id != '0') {
@@ -342,7 +341,6 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
     }
     $uibModalInstance.close(row.entity);
   }
-
   function removeRating() {
     console.dir(row)
     if (row.entity.id != '0') {
@@ -355,17 +353,16 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
     }
     $uibModalInstance.close(row.entity);
   }
-
   function saveShoppingCentre() {
-    if (vm.entity.shoppingCentreid == 0) { // implies a new entity
+    if (vm.entity.shoppingCentreid === 0 || vm.entity.shoppingCentreid === "") { // implies a new entity
 
       row.entity = angular.extend(vm.entity, row.entity);
 
       $http.post(urlBase + '/ShoppingCentre/create/' + row.entity.shoppingCentreid,vm.entity )
         .then(function(response) {
           $uibModalInstance.close(row.entity);
-        })
-         (function(response) {
+        },
+         function(response) {
           alert('Cannot add ShoppingCentre (error in console)');
           console.dir(response);
         });
@@ -382,16 +379,17 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
       $http.put(urlBase + '/ShoppingCentre/update/' + row.entity.shoppingCentreid,row.entity , vm.headers)
 
         .then(function(response) {
+           Flash.create('success', "Shopping Centre Updated", 2000);
           $uibModalInstance.close(row.entity);
         },
           function(response) {
+            Flash.create('danger', "Shopping Centre could Not be Updated : " + response.message, 2000);
             alert('Cannot update ShoppingCentre (error in console)');
             console.dir(response);
       });
     }
     $uibModalInstance.close(row.entity);
   }
-
   function getEntity(updates, attrList) {
     let newEntity = attrList;
     let str = "";
@@ -402,7 +400,6 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
     }
     return str;
   }
-
   function saveVisit() {
     if (row.entity.id == '0') {
       /*
@@ -433,7 +430,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
     $uibModalInstance.close(row.entity);
   }
   function saveUser() {
-    if (vm.entity.userid === 0) { // implies a new entity
+    if (vm.entity.userid === 0 || vm.entity.userid === "") { // implies a new entity
 
       row.entity = angular.extend(row.entity, vm.entity);
       // Add Shopping Centre
@@ -442,9 +439,11 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
 
       $http.put(urlBase + '/User/create/' + vm.entity.userid,vm.entity )
         .then(function(response) {
+          Flash.create('success', "New User Created", 2000);
           $uibModalInstance.close(row.entity);
-        })
-        .error(function(response) {
+        },
+        function(response) {
+          Flash.create('danger', "User ccould not be added: " + response.message, 2000);
           alert('Cannot add user (error in console)');
           console.dir(response);
         });
@@ -465,18 +464,15 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
         'X-Random-Shit':'123123123'
       }
       })
-
-      // $http.put(urlBase + '/user/update/' , params ,{headers: {
-      //   'Content-Type': 'application/json'}
-      // })
-      // $http.get(urlBase + '/user/update/' + vm.entity )
         .then(function(response) {
+            Flash.create('success', "User Updated", 2000);
             $uibModalInstance.close(row.entity);
             row.entity = angular.extend(row.entity, vm.entity);
             let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
             grid.appScope.vm.serviceGrid.data.splice(index, 1);
           },
           function(response) {
+            Flash.create('danger', "User could Not be Updated : " + response.message, 2000);
             alert('Cannot update user (error in console)');
             console.dir(response);
           });
@@ -496,10 +492,12 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
         }
         })
           .then(function(response) {
+              Flash.create('success', "User Approved", 2000);
               $uibModalInstance.close(row.entity);
               removeRow(row.entity, vm.entity)
             },
             function(response) {
+              Flash.create('danger', "User could not be approved : " + response.message, 2000);
               alert('Cannot update user (error in console)');
               console.dir(response);
             });
@@ -513,10 +511,13 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
       let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
       grid.appScope.vm.serviceGrid.data.splice(index, 1);
 
-      DataFactory.deleteUserById(row.entity.userid).then(function(response) {
+      $http.delete(urlBase + "/User/delete/" + row.entity.userid)
+        .then(function(response) {
+          Flash.create('success', "User Deleted", 2000);
           $uibModalInstance.close(row.entity);
-      }).error(function(response) {
-        alert('Cannot delete row (error in console)'); console.dir(response);
+      }, function(response) {
+          Flash.create('danger', "User could Not be Deleted : " + response.message, 2000);
+          alert('Cannot delete row (error in console)'); console.dir(response);
       });
            }
       $uibModalInstance.close(row.entity);
@@ -557,15 +558,15 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
 
       $http.post(urlBase + '/Retailer/create/' , row.entity , vm.headers )
         .then(function(response) {
+            Flash.create('success', "New Retailer Added", 2000);
             $uibModalInstance.close(row.entity);
             row.entity = angular.extend(row.entity, vm.entity);
           },
           function(response) {
+            Flash.create('danger', "New Retailer could Not be Added : " + response.message, 2000);
             alert('Cannot update retailer (error in console)');
             console.dir(response);
           });
-
-
 
       row.entity = angular.extend(row.entity, vm.entity);
       //real ID come back from response after the save in DB
@@ -578,10 +579,11 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
 
       $http.put(urlBase + '/Retailer/update/' , row.entity , vm.headers )
         .then(function(response) {
+            Flash.create('success', "Retailer Updated : " + response.message, 2000);
             $uibModalInstance.close(row.entity);
-
           },
           function(response) {
+            Flash.create('danger', "Retailer could Not be Updated : " + response.message, 2000);
             alert('Cannot update retailer (error in console)');
             console.dir(response);
           });
@@ -597,15 +599,15 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
 
       $http.delete(urlBase + '/Retailer/delete/'+ row.entity.retailerid , vm.headers)
         .then(function(response) {
-          $uibModalInstance.close(row.entity);
+            Flash.create('success', "Retailer Deleted: " + response.message, 2000);
+            $uibModalInstance.close(row.entity);
         },
         function(response) {
+          Flash.create('danger', "Retailer could NOT be deleted : " + response.message, 2000);
           alert('Cannot delete retailer (error in console)');
           console.dir(response);
         });
-      /*
-       * $http.delete('http://localhost:8080/service/delete/'+row.entity.id).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
-       */
+
     }
     $uibModalInstance.close(row.entity);
   }
@@ -677,9 +679,11 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
 
         $http.put(urlBase + '/loyaltyReward/create/' + vm.entity.loyaltyRewardid,vm.entity )
           .then(function(response) {
+            Flash.create('success', "New Loyalty Reward Added " , 2000);
             $uibModalInstance.close(row.entity);
-          })
-          .error(function(response) {
+          },
+          function(response) {
+            Flash.create('danger', "Loyalty Reward could Not be Added : " + response.message, 2000);
             alert('Cannot add loyaltyReward (error in console)');
             console.dir(response);
           });
@@ -700,19 +704,12 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
             'X-Random-Shit':'123123123'
           }
         })
-
-        // $http.put(urlBase + '/loyaltyReward/update/' , params ,{headers: {
-        //   'Content-Type': 'application/json'}
-        // })
-        // $http.get(urlBase + '/loyaltyReward/update/' + vm.entity )
           .then(function(response) {
+              Flash.create('success', "Loyalty Reward Updated", 2000);
               $uibModalInstance.close(row.entity);
-              // delete row entry approved
-              row.entity = angular.extend(row.entity, vm.entity);
-              let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
-              grid.appScope.vm.serviceGrid.data.splice(index, 1);
             },
             function(response) {
+              Flash.create('danger', "Loyalty Reward could Not be Updated : " + response.message, 2000);
               alert('Cannot update loyaltyReward (error in console)');
               console.dir(response);
             });
@@ -721,9 +718,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
     }
   function approveLoyaltyReward() {
       if (vm.entity.loyaltyRewardid !== 0) { // implies a new entity
-
         row.entity = angular.extend(vm.entity, row.entity);
-
         $http.put(urlBase + '/LoyaltyReward/update/' + row.entity.loyaltyRewardid,row.entity , {headers:{
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -732,16 +727,15 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
         }
         })
 
-        // $http.put(urlBase + '/loyaltyReward/update/' , params ,{headers: {
-        //   'Content-Type': 'application/json'}
-        // })
-        // $http.get(urlBase + '/loyaltyReward/update/' + vm.entity )
           .then(function(response) {
+              Flash.create('success', "Loyalty Reward Updated ", 2000);
+
               $uibModalInstance.close(row.entity);
               // delete row entry approved
               removeRow(row.entity, vm.entity)
             },
             function(response) {
+              Flash.create('danger', "Loyalty Reward could Not be Updated : " + response.message, 2000);
               alert('Cannot update loyaltyReward (error in console)');
               console.dir(response);
             });
@@ -755,9 +749,21 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
       row.entity = angular.extend(row.entity, vm.entity);
       let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
       grid.appScope.vm.serviceGrid.data.splice(index, 1);
-      /*
-       * $http.delete('http://localhost:8080/service/delete/'+row.entity.id).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
-       */
+      $http.delete(urlBase + '/LoyaltyReward/delete/' + row.entity.loyaltyRewardid , vm.headers)
+        .then(function(response) {
+            Flash.create('success', "Loyalty Reward Deleted ", 2000);
+
+            $uibModalInstance.close(row.entity);
+            // delete row entry approved
+            removeRow(row.entity, vm.entity)
+          },
+          function(response) {
+            Flash.create('danger', "Loyalty Reward could Not be Deleted : " + response.message, 2000);
+            alert('Cannot delete loyaltyReward (error in console)');
+            console.dir(response);
+          });
+
+
     }
     $uibModalInstance.close(row.entity);
   }
@@ -859,11 +865,13 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
 
       $http.put(urlBase + '/Content/create/' + vm.entity.contentid,vm.entity )
         .then(function(response) {
+            Flash.create('success', "New Content Added", 2000);
           $uibModalInstance.close(row.entity);
-        })
-        .error(function(response) {
-          alert('Cannot add content (error in console)');
-          console.dir(response);
+        },
+          function(response) {
+            Flash.create('danger', "New Content could not be added : " + response.message, 2000);
+            alert('Cannot add content (error in console)');
+            console.dir(response);
         });
 
       row.entity = angular.extend(row.entity, vm.entity);
@@ -883,9 +891,11 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
       }
       })
         .then(function(response) {
+            Flash.create('success', "Content Updated ", 2000);
             $uibModalInstance.close(row.entity);
           },
           function(response) {
+            Flash.create('danger', "Content could NOT be Updated : " + response.message, 2000);
             alert('Cannot update content (error in console)');
             console.dir(response);
           });
@@ -895,18 +905,14 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
   function approveContent() {
       if (vm.entity.contentid !== 0) { // implies a new entity
         row.entity = angular.extend(vm.entity, row.entity);
-        $http.put(urlBase + '/Content/update/' + row.entity.contentid,row.entity , {headers:{
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
-          'X-Random-Shit':'123123123'
-        }
-        })
+        $http.put(urlBase + '/Content/update/' + row.entity.contentid,row.entity ,vm.headers )
           .then(function(response) {
+              Flash.create('success', "Content Approved ", 2000);
               $uibModalInstance.close(row.entity);
               removeRow(row.entity, vm.entity);
             },
             function(response) {
+              Flash.create('danger', "Content could NOT be approved : " + response.message, 2000);
               alert('Cannot update content (error in console)');
               console.dir(response);
             });
@@ -919,9 +925,19 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance'];
       row.entity = angular.extend(row.entity, vm.entity);
       let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
       grid.appScope.vm.serviceGrid.data.splice(index, 1);
-      /*
-       * $http.delete('http://localhost:8080/service/delete/'+row.entity.id).success(function(response) { $uibModalInstance.close(row.entity); }).error(function(response) { alert('Cannot delete row (error in console)'); console.dir(response); });
-       */
+
+      $http.delete(urlBase + '/Content/delete/' + row.entity.contentid , vm.headers)
+        .then(function(response) {
+            Flash.create('success', "Content Deleted ", 2000);
+            $uibModalInstance.close(row.entity);
+            // delete row entry approved
+            removeRow(row.entity, vm.entity)
+          },
+          function(response) {
+            Flash.create('danger', "Content could Not be Deleted : " + response.message, 2000);
+            alert('Cannot delete Content (error in console)');
+            console.dir(response);
+          });
     }
     $uibModalInstance.close(row.entity);
   }

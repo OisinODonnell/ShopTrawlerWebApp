@@ -4,16 +4,16 @@
 //
 //       BonusCode     A-x       R-R/UG
 //       Beacon        A-R/      R-x/
-//       Content       A-U       R-R/CU
-//       LoyaltyReward A-U       R-R/CU
+//       Content       A-U/      R-RCU/
+//       LoyaltyReward A-U/      R-RCU/
 //       UserPoint     A-x/      R-R/
-//       User          A-R/UD    R-U
-//       Retailer      A-R/CUD   R-U
-//       Rating        A-R/      R-R/S
+//       User          A-RUD/    R-U/
+//       Retailer      A-RCUD/   R-U/
+//       Rating        A-R/      R-RS/
 //       Zone          A-R/      R-x/
 //       Favourite     A-x/      R-R/
-//       ShoppingCentres A-R/U   R-x/
-//       Visit         A-R/      R-R/S
+//       ShoppingCentres A-RU/   R-x/
+//       Visit         A-R/      R-RS/
 //       Location      A-R/      R-x/
 //
 // Admin
@@ -47,6 +47,7 @@ let myApp =  angular.module('app', ['ngRoute','routes','ngCookies','ngFlash', 'n
     function config(FlashProvider, ) {
       FlashProvider.setTimeout(2000);
       FlashProvider.setShowClose(true);
+      FlashProvider
   }
 
 

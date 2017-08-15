@@ -18,6 +18,8 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','
     vm.editRow = RowEditor.editRowShoppingCentre;
     vm.serviceGrid = Common.setupUiGrid(Globals.ShoppingCentreColumnDefs, $scope.allowEditRow )
 
+
+
     ListShoppingCentres();
 
     function ListShoppingCentres() {
