@@ -6,12 +6,12 @@
   <div class="modal-body">
 
     <form name="serviceForm">
-      <div class="block">      <label>Beacon ID </label>      <input class="input" disabled value="{{vm.entity.beaconid}}"/></div>
-      <div class="block">      <label>Location ID </label>    <input class="input" ng-model="vm.entity.locationid"/>      </div>
-      <div class="block">      <label>Major </label>          <input class="input" ng-model="vm.entity.major"/>           </div>
-      <div class="block">      <label>Minor </label>          <input class="input" ng-model="vm.entity.minor"/>           </div>
-      <div class="block">      <label>Transmit Power </label> <input class="input" ng-model="vm.entity.transmitPower"/>   </div>
-      <div class="block">      <label>UUID </label>           <input class="input" ng-model="vm.entity.uuid"/>            </div>
+      <div class="block">      <label>Beacon ID </label>      <input class="input" type="number" disabled value="{{vm.entity.beaconid}}"/></div>
+      <div class="block">      <label>Location ID </label>    <input class="input" type="number" ng-model="vm.entity.locationid"/>      </div>
+      <div class="block">      <label>Major </label>          <input class="input" type="number" ng-model="vm.entity.major"/>           </div>
+      <div class="block">      <label>Minor </label>          <input class="input" type="number" ng-model="vm.entity.minor"/>           </div>
+      <div class="block">      <label>Transmit Power </label> <input class="input" type="number" ng-model="vm.entity.transmitPower"/>   </div>
+      <div class="block">      <label>UUID </label>           <input class="input" type="text"   ng-model="vm.entity.uuid"/>            </div>
     </form>
 
   </div>

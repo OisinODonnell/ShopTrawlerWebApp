@@ -12,7 +12,7 @@
 
         <tr>   <td>
       <div class="form-group" ng-class="{ 'has-error': form.firstname.$dirty && form.firstname.$error.required }">
-        <input placeholder="Firstname"  name="name" id="firstname" class="form-control" ng-model="vm.firstname" required />
+        <input placeholder="Firstname"  name="firstname" id="firstname" class="form-control" ng-model="vm.firstname" required />
         <span ng-show="form.firstname.$dirty && form.firstname.$error.required" class="help-block">Firstname is required</span>
       </div> </td>  </tr>
 
@@ -23,10 +23,22 @@
       </div>  </td>  </tr>
 
         <tr>   <td>
-      <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+      <div class="form-group" ng-class="{ 'has-error': form.emailAddress.$dirty && form.emailAddress.$error.required }">
         <input  placeholder="Username (your email address)" name="emailAddress" id="emailAddress" class="form-control" ng-model="vm.emailAddress" required />
-        <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Username is required</span>
+        <span ng-show="form.emailAddress.$dirty && form.emailAddress.$error.required" class="help-block">Username is required</span>
       </div>  </td> </tr>
+
+        <tr>   <td>
+          <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
+            <input placeholder="Phone Number" name="phone" id="phone" class="form-control" ng-model="vm.phone"  />
+            <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block">Phone number is required</span>
+          </div> </td>  </tr>
+
+        <tr>   <td>
+          <div class="form-group" ng-class="{ 'has-error': form.yob.$dirty && form.yob.$error.required }">
+            <input placeholder="Year of Birth" name="yob" id="yob" class="form-control" ng-model="vm.yob"  />
+            <span ng-show="form.yob.$dirty && form.yob.$error.required" class="help-block">Year of Birth is required</span>
+          </div> </td>  </tr>
 
         <tr>  <td>
         <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
@@ -36,45 +48,50 @@
 
         <tr> <td>
         <div class="form-group" ng-class="{ 'has-error': form.confirmPassword.$dirty && form.confirmPassword.$error.required }">
-          <input type="password" placeholder="Password Confirmation" name="confirmPassword" id="confirmPassword" class="form-control" ng-model="vm.confirmPassword" required  oninput="check(this)"/>
-          <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Confirmation Password is required</span>
+          <input type="password" placeholder="Password Confirmation" name="confirmPassword" id="confirmPassword" class="form-control" ng-model="vm.confirmPassword" required oninput="check(this)"/>
+          <span ng-show="form.confirmPassword.$dirty && form.confirmPassword.$error.required" class="help-block">Confirmation Password is required</span>
         </div>  </td>  </tr>
 
         <tr>   <td>
-      <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
-        <input placeholder="Phone Number" name="phone" id="phone" class="form-control" ng-model="vm.phone"  />
-      </div> <br/> </td>  </tr>
+          <div class="form_group" ng-class="{ 'has-error': form.gender.$dirty && form.gender.$error.required }" >
+            <select name="gender" class="form_control  grey_color"
+                    ng-model="vm.gender" required
+                    ng-options="x for x in genders" >
+              <option value="">Select Gender</option>
+            </select>
+            <span ng-show="form.gender.$dirty && form.gender.$error.required" class="help-block">Gender is required</span>
+            <!--<span ng-show="form.gender.$error.required" class="help-block">Gender required</span>-->
+          </div>
+          <br/>
+        </td></tr>
 
-        <tr>   <td>
-          <div class="form-group" ng-class="{ 'has-error': form.yob.$dirty && form.yob.$error.required }">
-            <input placeholder="Year of Birth" name="yob" id="yob" class="form-control" ng-model="vm.yob"  />
-          </div> <br/> </td>  </tr>
 
-        <tr>   <td>
-      <div class="form-group" ng-class="{ 'has-error': form.gender.$dirty && form.gender.$error.required }">
-        <label>Gender</label>
-        <select type="text" placeholder="gender" name="gender" ng-model="vm.gender" class="grey_color">
-          <option value="male">Male</option><option value="female">Female</option>
-        </select>
-      </div></td></tr>
-        <tr> <td>
-      <div data-ng-show="!vm.isAdmin === true" >
-
-        <!-- Create drop down menu of Registered Retailers for manager to p;ick from-->
-        <div class="form-group" ng-class="{ 'has-error': form.retailer.$dirty && form.retailer.$error.required }">
-          <label>Retailer</label>
-          <select type="text" placeholder="Retailer" name="retailer" ng-model="vm.retailer" class="grey_color">
-            <option ng-repeat="store in retailers" value="{{store.retailerid}}">{{store.storeName}}</option>
-          </select>
-        </div>
-      </div> </td> </tr>
 
         <tr> <td>
-        <div class="form-group form-actions col-xs-8">
-            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
-            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            <a href="#!/login" class="btn btn-link">Cancel</a>
-        </div> </td> </tr>
+          <div data-ng-show="!vm.isAdmin === true">
+            <!-- Create drop down menu of Registered Retailers for manager to p;ick from-->
+              <div ng-class="{ 'has-error': form.retailer.$dirty && form.retailer.$error.required }">
+                <select name="retailer" class="form_group grey_color"
+                        ng-model="retailer" required
+                        ng-options="store.retailerid as store.storeName for store in retailers">
+                  <option value="">Select Retailer</option>
+                </select>
+                <span ng-show="form.retailer.$dirty && form.retailer.$error.required" class="help-block">Retailer required</span>
+              </div>
+              <br/>
+
+
+          </div>
+        </td></tr>
+        <tr> <td>
+          <div class="form-group form-actions col-xs-8">
+              <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
+              <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              <a href="#!/login" class="btn btn-link">Cancel</a>
+          </div>
+          <br/>
+        </td> </tr>
+
 
 
       </table>

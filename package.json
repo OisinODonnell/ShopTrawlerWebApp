@@ -56,7 +56,19 @@
     "test": "karma start karma.conf.js"
   },
   "dependencies": {
-    "babel-runtime": "^6.23.0"
+    "angular": "^1.6.5",
+    "angular-animate": "^1.6.5",
+    "angular-aria": "^1.6.5",
+    "angular-cookies": "^1.6.5",
+    "angular-material": "^1.1.4",
+    "angular-messages": "^1.6.5",
+    "angular-route": "^1.6.5",
+    "angular-sanitize": "^1.6.5",
+    "angular-touch": "^1.6.5",
+    "angular-ui-grid": "^4.0.6",
+    "babel-runtime": "^6.23.0",
+    "moment": "^2.18.1",
+    "moment-with-locales-es6": "^2.18.1"
   },
   "description": "This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)\r version 0.16.0.",
   "version": "1.0.0",

@@ -135,5 +135,7 @@
     <orderEntry type="library" name="angular-aria" level="application" />
     <orderEntry type="library" name="moment-with-locales" level="application" />
     <orderEntry type="library" name="assets-cache" level="application" />
+    <orderEntry type="library" name="moment-with-locales" level="application" />
+    <orderEntry type="library" name="assets-cache" level="application" />
   </component>
 </module>

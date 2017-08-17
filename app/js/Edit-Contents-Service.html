@@ -6,14 +6,14 @@
 
     <form name="serviceForm">
 
-      <div class="block">      <label>Content ID </label>  <input class="input" disabled value="{{row.entity.contentid}}"/></div>
-      <div class="block">      <label>End Date</label>     <input class="input" ng-model="row.entity.endDate"/>          </div>
-      <div class="block">      <label>Page 1</label>       <input class="input" ng-model="row.entity.page1"/>            </div>
-      <div class="block">      <label>Page 2 </label>      <input class="input" ng-model="row.entity.page2"/>            </div>
-      <div class="block">      <label>Page 3 </label>      <input class="input" ng-model="row.entity.page3"/>            </div>
-      <div class="block">      <label>Retailer ID </label> <input class="input" disabled value="{{row.entity.contentid = currentUser.userid}}"/></div>
-      <div class="block">      <label>Start Date</label>   <input class="input" ng-model="row.entity.startDate"/>        </div>
-      <div class="block">      <label>Approved</label>     <input class="input" ng-model="row.entity.approved"/>         </div>
+      <div class="block">      <label>Content ID </label>  <input class="input" type="text"   disabled value="{{row.entity.contentid}}"/></div>
+      <div class="block">      <label>End Date</label>     <input class="input" type="time"   ng-model=row.entity.endDate"/>           </div>
+      <div class="block">      <label>Page 1</label>       <input class="input" type="text"   ng-model="row.entity.page1"/>            </div>
+      <div class="block">      <label>Page 2 </label>      <input class="input" type="text"   ng-model="row.entity.page2"/>            </div>
+      <div class="block">      <label>Page 3 </label>      <input class="input" type="text"   ng-model="row.entity.page3"/>            </div>
+      <div class="block">      <label>Retailer ID </label> <input class="input" type="number" disabled value="{{row.entity.contentid = currentUser.userid}}"/></div>
+      <div class="block">      <label>Start Date</label>   <input class="input" type="time"   ng-model="row.entity.startDate"/>        </div>
+      <div class="block">      <label>Approved</label>     <input class="input" type="number" ng-model="row.entity.approved"/>         </div>
 
     </form>
 

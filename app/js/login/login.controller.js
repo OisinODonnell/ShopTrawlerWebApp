@@ -35,8 +35,10 @@
       $rootScope.mob = false;
       $rootScope.loggedIn = false;
 
-      let currentUser = {};
+      $scope.genders = ["Male", "Female"];
 
+
+      let currentUser = {};
 
       let auth  = {
         Login             : Login,
@@ -49,9 +51,11 @@
       };
 
       (function initController() {
-          // reset login status
+          // get list of retailers for registration screen.
+          ListRetailers();
+        // reset login status
           AuthenticationService.clearCredentials();
-         // ListRetailers();
+
       })();
 
       function Login  ()  {

@@ -94,7 +94,7 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
 
   // Users
   factory.listUsers                     = ()              => $http.get(urlBase + '/Users'                         );
-  factory.listUsersForApproval           = ()              => $http.get(urlBase + '/Users/ForApproval'             );
+  factory.listUsersForApproval          = ()              => $http.get(urlBase + '/Users/ForApproval'             );
   factory.listUsersByRetailer           = (id)            => $http.get(urlBase + '/Users/Retailer/' + id          );
   factory.getUser                       = (id)            => $http.get(urlBase + '/User/' + id                    );
   factory.addUser                       = (user)          => $http.get(urlBase + '/User/' + user                  );
