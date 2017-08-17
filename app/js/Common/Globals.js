@@ -40,11 +40,11 @@ myApp.value('Globals', {
       { field : 'getEntryTimeReadable()',width : 200,    displayName : 'Entry Time',enableCellEdit : false,type:"date", },
       { field : 'getExitTimeReadable()', width : 200,    displayName : 'Exit Time', enableCellEdit : false,type:"date", },
       // { field : 'userCreditedForVisit', width : 100,    displayName : 'User Credited For Visit',enableCellEdit : true, },
-      // { field : 'duration',             width : 100,    displayName : 'Duration',enableCellEdit : false,               },
+      // { field : 'duration', type: 'number' ,            width : 100,    displayName : 'Duration',enableCellEdit : false,               },
       { field : 'storeName',             width : 200,    displayName : 'Store Name',enableCellEdit : false,             },
       { field : 'fullname',              width : 200,    displayName : 'Fullname',  enableCellEdit : false,             },
-      { field : 'userid',                width : 100,    displayName : 'User ID',   enableCellEdit : false,             },
-      { field : 'zoneid',                width : 100,    displayName : 'Zone ID',   enableCellEdit : false,             }
+      { field : 'userid',   type: 'number' ,             width : 100,    displayName : 'User ID',   enableCellEdit : false,             },
+      { field : 'zoneid',   type: 'number' ,             width : 100,    displayName : 'Zone ID',   enableCellEdit : false,             }
     ],
 
   "addRowVisit" : {
@@ -66,10 +66,10 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field: 'locationid',    width : 100,     displayName: 'Location ID',   enableCellEdit : false,  },
-      {  field: 'major',         width : 100,     displayName: 'Major',         enableCellEdit : false,  },
-      {  field: 'minor',         width : 100,     displayName: 'Minor',         enableCellEdit : false,  },
-      {  field: 'transmitPower', width : 100,     displayName: 'Transmit Power',enableCellEdit : false,  },
+      {  field: 'locationid', type: 'number' ,   width : 100,     displayName: 'Location ID',   enableCellEdit : false,  },
+      {  field: 'major', type: 'number' ,        width : 100,     displayName: 'Major',         enableCellEdit : false,  },
+      {  field: 'minor', type: 'number' ,        width : 100,     displayName: 'Minor',         enableCellEdit : false,  },
+      {  field: 'transmitPower', type: 'number' ,width : 100,     displayName: 'Transmit Power',enableCellEdit : false,  },
       {  field: 'uuid',          width : 300,     displayName: 'UUID',          enableCellEdit : false,  }
     ],
 
@@ -88,7 +88,7 @@ myApp.value('Globals', {
       width : 100,
       },
       {  field : 'storeName',            width : 200,displayName : 'Retailer ID', enableCellEdit : false,         },
-      {  field : 'value',                width : 100,displayName : 'Value',       enableCellEdit : false,         },
+      {  field : 'value',              type: 'number' ,  width : 100,displayName : 'Value',       enableCellEdit : false,         },
       {  field : 'fullname',             width : 200,displayName : 'User ID',     enableCellEdit : false,         },
       {  field : 'getDateTimeReadable()',width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
     ],
@@ -100,7 +100,7 @@ myApp.value('Globals', {
     width : 100,
   },
     {  field : 'storeName',            width : 200,displayName : 'Retailer ID', enableCellEdit : false,         },
-    {  field : 'value',                width : 100,displayName : 'Value',       enableCellEdit : false,         },
+    {  field : 'value',             type: 'number' ,   width : 100,displayName : 'Value',       enableCellEdit : false,         },
     {  field : 'fullname',             width : 200,displayName : 'User ID',     enableCellEdit : false,         },
     {  field : 'getDateTimeReadable()',width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
   ],
@@ -124,7 +124,7 @@ myApp.value('Globals', {
       {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : false,               },
       {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : false,               },
       {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : false,               },
-      {  field : 'retailerid',            width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
+      {  field : 'retailerid',         type: 'number' ,   width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
       {  field : 'getStartDateReadable()',width : 200,displayName : 'Start Date',type:"date",                      }
     ],
   "ApproveContentColumnDefs" : [{
@@ -137,9 +137,9 @@ myApp.value('Globals', {
     {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : false,               },
     {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : false,               },
     {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : false,               },
-    {  field : 'retailerid',            width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
+    {  field : 'retailerid',          type: 'number' ,  width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
     {  field : 'getStartDateReadable()',width : 200,displayName : 'Start Date' ,type:"date",   enableCellEdit  : false  },
-    {  field : 'approved',              width : 100, displayName: 'Approved?', type: 'byte',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'approved',             width : 100, displayName: 'Approved?', type: 'byte',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
 
   ],
   "addRowContent" : {
@@ -172,12 +172,12 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field : 'altitude',          width : 100,displayName : 'Altitude',           enableCellEdit : false,                 },
-      {  field : 'gpsLongtitude',     width : 100,displayName : 'GPS Longtitude',     enableCellEdit : false,                 },
-      {  field : 'gpsLatitude',       width : 100,displayName : 'GPS Latitude',       enableCellEdit : false,                 },
+      {  field : 'altitude',          type: 'number' ,width : 100,displayName : 'Altitude',           enableCellEdit : false,                 },
+      {  field : 'gpsLongtitude',     type: 'number' ,width : 100,displayName : 'GPS Longtitude',     enableCellEdit : false,                 },
+      {  field : 'gpsLatitude',       type: 'number' ,width : 100,displayName : 'GPS Latitude',       enableCellEdit : false,                 },
       {  field : 'locationInShoppingCentre',  width : 100,displayName : 'Location In Shopping Centre',enableCellEdit : false, },
-      {  field : 'locationType',      width : 200,displayName : 'Location Type',      enableCellEdit : false,                 },
-      {  field : 'shoppingCentreid',  width : 100,displayName : 'Shopping Centre ID', enableCellEdit : false,                 }
+      {  field : 'locationType',      type: 'text'   ,width : 200,displayName : 'Location Type',      enableCellEdit : false,                 },
+      {  field : 'shoppingCentreid',  type: 'number' ,width : 100,displayName : 'Shopping Centre ID', enableCellEdit : false,                 }
     ],
 
   "addRowLocation" : {
@@ -198,12 +198,12 @@ myApp.value('Globals', {
       width : 100,
       },
       {  field : 'getEndDateReadable()',  width : 200, displayName : 'End Date',type:"date",  enableCellEdit : false, },
-      {  field : 'pointsPerVisit',        width : 100, displayName : 'Points Per Visit',      enableCellEdit : false, },
+      {  field : 'pointsPerVisit',        type: 'number', width : 100, displayName : 'Points Per Visit',      enableCellEdit : false, },
       {  field : 'rewardImage',           width : 200, displayName : 'Reward Image',          enableCellEdit : false, },
       {  field : 'storeName',             width : 200, displayName : 'Retailer ID',           enableCellEdit : false, },
       {  field : 'rewardTitle',           width : 200, displayName : 'Reward Title',          enableCellEdit : false, },
       {  field : 'getStartDateReadable()',width : 200, displayName : 'Start Date',type:"date",enableCellEdit : false, },
-      {  field : 'visitTime',             width : 100, displayName : 'Visit Time',            enableCellEdit : false, }
+      {  field : 'visitTime',             type: 'number', width : 100, displayName : 'Visit Time',            enableCellEdit : false, }
     ],
 
   "ApproveLoyaltyRewardColumnDefs" : [{
@@ -213,24 +213,24 @@ myApp.value('Globals', {
     width : 100,
   },
     {  field : 'getEndDateReadable()',  width : 200, displayName : 'End Date',type:"date",      enableCellEdit : false, },
-    {  field : 'pointsPerVisit',        width : 100, displayName : 'Points Per Visit',          enableCellEdit : false, },
+    {  field : 'pointsPerVisit',        type: 'number', width : 100, displayName : 'Points Per Visit',          enableCellEdit : false, },
     {  field : 'rewardImage',           width : 200, displayName : 'Reward Image',              enableCellEdit : false, },
     {  field : 'storeName',             width : 200, displayName : 'Retailer ID',               enableCellEdit : false, },
     {  field : 'rewardTitle',           width : 200, displayName : 'Reward Title',              enableCellEdit : false, },
     {  field : 'getStartDateReadable()',width : 200, displayName : 'Start Date',type:"date",    enableCellEdit : false, },
-    {  field : 'visitTime',             width : 100, displayName : 'Visit Time',                enableCellEdit : false, },
+    {  field : 'visitTime',             type: 'number', width : 100, displayName : 'Visit Time',enableCellEdit : false, },
     {  field : 'approved',              width : 100, displayName: 'Approved?', type: 'byte',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
 
   "addRowLoyaltyReward" : {
-    "loyaltyRewardid" : "",
-    "endDate"         : "",
-    "pointsPerVisit"  : "",
+    "loyaltyRewardid" : 0,
+    "endDate"         : null,
+    "pointsPerVisit"  : 0,
     "rewardImage"     : "",
-    "retailerid"      : "",
+    "retailerid"      : 0,
     "rewardTitle"     : "",
-    "startDate"       : "",
-    "visitTime"       : ""
+    "startDate"       : null,
+    "visitTime"       : 0
   },
 
 
@@ -273,10 +273,10 @@ myApp.value('Globals', {
       {  field : 'phone',              width : 150, displayName : 'Phone',                      enableCellEdit : false,          },
       {  field : 'storeName',          width : 150, displayName : 'Store Name',                 enableCellEdit : false,          },
       {  field : 'headerBackgroundImage', width : 200,displayName : 'Header Background Image',  enableCellEdit : false,          },
-      {  field : 'managerid',          width : 100, displayName : 'Manager ID',                 enableCellEdit : false,          },
-      {  field : 'shoppingCentreid',   width : 100, displayName : 'Shopping Centre ID',         enableCellEdit : false,          },
+      {  field : 'managerid',          type: 'number', width : 100, displayName : 'Manager ID',                 enableCellEdit : false,          },
+      {  field : 'shoppingCentreid',   type: 'number', width : 100, displayName : 'Shopping Centre ID',         enableCellEdit : false,          },
       {  field : 'storeDefaultContentPage1',  width : 200,displayName : 'Store Default Content Page1', enableCellEdit : false,   },
-      {  field : 'zoneid',             width : 100, displayName : 'Zone ID',                    enableCellEdit : false           }
+      {  field : 'zoneid',             type: 'number', width : 100, displayName : 'Zone ID',                    enableCellEdit : false           }
     ],
 
   "addRowRetailer" : {
@@ -343,7 +343,7 @@ myApp.value('Globals', {
     {  field : 'gender',        width : 200, displayName : 'Gender',        enableCellEdit : false,  },
     {  field : 'password',      width : 200, displayName : 'Password',      enableCellEdit : false,  },
     {  field : 'type',          width : 200, displayName : 'Type',          enableCellEdit : false,  },
-    {  field : 'yob',           width : 100, displayName : 'Yob',           enableCellEdit : false,  },
+    {  field : 'yob',           type: 'number', width : 100, displayName : 'Yob',           enableCellEdit : false,  },
     {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'byte', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
   "ApproveUserColumnDefs" : [{
@@ -359,7 +359,7 @@ myApp.value('Globals', {
     {  field : 'gender',        width : 200, displayName : 'Gender',        enableCellEdit : false,  },
     {  field : 'password',      width : 200, displayName : 'Password',      enableCellEdit : false,  },
     {  field : 'type',          width : 200, displayName : 'Type',          enableCellEdit : false,  },
-    {  field : 'yob',           width : 100, displayName : 'Yob',           enableCellEdit : false,  },
+    {  field : 'yob',           type: 'number', width : 100, displayName : 'Yob',           enableCellEdit : false,  },
     {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'byte', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
 
@@ -383,7 +383,7 @@ myApp.value('Globals', {
       width : 100,
       },
       {  field : 'storeName',  width : 300,  displayName : 'Retailer ID', enableCellEdit : false,  },
-      {  field : 'points',     width : 100,  displayName : 'Points',      enableCellEdit : false,  }
+      {  field : 'points',     type: 'number', width : 100,  displayName : 'Points',      enableCellEdit : false,  }
     ],
 
   "addRowUserPoint" : {
@@ -398,7 +398,7 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field : 'beaconid',  width : 100,      displayName : 'Beacon ID', enableCellEdit : false,  },
+      {  field : 'beaconid',  type: 'number', width : 100,      displayName : 'Beacon ID', enableCellEdit : false,  },
       {  field : 'zoneName',  width : 200,      displayName : 'Zone Name', enableCellEdit : false,  }
     ],
 

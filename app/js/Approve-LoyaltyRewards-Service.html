@@ -1,35 +1,45 @@
+<style>
+  /*select{*/
+    /*!*box-sizing: border-box;*!*/
+    /*!*margin-left: 60px;*!*/
+    /*height: 25px;*/
+    /*width: 160px;*/
+    /*border: 2px solid #DCE4EC;*/
+    /*border-radius: 5px;*/
+    /*text-indent: 5px;*/
+    /*text-align: right;*/
+
+    /*!*float: right;*!*/
+    /*display: inline;*/
+  /*}*/
+</style>
 <div>
   <div class="modal-header">
     <h3 class="modal-title">Edit Row</h3>
   </div>
   <div class="modal-body">
-<script>
-
-</script>
 
 
     <form name="serviceForm">
 
-      <div class="block">      <label>Loyalty Reward ID </label> <input class="input" type="number" disabled value="{{row.entity.loyaltyRewardid}}"/> </div>
-      <div class="block">      <label>Retailer ID </label>       <input class="input" type="number" disabled value="{{row.entity.retailerid}}"/>      </div>
+      <div class="block">      <label>Loyalty Reward ID </label> <input class="input" type="text"   disabled value="{{row.entity.loyaltyRewardid}}"/> </div>
+      <div class="block">      <label>Retailer ID </label>       <input class="input" type="text"   disabled value="{{row.entity.retailerid}}"/>      </div>
       <div class="block">      <label>Points Per Visit </label>  <input class="input" type="number" ng-model="row.entity.pointsPerVisit"/>            </div>
       <div class="block">      <label>Reward Image </label>      <input class="input" type="text"   ng-model="row.entity.rewardImage"/>               </div>
       <div class="block">      <label>Reward Title </label>      <input class="input" type="text"   ng-model="row.entity.rewardTitle"/>               </div>
       <div class="block">      <label>Visit Time </label>        <input class="input" type="number" ng-model="row.entity.visitTime"/>                 </div>
-      <div class="block">      <label>End Date </label>          <input class="input" type="time"   disabled value="{{row.entity.endDate}}"/>         </div>
-      <div class="block">      <label>Start Date </label>        <input class="input" type="time"   disabled value="{{row.entity.startDate}}"/>       </div>
+      <div class="block">      <label>Start Date </label>        <input class="input" type="text"   disabled value="{{row.entity.startDate}}"/>       </div>
+      <div class="block">      <label>End Date </label>          <input class="input" type="text"   disabled value="{{row.entity.endDate}}"/>         </div>
 
       <!-- drop down for approved true/false-->
-      <div class="block">
+      <div class="block" id="select">
         <label>Approved </label>
         <select class="input" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
       </div>
 
-
-
     </form>
+    </div>
 
-  </div>
   <div class="modal-footer">
     <button class="btn btn-primary" ng-click="vm.approveLoyaltyReward()">Save</button>
     <button class="btn btn-primary" ng-click="vm.removeLoyaltyReward()">Delete</button>

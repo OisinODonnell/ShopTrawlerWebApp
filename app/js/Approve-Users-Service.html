@@ -5,7 +5,7 @@
   <div class="modal-body">
 
     <form name="serviceForm">
-      <div class="block">  <label>User ID </label>        <input class="input"  type="number"   disabled value="{{row.entity.userid}}" /> </div>
+      <div class="block">  <label>User ID </label>        <input class="input"  type="text"     disabled value="{{row.entity.userid}}" /> </div>
       <div class="block">  <label>Firstname </label>      <input class="input"  type="text"     ng-model="row.entity.firstname"/>         </div>
       <div class="block">  <label>Surname </label>        <input class="input"  type="text"     ng-model="row.entity.surname"/>           </div>
       <div class="block">  <label>Email Address </label>  <input class="input"  type="email"    ng-model="row.entity.emailAddress"/>      </div>
@@ -14,7 +14,12 @@
       <div class="block">  <label>Password </label>       <input class="input"  type="password" ng-model="row.entity.password"/>          </div>
       <div class="block">  <label>Type </label>           <input class="input"  type="text"     ng-model="row.entity.type"/>              </div>
       <div class="block">  <label>Year of Birth </label>  <input class="input"  type="number"   ng-model="row.entity.yob"/>               </div>
-      <div class="block">  <label>Approved </label>       <input class="input"  type="number"   ng-model="row.entity.approved">           </div>
+      <!-- drop down for approved true/false-->
+      <div class="block">
+        <label>Approved </label>
+        <select class="input" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
+      </div>
+
     </form>
 
   </div>

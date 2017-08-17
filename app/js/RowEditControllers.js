@@ -324,6 +324,44 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     $uibModalInstance.close(row.entity);
   }
+  function saveShoppingCentre() {
+      if (vm.entity.shoppingCentreid === 0 || vm.entity.shoppingCentreid === "") { // implies a new entity
+
+        row.entity = angular.extend(vm.entity, row.entity);
+
+        $http.post(urlBase + '/ShoppingCentre/create/' + row.entity.shoppingCentreid,vm.entity )
+          .then(function(response) {
+              $uibModalInstance.close(row.entity);
+            },
+            function(response) {
+              alert('Cannot add ShoppingCentre (error in console)');
+              console.dir(response);
+            });
+
+        row.entity = angular.extend(row.entity, vm.entity);
+        //real ID come back from response after the save in DB
+        row.entity.id = Math.floor(100 + Math.random() * 1000);
+        grid.data.push(row.entity);
+
+      } else { // changed entity
+
+        row.entity = angular.extend(vm.entity, row.entity);
+
+        $http.put(urlBase + '/ShoppingCentre/update/' + row.entity.shoppingCentreid,row.entity , vm.headers)
+
+          .then(function(response) {
+              Flash.create('success', "Shopping Centre Updated", 2000);
+              $uibModalInstance.close(row.entity);
+            },
+            function(response) {
+              Flash.create('danger', "Shopping Centre could Not be Updated : " + response.message, 2000);
+              alert('Cannot update ShoppingCentre (error in console)');
+              console.dir(response);
+            });
+      }
+      $uibModalInstance.close(row.entity);
+    }
+
   function saveRating() {
     if (row.entity.id == '0') {
       /*
@@ -353,43 +391,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     $uibModalInstance.close(row.entity);
   }
-  function saveShoppingCentre() {
-    if (vm.entity.shoppingCentreid === 0 || vm.entity.shoppingCentreid === "") { // implies a new entity
 
-      row.entity = angular.extend(vm.entity, row.entity);
-
-      $http.post(urlBase + '/ShoppingCentre/create/' + row.entity.shoppingCentreid,vm.entity )
-        .then(function(response) {
-          $uibModalInstance.close(row.entity);
-        },
-         function(response) {
-          alert('Cannot add ShoppingCentre (error in console)');
-          console.dir(response);
-        });
-
-      row.entity = angular.extend(row.entity, vm.entity);
-      //real ID come back from response after the save in DB
-      row.entity.id = Math.floor(100 + Math.random() * 1000);
-      grid.data.push(row.entity);
-
-    } else { // changed entity
-
-      row.entity = angular.extend(vm.entity, row.entity);
-
-      $http.put(urlBase + '/ShoppingCentre/update/' + row.entity.shoppingCentreid,row.entity , vm.headers)
-
-        .then(function(response) {
-           Flash.create('success', "Shopping Centre Updated", 2000);
-          $uibModalInstance.close(row.entity);
-        },
-          function(response) {
-            Flash.create('danger', "Shopping Centre could Not be Updated : " + response.message, 2000);
-            alert('Cannot update ShoppingCentre (error in console)');
-            console.dir(response);
-      });
-    }
-    $uibModalInstance.close(row.entity);
-  }
   function getEntity(updates, attrList) {
     let newEntity = attrList;
     let str = "";
@@ -400,6 +402,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     return str;
   }
+
   function saveVisit() {
     if (row.entity.id == '0') {
       /*
@@ -429,6 +432,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     $uibModalInstance.close(row.entity);
   }
+
   function saveUser() {
     if (vm.entity.userid === 0 || vm.entity.userid === "") { // implies a new entity
 
@@ -483,7 +487,11 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
       if (vm.entity.userid !== 0) { // implies a new entity
 
         row.entity = angular.extend(vm.entity, row.entity);
-
+        // value needs to be changed back before going to rest to bute size.
+        if (row.entity.approved === true)
+          row.entity.approved = 1;
+        else
+          row.entity.approved = 0;
         $http.put(urlBase + '/User/update/' + row.entity.userid,row.entity , {headers:{
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -504,6 +512,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
       }
       $uibModalInstance.close(row.entity);
     }
+
   function removeUser() {
     console.dir(row)
     if (row.entity.id != '0') {
@@ -551,6 +560,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     $uibModalInstance.close(row.entity);
   }
+
   function saveRetailer() {
     if (vm.entity.retailerid === 0 || vm.entity.retailerid === "") { // implies a new entity
 
@@ -611,6 +621,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     $uibModalInstance.close(row.entity);
   }
+
   function saveBonusCode() {
     if (row.entity.id == '0') {
       /*
@@ -640,6 +651,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     $uibModalInstance.close(row.entity);
   }
+
   function saveFavourite() {
     if (row.entity.id == '0') {
       /*
@@ -669,6 +681,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     $uibModalInstance.close(row.entity);
   }
+
   function saveLoyaltyReward() {
       if (vm.entity.loyaltyRewardid === 0) { // implies a new entity
 
@@ -719,6 +732,14 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
   function approveLoyaltyReward() {
       if (vm.entity.loyaltyRewardid !== 0) { // implies a new entity
         row.entity = angular.extend(vm.entity, row.entity);
+
+        // value needs to be changed back before going to rest to bute size.
+        if (row.entity.approved === true)
+          row.entity.approved = 1;
+        else
+          row.entity.approved = 0;
+
+
         $http.put(urlBase + '/LoyaltyReward/update/' + row.entity.loyaltyRewardid,row.entity , {headers:{
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -766,6 +787,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     $uibModalInstance.close(row.entity);
   }
+
   function saveLocation() {
     if (row.entity.id == '0') {
       /*
@@ -795,6 +817,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     $uibModalInstance.close(row.entity);
   }
+
   function saveBeacon() {
     if (row.entity.id == '0') {
       /*
@@ -824,6 +847,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     }
     $uibModalInstance.close(row.entity);
   }
+
   function saveZone() {
     if (row.entity.id == '0') {
       /*
@@ -904,6 +928,11 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
   function approveContent() {
       if (vm.entity.contentid !== 0) { // implies a new entity
         row.entity = angular.extend(vm.entity, row.entity);
+        // value needs to be changed back before going to rest to bute size.
+        if (row.entity.approved === true)
+          row.entity.approved = 1;
+        else
+          row.entity.approved = 0;
         $http.put(urlBase + '/Content/update/' + row.entity.contentid,row.entity ,vm.headers )
           .then(function(response) {
               Flash.create('success', "Content Approved ", 2000);
@@ -942,6 +971,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
   }
 
   return rowEditors;
+
 
 
   function paramString(entity) {

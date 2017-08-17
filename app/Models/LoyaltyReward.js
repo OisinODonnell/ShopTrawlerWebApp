@@ -6,11 +6,11 @@ class LoyaltyReward {
 
   constructor (loyaltyRewardid, endDate, pointsPerVisit, rewardImage, retailerid, rewardTitle, startDate, visitTime)
   {
-    this.loyaltyRewardid= this.setLoyaltyRewardid   (loyaltyRewardid);
+    this.loyaltyRewardid= this.setLoyaltyRewardid   (loyaltyRewardid * 1);
     this.endDate	      = this.setEndDate           (endDate);
     this.pointsPerVisit	= this.setPointsPerVisit    (pointsPerVisit);
     this.rewardImage	  = this.setRewardImage       (rewardImage);
-    this.retailerid	    = this.setRetailerid        (retailerid);
+    this.retailerid	    = this.setRetailerid        (retailerid * 1);
     this.rewardTitle	  = this.setRewardTitle       (rewardTitle);
     this.startDate	    = this.setStartDate         (startDate);
     this.visitTime	    = this.setVisitTime         (visitTime);
