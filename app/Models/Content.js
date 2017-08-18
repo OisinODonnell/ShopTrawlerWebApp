@@ -4,7 +4,7 @@
  */
 class Content {
 
-  constructor (contentid, endDate, page1, page2, page3, startDate, retailerid)
+  constructor (contentid, endDate, page1, page2, page3, startDate, retailerid, approved)
   {
     this.contentid	    = this.setContentid    (contentid);
     this.endDate	      = this.setEndDate      (endDate);
@@ -13,6 +13,7 @@ class Content {
     this.page3	        = this.setPage3        (page3);
     this.retailerid	    = this.setRetailerid   (retailerid);
     this.startDate	    = this.setStartDate    (startDate);
+    this.approved 	    = this.setApproved         (approved);
   }
 
   // getters and setters with default values where attribute is not provided.
@@ -31,6 +32,10 @@ class Content {
   setRetailerid        (x) { this.retailerid      = x ? x : 0;  }
   getStartDateString   ()  { return new Date(this.startDate);   }
   setStartDate         (x) { this.startDate       = x ? x : ""; }
+
+  isApproved           ()  { return this.approved;                   }
+  setApproved          (x) { this.approved           = x ? x : false;}
+
 
   getEndDateReadable   ()  { return getReadableDate(this.startDate); }
   getStartDateReadable ()  { return getReadableDate(this.endDate);  }

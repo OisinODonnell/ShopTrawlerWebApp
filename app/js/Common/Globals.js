@@ -139,7 +139,7 @@ myApp.value('Globals', {
     {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : false,               },
     {  field : 'retailerid',          type: 'number' ,  width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
     {  field : 'getStartDateReadable()',width : 200,displayName : 'Start Date' ,type:"date",   enableCellEdit  : false  },
-    {  field : 'approved',             width : 100, displayName: 'Approved?', type: 'byte',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'approved',             width : 100, displayName: 'Approved?', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
 
   ],
   "addRowContent" : {
@@ -219,7 +219,7 @@ myApp.value('Globals', {
     {  field : 'rewardTitle',           width : 200, displayName : 'Reward Title',              enableCellEdit : false, },
     {  field : 'getStartDateReadable()',width : 200, displayName : 'Start Date',type:"date",    enableCellEdit : false, },
     {  field : 'visitTime',             type: 'number', width : 100, displayName : 'Visit Time',enableCellEdit : false, },
-    {  field : 'approved',              width : 100, displayName: 'Approved?', type: 'byte',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'approved',              width : 100, displayName: 'Approved?', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
 
   "addRowLoyaltyReward" : {
@@ -344,7 +344,7 @@ myApp.value('Globals', {
     {  field : 'password',      width : 200, displayName : 'Password',      enableCellEdit : false,  },
     {  field : 'type',          width : 200, displayName : 'Type',          enableCellEdit : false,  },
     {  field : 'yob',           type: 'number', width : 100, displayName : 'Yob',           enableCellEdit : false,  },
-    {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'byte', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
   "ApproveUserColumnDefs" : [{
     field : 'userid',           displayName    : 'User ID',
@@ -360,7 +360,7 @@ myApp.value('Globals', {
     {  field : 'password',      width : 200, displayName : 'Password',      enableCellEdit : false,  },
     {  field : 'type',          width : 200, displayName : 'Type',          enableCellEdit : false,  },
     {  field : 'yob',           type: 'number', width : 100, displayName : 'Yob',           enableCellEdit : false,  },
-    {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'byte', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
 
   "addRowUser" : {

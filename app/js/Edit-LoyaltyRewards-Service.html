@@ -6,16 +6,18 @@
 
     </form>
 
-      <div class="block">      <label>Loyalty Reward ID </label>   <input class="input" type="text" disabled value="{{row.entity.loyaltyRewardid}}"/></div>
-        <div class="block">      <label>End Date </label>          <input class="input" type="time"   ng-model="row.entity.endDate"/>              </div>
+      <div class="block">      <label>Loyalty Reward ID </label>   <input class="input" type="text"   disabled value="{{row.entity.loyaltyRewardid}}"/></div>
+        <div class="block">      <label>End Date </label>          <input class="input" type="text"   ng-model="row.entity.endDate"/>              </div>
         <div class="block">      <label>Points Per Visit </label>  <input class="input" type="number" ng-model="row.entity.pointsPerVisit"/>       </div>
         <div class="block">      <label>Reward Image </label>      <input class="input" type="text"   ng-model="row.entity.rewardImage"/>          </div>
-        <div class="block">      <label>Retailer ID </label>       <input class="input" type="text" disabled value="{{row.entity.retailerid = currentUser.userid}}"/>           </div>
+        <div class="block">      <label>Retailer ID </label>       <input class="input" type="text"   disabled value="{{row.entity.retailerid = currentUser.userid}}"/>           </div>
         <div class="block">      <label>Reward Title </label>      <input class="input" type="text"   ng-model="row.entity.rewardTitle"/>          </div>
-        <div class="block">      <label>Start Date </label>        <input class="input" type="time"   ng-model="row.entity.startDate"/>            </div>
+        <div class="block">      <label>Start Date </label>        <input class="input" type="text"   ng-model="row.entity.startDate"/>            </div>
         <div class="block">      <label>Visit Time </label>        <input class="input" type="number" ng-model="row.entity.visitTime"/>            </div>
-        <div class="block">      <label>Approved </label>          <input class="input" type="number" disablewd value="{{row.entity.approved}}"/>             </div>
+        <div class="block">      <label>Approved </label>          <input class="input" type="text"   disabled value="{{row.entity.approved}}"/>   </div>
 
+    <!--<div class="block">      <label>Approved </label>-->
+      <!--<input type="checkbox"    ng-model="row.entity.approved"  name="row.entity.approved"   ng-true-value="true"   ng-false-value="false" title="Approved"/>  </div>-->
     </form>
 
   </div>

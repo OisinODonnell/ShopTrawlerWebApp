@@ -9,8 +9,8 @@
     <form name="serviceForm">
 
       <div class="block">  <label>Retailerid </label>                 <input class="input"  type="text" disabled value="{{row.entity.retailerid}}" />  </div>
-      <div class="block">  <label>Default ContentPage1 </label>       <input class="input"  type="text" ng-model="row.entity.defaultContentPage1"/></div>
-      <div class="block">  <label>Default ContentPage2 </label>       <input class="input"  type="text" ng-model="row.entity.defaultContentPage2"/>   </div>
+      <div class="block">  <label>Default ContentPage1 </label>       <input class="input"  type="text" ng-model="row.entity.defaultContentPage1"/>    </div>
+      <div class="block">  <label>Default ContentPage2 </label>       <input class="input"  type="text" ng-model="row.entity.defaultContentPage2"/>    </div>
       <div class="block">  <label>Default ContentPage3 </label>       <input class="input"  type="text" ng-model="row.entity.defaultContentPage3"/>    </div>
       <div class="block">  <label>Default LoyaltyRewardImage </label> <input class="input"  type="text" ng-model="row.entity.defaultLoyaltyRewardImage"/></div>
       <div class="block">  <label>Facebook Url </label>               <input class="input"  type="text" ng-model="row.entity.facebookUrl"/>            </div>
@@ -22,10 +22,10 @@
       <div class="block">  <label>Phone </label>                      <input class="input"  type="text" ng-model="row.entity.phone"/>                  </div>
       <div class="block">  <label>Store Name </label>                 <input class="input"  type="text" ng-model="row.entity.storeName"/>              </div>
       <div class="block">  <label>Header Background Image </label>    <input class="input"  type="text" ng-model="row.entity.headerBackgroundImage"/> </div>
-      <div class="block">  <label>Manager ID </label>                 <input class="input"  type="text" ng-model="row.entity.managerid"/>              </div>
-      <div class="block">  <label>Shopping Centre ID </label>         <input class="input"  type="text" ng-model="row.entity.shoppingCentreid"/>       </div>
-      <div class="block">  <label>Store Default Content Page 1</label><input class="input"  type="text" ng-model="row.entity.storeDefaultContentPage1"/></div>
-      <div class="block">  <label>Zone ID </label>                    <input class="input"  type="text" ng-model="row.entity.zoneid"/>                 </div>
+      <div class="block">  <label>Manager ID </label>                 <input class="input"  type="text" disabled value="{{row.entity.managerid}}"/>        </div>
+      <div class="block">  <label>Shopping Centre ID </label>         <input class="input"  type="text" disabled value="{{row.entity.shoppingCentreid}}"/> </div>
+      <div class="block">  <label>Store Default Content Page 1</label><input class="input"  type="text" ng-model="row.entity.storeDefaultContentPage1"/>   </div>
+      <div class="block">  <label>Zone ID </label>                    <input class="input"  type="text" disabled value="{{row.entity.zoneid}}"/>           </div>
 
     </form>
 

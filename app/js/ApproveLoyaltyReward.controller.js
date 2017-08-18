@@ -4,6 +4,9 @@ myApp.controller('ApproveLoyaltyRewardsController', ['DataFactory','$scope','Com
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
+    vm.myDate = new Date();
+    vm.isOpen = false;
+
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected

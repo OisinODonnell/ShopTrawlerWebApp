@@ -5,7 +5,7 @@
 
 class User {
 
-  constructor (userid, firstname, surname, emailAddress, phone, gender, password, type, yob, active)
+  constructor (userid, firstname, surname, emailAddress, phone, gender, password, type, yob, active, approved)
   {
     this.userid	        = this.setUserid        (userid);
     this.firstname	    = this.setFirstname     (firstname);
@@ -17,13 +17,13 @@ class User {
     this.type	          = this.setType          (type);
     this.yob	          = this.setYob           (yob);
     this.active	        = this.setActive        (active);
+    this.approved 	    = this.setApproved      (approved);
 
     this.bonusCodesByUserid	    = this.setBonusCodesByUserid    ([]);
     this.favouritesByUserid	    = this.setFavouritesByUserid    ([]);
     this.ratingsByUserid	      = this.setRatingsByUserid       ([]);
     this.userPointsByUserid	    = this.setUserPointsByUserid    ([]);
     this.visitsByUserid	        = this.setVisitsByUserid        ([]);
-
   }
 
   // getters and setters with default values where attribute is not provided.
@@ -48,6 +48,8 @@ class User {
   setYob          (x) { this.yob              = x ? x : ""; }
   getActive       ()  { return this.active;                 }
   setActive       (x) { this.active           = x ? x : ""; }
+  isApproved      ()  { return this.approved;               }
+  setApproved     (x) { this.approved         = x ? x : false;}
 
   getBonusCodesByUserid  ()  { return this.bonusCodesByUserid;              }
   setBonusCodesByUserid  (x) { this.bonusCodesByUserid        = x ? x : []; }

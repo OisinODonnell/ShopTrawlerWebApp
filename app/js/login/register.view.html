@@ -53,8 +53,8 @@
         </div>  </td>  </tr>
 
         <tr>   <td>
-          <div class="form_group" ng-class="{ 'has-error': form.gender.$dirty && form.gender.$error.required }" >
-            <select name="gender" class="form_control  grey_color"
+          <div class="form_group " ng-class="{ 'has-error': form.gender.$dirty && form.gender.$error.required }" >
+            <select name="gender" class="register form_control  grey_color "
                     ng-model="vm.gender" required
                     ng-options="x for x in genders" >
               <option value="">Select Gender</option>
@@ -71,7 +71,7 @@
           <div data-ng-show="!vm.isAdmin === true">
             <!-- Create drop down menu of Registered Retailers for manager to p;ick from-->
               <div ng-class="{ 'has-error': form.retailer.$dirty && form.retailer.$error.required }">
-                <select name="retailer" class="form_group grey_color"
+                <select name="retailer" class="register form_group grey_color"
                         ng-model="retailer" required
                         ng-options="store.retailerid as store.storeName for store in retailers">
                   <option value="">Select Retailer</option>

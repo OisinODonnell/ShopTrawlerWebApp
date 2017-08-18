@@ -4,6 +4,20 @@ myApp.controller('ApproveContentsController', ['DataFactory','$scope','Common','
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
+    $scope.ratingDate = new Date();
+    $scope.minDate = new Date(
+      $scope.ratingDate.getFullYear(),
+      $scope.ratingDate.getMonth() - 2,
+      $scope.ratingDate.getDate());
+    $scope.maxDate = new Date(
+      $scope.ratingDate.getFullYear(),
+      $scope.ratingDate.getMonth() + 2,
+      $scope.ratingDate.getDate());
+    $scope.onlyWeekendsPredicate = function(date) {
+      let day = date.getDay();
+      return day === 0 || day === 6;
+    };
+
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected

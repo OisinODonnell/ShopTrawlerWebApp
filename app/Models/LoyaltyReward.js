@@ -4,7 +4,7 @@
  */
 class LoyaltyReward {
 
-  constructor (loyaltyRewardid, endDate, pointsPerVisit, rewardImage, retailerid, rewardTitle, startDate, visitTime)
+  constructor (loyaltyRewardid, endDate, pointsPerVisit, rewardImage, retailerid, rewardTitle, startDate, visitTime, approved)
   {
     this.loyaltyRewardid= this.setLoyaltyRewardid   (loyaltyRewardid * 1);
     this.endDate	      = this.setEndDate           (endDate);
@@ -14,6 +14,7 @@ class LoyaltyReward {
     this.rewardTitle	  = this.setRewardTitle       (rewardTitle);
     this.startDate	    = this.setStartDate         (startDate);
     this.visitTime	    = this.setVisitTime         (visitTime);
+    this.approved 	    = this.setApproved         (approved);
   }
 
   // getters and setters with default values where attribute is not provided.
@@ -34,9 +35,11 @@ class LoyaltyReward {
   setRewardTitle      (x) { this.rewardTitle         = x ? x : "";  }
   getVisitTime        ()  { return this.visitTime;                  }
   setVisitTime        (x) { this.visitTime           = x ? x : 0;   }
+  isApproved          ()  { return this.approved;                   }
+  setApproved         (x) { this.approved           = x ? x : false;}
 
-  getEndDateReadable    () { return getReadableDate(this.endDate)          }
-  getStartDateReadable  () { return getReadableDate(this.startDate)        }
+  getEndDateReadable    () { return getReadableDate(this.endDate)   }
+  getStartDateReadable  () { return getReadableDate(this.startDate) }
 
 }
 

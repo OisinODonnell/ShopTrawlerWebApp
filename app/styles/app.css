@@ -174,11 +174,11 @@ selectPopup {
   box-sizing:content-box;
   height: 15px;
 }
-#select{
+select{
   /*box-sizing: border-box;*/
   /*margin-left: 60px;*/
-  height: 25px;
-  width: 160px;
+  height: 28px;
+  width: 170px;
   border: 2px solid #DCE4EC;
   border-radius: 5px;
   text-indent: 5px;
@@ -187,19 +187,29 @@ selectPopup {
   /*float: right;*/
   display: inline;
 }
-select{
+.register{
   /*box-sizing: border-box;*/
   /*margin-left: 60px;*/
   height: 40px;
   width: 200px;
   border: 2px solid #DCE4EC;
   border-radius: 5px;
+  box-sizing:content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing:content-box;
   text-indent: 5px;
   text-align: right;
 
   /*float: right;*/
   display: inline;
 }
+.md-datepicker-input-container {
+  width: 100%;
+  margin-left: 0px;
+}
+.md-datepicker-calendar-pane{
+   z-index: 1200}
+
 /*select, input {*/
   /*margin: 0;*/
   /*display: block;*/

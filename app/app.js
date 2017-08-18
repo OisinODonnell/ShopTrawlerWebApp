@@ -36,12 +36,10 @@
 //        LoyaltyReward : add/update/delete
 //        Users (own record) : Update
 
-let myApp =  angular.module('app', ['ng','ngRoute','routes','ngAria','ngCookies','ngFlash',  'ngAnimate', 'ui.grid', 'ui.grid.moveColumns', 'ngMaterial', 'ngMaterialDatePicker', //'ngTouch',
+let myApp =  angular.module('app', ['ng','ngRoute','routes','ngMaterial','ngMessages', 'ngAria','ngCookies','ngFlash',  'ngAnimate', 'ui.grid', 'ui.grid.moveColumns',  // 'ngTouch',
   'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit', 'ui.grid.pagination'])
   .config(config)
   .run(run);
-
-
 
   config.$inject = ['FlashProvider', '$compileProvider'];
     function config(FlashProvider, $compileProvider) {
@@ -49,8 +47,6 @@ let myApp =  angular.module('app', ['ng','ngRoute','routes','ngAria','ngCookies'
       FlashProvider.setShowClose(true);
       $compileProvider.preAssignBindingsEnabled(true);
   }
-
-
 
   run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
   function run($rootScope, $location, $cookies, $http ) {
@@ -98,10 +94,10 @@ myApp.factory('AuthInterceptor', ['$rootScope', function($rootScope) {
   };
 }]);
 
-// myApp.controller('AppCtrl', function() {
-//   this.myDate = new Date();
-//   this.isOpen = false;
-// });
+myApp.controller('AppCtrl', function() {
+  this.myDate = new Date();
+  this.isOpen = false;
+});
 
 myApp.controller('AppCtrl', function($scope) {
   $scope.myDate = new Date();
@@ -124,3 +120,38 @@ myApp.config(['$mdDateLocaleProvider', function ($mdDateLocaleProvider) {
     let m = moment(date);
     return m.isValid()? m.format('DD-MM-YYYY') : '';
   }}]);
+
+myApp.filter("mysqlDateFormatToTimestamp", function(){
+  return function(date){
+    let date1 = '';
+    let date2 = '';
+    let date3 = '';
+    let timestamp = '';
+    let hours = '';
+    let minutes = '';
+    let seconds = '';
+
+    date1 = date.split(':');
+    date2 = date1[0].split(' ');
+    date3 = date2[0].split('-'); // Change it based on your format
+
+    if( date1.length === 1 && date2.length === 1 ){
+      hours = '00';
+      minutes = '00';
+      seconds = '00';
+    }else{
+      hours = parseInt(date2[1]);
+      minutes = parseInt(date1[1]);
+      seconds = parseInt(date1[2]);
+    }
+    timestamp = new Date(parseInt(date3[0]), parseInt(date3[1])-1, parseInt(date3[2]), hours, minutes, seconds);
+    return timestamp;
+  }
+});
+
+myApp.filter('timestampToISO', function() {
+  return function(input) {
+    input = new Date(input).toISOString();
+    return input;
+  };
+});
