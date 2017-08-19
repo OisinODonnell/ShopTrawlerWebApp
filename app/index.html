@@ -33,6 +33,8 @@
   <script src="lib/angular-flash.js"></script>
 
   <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+  <script src="../node_modules/chart.js/dist/Chart.js"></script>
+  <script src="../node_modules/tc-angular-chartjs/dist/tc-angular-chartjs.js"></script>
 
   <!--// application-->
   <script src="app.js"></script>
@@ -67,7 +69,7 @@
   <script src="js/ApproveLoyaltyReward.controller.js"></script>
   <script src="js/ApproveUser.controller.js"></script>
   <script src="js/GenerateBonusCodes.controller.js"></script>
-
+  <script src="js/VisitsReportsDaysController.js"></script>
   <!--// services-->
   <script src="js/app-services/authentication.service.js"></script>
   <script src="js/app-services/flash.service.js"></script>
@@ -89,6 +91,8 @@
   <Script src="Models/BonusCode.js"></Script>
   <Script src="Models/Content.js"></Script>
   <Script src="Models/LoyaltyReward.js"></Script>
+  <Script src="Models/VisitChart.js"></Script>
+
   <script src="js/factory.js"></script>
   <script src="js/Common/Common.js"></script>
 
@@ -114,7 +118,18 @@
             <li><a href="#!/Users/List"               data-ng-show = "isAdmin && loggedIn"    > Users          </a>    </li>
             <li><a href="#!/Retailers/List"           data-ng-show = "isAdmin && loggedIn"    > Retailers      </a>    </li>
             <li><a href="#!/Ratings/List"             data-ng-show = "isAdmin && loggedIn"    > Ratings Summary</a>    </li>
-            <li><a href="#!/Visits/List"              data-ng-show = "isAdmin && loggedIn"    > Visits         </a>    </li>
+
+            <li>
+              <div class="dropdown" data-ng-show = "isAdmin && loggedIn">
+                <button class="dropbtn">Visit Reports</button>
+                <div class="dropdown-content">
+                  <a href="#!/Visits/Report/Admin/Days" >Last 12 Days</a>
+                  <a href="#!/Visits/Report/Admin/Weeks" >Last 12 Weeks</a>
+                  <a href="#!/Visits/Report/Admin/Months" >Last 12 MOnths</a>
+                </div>
+              </div>
+            </li>
+            <!--<li><a href="#!/Visits/List"              data-ng-show = "isAdmin && loggedIn"    > Visits         </a>    </li>-->
 
             <li><a href="#!/Users/Approve"            data-ng-show = "isAdmin && loggedIn"    > Enable New Users</a>   </li>
             <li><a href="#!/Contents/Approve"         data-ng-show = "isAdmin && loggedIn"    > Approve Content </a>   </li>
@@ -130,7 +145,17 @@
 
             <li><a href="#!/Visits/Retailer"          data-ng-show = "isRetailer && loggedIn" > Visits        </a>    </li>
             <li><a href="#!/BonusCodes/Generate"      data-ng-show = "isRetailer && loggedIn" > Generate New Bonus Codes </a>    </li>
-            <li><a href="#!/Visits/Report"            data-ng-show = "isRetailer && loggedIn" > Report Visits </a>    </li>
+            <!--<li><a href="#!/Visits/Report"            data-ng-show = "isRetailer && loggedIn" > Report Visits </a>    </li>-->
+            <li>
+              <div class="dropdown" data-ng-show = "isRetailer && loggedIn">
+                <button class="dropbtn">Visit Reports</button>
+                <div class="dropdown-content">
+                  <a href="#!/Visits/Report/Retailer/Days" >Last 12 Days</a>
+                  <a href="#!/Visits/Report/Retailer/Weeks" >Last 12 Weeks</a>
+                  <a href="#!/Visits/Report/Retailer/Months" >Last 12 MOnths</a>
+                </div>
+              </div>
+            </li>
 
           </ul>
         </div>

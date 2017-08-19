@@ -35,11 +35,16 @@
 // (R)    Content : Add/Update/Delete
 //        LoyaltyReward : add/update/delete
 //        Users (own record) : Update
+//
+// import Chart from "../node_modules/chart.js/dist/Chart.js"
+//
+
 
 let myApp =  angular.module('app', ['ng','ngRoute','routes','ngMaterial','ngMessages', 'ngAria','ngCookies','ngFlash',  'ngAnimate', 'ui.grid', 'ui.grid.moveColumns',  // 'ngTouch',
-  'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit', 'ui.grid.pagination'])
+  'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit', 'ui.grid.pagination','tc.chartjs'])
   .config(config)
   .run(run);
+
 
   config.$inject = ['FlashProvider', '$compileProvider'];
     function config(FlashProvider, $compileProvider) {

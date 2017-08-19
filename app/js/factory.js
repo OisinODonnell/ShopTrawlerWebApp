@@ -118,14 +118,21 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
 
   // Visits
   factory.listVisits                    = ()              => $http.get(urlBase + '/Visits'                        );
-  factory.listVisitsByUser              = (id)            => $http.get(urlBase + '/Visits/User/' + id             );
-  factory.listVisitsByRetailer          = (id)            => $http.get(urlBase + '/Visits/Retailer/' + id         );
+  factory.listVisitsByUser              = ( id )          => $http.get(urlBase + '/Visits/User/' + id             );
+  factory.listVisitsByRetailer          = ( id )          => $http.get(urlBase + '/Visits/Retailer/' + id         );
   // factory.listVisitsByGender         = ()              => $http.get(urlBase + '/Visits/User/Gender' );
   // factory.listVisitsByAge            = ()              => $http.get(urlBase + '/Visits/User/Age' );
-  factory.getVisit                      = (id)            => $http.get(urlBase + '/Visit/'                        );
-  factory.addVisit                      = (visit)         => $http.get(urlBase + '/Visit/' + visit                );
-  factory.deleteVisit                   = (id)            => $http.get(urlBase + '/Visit/delete/' + id            );
-  factory.updateVisit                   = (visit)         => $http.get(urlBase + '/Visit/update/' + visit         );
+  factory.getVisit                      = ( id )          => $http.get(urlBase + '/Visit/'                        );
+  factory.addVisit                      = ( visit )       => $http.get(urlBase + '/Visit/' + visit                );
+  factory.deleteVisit                   = ( id )          => $http.get(urlBase + '/Visit/delete/' + id            );
+  factory.updateVisit                   = ( visit )       => $http.get(urlBase + '/Visit/update/' + visit         );
+  // visit reports
+  factory.listVisitsReportsAdminDays      = ()            => $http.get(urlBase + '/Visit/Report/Admin/Day'        );
+  factory.listVisitsReportsAdminWeeks     = ()            => $http.get(urlBase + '/Visit/Report/Admin/Week'       );
+  factory.listVisitsReportsAdminMonths    = ()            => $http.get(urlBase + '/Visit/Report/Admin/Month'      );
+  factory.listVisitsReportsByRetailerDays   = ( id )      => $http.get(urlBase + '/Visit/Report/Retailer/Day/' + id   );
+  factory.listVisitsReportsByRetailerWeeks  = ( id )      => $http.get(urlBase + '/Visit/Report/Retailer/Week/' + id  );
+  factory.listVisitsReportsByRetailerMonths = ( id )      => $http.get(urlBase + '/Visit/Report/Retailer/Month/' + id );
 
   // Zones
   factory.listZones                     = ()              => $http.get(urlBase + '/Zones'                         );
@@ -137,8 +144,8 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
 
   // complex queries all under /Main mapping
   // returns all Visits, Users and Retailers
-    factory.getVisitsUsersRetailers       = ()              => $http.get(urlBase + '/Main/VUR'                      );
-    factory.getUsersRetailers             = ()              => $http.get(urlBase + '/Main/UR'                       );
+    factory.getVisitsUsersRetailers       = ()            => $http.get(urlBase + '/Main/VUR'                      );
+    factory.getUsersRetailers             = ()            => $http.get(urlBase + '/Main/UR'                       );
 
     return factory;
 }]);

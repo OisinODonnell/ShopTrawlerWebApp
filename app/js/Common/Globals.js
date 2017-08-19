@@ -1,4 +1,60 @@
 myApp.value('Globals', {
+  // Chart Line Data options
+  "ChartLineDataOptions": {
+    lineTension   : 0,
+    fill          : true,
+    backgroundColor: "rgba(75, 192, 192, 0.4",
+    borderColor: "rgba(75,192, 192, 1)",
+    borderCapStyle: 'butt',
+    borderDash: [],
+    borderDashOffset: 0.0,
+    borderJoinStyle: 'miter',
+    pointBorderColor: "rgba(75, 192, 192, 1)",
+    pointBackgroundColor: "#fff",
+    pointBorderWidth: 1,
+    pointHoverRadius: 5,
+    pointHoverBackgroundColor: "rgba(75, 192, 192, 1)",
+    pointHoverBorderColor: "rgba(220, 220, 220, 1)",
+    pointHoverBorderWith: 2,
+    // pointRadius: 1,
+    // pointHitRadius: 10,
+    // labels                  : [1,2,3,4,5,6,7,8,9,10,11,12],
+    // xAxisID                 : "",
+    // yAxisID                 : "",
+    // backgroundColor         : Color,
+    // cubicInterpolationMode  : "",
+    // pointStyle              :	String/String[]/Image/Image[],
+    // steppedLine             :	Boolean/String,
+    // showLine                :	Boolean,
+    // spanGaps                :	Boolean,
+  },
+  "ChartLineOptions": {
+    scales: { // options.scales
+      xAxes: [{ // option.scales.xAxes
+        display: true, // option.scales.xAxes.display
+        scaleLabel: { // option.scales.scaleLabel
+           display     : true, // option.scales.scaleLabel.display
+           labelString : 'Month' // option.scales.scaleLabel.labelString
+        }
+      }],
+      yAxes: [{ // option.scales.yAxes
+        display: true, // option.scales.yAxes.display
+        ticks: { // option.scales.yAxes.ticks
+          beginAtZero: true, // option.scales.yAxes.display.ticks.beginAtZero
+          suggestedMin: 0, // option.scales.yAxes.display.ticks.suggestedMin
+
+        }
+      }]
+    },
+    title: { // options.title
+      display: true, // options.title.display
+      text: 'Visits Per Day for last 12 Days', //options.title.text
+      fill: true, // options.title.fill
+    }
+  },
+
+
+
   "extraRows" : 8,
   "rowHeightPixels" : 30,
   "URL_BASE0": "http://192.168.0.143:8080", // laptop at home
@@ -28,8 +84,6 @@ myApp.value('Globals', {
     minWidth                  : 200, //
     rowHeight                 : 30,  // in pixels
   },
-
-
 
   "VisitColumnDefs" : [ {
       field : 'visitid',                 displayName    : 'Visit ID',

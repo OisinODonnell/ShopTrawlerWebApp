@@ -1,4 +1,4 @@
-myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$rootScope',
+myApp.controller('GenerateBonusCodesController', ['DataFactory','$scope','Common','$rootScope',
   '$uibModal','RowEditor', 'uiGridConstants','Globals',
 
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
