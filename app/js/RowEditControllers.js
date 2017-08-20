@@ -737,34 +737,43 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash','momen
       if (vm.entity.loyaltyRewardid !== 0) { // implies a new entity
         row.entity = angular.extend(vm.entity, row.entity);
 
-        // value needs to be changed back before going to rest to bute size.
-        if (row.entity.approved === true)
-          row.entity.approved = 1;
-        else
-          row.entity.approved = 0;
+        // check if the start date is greater than the end date
+        // if so show message and leave user in edit row.
+        if (row.entity.sDate >= row.entity.eDate)
+          Flash.create('danger', "Start Date cannot be greater than end Date, content Not saved", 4000);
+        else {
 
-        $http.put(urlBase + '/LoyaltyReward/update/' + row.entity.loyaltyRewardid,row.entity , {headers:{
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
-          'X-Random-Shit':'123123123'
+
+          // value needs to be changed back before going to rest to bute size.
+          if (row.entity.approved === true)
+            row.entity.approved = 1;
+          else
+            row.entity.approved = 0;
+
+          $http.put(urlBase + '/LoyaltyReward/update/' + row.entity.loyaltyRewardid, row.entity, {
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+              'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+              'X-Random-Shit': '123123123'
+            }
+          })
+            .then(function (response) {
+                $uibModalInstance.close(row.entity);
+                // delete row entry if approved
+                if (row.entity.approved === 1) {
+                  Flash.create('success', "User Approved ", 2000);
+                  removeRow(row.entity, vm.entity);
+                } else {
+                  Flash.create('warning', "User Updated but NOT approved ", 4000);
+                }
+              },
+              function (response) {
+                Flash.create('danger', "Loyalty Reward could Not be Updated : " + response.message, 4000);
+                alert('Cannot update loyaltyReward (error in console)');
+                console.dir(response);
+              });
         }
-        })
-          .then(function(response) {
-              $uibModalInstance.close(row.entity);
-              // delete row entry if approved
-              if (row.entity.approved === 1) {
-                Flash.create('success', "User Approved ", 2000);
-                removeRow(row.entity, vm.entity);
-              } else {
-                Flash.create('warning', "User Updated but NOT approved ", 4000);
-              }
-            },
-            function(response) {
-              Flash.create('danger', "Loyalty Reward could Not be Updated : " + response.message, 4000);
-              alert('Cannot update loyaltyReward (error in console)');
-              console.dir(response);
-            });
       }
       $uibModalInstance.close(row.entity);
     }
@@ -887,25 +896,31 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash','momen
     if (vm.entity.contentid === 0) { // implies a new entity
 
       row.entity = angular.extend(row.entity, vm.entity);
-      // Add Shopping Centre
-      let params = getEntity(row.entity);
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
 
-      $http.put(urlBase + '/Content/create/' + vm.entity.contentid,vm.entity )
-        .then(function(response) {
-            Flash.create('success', "New Content Added", 2000);
-          $uibModalInstance.close(row.entity);
-        },
-          function(response) {
-            Flash.create('danger', "New Content could not be added : " + response.message, 4000);
-            alert('Cannot add content (error in console)');
-            console.dir(response);
-        });
+      // check if the start date is greater than the end date
+      // if so show message and leave user in edit row.
+      if (row.entity.sDate >= row.entity.eDate)
+        Flash.create('danger', "Start Date cannot be greater than end Date, content Not saved", 4000);
+      else {
 
-      row.entity = angular.extend(row.entity, vm.entity);
-      //real ID come back from response after the save in DB
-      row.entity.id = Math.floor(100 + Math.random() * 1000);
-      grid.data.push(row.entity);
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
+
+        $http.put(urlBase + '/Content/create/' + vm.entity.contentid, vm.entity)
+          .then(function (response) {
+              Flash.create('success', "New Content Added", 2000);
+              $uibModalInstance.close(row.entity);
+            },
+            function (response) {
+              Flash.create('danger', "New Content could not be added : " + response.message, 4000);
+              alert('Cannot add content (error in console)');
+              console.dir(response);
+            });
+
+        row.entity = angular.extend(row.entity, vm.entity);
+        //real ID come back from response after the save in DB
+        row.entity.id = Math.floor(100 + Math.random() * 1000);
+        grid.data.push(row.entity);
+      }
 
     } else { // changed entity
 
@@ -935,28 +950,38 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash','momen
         row.entity = angular.extend(vm.entity, row.entity);
         // value needs to be changed back before going to rest to bute size.
 
-        row.entity.startDate = row.entity.sDate.getTime();
-        row.entity.endDate = row.entity.eDate.getTime()
 
-        if (row.entity.approved === true)
-          row.entity.approved = 1;
-        else
-          row.entity.approved = 0;
-        $http.put(urlBase + '/Content/update/' + row.entity.contentid,row.entity ,vm.headers )
-          .then(function(response) {
-              $uibModalInstance.close(row.entity);
-              if (row.entity.approved === 1) {
-                Flash.create('success', "Content Approved ", 2000);
-                removeRow(row.entity, vm.entity);
-              } else {
-                Flash.create('warning', "Content Updated but NOT approved ", 4000);
-              }
-            },
-            function(response) {
-              Flash.create('danger', "Content could NOT be approved : " + response.message, 4000);
-              alert('Cannot update content (error in console)');
-              console.dir(response);
-            });
+        // check if the start date is greater than the end date
+        // if so show message and leave user in edit row.
+        if (row.entity.sDate >= row.entity.eDate)
+          Flash.create('danger', "Start Date cannot be greater than end Date, content Not saved", 4000);
+        else {
+
+          row.entity.startDate = row.entity.sDate.getTime();
+          row.entity.endDate = row.entity.eDate.getTime()
+
+          // now check if the content has bene approved.
+          if (row.entity.approved === true)
+            row.entity.approved = 1;
+          else
+            row.entity.approved = 0;
+          // save content
+          $http.put(urlBase + '/Content/update/' + row.entity.contentid, row.entity, vm.headers)
+            .then(function (response) {
+                $uibModalInstance.close(row.entity);
+                if (row.entity.approved === 1) {
+                  Flash.create('success', "Content Approved ", 2000);
+                  removeRow(row.entity, vm.entity);
+                } else {
+                  Flash.create('warning', "Content Updated but NOT approved ", 4000);
+                }
+              },
+              function (response) {
+                Flash.create('danger', "Content could NOT be approved : " + response.message, 4000);
+                alert('Cannot update content (error in console)');
+                console.dir(response);
+              });
+        }
       }
       $uibModalInstance.close(row.entity);
     }
@@ -983,13 +1008,11 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash','momen
     $uibModalInstance.close(row.entity);
   }
 
-
-    function removeRow(rowEntity, vmEntity) {
+  function removeRow(rowEntity, vmEntity) {
       row.entity = angular.extend(rowEntity, vmEntity);
       let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
       grid.appScope.vm.serviceGrid.data.splice(index, 1);
     }
-
 
   return rowEditors;
 

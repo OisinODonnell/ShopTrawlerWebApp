@@ -229,7 +229,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
   };
 
   /**
-   *
+   * Accepts
    * @param visitCharts
    * @param footer Text to appear below xLabels
    * @param header Test to appear above Legend
@@ -241,7 +241,6 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
 
     let bgColours = Globals.BackgroundChartColours;
     let borderColours = Globals.BorderChartColours;
-
     let config = {};
 
     // ChartJS uses an object with key / value pairs to configure the chart.
@@ -250,7 +249,6 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     // ie config.options = {}; and config.options.title = {};
 
     config.type = chartConfig.type;
-
     let xAxes = [{
       display : true,
       scaleLabel : {
@@ -302,6 +300,32 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
 
     });
     return id;
+  };
+
+  /**
+   * Method to place 4 control variable into rootScope which will be used to
+   * control the entry of dates in loyalty rewards and content entities
+   * @param sDate (start date in entity in Javascript Date() format)
+   * @param eDate (end date in entity in Javascript Date() format)
+   */
+  lib.setMinMaxDates = (sDate, eDate) => {
+    // initialise control variables
+
+    $rootScope.minEndDate = new Date();
+    $rootScope.maxStartDate = new Date();
+    $rootScope.MaxEndDate = new Date();
+
+    let today = new moment();
+    let tomorrow = new moment(today.add(1,'day'));
+    let minStartDate = today;
+
+    let minEndDate = tomorrow;
+    let maxEndDate = moment(today.add(6,'month'));
+
+    $rootScope.minStartDate = new Date (); // todays date
+    $rootScope.minEndDate = new Date (minEndDate);
+    $rootScope.maxEndDate = new Date (maxEndDate);
+
   };
 
   return lib;

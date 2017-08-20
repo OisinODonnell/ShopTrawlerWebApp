@@ -294,7 +294,6 @@ myApp.controller('VisitsReportMonthsController', ['DataFactory','$scope','Common
             chartConfig.options.backgroundColor = Globals.PieColours;
 
 
-            chartConfig.scales.yAxes.display.ticks.beginAtZero = false;
             chartConfig.scales = {};
             chartConfig.scales.yAxes = yAxes;
             let myLineChart = Common.buildChart(visitCharts, chartConfig, ctx);

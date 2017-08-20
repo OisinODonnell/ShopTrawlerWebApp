@@ -15,16 +15,6 @@
 
 
         <br/>
-
-      <div class="block input md-datepicker-input">      <label>End Date </label>
-        <md-datepicker ng-model       = "row.entity.eDate"
-                       date-format    = "DD-MMM-YYYY HH:MM"
-                       md-placeholder = "Enter date"
-                       md-min-date    = "row.entity.minEndDate"
-                       md-max-date    = "row.entity.maxEndDate"
-                      required >
-        </md-datepicker>
-      </div>
       <div class="block input md-datepicker-input">      <label>Start Date </label>
         <md-datepicker ng-model       = "row.entity.sDate "
                        date-format    = "DD-MMM-YYYY HH:MM"
@@ -34,6 +24,16 @@
                        required >
         </md-datepicker>
       </div>
+      <div class="block input md-datepicker-input">      <label>End Date </label>
+        <md-datepicker ng-model       = "row.entity.eDate"
+                       date-format    = "DD-MMM-YYYY HH:MM"
+                       md-placeholder = "Enter date"
+                       md-min-date    = "row.entity.minEndDate"
+                       md-max-date    = "row.entity.maxEndDate"
+                      required >
+        </md-datepicker>
+      </div>
+
       <div class="block">  <label>Approved </label>
         <select class="input" type="datetime" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
       </div>

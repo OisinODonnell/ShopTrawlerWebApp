@@ -14,22 +14,6 @@ myApp.controller('VisitsChartController', ['$scope','$rootScope', 'Globals','Cha
       $scope.allowEditRow = true; // action below
     }
 
-    // configure chartjs
-
-
-
-
-
-
-    // get data
-
-
-
-
-
-    // add data to chartjs
-
-    // show chart
 
 
   }]);

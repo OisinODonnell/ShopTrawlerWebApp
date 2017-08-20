@@ -45,8 +45,8 @@ myApp.value('Globals', {
       yAxes: [{ // option.scales.yAxes
         display: true, // option.scales.yAxes.display
         ticks: { // option.scales.yAxes.ticks
-          beginAtZero: true, // option.scales.yAxes.display.ticks.beginAtZero
-          suggestedMin: 0, // option.scales.yAxes[].display.ticks.suggestedMin
+          beginAtZero: false, // option.scales.yAxes.display.ticks.beginAtZero
+          // suggestedMin: 0, // option.scales.yAxes[].display.ticks.suggestedMin
 
         }
       }]
