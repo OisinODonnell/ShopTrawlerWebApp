@@ -203,6 +203,38 @@ select{
   /*float: right;*/
   display: inline;
 }
+#canvas-container {
+  width: 75%;
+  text-align:center;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin:auto;
+}
+.dtp table.dtp-picker-days tr > td > a.selected,
+.dtp table.dtp-picker-days tr > td > a.selected.hilite,
+.dtp div.dtp-date, .dtp div.dtp-time, .dtp .dtp-hand.on,
+.dtp .dtp-actual-meridien a.selected,
+.dtp .dtp-picker-time > a.dtp-select-hour.selected {
+  background: #2abab9;
+}
+
+.dtp table.dtp-picker-days tr > td > a.hilite:not(.selected),
+.dtp div.dtp-actual-time.p60 span.selected {
+  color: #2abab9;
+}
+
+.dtp div.dtp-year-btn, .dtp div.dtp-actual-year, .dtp div.dtp-actual-maxtime {
+  color: #d0f0f0;
+}
+
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header {
+  background: #009796;
+}
+canvas {
+  display: inline;
+}
 .md-datepicker-input-container {
   width: 100%;
   margin-left: 0px;

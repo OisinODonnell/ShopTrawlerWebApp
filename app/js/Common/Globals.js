@@ -1,21 +1,25 @@
 myApp.value('Globals', {
   // Chart Line Data options
+  "PieColours" :  ["#0074D9", "#FF4136", "#2ECC40", "#FF851B",
+                   "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC",
+                   "#85144b", "#F012BE", "#3D9970", "#111111",
+                  ],
   "ChartLineDataOptions": {
-    lineTension   : 0,
-    fill          : true,
-    backgroundColor: "rgba(75, 192, 192, 0.4",
-    borderColor: "rgba(75,192, 192, 1)",
-    borderCapStyle: 'butt',
-    borderDash: [],
-    borderDashOffset: 0.0,
-    borderJoinStyle: 'miter',
-    pointBorderColor: "rgba(75, 192, 192, 1)",
-    pointBackgroundColor: "#fff",
-    pointBorderWidth: 1,
-    pointHoverRadius: 5,
-    pointHoverBackgroundColor: "rgba(75, 192, 192, 1)",
-    pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-    pointHoverBorderWith: 2,
+    lineTension               : .4,
+    fill                      : true,
+    backgroundColor           : "rgba(50, 192, 192, 0.4",
+    borderColor               : "rgba(75, 192, 192, 1)",
+    borderCapStyle            : 'butt',
+    borderDash                : [],
+    borderDashOffset          : 0.0,
+    borderJoinStyle           : 'miter',
+    pointBorderColor          : "rgba(75, 192, 192, 1)",
+    pointBackgroundColor      : "#fff",
+    pointBorderWidth          : 1,
+    pointHoverRadius          : 5,
+    pointHoverBackgroundColor : "rgba(75, 192, 192, 1)",
+    pointHoverBorderColor     : "rgba(220, 220, 220, 1)",
+    pointHoverBorderWith      : 2,
     // pointRadius: 1,
     // pointHitRadius: 10,
     // labels                  : [1,2,3,4,5,6,7,8,9,10,11,12],
@@ -29,6 +33,7 @@ myApp.value('Globals', {
     // spanGaps                :	Boolean,
   },
   "ChartLineOptions": {
+    responsive : true,
     scales: { // options.scales
       xAxes: [{ // option.scales.xAxes
         display: true, // option.scales.xAxes.display
@@ -41,7 +46,7 @@ myApp.value('Globals', {
         display: true, // option.scales.yAxes.display
         ticks: { // option.scales.yAxes.ticks
           beginAtZero: true, // option.scales.yAxes.display.ticks.beginAtZero
-          suggestedMin: 0, // option.scales.yAxes.display.ticks.suggestedMin
+          suggestedMin: 0, // option.scales.yAxes[].display.ticks.suggestedMin
 
         }
       }]
@@ -52,6 +57,13 @@ myApp.value('Globals', {
       fill: true, // options.title.fill
     }
   },
+  "BackgroundChartColours" : [ "rgba(255,0,0,.4)","rgba(0,255,0,.4)","rgba(0,0,255,.4)","rgba(255,255,0,.4)",
+    "rgba0,255,255,.4)","rgba(255,0,255,.4)","rgba(144,238,144,.4)","rgba(224,255,255,.4)"
+  ],
+  "BorderChartColours" : [ "rgba(255,0,0,.8)","rgba(0,255,0,.8)","rgba(0,0,255,.8)","rgba(255,255,0,.8)",
+    "rgba0,255,255,.8)","rgba(255,0,255,.8)","rgba(144,238,144,.8)","rgba(224,255,255,.8)"
+  ],
+
 
 
 
@@ -124,7 +136,7 @@ myApp.value('Globals', {
       {  field: 'major', type: 'number' ,        width : 100,     displayName: 'Major',         enableCellEdit : false,  },
       {  field: 'minor', type: 'number' ,        width : 100,     displayName: 'Minor',         enableCellEdit : false,  },
       {  field: 'transmitPower', type: 'number' ,width : 100,     displayName: 'Transmit Power',enableCellEdit : false,  },
-      {  field: 'uuid',          width : 300,     displayName: 'UUID',          enableCellEdit : false,  }
+      {  field: 'uuid',                          width : 300,     displayName: 'UUID',          enableCellEdit : false,  }
     ],
 
   "addRowBeacon"    : {

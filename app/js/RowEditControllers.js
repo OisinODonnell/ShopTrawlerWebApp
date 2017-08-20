@@ -263,8 +263,8 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
 }]);
 
 myApp.controller('RowEditCtrl',RowEditCtrl);
-RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
-  function RowEditCtrl($http ,  $uibModalInstance, grid, row, Flash) {
+RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash','moment'];
+  function RowEditCtrl($http ,  $uibModalInstance, grid, row, Flash,moment) {
 
   let vm = this;
   vm.entity = angular.copy(row.entity);
@@ -354,7 +354,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
               $uibModalInstance.close(row.entity);
             },
             function(response) {
-              Flash.create('danger', "Shopping Centre could Not be Updated : " + response.message, 2000);
+              Flash.create('danger', "Shopping Centre could Not be Updated : " + response.message, 4000);
               alert('Cannot update ShoppingCentre (error in console)');
               console.dir(response);
             });
@@ -447,7 +447,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
           $uibModalInstance.close(row.entity);
         },
         function(response) {
-          Flash.create('danger', "User ccould not be added: " + response.message, 2000);
+          Flash.create('danger', "User ccould not be added: " + response.message, 4000);
           alert('Cannot add user (error in console)');
           console.dir(response);
         });
@@ -476,7 +476,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
             grid.appScope.vm.serviceGrid.data.splice(index, 1);
           },
           function(response) {
-            Flash.create('danger', "User could Not be Updated : " + response.message, 2000);
+            Flash.create('danger', "User could Not be Updated : " + response.message, 4000);
             alert('Cannot update user (error in console)');
             console.dir(response);
           });
@@ -500,12 +500,16 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
         }
         })
           .then(function(response) {
-              Flash.create('success', "User Approved", 2000);
               $uibModalInstance.close(row.entity);
-              removeRow(row.entity, vm.entity)
+              if (row.entity.approved === 1) {
+                Flash.create('success', "User Approved ", 2000);
+                removeRow(row.entity, vm.entity);
+              } else {
+                Flash.create('warning', "User Updated but NOT approved ", 4000);
+              }
             },
             function(response) {
-              Flash.create('danger', "User could not be approved : " + response.message, 2000);
+              Flash.create('danger', "User could not be approved : " + response.message, 4000);
               alert('Cannot update user (error in console)');
               console.dir(response);
             });
@@ -525,7 +529,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
           Flash.create('success', "User Deleted", 2000);
           $uibModalInstance.close(row.entity);
       }, function(response) {
-          Flash.create('danger', "User could Not be Deleted : " + response.message, 2000);
+          Flash.create('danger', "User could Not be Deleted : " + response.message, 4000);
           alert('Cannot delete row (error in console)'); console.dir(response);
       });
            }
@@ -573,7 +577,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
             row.entity = angular.extend(row.entity, vm.entity);
           },
           function(response) {
-            Flash.create('danger', "New Retailer could Not be Added : " + response.message, 2000);
+            Flash.create('danger', "New Retailer could Not be Added : " + response.message, 4000);
             alert('Cannot update retailer (error in console)');
             console.dir(response);
           });
@@ -589,11 +593,11 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
 
       $http.put(urlBase + '/Retailer/update/' , row.entity , vm.headers )
         .then(function(response) {
-            Flash.create('success', "Retailer Updated : " + response.message, 2000);
+            Flash.create('success', "Retailer Updated : " + response.message, 4000);
             $uibModalInstance.close(row.entity);
           },
           function(response) {
-            Flash.create('danger', "Retailer could Not be Updated : " + response.message, 2000);
+            Flash.create('danger', "Retailer could Not be Updated : " + response.message, 4000);
             alert('Cannot update retailer (error in console)');
             console.dir(response);
           });
@@ -609,11 +613,11 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
 
       $http.delete(urlBase + '/Retailer/delete/'+ row.entity.retailerid , vm.headers)
         .then(function(response) {
-            Flash.create('success', "Retailer Deleted: " + response.message, 2000);
+            Flash.create('success', "Retailer Deleted: " + response.message, 4000);
             $uibModalInstance.close(row.entity);
         },
         function(response) {
-          Flash.create('danger', "Retailer could NOT be deleted : " + response.message, 2000);
+          Flash.create('danger', "Retailer could NOT be deleted : " + response.message, 4000);
           alert('Cannot delete retailer (error in console)');
           console.dir(response);
         });
@@ -696,7 +700,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
             $uibModalInstance.close(row.entity);
           },
           function(response) {
-            Flash.create('danger', "Loyalty Reward could Not be Added : " + response.message, 2000);
+            Flash.create('danger', "Loyalty Reward could Not be Added : " + response.message, 4000);
             alert('Cannot add loyaltyReward (error in console)');
             console.dir(response);
           });
@@ -722,7 +726,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
               $uibModalInstance.close(row.entity);
             },
             function(response) {
-              Flash.create('danger', "Loyalty Reward could Not be Updated : " + response.message, 2000);
+              Flash.create('danger', "Loyalty Reward could Not be Updated : " + response.message, 4000);
               alert('Cannot update loyaltyReward (error in console)');
               console.dir(response);
             });
@@ -739,7 +743,6 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
         else
           row.entity.approved = 0;
 
-
         $http.put(urlBase + '/LoyaltyReward/update/' + row.entity.loyaltyRewardid,row.entity , {headers:{
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -747,16 +750,18 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
           'X-Random-Shit':'123123123'
         }
         })
-
           .then(function(response) {
-              Flash.create('success', "Loyalty Reward Updated ", 2000);
-
               $uibModalInstance.close(row.entity);
-              // delete row entry approved
-              removeRow(row.entity, vm.entity)
+              // delete row entry if approved
+              if (row.entity.approved === 1) {
+                Flash.create('success', "User Approved ", 2000);
+                removeRow(row.entity, vm.entity);
+              } else {
+                Flash.create('warning', "User Updated but NOT approved ", 4000);
+              }
             },
             function(response) {
-              Flash.create('danger', "Loyalty Reward could Not be Updated : " + response.message, 2000);
+              Flash.create('danger', "Loyalty Reward could Not be Updated : " + response.message, 4000);
               alert('Cannot update loyaltyReward (error in console)');
               console.dir(response);
             });
@@ -778,7 +783,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
             removeRow(row.entity, vm.entity)
           },
           function(response) {
-            Flash.create('danger', "Loyalty Reward could Not be Deleted : " + response.message, 2000);
+            Flash.create('danger', "Loyalty Reward could Not be Deleted : " + response.message, 4000);
             alert('Cannot delete loyaltyReward (error in console)');
             console.dir(response);
           });
@@ -892,7 +897,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
           $uibModalInstance.close(row.entity);
         },
           function(response) {
-            Flash.create('danger', "New Content could not be added : " + response.message, 2000);
+            Flash.create('danger', "New Content could not be added : " + response.message, 4000);
             alert('Cannot add content (error in console)');
             console.dir(response);
         });
@@ -918,7 +923,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
             $uibModalInstance.close(row.entity);
           },
           function(response) {
-            Flash.create('danger', "Content could NOT be Updated : " + response.message, 2000);
+            Flash.create('danger', "Content could NOT be Updated : " + response.message, 4000);
             alert('Cannot update content (error in console)');
             console.dir(response);
           });
@@ -929,18 +934,26 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
       if (vm.entity.contentid !== 0) { // implies a new entity
         row.entity = angular.extend(vm.entity, row.entity);
         // value needs to be changed back before going to rest to bute size.
+
+        row.entity.startDate = row.entity.sDate.getTime();
+        row.entity.endDate = row.entity.eDate.getTime()
+
         if (row.entity.approved === true)
           row.entity.approved = 1;
         else
           row.entity.approved = 0;
         $http.put(urlBase + '/Content/update/' + row.entity.contentid,row.entity ,vm.headers )
           .then(function(response) {
-              Flash.create('success', "Content Approved ", 2000);
               $uibModalInstance.close(row.entity);
-              removeRow(row.entity, vm.entity);
+              if (row.entity.approved === 1) {
+                Flash.create('success', "Content Approved ", 2000);
+                removeRow(row.entity, vm.entity);
+              } else {
+                Flash.create('warning', "Content Updated but NOT approved ", 4000);
+              }
             },
             function(response) {
-              Flash.create('danger', "Content could NOT be approved : " + response.message, 2000);
+              Flash.create('danger', "Content could NOT be approved : " + response.message, 4000);
               alert('Cannot update content (error in console)');
               console.dir(response);
             });
@@ -962,7 +975,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
             removeRow(row.entity, vm.entity)
           },
           function(response) {
-            Flash.create('danger', "Content could Not be Deleted : " + response.message, 2000);
+            Flash.create('danger', "Content could Not be Deleted : " + response.message, 4000);
             alert('Cannot delete Content (error in console)');
             console.dir(response);
           });
@@ -970,28 +983,14 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash'];
     $uibModalInstance.close(row.entity);
   }
 
-  return rowEditors;
 
-
-
-  function paramString(entity) {
-    let newEntity = {};
-
-    for (var key in entity) {
-      if (p.hasOwnProperty(key)) {
-
-        if (!entity[key].isArray())
-          newEntity.key = entity[key];
-
-      }
+    function removeRow(rowEntity, vmEntity) {
+      row.entity = angular.extend(rowEntity, vmEntity);
+      let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
+      grid.appScope.vm.serviceGrid.data.splice(index, 1);
     }
 
-  return newEntity
+
+  return rowEditors;
 
   }
-  function removeRow(rowEntity, vmEntity) {
-    row.entity = angular.extend(rowEntity, vmEntity);
-    let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
-    grid.appScope.vm.serviceGrid.data.splice(index, 1);
-  }
-}

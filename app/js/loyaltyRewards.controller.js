@@ -4,6 +4,8 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
+    $scope.sDate = new Date();
+    $scope.eDate = new Date();
 
     $scope.myDate = new Date();
     $scope.minDate = new Date(

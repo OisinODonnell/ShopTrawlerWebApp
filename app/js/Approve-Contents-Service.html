@@ -6,6 +6,7 @@
 
     <form name="serviceForm">
 
+
       <div class="block">      <label>Content ID </label>  <input class="input" type="text"   disabled value="{{row.entity.contentid}}"/></div>
       <div class="block">      <label>Retailer ID </label> <input class="input" type="text"   disabled value="{{row.entity.retailerid}}"/>       </div>
       <div class="block">      <label>Page 1</label>       <input class="input" type="text"   ng-model="row.entity.page1"/>            </div>
@@ -13,19 +14,30 @@
       <div class="block">      <label>Page 3 </label>      <input class="input" type="text"   ng-model="row.entity.page3"/>            </div>
 
 
-      <div class="block">      <label>Start Date</label>   <input class="input" type="text"   disabled value="{{row.entity.startDate}}"/>        </div>
-      <div class="block">      <label>End Date</label>     <input class="input" type="text"   disabled value="{{row.entity.endDate}}"/>          </div>
+        <br/>
 
-      <!-- drop down for approved true/false-->
-      <div class="block">
-        <label>Approved </label>
+      <div class="block input md-datepicker-input">      <label>End Date </label>
+        <md-datepicker ng-model       = "row.entity.eDate"
+                       date-format    = "DD-MMM-YYYY HH:MM"
+                       md-placeholder = "Enter date"
+                       md-min-date    = "row.entity.minEndDate"
+                       md-max-date    = "row.entity.maxEndDate"
+                      required >
+        </md-datepicker>
+      </div>
+      <div class="block input md-datepicker-input">      <label>Start Date </label>
+        <md-datepicker ng-model       = "row.entity.sDate "
+                       date-format    = "DD-MMM-YYYY HH:MM"
+                       md-placeholder = "Enter date"
+                       md-min-date    = "row.entity.minStartDate"
+                       md-max-date    = "row.entity.eDate"
+                       required >
+        </md-datepicker>
+      </div>
+      <div class="block">  <label>Approved </label>
         <select class="input" type="datetime" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
       </div>
 
-      <div layout ="row">
-
-
-      </div>
 
     </form>
 
@@ -36,3 +48,4 @@
     <button class="btn btn-primary" ng-click="$close()">Cancel</button>
   </div>
 </div>
+

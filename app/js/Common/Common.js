@@ -1,4 +1,4 @@
-myApp.factory('Common',[ '$rootScope','Globals',  function ($rootScope, Globals) {
+myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope, Globals, moment) {
 
   let lib = {};
 
@@ -226,6 +226,82 @@ myApp.factory('Common',[ '$rootScope','Globals',  function ($rootScope, Globals)
       serviceGrid.rowTemplate = "";
     }
     return serviceGrid;
+  };
+
+  /**
+   *
+   * @param visitCharts
+   * @param footer Text to appear below xLabels
+   * @param header Test to appear above Legend
+   * @param chartType  line, bar or pie
+   * @param ctx ... where our convas object is
+   * @returns {Array.<Number>|String|Array} the data to be displayed
+   */
+  lib.buildChart = (visitCharts, chartConfig, ctx ) => {
+
+    let bgColours = Globals.BackgroundChartColours;
+    let borderColours = Globals.BorderChartColours;
+
+    let config = {};
+
+    // ChartJS uses an object with key / value pairs to configure the chart.
+    // in order to make a change to eg 'config.options.title.text = header';
+    // config.options and config.options.title must be initialised first before the header can be set
+    // ie config.options = {}; and config.options.title = {};
+
+    config.type = chartConfig.type;
+
+    let xAxes = [{
+      display : true,
+      scaleLabel : {
+        display : true,
+        labelString : chartConfig.footer
+      }
+    }];
+
+    // bring in a standard set of options first
+    config.options = Globals.ChartLineOptions;
+    // add context specif stuff hereafter
+    config.options.scales.xAxes = xAxes; // footer set above
+    config.options.title.text = chartConfig.header;
+
+    config.data = {};
+    config.data.labels = visitCharts[0].xlabels;
+
+    config.data.datasets = [];
+
+    visitCharts.forEach(  function (visitChart, key) {
+      config.data.datasets[key] = [];
+      config.data.datasets[key].data = visitChart.getCounts();
+      config.data.datasets[key].label = visitChart.getStoreName();
+      config.data.datasets[key].fill = true;
+      config.data.datasets[key].backgroundColor = bgColours[key];
+      config.data.datasets[key].borderColor = borderColours[key];
+      if (chartConfig.type === "pie" || chartConfig.type === "doughnut" || chartConfig.type === "bar") {
+        config.data.datasets[key].backgroundColor = chartConfig.options.backgroundColor;
+      }
+
+    });
+
+    $rootScope.myChart = new Chart(ctx, config);
+    return new Chart(ctx, config);
+
+  };
+
+  /**
+   * When running reports, its important to know which retailer the user is assocaited with
+   * this method usesnthe userid after login and seaches the retailers for a managerid = userid
+   * @type {number|string|*}
+   */
+  lib.getRetaileridFromUserid = (userid, retailers) => {
+    let id = 0;
+    retailers.some( function(retailer){
+
+      if (retailer.managerid == userid)
+        id = retailer.retailerid;
+
+    });
+    return id;
   };
 
   return lib;

@@ -5,11 +5,7 @@
   </div>
   <div class="modal-body">
 
-    <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="vm.approveLoyaltyReward()">Save</button>
-      <button class="btn btn-primary" ng-click="vm.removeLoyaltyReward()">Delete</button>
-      <button class="btn btn-primary" ng-click="$close()">Cancel</button>
-    </div>
+
     <form name="serviceForm">
 
       <div class="block">      <label>Loyalty Reward ID </label> <input class="input" type="text"   disabled value="{{row.entity.loyaltyRewardid}}"/> </div>
@@ -18,31 +14,36 @@
       <div class="block">      <label>Reward Image </label>      <input class="input" type="text"   ng-model="row.entity.rewardImage"/>               </div>
       <div class="block">      <label>Reward Title </label>      <input class="input" type="text"   ng-model="row.entity.rewardTitle"/>               </div>
       <div class="block">      <label>Visit Time </label>        <input class="input" type="number" ng-model="row.entity.visitTime"/>                 </div>
-      <div class="block">      <label>Start Date </label>        <input class="input" type="text"   ng-model="row.entity.startDate"/>       </div>
-      <div class="block">      <label>End Date </label>          <input class="input" type="text"   ng-model="row.entity.endDate"/>         </div>
-      <div class="block">      <label>Start Date </label>
-        <md-datepicker ng-model="row.entity.startDate | timestampToISO | date"
-                       date-format="DD-MMM-YYYY HH:MM"
-                       md-placeholder="Enter date"
-                       required>
-        </md-datepicker>
-      </div>
-      <div class="block">      <label>End Date </label>
-        <md-datepicker ng-model="row.entity.endDate | timestampToISO | date"
-                       date-format="DD-MMM-YYYY HH:MM"
-                       md-placeholder="Enter date"
-                       required>
-        </md-datepicker>
-      </div>
-
+      <div class="block">      <label>Start Date </label>        <input class="input" type="text"   ng-model="row.entity.sDate"/>       </div>
+      <div class="block">      <label>End Date </label>          <input class="input" type="text"   ng-model="row.entity.eDate"/>         </div>
       <div class="block" id="select">
         <label>Approved </label>
         <select class="input" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
       </div>
-
-
+      <div class="block input md-datepicker">      <label>Start Date </label>
+        <md-datepicker ng-model       = "row.entity.sDate "
+                       date-format    = "DD-MMM-YYYY HH:MM"
+                       md-placeholder = "Enter date"
+                       md-min-date    = "row.entity.minStartDate"
+                       md-max-date    = "row.entity.eDate"
+                       required >
+        </md-datepicker>
+      </div>
+      <div class="block input md-datepicker">      <label>End Date </label>
+        <md-datepicker ng-model       = "row.entity.eDate"
+                       date-format    = "DD-MMM-YYYY HH:MM"
+                       md-placeholder = "Enter date"
+                       md-min-date    = "row.entity.minEndDate"
+                       md-max-date    = "row.entity.maxEndDate"
+                       required >
+        </md-datepicker>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="vm.approveLoyaltyReward()">Save</button>
+        <button class="btn btn-primary" ng-click="vm.removeLoyaltyReward()">Delete</button>
+        <button class="btn btn-primary" ng-click="$close()">Cancel</button>
+      </div>
     </form>
     </div>
-
-
 </div>
+
