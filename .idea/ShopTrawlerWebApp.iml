@@ -133,5 +133,6 @@
     <orderEntry type="library" name="moment-with-locales" level="application" />
     <orderEntry type="library" name="assets-cache" level="application" />
     <orderEntry type="library" name="angular-material-datetimepicker" level="application" />
+    <orderEntry type="library" name="angular-material-datetimepicker" level="application" />
   </component>
 </module>

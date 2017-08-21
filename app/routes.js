@@ -59,9 +59,13 @@ angular.module('routes', []).config(function ($routeProvider) {
     .when('/Visits/Report/Retailer/Days',   { controller: 'VisitsReportDaysController',   templateUrl: 'js/Report.Visit.view.html', controllerAs: 'vm' })
     .when('/Visits/Report/Retailer/Weeks',  { controller: 'VisitsReportWeeksController',  templateUrl: 'js/Report.Visit.view.html', controllerAs: 'vm' })
     .when('/Visits/Report/Retailer/Months', { controller: 'VisitsReportMonthsController', templateUrl: 'js/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Retailer/Gender', { controller: 'VisitsReportGenderController', templateUrl: 'js/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Retailer/Age',    { controller: 'VisitsReportAgeController',    templateUrl: 'js/Report.Visit.view.html', controllerAs: 'vm' })
     .when('/Visits/Report/Admin/Days',      { controller: 'VisitsReportDaysController',   templateUrl: 'js/Report.Visit.view.html', controllerAs: 'vm' })
     .when('/Visits/Report/Admin/Weeks',     { controller: 'VisitsReportWeeksController',  templateUrl: 'js/Report.Visit.view.html', controllerAs: 'vm' })
     .when('/Visits/Report/Admin/Months',    { controller: 'VisitsReportMonthsController', templateUrl: 'js/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Admin/Gender',    { controller: 'VisitsReportGenderController', templateUrl: 'js/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Admin/Age',       { controller: 'VisitsReportAgeController',    templateUrl: 'js/Report.Visit.view.html', controllerAs: 'vm' })
     // Zones
     .when('/Zones/List',    {     controller: 'ZonesController',             templateUrl: 'js/List.view.html',    controllerAs: 'vm' })
 
