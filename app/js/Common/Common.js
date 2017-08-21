@@ -278,7 +278,6 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
       if (chartConfig.type === "pie" || chartConfig.type === "doughnut" || chartConfig.type === "bar") {
         config.data.datasets[key].backgroundColor = chartConfig.options.backgroundColor;
       }
-
     });
 
     $rootScope.myChart = new Chart(ctx, config);

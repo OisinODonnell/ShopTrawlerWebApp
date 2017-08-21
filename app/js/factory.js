@@ -119,15 +119,25 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
 
 
   // Visits
-  factory.listVisits                    = ()              => $http.get(urlBase + '/Visits'                        );
-  factory.listVisitsByUser              = (id)            => $http.get(urlBase + '/Visits/User/' + id             );
-  factory.listVisitsByRetailer          = (id)            => $http.get(urlBase + '/Visits/Retailer/' + id         );
+  factory.listVisits                    = ()              => $http.get(urlBase + '/Visits'                              );
+  factory.listVisitsByUser              = (id)            => $http.get(urlBase + '/Visits/User/' + id                   );
+  factory.listVisitsByRetailer          = (id)            => $http.get(urlBase + '/Visits/Retailer/' + id               );
 
-  factory.listVisitsReportsByGenderAdmin    = ()          => $http.get(urlBase + '/Visits/Report/Gender/Admin' );
+  factory.listVisitsReportsByGenderAdmin    = ()          => $http.get(urlBase + '/Visits/Report/Gender/Admin'          );
   factory.listVisitsReportsByGenderRetailer = (id)        => $http.get(urlBase + '/Visits/Report/Gender/Retailer/' + id );
 
-  factory.listVisitsReportsByAgeAdmin   = ()              => $http.get(urlBase + '/Visits/Report/Age/Admin' );
-  factory.listVisitsReportsByAgeRetailer= (id)            => $http.get(urlBase + '/Visits/Report/Age/Retailer/' + id );
+  factory.listVisitsReportsByAgeAdmin   = ()              => $http.get(urlBase + '/Visits/Report/Age/Admin'             );
+  factory.listVisitsReportsByAgeRetailer= (id)            => $http.get(urlBase + '/Visits/Report/Age/Retailer/' + id    );
+
+  factory.listVisitsReportsAdminDays        = ()          => $http.get(urlBase + '/Visits/Report/Admin/Day'             );
+  factory.listVisitsReportsAdminWeeks       = ()          => $http.get(urlBase + '/Visits/Report/Admin/Week'            );
+  factory.listVisitsReportsAdminMonths      = ()          => $http.get(urlBase + '/Visits/Report/Admin/Month'           );
+
+  factory.listVisitsReportsRetailerDays     = (id)        => $http.get(urlBase + '/Visits/Report/Retailer/Day/' + id    );
+  factory.listVisitsReportsRetailerWeeks    = (id)        => $http.get(urlBase + '/Visits/Report/Retailer/Week/' + id   );
+  factory.listVisitsReportsRetailerMonths   = (id)        => $http.get(urlBase + '/Visits/Report/Retailer/Montyh/' + id );
+
+
 
   factory.getVisit                      = (id)            => $http.get(urlBase + '/Visit/'                        );
   factory.addVisit                      = (visit)         => $http.get(urlBase + '/Visit/' + visit                );
