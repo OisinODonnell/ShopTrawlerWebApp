@@ -1,12 +1,12 @@
 
-class AgeCount {
+class AgeChart {
 
-    constructor (retailerid, storeName, counts, labels, maleCounts, femaleCounts)
+    constructor (retailerid, storeName, counts, xLabels, maleCounts, femaleCounts)
     {
       this.retailerid     = this.setRetailerid        (retailerid);
       this.storeName      = this.setStoreName         (storeName);
       this.counts         = this.setCounts            (counts);
-      this.labels         = this.setLabels            (labels);
+      this.xLabels        = this.setXLabels           (xLabels);
       this.maleCounts     = this.setMaleCounts        (maleCounts);
       this.femaleCounts   = this.setFemaleCounts      (femaleCounts);
     }
@@ -19,11 +19,11 @@ class AgeCount {
   setStoreName      (x) { this.storeName       = x ? x : 0;  }
   getCounts         ()  { return this.counts;                }
   setCounts         (x) { this.counts          = x ? x : 0;  }
-  getLabels         ()  { return this.labels;                }
-  setLabels         (x) { this.labels          = x ? x : "";  }
+  getXLabels         ()  { return this.xLabels;              }
+  setXLabels         (x) { this.xLabels        = x ? x : ""; }
   getMaleCounts     ()  { return this.maleCounts;            }
   setMaleCounts     (x) { this.maleCounts      = x ? x : 0;  }
   getFemaleCounts   ()  { return this.femaleCounts;          }
-  setFemaleCounts   (x) { this.femaleCounts    = x ? x : 0; }
+  setFemaleCounts   (x) { this.femaleCounts    = x ? x : 0;  }
 
 }

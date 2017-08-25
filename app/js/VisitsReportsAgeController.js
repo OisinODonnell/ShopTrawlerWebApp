@@ -28,12 +28,12 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
 
     function ListVisitsReportsByAgeAdmin() {
       vm.dataLoading = true;
-      let ageCounts = [];
-      let ageCount    = new AgeCount();
+      let ageCharts = [];
+      let ageChart    = new AgeChart();
       DataFactory.listVisitsReportsByAgeAdmin()
         .then( function(response) {
             // extract collections
-            ageCounts    = Common.createObjects(response.data, ageCount);
+            ageCharts    = Common.createObjects(response.data, ageChart);
 
             let chartConfig = {
               type    : 'line',
@@ -43,7 +43,7 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
             };
 
 
-            let myLineChart = buildAgeChart(ageCounts, chartConfig, ctx);
+            let myLineChart = buildAgeChart(ageCharts, chartConfig, ctx);
 
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
@@ -52,29 +52,29 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
 
     function ListVisitsReportsByAgeRetailer(id) {
       vm.dataLoading = true;
-      let ageCounts = [];
-      let ageCount    = new AgeCount();
+      let ageCharts = [];
+      let ageChart    = new AgeChart();
       DataFactory.listVisitsReportsByAgeRetailer(id)
         .then( function(response) {
             // extract collections
-            let ageCounts    = Common.createObjects(response.data, ageCount);
+            let ageCharts    = Common.createObjects(response.data, ageChart);
 
             let chartConfig = {
               type    : 'line',
-              header  : "Visit Report by Age",
+              header  : "Visit Report by Age Profile",
               footer  : "Age Profile Report",
               options : {}
             };
 
 
-            let myLineChart = buildAgeChart(ageCounts, chartConfig, ctx);
+            let myLineChart = buildAgeChart(ageCharts, chartConfig, ctx);
 
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
 
-    function buildAgeChart(ageCounts, chartConfig, ctx )  {
+    function buildAgeChart(ageCharts, chartConfig, ctx )  {
 
       let bgColours = Globals.BackgroundChartColours;
       let borderColours = Globals.BorderChartColours;
@@ -101,14 +101,14 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
       config.options.title.text = chartConfig.header;
 
       config.data = {};
-      config.data.labels = ageCounts[0].xlabels;
+      config.data.labels = ageCharts[0].xLabels;
 
       config.data.datasets = [];
 
-      ageCounts.forEach(  function (ageCount, key) {
+      ageCharts.forEach(  function (ageChart, key) {
         config.data.datasets[key] = [];
-        config.data.datasets[key].label = ageCount.getStoreName();
-        config.data.datasets[key].data = ageCount.getCounts();
+        config.data.datasets[key].label = ageChart.getStoreName();
+        config.data.datasets[key].data = ageChart.getCounts();
         config.data.datasets[key].fill = true;
         config.data.datasets[key].backgroundColor = bgColours[key];
         config.data.datasets[key].borderColor = borderColours[key];

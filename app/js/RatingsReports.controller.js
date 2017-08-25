@@ -16,7 +16,7 @@ myApp.controller('RatingsReportController', ['DataFactory','$scope','Common','$r
     $scope.vm = vm;
 
     // setup grid
-    vm.serviceGrid = Common.setupUiGrid(Globals.RatingCountColumnDefs, $scope.allowEditRow );
+    vm.serviceGrid = Common.setupUiGrid(Globals.RatingChartColumnDefs, $scope.allowEditRow );
 
 
 
@@ -27,15 +27,15 @@ myApp.controller('RatingsReportController', ['DataFactory','$scope','Common','$r
 
     function ListRatingsReportAdmin() {
       vm.dataLoading = true;
-      let ratingCounts;
-      let ratingCount = new RatingCount();
+      let ratingCharts;
+      let ratingChart = new RatingChart();
       DataFactory.listRatingsReportAdmin()
         .then( function(response) {
-          ratingCounts = Common.createObjects(response.data, ratingCount);
+          ratingCharts = Common.createObjects(response.data, ratingChart);
 
-          $scope.ratingCounts = ratingCounts;
-          vm.serviceGrid.data = ratingCounts;
-            $scope.gridStyle = Common.gridStyle(ratingCounts.length);
+          $scope.ratingCharts = ratingCharts;
+          vm.serviceGrid.data = ratingCharts;
+            $scope.gridStyle = Common.gridStyle(ratingCharts.length);
         },
         function (error) { $scope.status = 'Unable to load Rating Counts ' + error.message; });
       vm.dataLoading = false;
@@ -43,14 +43,14 @@ myApp.controller('RatingsReportController', ['DataFactory','$scope','Common','$r
 
     function ListRatingsReportRetailer(id) {
       vm.dataLoading = true;
-      let ratingCounts;
-      let ratingCount = new RatingCount();
+      let ratingCharts;
+      let ratingChart = new RatingChart();
       DataFactory.listRatingsReportRetailer(id)
         .then( function(response) {
-            ratingCounts = Common.createObjects(response.data, ratingCount);
-            $scope.ratingCounts = ratingCounts;
-            vm.serviceGrid.data = ratingCounts;
-            $scope.gridStyle = Common.gridStyle(ratingCounts.length);
+            ratingCharts = Common.createObjects(response.data, ratingChart);
+            $scope.ratingCharts = ratingCharts;
+            vm.serviceGrid.data = ratingCharts;
+            $scope.gridStyle = Common.gridStyle(ratingCharts.length);
           },
           function (error) { $scope.status = 'Unable to load Rating Count ' + error.message; });
       vm.dataLoading = false;

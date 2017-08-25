@@ -28,22 +28,22 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
 
     function ListVisitsReportsByGenderAdmin() {
       vm.dataLoading = true;
-      let genderCounts = [];
-      let genderCount    = new GenderCount();
+      let genderCharts = [];
+      let genderChart    = new GenderChart();
       DataFactory.listVisitsReportsByGenderAdmin()
         .then( function(response) {
             // extract collections
-            genderCounts    = Common.createObjects(response.data, genderCount);
+            genderCharts    = Common.createObjects(response.data, genderChart);
 
             let chartConfig = {
-              type    : 'line',
-              header  : "Daily Visits for past 12 Days By Retailer",
-              footer  : "Daily",
+              type    : 'bar',
+              header  : "Vists by Gender",
+              footer  : "Visits",
               options : {}
-           };
+            };
 
 
-            let myLineChart = buildGenderChart(genderCounts, chartConfig, ctx);
+            let myLineChart = buildGenderChart(genderCharts, chartConfig, ctx);
 
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
@@ -52,29 +52,29 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
 
     function ListVisitsReportsByGenderRetailer(id) {
       vm.dataLoading = true;
-      let genderCounts = [];
-      let genderCount    = new GenderCount();
+      let genderCharts = [];
+      let genderChart    = new GenderChart();
       DataFactory.listVisitsReportsByGenderRetailer(id)
         .then( function(response) {
             // extract collections
-            genderCounts    = Common.createObjects(response.data, genderCount);
+            genderCharts    = Common.createObjects(response.data, genderChart);
 
             let chartConfig = {
-              type    : 'line',
-              header  : "Daily Visits for past 12 Days",
-              footer  : "Daily",
+              type    : 'bar',
+              header  : "Vists by Gender",
+              footer  : "Visits",
               options : {}
             };
 
 
-            let myLineChart = buildGenderChart(genderCounts, chartConfig, ctx);
+            let myLineChart = buildGenderChart(genderCharts, chartConfig, ctx);
 
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
 
-    function buildGenderChart(genderCounts, chartConfig, ctx )  {
+    function buildGenderChart(genderCharts, chartConfig, ctx )  {
 
       let bgColours = Globals.BackgroundChartColours;
       let borderColours = Globals.BorderChartColours;
@@ -101,14 +101,14 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
       config.options.title.text = chartConfig.header;
 
       config.data = {};
-      config.data.labels = genderCounts[0].xlabels;
+      config.data.labels = genderCharts[0].getXLabels();
 
       config.data.datasets = [];
 
-      genderCounts.forEach(  function (genderCount, key) {
+      genderCharts.forEach(  function (genderChart, key) {
         config.data.datasets[key] = [];
-        config.data.datasets[key].data = genderCount.getMaleCount();
-        config.data.datasets[key].label = genderCount.getStoreName();
+        config.data.datasets[key].data = [ genderChart.getMaleCount(), genderChart.getFemaleCount()];
+        config.data.datasets[key].label = genderChart.getStoreName();
         config.data.datasets[key].fill = true;
         config.data.datasets[key].backgroundColor = bgColours[key];
         config.data.datasets[key].borderColor = borderColours[key];
