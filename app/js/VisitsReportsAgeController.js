@@ -36,7 +36,7 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
             ageCharts    = Common.createObjects(response.data, ageChart);
 
             let chartConfig = {
-              type    : 'line',
+              type    : 'bar',
               header  : "Visit Report by Age",
               footer  : "Age Profile Report",
               options : {}
@@ -60,7 +60,7 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
             let ageCharts    = Common.createObjects(response.data, ageChart);
 
             let chartConfig = {
-              type    : 'line',
+              type    : 'bar',
               header  : "Visit Report by Age Profile",
               footer  : "Age Profile Report",
               options : {}
@@ -112,7 +112,7 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
         config.data.datasets[key].fill = true;
         config.data.datasets[key].backgroundColor = bgColours[key];
         config.data.datasets[key].borderColor = borderColours[key];
-        if (chartConfig.type === "pie" || chartConfig.type === "doughnut" || chartConfig.type === "bar") {
+        if (chartConfig.type === "pie" || chartConfig.type === "doughnut" ) {
           config.data.datasets[key].backgroundColor = chartConfig.options.backgroundColor;
         }
       });

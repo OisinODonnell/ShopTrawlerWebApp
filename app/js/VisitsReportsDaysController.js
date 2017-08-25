@@ -114,7 +114,7 @@ myApp.controller('VisitsReportDaysController', ['DataFactory','$scope','Common',
       vm.dataLoading = true;
       let visitCharts = [];
       let visitChart    = new VisitChart();
-      DataFactory.listVisitsReportsByRetailerDays(id)
+      DataFactory.listVisitsReportsRetailerDays(id)
         .then( function(response) {
             // extract collections
             let visitCharts    = Common.createObjects(response.data, visitChart);
@@ -190,7 +190,7 @@ myApp.controller('VisitsReportWeeksController', ['DataFactory','$scope','Common'
       vm.dataLoading = true;
       let visitCharts = [];
       let visitChart    = new VisitChart();
-      DataFactory.listVisitsReportsByRetailerWeeks(id)
+      DataFactory.listVisitsReportsRetailerWeeks(id)
         .then( function(response) {
             // extract collections
             let visitCharts    = Common.createObjects(response.data, visitChart);
@@ -275,7 +275,7 @@ myApp.controller('VisitsReportMonthsController', ['DataFactory','$scope','Common
       vm.dataLoading = true;
       let visitCharts = [];
       let visitChart    = new VisitChart();
-      DataFactory.listVisitsReportsByRetailerMonths(id)
+      DataFactory.listVisitsReportsRetailerMonths(id)
         .then( function(response) {
             // extract collections
             let visitCharts    = Common.createObjects(response.data, visitChart);

@@ -135,7 +135,7 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
 
   factory.listVisitsReportsRetailerDays     = (id)        => $http.get(urlBase + '/Visits/Report/Retailer/Day/' + id    );
   factory.listVisitsReportsRetailerWeeks    = (id)        => $http.get(urlBase + '/Visits/Report/Retailer/Week/' + id   );
-  factory.listVisitsReportsRetailerMonths   = (id)        => $http.get(urlBase + '/Visits/Report/Retailer/Montyh/' + id );
+  factory.listVisitsReportsRetailerMonths   = (id)        => $http.get(urlBase + '/Visits/Report/Retailer/Month/' + id );
 
 
 
