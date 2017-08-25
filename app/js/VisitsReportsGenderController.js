@@ -41,10 +41,7 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
               footer  : "Visits",
               options : {}
             };
-
-
             let myLineChart = buildGenderChart(genderCharts, chartConfig, ctx);
-
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
@@ -65,10 +62,7 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
               footer  : "Visits",
               options : {}
             };
-
-
             let myLineChart = buildGenderChart(genderCharts, chartConfig, ctx);
-
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
@@ -112,9 +106,9 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
         config.data.datasets[key].fill = true;
         config.data.datasets[key].backgroundColor = bgColours[key];
         config.data.datasets[key].borderColor = borderColours[key];
-        if (chartConfig.type === "pie" || chartConfig.type === "doughnut" || chartConfig.type === "bar") {
-          config.data.datasets[key].backgroundColor = chartConfig.options.backgroundColor;
-        }
+        // if (chartConfig.type === "pie" || chartConfig.type === "doughnut" || chartConfig.type === "bar") {
+        //   config.data.datasets[key].backgroundColor = chartConfig.options.backgroundColor;
+        // }
       });
 
       $rootScope.myChart = new Chart(ctx, config);

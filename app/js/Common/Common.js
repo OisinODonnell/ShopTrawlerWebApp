@@ -2,7 +2,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
 
   let lib = {};
 
-  /**
+  /**=======================================================================================
    * createObjects()
    *
    * @param data : object to create a class entity from
@@ -20,11 +20,17 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     let objects = [];
     let obj     = {};
 
-    for (let a = 0; a < data.length; a++) {
-      // copy instance of dataType to obj
-      // make obj class the same as dataType
-      // add to array
-      obj           = data[ a ];
+    if (data.constructor === Array) {
+      for (let a = 0; a < data.length; a++) {
+        // copy instance of dataType to obj
+        // make obj class the same as dataType
+        // add to array
+        obj = data[a];
+        obj.__proto__ = dataType.__proto__;
+        objects.push(obj);
+      }
+    } else {
+      obj = data;
       obj.__proto__ = dataType.__proto__;
       objects.push(obj);
     }
@@ -32,7 +38,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
   };
 
 
-  /*******************************************************
+  /**=======================================================================================
    * Add 'ies' to any word passed ending in y
    * add 's' to any other word
    */
@@ -47,7 +53,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     return word;
   };
 
-  /********************************************************
+  /**=======================================================================================
    * Take a word and return the same word with the first word in lower case.
    * ie Accounts -> accounts
    */
@@ -65,7 +71,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
 
   lib.getUserAuthenticated = () => $rootScope.userIsAuthenticated;
 
-  /************************************************************
+  /**=======================================================================================
    * Get average rating for stock item
    * @param $scope
    *
@@ -95,7 +101,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
 };
 
 
-  /*****************************************************************************
+  /**=======================================================================================
    * These methods change the state of the attributes which control the navbar
    */
 
@@ -116,7 +122,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     $('<script/>').attr('src', src).appendTo('body');
   };
 
-  /************************************************************************
+  /**=======================================================================================
    * Take the mySql timestamp and change into a human readable date string
    * @param date
    * @returns {string}
@@ -145,7 +151,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
 
     return newDate;
   };
-  /*****************************************************************
+  /**=======================================================================================
    * Using the userid , serach for user in db, return users full name
    * @param id (userid)
    * @returns {String} or ""
@@ -163,7 +169,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     return user.firstname + " " + user.surname;
   };
 
-  /**
+  /**=======================================================================================
    * using retailerid search through db, if found, return storename.
    * @param id (retailerid)
    * @returns {storeName} or ""
@@ -181,7 +187,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     return retailer.storeName;
   };
 
-  /**************************************************
+  /**=======================================================================================
    *  Calculate size of grid in pixels to display
    *  if the rows < 10 then change the grid dynamically in size
    *  based on rows *
@@ -228,7 +234,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     return serviceGrid;
   };
 
-  /**
+  /**=======================================================================================
    * Accepts
    * @param visitCharts
    * @param footer Text to appear below xLabels
@@ -285,7 +291,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
 
   };
 
-  /**
+  /**=======================================================================================
    * When running reports, its important to know which retailer the user is assocaited with
    * this method usesnthe userid after login and seaches the retailers for a managerid = userid
    * @type {number|string|*}
@@ -301,7 +307,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     return id;
   };
 
-  /**
+  /**=======================================================================================
    * Method to place 4 control variable into rootScope which will be used to
    * control the entry of dates in loyalty rewards and content entities
    * @param sDate (start date in entity in Javascript Date() format)

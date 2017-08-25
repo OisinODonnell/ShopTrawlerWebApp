@@ -21,7 +21,7 @@ class GenderChart {
   setMaleCount      (x) { this.maleCount      = x ? x : 0;  }
   getFemaleCount    ()  { return this.femaleCount;          }
   setFemaleCount    (x) { this.femaleCount    = x ? x : 0;  }
-  getXLabels        ()  { return this.XLabels;              }
-  setXLabels        (x) { this.XLabels        = x ? x : ""; }
+  getXLabels        ()  { return this.xLabels;              }
+  setXLabels        (x) { this.xLabels        = x ? x : ""; }
 
 }
