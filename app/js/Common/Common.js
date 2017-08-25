@@ -287,7 +287,8 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     });
 
     $rootScope.myChart = new Chart(ctx, config);
-    return new Chart(ctx, config);
+    // return new Chart(ctx, config);
+    return $rootScope.myChart;
 
   };
 

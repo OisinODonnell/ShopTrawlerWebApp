@@ -8,6 +8,7 @@ myApp.controller('VisitsReportDaysController', ['DataFactory','$scope','Common',
     let canvas = document.getElementById('myChart');
     let ctx = canvas.getContext('2d');
 
+
     if (angular.isDefined($rootScope.myChart)) {
       $rootScope.myChart = {};
     }
@@ -101,10 +102,7 @@ myApp.controller('VisitsReportDaysController', ['DataFactory','$scope','Common',
               footer  : "Daily",
               options : {}
            };
-
-
             let myLineChart = Common.buildChart(visitCharts, chartConfig, ctx);
-
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
@@ -125,7 +123,6 @@ myApp.controller('VisitsReportDaysController', ['DataFactory','$scope','Common',
               footer  : "Daily",
               options : {}
             };
-
 
             let myLineChart = Common.buildChart(visitCharts, chartConfig, ctx);
 
