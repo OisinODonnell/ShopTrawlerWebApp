@@ -75,4 +75,35 @@
         });
     }
 
+    /** ====================================================================
+     * Setup the parameters to read/write to/from AWS cloud storage
+     * This uses the library AWS-SDK
+     */
+    function setupAWS() {
+      $rootScope.AWS.ACCESS_KEY = "AKIAICMSROCKZAETKBIA";
+      $rootScope.AWS.SECRET_KEY = "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";
+
+      $rootScope.AWS.BUCKET_C   = "/shoptrawler/Content";
+      $rootScope.AWS.BUCKET_LRC = "/shoptrawler/LRContent";
+      $rootScope.AWS.BUCKET_SC  = "/shoptrawler/ShoppingCenter";
+      $rootScope.AWS.BUCKET_RET = "/shoptrawler/Retailer";
+
+      $rootScope.AWS.params_c   = {};
+      $rootScope.AWS.params_lrc = {};
+      $rootScope.AWS.params_sc  = {};
+      $rootScope.AWS.params_ret = {};
+
+      $rootScope.AWS.bucket_c   = "";
+      $rootScope.AWS.bucket_lrc = "";
+      $rootScope.AWS.bucket_sc  = "";
+      $rootScope.AWS.bucket_ret = "";
+
+      $rootScope.AWS.config.region = 'eu-west-1'; // Ireland
+      $rootScope.AWS.config.update({ accessKeyId     : $rootScope.AWS.ACCESS_KEY,
+                                     secretAccessKey : $rootScope.AWS.SECRET_KEY     });
+
+
+
+    }
+
   }]);

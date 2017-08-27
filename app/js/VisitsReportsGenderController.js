@@ -2,10 +2,12 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
   function ( DataFactory,$scope,Common,$rootScope,Globals) {
     let vm = this;
     $scope.vm = vm;
+    let myLineChart;
+    let canvas;
 
     // Chart.defaults.global.defaultFontColor = 'white';
     Chart.defaults.global.defaultFontSize = 14;
-    let canvas = document.getElementById('myChart');
+    canvas = document.getElementById('myChart');
     let ctx = canvas.getContext('2d');
 
     if (angular.isDefined($rootScope.myChart)) {
@@ -41,7 +43,7 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
               footer  : "Visits",
               options : {}
             };
-            let myLineChart = buildGenderChart(genderCharts, chartConfig, ctx);
+            myLineChart = buildGenderChart(genderCharts, chartConfig, ctx);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
@@ -69,6 +71,10 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
     }
 
     function buildGenderChart(genderCharts, chartConfig, ctx )  {
+      // lib.destroy = (charts, canvasid, config, ctx) => {
+      // Common.destroy(myLineChart, canvas,chartConfig,ctx);
+
+      myLineChart.destroy();
 
       let bgColours = Globals.BackgroundChartColours;
       let borderColours = Globals.BorderChartColours;

@@ -40,7 +40,7 @@
 //
 
 
-let myApp =  angular.module('app', ['ng','ngRoute','routes','ngMaterial','ngMessages', 'ngAria','ngCookies','ngFlash',  'ngAnimate', 'ui.grid', 'ui.grid.moveColumns','ngMaterialDatePicker',  // 'ngTouch',
+let myApp =  angular.module('app', ['ng','directives','ngRoute','routes','ngMaterial','ngMessages', 'ngAria','ngCookies','ngFlash',  'ngAnimate', 'ui.grid', 'ui.grid.moveColumns','ngMaterialDatePicker',  // 'ngTouch',
   'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit', 'ui.grid.pagination','tc.chartjs','angularMoment'])
   .config(config)
   .run(run);

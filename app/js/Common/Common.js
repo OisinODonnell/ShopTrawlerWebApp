@@ -334,6 +334,16 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
 
   };
 
+
+  lib.destroy = (charts, canvasid, config, ctx) => {
+    charts[canvasid].destroy();
+    $('#' + canvisid).remove();
+    $(this).append('<canvas id="' + canvasid + '"></canvas>');
+    charts[canvasid] = new Chart($("#" + canvasid), config);
+  };
+
+
+
   return lib;
 
 }]);
