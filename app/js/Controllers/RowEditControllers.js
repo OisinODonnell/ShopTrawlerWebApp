@@ -39,7 +39,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowVisit(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-Visits-Service.html',
+      templateUrl : 'Views/Edit-Visits-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -53,7 +53,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowZone(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-Zones-Service.html',
+      templateUrl : 'Views/Edit-Zones-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -67,7 +67,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowUser(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-Users-Service.html',
+      templateUrl : 'Views/Edit-Users-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -81,7 +81,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function approveRowUser(grid, row) {
       $rootScope.addingRow = false;
       $uibModal.open({
-        templateUrl : 'js/Approve-Users-Service.html',
+        templateUrl : 'Views/Approve-Users-Service.html',
         controller : vm.controllerArray,
         controllerAs : 'vm',
         resolve : {
@@ -95,7 +95,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowRetailer(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-Retailers-Service.html',
+      templateUrl : 'Views/Edit-Retailers-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -109,7 +109,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowBeacon(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-Beacons-Service.html',
+      templateUrl : 'Views/Edit-Beacons-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -123,7 +123,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowLocation(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-Locations-Service.html',
+      templateUrl : 'Views/Edit-Locations-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -137,7 +137,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowBonusCode(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-BonusCodes-Service.html',
+      templateUrl : 'Views/Edit-BonusCodes-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -151,7 +151,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     function editRowGenerateBonusCode(grid, row) {
       $rootScope.addingRow = false;
       $uibModal.open({
-        templateUrl : 'js/Edit-GenerateBonusCodes-Service.html',
+        templateUrl : 'Views/Edit-GenerateBonusCodes-Service.html',
         controller : vm.controllerArray,
         controllerAs : 'vm',
         resolve : {
@@ -169,7 +169,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowFavourite(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-Favourites-Service.html',
+      templateUrl : 'Views/Edit-Favourites-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -183,7 +183,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowLoyaltyReward(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-LoyaltyRewards-Service.html',
+      templateUrl : 'Views/Edit-LoyaltyRewards-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -197,7 +197,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function approveRowLoyaltyReward(grid, row) {
       $rootScope.addingRow = false;
       $uibModal.open({
-        templateUrl : 'js/Approve-LoyaltyRewards-Service.html',
+        templateUrl : 'Views/Approve-LoyaltyRewards-Service.html',
         controller : vm.controllerArray,
         controllerAs : 'vm',
         resolve : {
@@ -211,7 +211,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowRating(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-Ratings-Service.html',
+      templateUrl : 'Views/Edit-Ratings-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -223,7 +223,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowShoppingCentre(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-ShoppingCentres-Service.html',
+      templateUrl : 'Views/Edit-ShoppingCentres-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -237,7 +237,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowContent(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-Contents-Service.html',
+      templateUrl : 'Views/Edit-Contents-Service.html',
       controller : vm.controllerArray,
       controllerAs : 'vm',
       resolve : {
@@ -251,7 +251,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function approveRowContent(grid, row) {
       $rootScope.addingRow = false;
       $uibModal.open({
-        templateUrl : 'js/Approve-Contents-Service.html',
+        templateUrl : 'Views/Approve-Contents-Service.html',
         controller : vm.controllerArray,
         controllerAs : 'vm',
         resolve : {
@@ -265,7 +265,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowUserPoint(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
-      templateUrl : 'js/Edit-UserPoints-Service.html',
+      templateUrl : 'Views/Edit-UserPoints-Service.html',
       controller : [ '$http', '$uibModalInstance', 'grid', 'row', RowEditCtrl ],
       controllerAs : 'vm',
       resolve : {

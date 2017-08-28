@@ -64,6 +64,7 @@
     "angular-cookies": "^1.6.6",
     "angular-material": "^1.1.4",
     "angular-material-datepicker": "^1.0.2",
+    "angular-material-datetimepicker": "^1.4.0",
     "angular-messages": "^1.6.6",
     "angular-moment": "^1.0.1",
     "angular-route": "^1.6.6",
