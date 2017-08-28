@@ -23,7 +23,7 @@ myApp.controller('RatingsReportController', ['DataFactory','$scope','Common','$r
     if ($rootScope.currentUser.type === "Administrator")
       ListRatingsReportAdmin();
     else if ($rootScope.currentUser.type === "Retailer")
-      ListRatingsReportRetailer($rootScope.currentUser.userid);
+      ListRatingsReportRetailer($rootScope.currentUser.retailerid);
 
     function ListRatingsReportAdmin() {
       vm.dataLoading = true;

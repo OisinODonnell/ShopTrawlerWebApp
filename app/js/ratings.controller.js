@@ -30,7 +30,7 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
     if ($rootScope.currentUser.type === "Administrator")
       ListRatings();
     else if ($rootScope.currentUser.type === "Retailer")
-      ListRatingsByRetailer($rootScope.currentUser.userid);
+      ListRatingsByRetailer($rootScope.currentUser.retailerid);
     else
       ListRatingsByUser($rootScope.currentUser.userid);
 

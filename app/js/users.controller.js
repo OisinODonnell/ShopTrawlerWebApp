@@ -3,23 +3,22 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
+    $scope.vm = vm;
+
+
+
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
+      ListUsers();
     } else {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = true; // action below
+      ListUser($rootScope.currentUser.userid);
     }
-
-
-    $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowUser;
     vm.serviceGrid = Common.setupUiGrid(Globals.UserColumnDefs, $scope.allowEditRow )
-
-    ListUsers();
-
-
 
     function ListUsers() {
       vm.dataLoading = true;
@@ -35,7 +34,19 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
       vm.dataLoading = false;
     }
 
-
+    function ListUser(id) {
+      vm.dataLoading = true;
+      let user = new User();
+      DataFactory.listUser(id)
+        .then( function(response) {
+            $rootScope.user = Common.createObjects(response.data, user);
+            vm.serviceGrid.data = $rootScope.user;
+            $scope.gridStyle = Common.gridStyle($rootScope.user.length);
+          },
+          function (error) { $scope.status = 'Unable to load User data ' + error.message; }
+        );
+      vm.dataLoading = false;
+    }
 
 
     /*

@@ -4,8 +4,6 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
-    $scope.test="";
-    $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
@@ -18,15 +16,13 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
     $scope.vm = vm;
 
     vm.editRow = RowEditor.editRowBonusCode;
-    vm.serviceGrid = Common.setupUiGrid(Globals.BonusCodeColumnDefs, $scope.allowEditRow )
+    vm.serviceGrid = Common.setupUiGrid(Globals.BonusCodeColumnDefs, $scope.allowEditRow );
 
 
     if ($rootScope.currentUser.type === "Administrator")
       ListBonusCodes();
     else
-      ListBonusCodesByRetailer($rootScope.currentUser.userid);
-
-
+      ListBonusCodesByRetailer($rootScope.currentUser.retailerid);
 
     function ListBonusCodes() {
       vm.dataLoading = true;
@@ -62,6 +58,7 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
               bonusCodes[key] = bonusCode;
 
             });
+
             $scope.bonusCodes = bonusCodes;
             vm.serviceGrid.data = bonusCodes;
             $scope.gridStyle = Common.gridStyle(bonusCodes.length)

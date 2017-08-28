@@ -1,4 +1,4 @@
-myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Globals, $rootScope) {
+myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Globals) {
 
   let factory   = {};
   const urlBase = Globals.URL_BASE;
@@ -25,7 +25,7 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
 
   // BonusCodes
   factory.listBonusCodes                = ()              => $http.get(urlBase + '/BonusCodes'                    );
-  factory.generateBonusCodes            = ()              => $http.get(urlBase + '/BonusCodes/Generate'           );
+  factory.generateBonusCodes            = (id)            => $http.get(urlBase + '/BonusCodes/Generate/' + id     );
   factory.listBonusCodesByRetailer      = (id)            => $http.get(urlBase + '/BonusCodes/Retailer/' + id     );
   factory.listBonusCodesByUser          = (id)            => $http.get(urlBase + '/BonusCodes/User/' + id         );
   factory.getBonusCode                  = (id)            => $http.get(urlBase + '/BonusCode/' + id               );
@@ -96,6 +96,7 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
 
   // Users
   factory.listUsers                     = ()              => $http.get(urlBase + '/Users'                         );
+  factory.listUser                      = (id)            => $http.get(urlBase + '/Users/' + id                   );
   factory.listUsersForApproval          = ()              => $http.get(urlBase + '/Users/ForApproval'             );
   factory.listUsersByRetailer           = (id)            => $http.get(urlBase + '/Users/Retailer/' + id          );
   factory.getUser                       = (id)            => $http.get(urlBase + '/User/' + id                    );

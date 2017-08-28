@@ -6,9 +6,12 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
+      ListVisits();
+
     } else {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
+      ListVisitsByRetailer($rootScope.currentUser.retailerid);
     }
 
     $scope.vm = vm;
@@ -18,7 +21,6 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
     let durationColWithAvg = {  name: 'avgRating', field: 'duration',  width: 100, aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Duration' };
     vm.serviceGrid.columnDefs.splice(3, 0, durationColWithAvg);
 
-    ListVisits();
 
     function ListVisits() {
       vm.dataLoading = true;

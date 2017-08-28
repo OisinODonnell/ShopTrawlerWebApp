@@ -1,4 +1,5 @@
-﻿myApp.controller('HomeController', ['$location', 'DataFactory','$rootScope','Common','$scope','Globals',
+﻿
+myApp.controller('HomeController', ['$location', 'DataFactory','$rootScope','Common','$scope','Globals',
   function ($location, DataFactory, $rootScope, Common, $scope, Globals) {
     let vm = this;
 
@@ -21,7 +22,6 @@
 
     let factory = {};
 
-
     loadData($rootScope.username);
 
 
@@ -33,21 +33,24 @@
       DataFactory.getUserByEmailAddress(username)
         .then(function (user) {
           vm.user = user.data;
+          let userObj = new User();
           $rootScope.currentUser = user.data;
 
           // 2nd Call tro rest ... load all users
           DataFactory.listUsers()
             .then(function (users) {
-              vm.allUsers = users.data;
-              $rootScope.users = users.data;
+              vm.allUsers =  Common.createObjects(users.data, userObj);
+              $rootScope.users = vm.allUsers;
 
+              let retailer = new Retailer();
               // 3rd Call to Rest ... load all retailers
               DataFactory.listRetailers()
                 .then(function (retailers) {
-                  vm.allRetailers = retailers.data;
-                  $rootScope.retailers = retailers.data;
+                  vm.allRetailers =  Common.createObjects(retailers.data, retailer);
+                  $rootScope.retailers = vm.allRetailers;
                   console.log("Retailer Count : " + $rootScope.retailers.length);
                   console.log("User Count : " + $rootScope.users.length);
+                  $rootScope.currentUser.retailerid = findRetailerid(vm.allRetailers, $rootScope.currentUser.userid)
 
                 }, // error handling function for  listRetailers()
                   function (error) { $scope.status = 'Unable to load Retailers ' + error.message;   }
@@ -67,6 +70,18 @@
           $rootScope.users = users.data;
         });
     }
+
+    function findRetailerid(retailers, userid) {
+      let retailerid = 0;
+      if ($rootScope.currentUser.type === "Retailer") {
+        retailers.some(function (retailer) {
+          if (retailer.getManagerid() === userid)
+            retailerid =  retailer.getRetailerid();
+        });
+      }
+      return retailerid; // no retailer found.
+    }
+
 
     function deleteUser(id){
       DataFactory.deleteUserById (id)

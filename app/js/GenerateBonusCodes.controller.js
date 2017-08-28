@@ -1,39 +1,37 @@
 myApp.controller('GenerateBonusCodesController', ['DataFactory','$scope','Common','$rootScope',
-  '$uibModal','RowEditor', 'uiGridConstants','Globals',
-
-  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals','Flash','$location',
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals, Flash, $location) {
     let vm = this;
+
+    $scope.vm = vm;
 
     if ($rootScope.isRetailer) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
 
-      vm.editRow = RowEditor.editRowBonusCode;
-      vm.serviceGrid = Common.setupUiGrid(Globals.GenerateBonusCodeColumnDefs, $scope.allowEditRow )
-      $scope.vm = vm;
+      vm.editRow = RowEditor.editRowGenerateBonusCode;
+      vm.serviceGrid = Common.setupUiGrid(Globals.GenerateBonusCodeColumnDefs, $scope.allowEditRow );
 
-      GenerateBonusCodes();
+      GenerateBonusCodes($rootScope.currentUser.retailerid);
     }
 
-    function GenerateBonusCodes() {
+    function GenerateBonusCodes(id) {
       vm.dataLoading = true;
-      let bonusCodes;
-      let bonusCode = new BonusCode();
-      DataFactory.generateBonusCodes()
-        .then( function(response) {
-            bonusCodes = Common.createObjects(response.data, bonusCode);
-            bonusCodes.forEach(function (bonusCode, key) {
-              bonusCode.fullname = Common.findUsersName(bonusCode.userid);
-              bonusCode.storeName = Common.findStoreName(bonusCode.retailerid);
-              bonusCodes[key] = bonusCode;
-            });
-            $scope.bonusCodes   = bonusCodes;
-            vm.serviceGrid.data = bonusCodes;
-            $scope.gridStyle    = Common.gridStyle(bonusCodes.length)
 
+      DataFactory.generateBonusCodes(id)
+        .then( function(response) {
+
+            if(response.data.success === "1") {
+              id = Flash.create('success', response.data.message, 2000);
+            } else {
+              id = Flash.create('warning', response.data.message, 4000);
+            }
+            $location.path('/BonusCodes/Retailer');
           },
-          function (error) { $scope.status = 'Unable to load BonusCodes ' + error.message; });
+          function (error) {
+            $scope.status = 'Unable to load BonusCodes ' + error.message;
+            id = Flash.create('warning', $scope.status, 4000);
+          });
       vm.dataLoading = false;
     }
-
   }]);

@@ -154,9 +154,9 @@ myApp.value('Globals', {
       width : 100,
       },
       {  field : 'storeName',            width : 200,displayName : 'Retailer ID', enableCellEdit : false,         },
-      {  field : 'value',              type: 'number' ,  width : 100,displayName : 'Value',       enableCellEdit : false,         },
+      {  field : 'value',                type: 'number' ,  width : 100, displayName : 'Value',       enableCellEdit : false,         },
       {  field : 'fullname',             width : 200,displayName : 'User ID',     enableCellEdit : false,         },
-      {  field : 'getDateTimeReadable()',width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
+      {  field : 'dateTime',width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
     ],
 
   "GenerateBonusCodeColumnDefs" : [{
@@ -166,7 +166,7 @@ myApp.value('Globals', {
     width : 100,
   },
     {  field : 'storeName',            width : 200,displayName : 'Retailer ID', enableCellEdit : false,         },
-    {  field : 'value',             type: 'number' ,   width : 100,displayName : 'Value',       enableCellEdit : false,         },
+    {  field : 'value',                type  : 'number', width : 100, displayName : 'Value',       enableCellEdit : false,         },
     {  field : 'fullname',             width : 200,displayName : 'User ID',     enableCellEdit : false,         },
     {  field : 'getDateTimeReadable()',width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
   ],

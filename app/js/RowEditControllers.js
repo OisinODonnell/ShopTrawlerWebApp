@@ -27,6 +27,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     editRowShoppingCentre: editRowShoppingCentre,
     editRowContent: editRowContent,
     editRowUserPoint: editRowUserPoint,
+    editRowGenerateBonusCode: editRowGenerateBonusCode,
 
     approveRowUser: approveRowUser,
     approveRowContent: approveRowContent,
@@ -147,6 +148,24 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     $rootScope.grid = grid;
     $rootScope.row = row;
   }
+    function editRowGenerateBonusCode(grid, row) {
+      $rootScope.addingRow = false;
+      $uibModal.open({
+        templateUrl : 'js/Edit-GenerateBonusCodes-Service.html',
+        controller : vm.controllerArray,
+        controllerAs : 'vm',
+        resolve : {
+          grid  : function() { return grid; },
+          row   : function() { return row;  }
+        }
+      });
+      $rootScope.grid = grid;
+      $rootScope.row = row;
+    }
+
+
+
+
   function editRowFavourite(grid, row) {
     $rootScope.addingRow = false;
     $uibModal.open({
@@ -473,7 +492,7 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash','momen
             $uibModalInstance.close(row.entity);
             row.entity = angular.extend(row.entity, vm.entity);
             let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
-            grid.appScope.vm.serviceGrid.data.splice(index, 1);
+            // grid.appScope.vm.serviceGrid.data.splice(index, 1);
           },
           function(response) {
             Flash.create('danger', "User could Not be Updated : " + response.message, 4000);

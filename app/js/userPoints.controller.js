@@ -20,7 +20,7 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
     if ($rootScope.currentUser.type === "Administrator")
       ListUserPoints();
     else if ($rootScope.currentUser.type === "Retailer")
-      ListUserPointsByRetailer($rootScope.currentUser.userid);
+      ListUserPointsByRetailer($rootScope.currentUser.retailerid);
     else
       ListUserPointsByUser($rootScope.currentUser.userid);
 

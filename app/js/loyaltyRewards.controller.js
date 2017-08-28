@@ -38,7 +38,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
     if ($rootScope.currentUser.type === "Administrator")
       ListLoyaltyRewards();
     else
-      ListLoyaltyRewardsByRetailer($rootScope.currentUser.userid);
+      ListLoyaltyRewardsByRetailer($rootScope.currentUser.retailerid);
 
     function ListLoyaltyRewards() {
       vm.dataLoading = true;

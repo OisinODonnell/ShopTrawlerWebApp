@@ -22,7 +22,7 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
     if ($rootScope.currentUser.type === "Administrator")
       ListFavourites();
     else if ($rootScope.currentUser.type === "Retailer")
-      ListFavouritesByRetailer($rootScope.currentUser.userid);
+      ListFavouritesByRetailer($rootScope.currentUser.retailerid);
     else
       ListFavouritesByUser($rootScope.currentUser.userid);
 

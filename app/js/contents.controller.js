@@ -4,9 +4,6 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
-    $scope.test="";
-    $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
-
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
@@ -25,7 +22,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     if ($rootScope.currentUser.type === "Administrator")
       ListContents();
     else
-      ListContentByRetailer($rootScope.currentUser.userid);
+      ListContentByRetailer($rootScope.currentUser.retailerid);
 
 
 

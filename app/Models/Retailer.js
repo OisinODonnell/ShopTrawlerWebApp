@@ -41,13 +41,13 @@ class Retailer {
   getHeaderBackgroundImage      ()  { return this.headerBackgroundImage;         }
   setHeaderBackgroundImage      (x) { this.headerBackgroundImage   = x ? x : ""; }
   getManagerid                  ()  { return this.managerid;                     }
-  setManagerid                  (x) { this.managerid               = x ? x : ""; }
+  setManagerid                  (x) { this.managerid               = x ? x : 0; }
   getShoppingCentreid           ()  { return this.shoppingCentreid;              }
-  setShoppingCentreid           (x) { this.shoppingCentreid        = x ? x : ""; }
+  setShoppingCentreid           (x) { this.shoppingCentreid        = x ? x : 0; }
   getStoreDefaultContentPage1   ()  { return this.storeDefaultContentPage1;      }
   setStoreDefaultContentPage1   (x) { this.storeDefaultContentPage1= x ? x : ""; }
   getZoneid                     ()  { return this.zoneid;                        }
-  setZoneid                     (x) { this.zoneid                  = x ? x : ""; }
+  setZoneid                     (x) { this.zoneid                  = x ? x : 0; }
   getPhone                      ()  { return this.phone;                         }
   setPhone                      (x) { this.phone                   = x ? x : ""; }
   getStoreName                  ()  { return this.storeName;                     }

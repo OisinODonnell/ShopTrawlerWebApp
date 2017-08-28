@@ -74,7 +74,7 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
       // lib.destroy = (charts, canvasid, config, ctx) => {
       // Common.destroy(myLineChart, canvas,chartConfig,ctx);
 
-      myLineChart.destroy();
+      // myLineChart.destroy();
 
       let bgColours = Globals.BackgroundChartColours;
       let borderColours = Globals.BorderChartColours;
