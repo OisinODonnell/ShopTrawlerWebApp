@@ -9,14 +9,17 @@
       <div class="block">      <label>Content ID </label>  <input class="input" title="" type="text"   disabled value="{{row.entity.contentid}}"/></div>
 
       <div class="block">      <label>Page 1</label>
+        <input class="bottom-marg-15" type="file" name="file" file></input>
         <input class="input" title="" type="text"   ng-model="row.entity.page1"/>
         <a class="btn " ng-click="upload()">Upload New Image</a>
       </div>
       <div class="block">      <label>Page 2 </label>
+        <input class="bottom-marg-15" type="file" name="file" file></input>
         <input class="input" title="" type="text"   ng-model="row.entity.page2"/>
         <a class="btn " ng-click="upload()">Upload New Image</a>
       </div>
       <div class="block">      <label>Page 3 </label>
+        <input class="bottom-marg-15" type="file" name="file" file></input>
         <input class="input" title="" type="text"   ng-model="row.entity.page3"/>
         <a class="btn " ng-click="upload()">Upload New Image</a>
       </div>
@@ -49,7 +52,7 @@
         <!--<input type="checkbox"    ng-model="row.entity.approved"  name="row.entity.approved"   ng-true-value="true"   ng-false-value="false" title="Approved"/>  </div>-->
     </form>
 
-    </form>
+
 
     <!-- Progress Bar -->
     <div class="progress">

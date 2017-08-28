@@ -4,19 +4,19 @@ angular.module('routes', []).config(function ($routeProvider) {
 
     // Login / Logout / Home and Register
       .when('/', {
-        controller: 'LoginController', templateUrl: 'js/login/login.view.html',
+        controller: 'LoginController', templateUrl: 'js/Controllers/login/login.view.html',
         controllerAs: 'vm', requireLogin: false })
       .when('/login', {
-        controller: 'LoginController', templateUrl: 'js/login/login.view.html',
+        controller: 'LoginController', templateUrl: 'js/Controllers/login/login.view.html',
         controllerAs: 'vm', requireLogin: false })
       .when('/register', {
-        controller: 'LoginController', templateUrl: 'js/login/register.view.html',
+        controller: 'LoginController', templateUrl: 'js/Controllers/login/register.view.html',
         controllerAs: 'vm', requireLogin: false  })
       .when('/home', {
-        controller: 'HomeController', templateUrl: 'js/login/home.view.html',
+        controller: 'HomeController', templateUrl: 'js/Controllers/login/home.view.html',
         controllerAs: 'vm', requireLogin: true  })
       .when('/logout', {
-        controller: 'HomeController', templateUrl: 'js/login/home.view.html',
+        controller: 'HomeController', templateUrl: 'js/Controllers/login/home.view.html',
         controllerAs: 'vm', redirectTo: '/login', requireLogin: true
       })
 

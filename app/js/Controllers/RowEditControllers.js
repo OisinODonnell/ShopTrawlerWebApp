@@ -311,6 +311,8 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash','momen
     saveContent : saveContent,
     saveRating : saveRating,
 
+    upload: upload,
+
     approveUser : approveUser,
     approveContent : approveContent,
     approveLoyaltyReward : approveLoyaltyReward,
@@ -1031,6 +1033,10 @@ RowEditCtrl.$inject = [ '$http', '$uibModalInstance','grid','row','Flash','momen
       row.entity = angular.extend(rowEntity, vmEntity);
       let index = grid.appScope.vm.serviceGrid.data.indexOf(row.entity);
       grid.appScope.vm.serviceGrid.data.splice(index, 1);
+    }
+
+    function upload() {
+      console.log("clicked upload insdie roweditctrl");
     }
 
   return rowEditors;

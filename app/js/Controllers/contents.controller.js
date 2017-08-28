@@ -51,31 +51,29 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       vm.dataLoading = false;
     }
 
-    function GetContent(contentId) {
-      vm.dataLoading = true;
-      let content = new Content();
-      DataFactory.getContent(contentId)
-        .then( function(response) {
-            $scope.content = Common.createObjects(response.data, content);
-            vm.serviceGrid.data = $scope.content;
-            $scope.gridStyle = Common.gridStyle($scope.content.length)
-          },
-          function (error) { $scope.status = 'Unable to load Content ' + error.message; });
-      vm.dataLoading = false;
-    }
-
-
-
-    function AddContent(newContent) {
-      vm.dataLoading = true;
-      let content = new Content();
-      DataFactory.addContent(newContent)
-        .then( function(response) {
-            $scope.content = Common.createObjects(response.data, content);
-          },
-          function (error) { $scope.status = 'Unable to set content ' + error.message; });
-      vm.dataLoading = false;
-    }
+    // function GetContent(contentId) {
+    //   vm.dataLoading = true;
+    //   let content = new Content();
+    //   DataFactory.getContent(contentId)
+    //     .then( function(response) {
+    //         $scope.content = Common.createObjects(response.data, content);
+    //         vm.serviceGrid.data = $scope.content;
+    //         $scope.gridStyle = Common.gridStyle($scope.content.length)
+    //       },
+    //       function (error) { $scope.status = 'Unable to load Content ' + error.message; });
+    //   vm.dataLoading = false;
+    // }
+    //
+    // function AddContent(newContent) {
+    //   vm.dataLoading = true;
+    //   let content = new Content();
+    //   DataFactory.addContent(newContent)
+    //     .then( function(response) {
+    //         $scope.content = Common.createObjects(response.data, content);
+    //       },
+    //       function (error) { $scope.status = 'Unable to set content ' + error.message; });
+    //   vm.dataLoading = false;
+    // }
 
     $scope.addRow = function () {
       let newService = Globals.addRowContent;
