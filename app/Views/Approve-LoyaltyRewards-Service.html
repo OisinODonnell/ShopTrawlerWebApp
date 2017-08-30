@@ -8,19 +8,18 @@
 
     <form name="serviceForm">
 
-      <div class="block">      <label>Loyalty Reward ID </label> <input class="input" type="text"   disabled value="{{row.entity.loyaltyRewardid}}"/> </div>
-      <div class="block">      <label>Retailer ID </label>       <input class="input" type="text"   disabled value="{{row.entity.retailerid}}"/>      </div>
-      <div class="block">      <label>Points Per Visit </label>  <input class="input" type="number" ng-model="row.entity.pointsPerVisit"/>            </div>
-      <div class="block">      <label>Reward Image </label>      <input class="input" type="text"   ng-model="row.entity.rewardImage"/>               </div>
-      <div class="block">      <label>Reward Title </label>      <input class="input" type="text"   ng-model="row.entity.rewardTitle"/>               </div>
-      <div class="block">      <label>Visit Time </label>        <input class="input" type="number" ng-model="row.entity.visitTime"/>                 </div>
-      <div class="block">      <label>Start Date </label>        <input class="input" type="text"   ng-model="row.entity.sDate"/>       </div>
-      <div class="block">      <label>End Date </label>          <input class="input" type="text"   ng-model="row.entity.eDate"/>         </div>
+      <div class="block">      <label>Loyalty Reward ID </label> <input class="input" title="Loyalty Reward ID" type="text"  disabled value="{{row.entity.loyaltyRewardid}}"/> </div>
+      <div class="block">      <label>Retailer </label>          <input class="input" title="Retailer"          type="text"  disabled value="{{row.entity.storeName}}"/>       </div>
+      <div class="block">      <label>Points Per Visit </label>  <input class="input" title="Points Per Visit"  type="text"  disabled value="{{row.entity.pointsPerVisit}}"/>  </div>
+      <div class="block">      <label>Reward Image </label>      <input class="input" title="Reward Image"      type="text"  disabled value="{{row.entity.rewardImage}}"/>     </div>
+      <div class="block">      <label>Reward Title </label>      <input class="input" title="Reward Title"      type="text"  disabled value="{{row.entity.rewardTitle}}"/>     </div>
+      <div class="block">      <label>Visit Time </label>        <input class="input" title="Visit Time"        type="text"  disabled value="{{row.entity.visitTime}}"/>       </div>
       <div class="block" id="select">
         <label>Approved </label>
         <select class="input" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
       </div>
-      <div class="block input md-datepicker">      <label>Start Date </label>
+
+      <div class="block input md-datepicker-input">      <label>Start Date </label>
         <md-datepicker ng-model       = "row.entity.sDate "
                        date-format    = "DD-MMM-YYYY HH:MM"
                        md-placeholder = "Enter date"
@@ -29,7 +28,7 @@
                        required >
         </md-datepicker>
       </div>
-      <div class="block input md-datepicker">      <label>End Date </label>
+      <div class="block input md-datepicker-input">      <label>End Date </label>
         <md-datepicker ng-model       = "row.entity.eDate"
                        date-format    = "DD-MMM-YYYY HH:MM"
                        md-placeholder = "Enter date"
@@ -38,6 +37,14 @@
                        required >
         </md-datepicker>
       </div>
+
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{ vm.uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ vm.uploadProgress }}%;">
+          {{ vm.uploadProgress == 0 ? '' : vm.uploadProgress + '%' }}
+        </div>
+      </div>
+
+
       <div class="modal-footer">
         <button class="btn btn-primary" ng-click="vm.approveLoyaltyReward()">Save</button>
         <button class="btn btn-primary" ng-click="vm.removeLoyaltyReward()">Delete</button>

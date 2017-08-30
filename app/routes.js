@@ -26,8 +26,8 @@ angular.module('routes', []).config(function ($routeProvider) {
     .when('/BonusCodes/Retailer',{controller: 'BonusCodesController',        templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
     .when('/BonusCodes/Generate',{controller: 'GenerateBonusCodesController',templateUrl: 'Views/Generate.BonusCodes.view.html', controllerAs: 'vm' })
     // Contents
-    .when('/Contents/List',    {  controller: 'ContentsController',          templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
-    .when('/Contents/Retailer',{  controller: 'ContentsController',          templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
+    .when('/Contents/List',    {  controller: 'ContentsController',          templateUrl: 'Views/List.view2.html',    controllerAs: 'vm' })
+    .when('/Contents/Retailer',{  controller: 'ContentsController',          templateUrl: 'Views/List.view2.html',   controllerAs: 'vm' })
     .when('/Contents/Approve', {  controller: 'ApproveContentsController',   templateUrl: 'Views/Approve.view.html', controllerAs: 'vm' })
 
     // Favourites

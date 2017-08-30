@@ -4,6 +4,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
+    $rootScope.type = "LR";
     $scope.sDate = new Date();
     $scope.eDate = new Date();
 
@@ -43,12 +44,14 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
     function ListLoyaltyRewards() {
       vm.dataLoading = true;
       let loyaltyRewards;
+      $scope.loyaltyRewards = [];
       let loyaltyReward = new LoyaltyReward();
       DataFactory.listLoyaltyRewards()
         .then( function(response) {
           loyaltyRewards = Common.createObjects(response.data, loyaltyReward);
           loyaltyRewards.forEach(function (loyaltyReward, key) {
-            loyaltyReward.storeName = Common.findStoreName(loyaltyReward.retailerid);
+            loyaltyReward = Common.setDatesAndIDs(loyaltyReward);
+            loyaltyReward.filename1="";
             loyaltyRewards[key] = loyaltyReward;
           });
           $scope.loyaltyRewards = loyaltyRewards;
@@ -61,12 +64,14 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
     function ListLoyaltyRewardsByRetailer(id) {
       vm.dataLoading = true;
       let loyaltyRewards;
+      $scope.loyaltyRewards = [];
       let loyaltyReward = new LoyaltyReward();
       DataFactory.listLoyaltyRewardsByRetailer(id)
         .then( function(response) {
             loyaltyRewards = Common.createObjects(response.data, loyaltyReward);
             loyaltyRewards.forEach(function (loyaltyReward, key) {
-              loyaltyReward.storeName = Common.findStoreName(loyaltyReward.retailerid);
+              loyaltyReward = Common.setDatesAndIDs(loyaltyReward);
+              loyaltyReward.filename1="";
               loyaltyRewards[key] = loyaltyReward;
             });
             vm.serviceGrid.data = loyaltyRewards;
@@ -76,27 +81,27 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       vm.dataLoading = false;
     }
 
-    function AddLoyaltyReward(newLoyaltyReward) {
-      vm.dataLoading = true;
-      let loyaltyReward = new LoyaltyReward();
-      DataFactory.addLoyaltyReward(newLoyaltyReward)
-        .then( function(response) {
-            $scope.loyaltyRewards = Common.createObjects(response.data, loyaltyReward);
-          },
-          function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
-      vm.dataLoading = false;
-    }
-
-    function GetLoyaltyReward(id) {
-      vm.dataLoading = true;
-      let loyaltyReward = new LoyaltyReward();
-      DataFactory.getLoyaltyReward(id)
-        .then( function(response) {
-            $scope.loyaltyReward = Common.createObjects(response.data, loyaltyReward);
-          },
-          function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
-      vm.dataLoading = false;
-    }
+    // function AddLoyaltyReward(newLoyaltyReward) {
+    //   vm.dataLoading = true;
+    //   let loyaltyReward = new LoyaltyReward();
+    //   DataFactory.addLoyaltyReward(newLoyaltyReward)
+    //     .then( function(response) {
+    //         $scope.loyaltyRewards = Common.createObjects(response.data, loyaltyReward);
+    //       },
+    //       function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
+    //   vm.dataLoading = false;
+    // }
+    //
+    // function GetLoyaltyReward(id) {
+    //   vm.dataLoading = true;
+    //   let loyaltyReward = new LoyaltyReward();
+    //   DataFactory.getLoyaltyReward(id)
+    //     .then( function(response) {
+    //         $scope.loyaltyReward = Common.createObjects(response.data, loyaltyReward);
+    //       },
+    //       function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
+    //   vm.dataLoading = false;
+    // }
 
 
     $scope.addRow = function () {

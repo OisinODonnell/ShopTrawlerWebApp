@@ -4,7 +4,7 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
     $scope.vm = vm;
-
+    $rootScope.type = "RET";
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = true; //  view is affected
       $scope.allowEditRow = true; // action below

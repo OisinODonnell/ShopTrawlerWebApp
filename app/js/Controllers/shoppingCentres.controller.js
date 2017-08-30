@@ -3,7 +3,7 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','
 
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
-
+    $rootScope.type = "SC";
     $scope.myDate = new Date();
     $scope.minDate = new Date(
       $scope.myDate.getFullYear(),

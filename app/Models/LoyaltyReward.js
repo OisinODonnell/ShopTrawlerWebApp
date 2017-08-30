@@ -48,36 +48,42 @@ function getReadableDate(date) {
 
   let dateStr = new Date(date);
 
-  let month = dateStr.getMonth();
-  let monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December' ];
-  let monthName = monthNames[month];
-  let year = dateStr.getFullYear()
-  let day = dateStr.getDate();
-
-  let hour = dateStr.getHours();
-  let minute = dateStr.getMinutes();
-  // let period = "am";
-  // if (hour >= 12) {
-  //   period = " pm";
-  //   hour = hour - 12;
+  // let month = dateStr.getMonth();
+  // let monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+  //   'July', 'August', 'September', 'October', 'November', 'December'];
+  // let MonthNamesAbv = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  // let monthName = monthNames[month];
+  // let monthAbv = MonthNamesAbv[month];
+  // let year = dateStr.getFullYear();
+  // let day = dateStr.getDate();
+  //
+  // let hour = dateStr.getHours();
+  // let minute = dateStr.getMinutes();
+  // // let period = "am";
+  // // if (hour >= 12) {
+  // //   period = " pm";
+  // //   hour = hour - 12;
+  // // }
+  //
+  // let newDate = ""
+  // if ((hour === 0) && (minute === 0))
+  //
+  //   newDate = monthName + " " + day + ", " + year;
+  // else {
+  //   if (minute < 10)
+  //     minute = "0" + minute;
+  //   if (hour < 10)
+  //     hour = "0" + hour;
+  //
+  //   // newDate = hour + ":" + minute + " " + monthName + " " + day + ", " + year;
+  //   newDate = year + "-" + monthAbv + "-" + day + " " + hour + ":" + minute;
+  //
   // }
 
-  let newDate = ""
-  if ((hour === 0) && (minute === 0))
+  return dateStr;
 
-    newDate = monthName + " " + day + ", " + year;
-  else {
-    if (minute < 10)
-      minute = "0" + minute;
-    if (hour < 10)
-      hour = "0" + hour;
-
-    newDate = hour + ":" + minute + " " + monthName + " " + day + ", " + year;
-  }
-
-  return newDate;
 }
+
 
 
 

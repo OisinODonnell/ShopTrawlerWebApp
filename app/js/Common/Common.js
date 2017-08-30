@@ -26,6 +26,12 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
         // make obj class the same as dataType
         // add to array
         obj = data[a];
+        if (obj.startDate) {
+          obj.startDate = new Date(obj.startDate);
+        }
+        if (obj.endDate) {
+          obj.endDate = new Date(obj.endDate);
+        }
         obj.__proto__ = dataType.__proto__;
         objects.push(obj);
       }
@@ -36,7 +42,6 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     }
     return objects;
   };
-
 
   /**=======================================================================================
    * Add 'ies' to any word passed ending in y
@@ -114,7 +119,6 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
   lib.setLoggedIn = state    => $rootScope.loggedIn = state;
   lib.setAdmin    = state    => $rootScope.isAdmin    = state;
   lib.setRetailer = state    => $rootScope.isRetailer     = state;
-
 
   lib.reloadJs = (src) =>  {
     src = $('script[src$="' + src + '"]').attr("src");
@@ -334,7 +338,6 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
 
   };
 
-
   lib.destroy = (charts, canvasid, config, ctx) => {
     charts[canvasid].destroy();
     $('#' + canvisid).remove();
@@ -342,8 +345,116 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
     charts[canvasid] = new Chart($("#" + canvasid), config);
   };
 
+  lib.setDatesAndIDs = (entity) => {
+
+    let today = moment(new Date());
+    let tomorrow = moment(new Date()).add(1,'day');
+    let endDate = moment(new Date()).add(6,'month');
+
+    entity.sDate = {};
+    entity.eDate = {};
+    entity.sDate = new Date(entity.startDate);
+    entity.eDate = new Date(entity.endDate);
+
+    // fix invalid dates before we start.
+    // startdate cant be less that today
+    // endate cant be less than tomorrow
+    // nor greater than 6months from now
+
+    if (entity.sDate < new Date(today)) {
+      entity.sDate = new Date(today);
+    }
+    if (entity.eDate < new Date(tomorrow)) {
+      entity.eDate = new Date(tomorrow);
+    }
+
+    entity.minStartDate = today;
+    entity.minEndDate = new Date (tomorrow);
+    entity.maxEndDate = new Date (endDate);
+
+    if (entity.retailerid) { // check if this id exists
+      entity.storeName = "";
+      entity.storeName = lib.findStoreName(entity.retailerid);
+    }
+
+    if (entity.userid) { // check if this id exists
+      entity.fullname = "";
+      entity.fullname = lib.findUsersName(entity.userid);
+    }
+
+    return entity;
+  };
+
+  lib.setupAWS = (type) => {
+    $scope.AWS = {};
+    $scope.AWS.ACCESS_KEY = "AKIAICMSROCKZAETKBIA";
+    $scope.AWS.SECRET_KEY = "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";
+    $scope.AWS.BUCKET_C   = "/shoptrawler/Content";
+    $scope.AWS.BUCKET_LRC = "/shoptrawler/LRContent";
+    $scope.AWS.BUCKET_SC  = "/shoptrawler/ShoppingCenter";
+    $scope.AWS.BUCKET_RET = "/shoptrawler/Retailer";
+    $scope.AWS.SERVICE    = "s3";
+    $scope.AWS.ENCRYPTION = 'AES256';
+    $scope.AWS.REGION     = "eu-west-1";
+    $scope.AWS.type       = type; // default content type (Content.js entries) others SC, LR, and RET
+
+    $scope.AWS.config = {};
+    $scope.AWS.config.region = $scope.AWS.region;
+
+    $scope.AWS.params_c   = { Bucket : $scope.AWS.BUCKET_C   , ServerSideEncryption : 'AES256'};
+    $scope.AWS.params_lrc = { Bucket : $scope.AWS.BUCKET_LRC , ServerSideEncryption : 'AES256'};
+    $scope.AWS.params_sc  = { Bucket : $scope.AWS.BUCKET_SC  , ServerSideEncryption : 'AES256'};
+    $scope.AWS.params_ret = { Bucket : $scope.AWS.BUCKET_RET , ServerSideEncryption : 'AES256'};
+
+    // for use in get operations
+    $scope.AWS.server = "https://" +  $scope.AWS.service + "-" +
+      $scope.AWS.region + ".amazonaws.com";
+
+    AWS.config.update({ accessKeyId : $scope.AWS.ACCESS_KEY, secretAccessKey : $scope.AWS.SECRET_KEY});
+    AWS.config.region = $scope.AWS.REGION;
+    $scope.bucket = {};
+    $scope.params = {};
+    // specify the params to use and the bucket to write to.
+    switch(type) {
+      case "C":
+        $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_C}});
+        $scope.params = $scope.AWS.params_c;
+        $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_C + "/";
+        break;
+      case "LR":
+        $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_LRC}});
+        $scope.params = $scope.AWS.params_lrc;
+        $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_LRC + "/";
+        break;
+      case "RET":
+        $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_RET}});
+        $scope.params = $scope.AWS.params_ret;
+        $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_RET + "/";
+        break;
+      case "SC":
+        $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_SC}});
+        $scope.params = $scope.AWS.params_sc;
+        $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_SC + "/";
+        break;
+    }
+
+  };
+
+  lib.fileSizeLabel = () => {
+    // Convert Bytes To MB
+    return Math.round($scope.sizeLimit / 1024 / 1024) + 'MB';
+  };
+
+  lib.uniqueString = () => {
+    let text     = "";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( let i=0; i < 8; i++ ) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  };
 
 
   return lib;
-
 }]);

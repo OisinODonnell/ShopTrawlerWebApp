@@ -6,65 +6,67 @@
 
     <form name="serviceForm">
 
-      <div class="block">      <label>Content ID </label>  <input class="input" title="" type="text"   disabled value="{{row.entity.contentid}}"/></div>
-
+      <div class="block">  <label>Content ID </label> <input class="input" title="Content ID" type="text"   disabled value="{{row.entity.contentid}}"/></div>
+      <div class="block">  <label>Retailer </label>   <input class="input" title="Retailer"   type="text"   disabled value="{{row.entity.storeName}}"/></div>
+      <br/>
       <div class="block">      <label>Page 1</label>
-        <input class="bottom-marg-15" type="file" name="file" file></input>
-        <input class="input" title="" type="text"   ng-model="row.entity.page1"/>
-        <a class="btn " ng-click="upload()">Upload New Image</a>
+
+        <!--<input class="bottom-marg-15" type="file" name="file" file/>-->
+        <input file-upload="fileUploadOptions" type="file" multiple data-sequential-uploads="true" />
+        <input  class="input" title="Page 1" ng-model="row.entity.page1"/>
+        <a class="btn-sm btn-info" ng-click="vm.upload(file, 'C', row.entity.contentid, row.entity.page1, row)">Upload Page 1</a>
+
       </div>
+      <br/>
       <div class="block">      <label>Page 2 </label>
-        <input class="bottom-marg-15" type="file" name="file" file></input>
-        <input class="input" title="" type="text"   ng-model="row.entity.page2"/>
-        <a class="btn " ng-click="upload()">Upload New Image</a>
+        <input class="bottom-marg-15" type="file" name="file" ng-model="row.entity.filename2" file/>
+        <input class="input" title="Page 2" type="text"   ng-model="row.entity.page2" file/>
+        <a     class="btn-sm btn-info "  ng-click="vm.upload(file,'C',row.entity.contentid,row.entity.page2)">Upload Page 2</a>
       </div>
+      <br/>
       <div class="block">      <label>Page 3 </label>
-        <input class="bottom-marg-15" type="file" name="file" file></input>
-        <input class="input" title="" type="text"   ng-model="row.entity.page3"/>
-        <a class="btn " ng-click="upload()">Upload New Image</a>
+        <input class="bottom-marg-15" type="file" name="file" ng-model="row.entity.filename3" file/>
+        <input class="input" title="Page 3" type="text"   ng-model="row.entity.page3"/>
+        <a     class="btn-sm btn-info " ng-click="vm.upload(file,'C',row.entity.contentid,row.entity.page3)">Upload Page 3</a>
       </div>
+      <br/>
+      <div class="block">      <label>Approved </label>    <input class="input" title="Approved" type="text"   disabled value="{{row.entity.approved}}"/>            </div>
 
-
-
-      <div class="block">      <label>Retailer ID </label> <input class="input" title="" type="text" disabled value="{{row.entity.contentid = currentUser.userid}}"/></div>
-      <!--<div class="block">      <label>Start Date</label>   <input class="input" type="time"   ng-model="row.entity.startDate"/>        </div>-->
-      <!--<div class="block">      <label>End Date</label>     <input class="input" type="time"   ng-model=row.entity.endDate"/>           </div>-->
-      <div class="block">      <label>Start Date </label>
-        <md-datepicker ng-model="row.entity.startDate | timestampToISO | date"
-                       date-format="DD-MMM-YYYY HH:MM"
-                       md-placeholder="Enter date"
-                       required>
+      <br/>
+      <div class="block input md-datepicker-input">      <label>Start Date </label>
+        <md-datepicker ng-model       = "row.entity.sDate "
+                       date-format    = "DD-MMM-YYYY HH:MM"
+                       md-placeholder = "Enter date"
+                       md-min-date    = "row.entity.minStartDate"
+                       md-max-date    = "row.entity.eDate"
+                       required >
         </md-datepicker>
       </div>
-      <div class="block">      <label>End Date </label>
-        <md-datepicker ng-model="row.entity.endDate | timestampToISO | date"
-                       date-format="DD-MMM-YYYY HH:MM"
-                       md-placeholder="Enter date"
-                       required>
+      <div class="block input md-datepicker-input">      <label>End Date </label>
+        <md-datepicker ng-model       = "row.entity.eDate"
+                       date-format    = "DD-MMM-YYYY HH:MM"
+                       md-placeholder = "Enter date"
+                       md-min-date    = "row.entity.minEndDate"
+                       md-max-date    = "row.entity.maxEndDate"
+                       required >
         </md-datepicker>
-
-      <div class="block">      <label>Approved</label>     <input class="input" title="" type="text"  disabled value="{{row.entity.approved}}">/>         </div>
-
-
       </div>
-
-      <!--<div class="block">      <label>Approved </label>-->
-        <!--<input type="checkbox"    ng-model="row.entity.approved"  name="row.entity.approved"   ng-true-value="true"   ng-false-value="false" title="Approved"/>  </div>-->
     </form>
 
-
-
-    <!-- Progress Bar -->
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="{{ uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ uploadProgress }}%;">
-        {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
-      </div>
-    </div>
-
   </div>
+
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{ vm.uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ vm.uploadProgress }}%;">
+      {{ vm.uploadProgress == 0 ? '' : vm.uploadProgress + '%' }}
+    </div>
+  </div>
+
   <div class="modal-footer">
     <button class="btn btn-primary" ng-click="vm.saveContent()">Save</button>
     <button class="btn btn-primary" ng-click="vm.removeContent()">Delete</button>
     <button class="btn btn-primary" ng-click="$close()">Cancel</button>
   </div>
 </div>
+
+
+

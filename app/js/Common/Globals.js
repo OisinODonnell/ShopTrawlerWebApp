@@ -79,6 +79,7 @@ myApp.value('Globals', {
     enableRowHeaderSelection  : false,
     showGridFooter            : true,
     multiSelect               : false,
+    enableCellEdit            : true,
     enableSorting             : true,
     enableFiltering           : true,
     enableHorizontalScrollbar : 1, // 0 = disabled,  1 = always, 2 = as needed
@@ -96,7 +97,87 @@ myApp.value('Globals', {
     minWidth                  : 200, //
     rowHeight                 : 30,  // in pixels
   },
+  "ContentColumnDefs" : [{
+    field : 'contentid',                displayName    : 'Content ID',
+    enableSorting : true,               enableCellEdit : false,
+    type  : 'number',
+    width : 100,
+  },
+    {
+      name: 'Actions', field: 'edit', enableFiltering: false, enableSorting: false,
+      cellTemplate: '<div><button ng-show="!row.entity.editrow" class="btn primary" ng-click="grid.appScope.edit(row.entity)"><ifa-edit"></i></button>' +  //Edit Button
+      '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.saveRow(row.entity)"><i class="fa fa-floppy-o"></i></button>' +//Save Button
+      '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.cancelEdit(row.entity)"><i class="fa fa-times"></i></button>' + //Cancel Button
+      '</div>', width: 100
+    },
+    {  field : 'getEndDateString()',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : true, },
+    {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
 
+    },
+    {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
+    },
+    {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
+    },
+    {  field : 'retailerid',         type: 'number' ,   width : 100,displayName : 'Retailer ID',enableCellEdit : true,          },
+    {  field : 'getStartDateString()',width : 200,displayName : 'Start Date',type:"date",                      }
+
+  ],
+
+  "ContentColumnDefs2" : [{
+    field : 'contentid',                displayName    : 'Content ID',
+    enableSorting : true,               enableCellEdit : false,
+    type  : 'number',
+    width : 100,
+  },    {
+    name: 'Actions', field: 'edit', enableFiltering: false, enableSorting: false,
+    cellTemplate: '<div><button ng-show="!row.entity.editrow" class="btn primary" ng-click="grid.appScope.edit(row.entity)"><ifa-edit"></i></button>' +  //Edit Button
+    '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.saveRow(row.entity)"><i class="fa fa-floppy-o"></i></button>' +//Save Button
+    '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.cancelEdit(row.entity)"><i class="fa fa-times"></i></button>' + //Cancel Button
+    '</div>', width: 100
+  },
+    {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
+
+    },
+    {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
+    },
+    {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
+    },
+    {  field : 'retailerid',         type: 'number' ,   width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
+    {  field : 'endDate',width : 200,displayName : 'Start Date',type:"date",  enableCellEdit : true  },
+    {  field : 'startDate',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : true, },
+  ],
+
+
+  "ApproveContentColumnDefs" : [{
+    field : 'contentid',                displayName    : 'Content ID',
+    enableSorting : true,               enableCellEdit : false,
+    type  : 'number',
+    width : 100,
+  },
+    {  field : 'getEndDateReadable()',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : false, },
+    {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : false,               },
+    {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : false,               },
+    {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : false,               },
+    {  field : 'retailerid',          type: 'number' ,  width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
+    {  field : 'getStartDateReadable()',width : 200,displayName : 'Start Date' ,type:"date",   enableCellEdit  : false  },
+    {  field : 'approved',             width : 100, displayName: 'Approved?', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+
+  ],
+  "addRowContent" : {
+    "contentid"   : "",
+    "endDate"     : "",
+    "page1"       : "",
+    "page2"       : "",
+    "page3"       : "",
+    "retailerid"  : "",
+    "startDate"   : ""
+  },
   "VisitColumnDefs" : [ {
       field : 'visitid',                 displayName    : 'Visit ID',
       enableSorting : true,              enableCellEdit : false,
@@ -180,43 +261,7 @@ myApp.value('Globals', {
   },
 
 
-  "ContentColumnDefs" : [{
-      field : 'contentid',                displayName    : 'Content ID',
-      enableSorting : true,               enableCellEdit : false,
-      type  : 'number',
-      width : 100,
-      },
-      {  field : 'getEndDateReadable()',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : false, },
-      {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : false,               },
-      {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : false,               },
-      {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : false,               },
-      {  field : 'retailerid',         type: 'number' ,   width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
-      {  field : 'getStartDateReadable()',width : 200,displayName : 'Start Date',type:"date",                      }
-    ],
-  "ApproveContentColumnDefs" : [{
-    field : 'contentid',                displayName    : 'Content ID',
-    enableSorting : true,               enableCellEdit : false,
-    type  : 'number',
-    width : 100,
-  },
-    {  field : 'getEndDateReadable()',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : false, },
-    {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : false,               },
-    {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : false,               },
-    {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : false,               },
-    {  field : 'retailerid',          type: 'number' ,  width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
-    {  field : 'getStartDateReadable()',width : 200,displayName : 'Start Date' ,type:"date",   enableCellEdit  : false  },
-    {  field : 'approved',             width : 100, displayName: 'Approved?', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
 
-  ],
-  "addRowContent" : {
-    "contentid"   : "",
-    "endDate"     : "",
-    "page1"       : "",
-    "page2"       : "",
-    "page3"       : "",
-    "retailerid"  : "",
-    "startDate"   : ""
-  },
 
 
   "FavouriteColumnDefs" : [{

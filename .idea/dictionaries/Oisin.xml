@@ -3,6 +3,7 @@
     <words>
       <w>firstname</w>
       <w>retailerid</w>
+      <w>toastr</w>
     </words>
   </dictionary>
 </component>
