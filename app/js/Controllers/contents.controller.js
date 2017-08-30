@@ -1,25 +1,37 @@
 myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootScope',
-  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+  '$uibModal','RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig',
 
-  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
+  function (  DataFactory, $scope, Common, $rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig) {
     let vm = this;
     let filename1 = "";
     let filename2 = "";
     let filename3 = "";
 
     $rootScope.type = "C";
+
+    $scope.uploader = new FileUploader();
+
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
     } else {
       $scope.allowAddRow = true; //  view is affected
-      $scope.allowEditRow = true; // action below
+      $scope.allowEditRow = false; // action below
     }
+
+    $scope.awsUpload = function() {
+      $scope.uploader.uploadAll();
+      let ready = $scope.uploader.getReadyItems();
+
+
+    };
+
 
     $scope.vm = vm;
 
-    // vm.editRow = RowEditor.editRowContent;
-    vm.serviceGrid = Common.setupUiGrid(Globals.ContentColumnDefs2, $scope.allowEditRow )
+    vm.editRow = RowEditor.editRowContent;
+    vm.serviceGrid = Common.setupUiGrid(Globals.ContentColumnDefs2, $scope.allowEditRow );
+    // vm.serviceGrid.isRowSelectable = false;
 
     vm.upload = $scope.upload;
 
@@ -76,61 +88,13 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       vm.dataLoading = false;
     }
 
-    // function GetContent(contentId) {
-    //   vm.dataLoading = true;
-    //   let content = new Content();
-    //   DataFactory.getContent(contentId)
-    //     .then( function(response) {
-    //         $scope.content = Common.createObjects(response.data, content);
-    //         vm.serviceGrid.data = $scope.content;
-    //         $scope.gridStyle = Common.gridStyle($scope.content.length)
-    //       },
-    //       function (error) { $scope.status = 'Unable to load Content ' + error.message; });
-    //   vm.dataLoading = false;
-    // }
-    //
-    // function AddContent(newContent) {
-    //   vm.dataLoading = true;
-    //   let content = new Content();
-    //   DataFactory.addContent(newContent)
-    //     .then( function(response) {
-    //         $scope.content = Common.createObjects(response.data, content);
-    //       },
-    //       function (error) { $scope.status = 'Unable to set content ' + error.message; });
-    //   vm.dataLoading = false;
-    // }
 
     $scope.addRow = function () {
       let newService = Globals.addRowContent;
       let rowTmp = {};
       rowTmp.entity = newService;
       vm.editRow($scope.vm.serviceGrid, rowTmp);
+
     };
-
-    $scope.upload = function (a,b,c,d) {
-      console.log(a,b,c,d);
-    };
-
-    let lib = {};
-    lib.upload = (a,b,c,d) => {
-      console.log(a,b,c,d);
-    };
-
-
-    function editRowContent(grid, row, $scope) {
-      $uibModal.open({
-        templateUrl : 'Views/Edit-Contents-Service.html',
-        // controller : vm.controllerArray,
-        // controllerAs : 'vm',
-        scope : $scope,
-        resolve : {
-          grid  : function() { return grid; },
-          row   : function() { return row;  },
-          scope  : function() { return $scope; }
-        }
-      });
-      $rootScope.grid = grid;
-      $rootScope.row = row;
-    }
 
   }]);

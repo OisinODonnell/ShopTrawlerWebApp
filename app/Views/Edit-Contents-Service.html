@@ -23,12 +23,14 @@
         <input class="input" title="Page 2" type="text"   ng-model="row.entity.page2" file/>
         <a     class="btn-sm btn-info "  ng-click="vm.upload(file,'C',row.entity.contentid,row.entity.page2)">Upload Page 2</a>
       </div>
+
       <br/>
       <div class="block">      <label>Page 3 </label>
         <input class="bottom-marg-15" type="file" name="file" ng-model="row.entity.filename3" file/>
         <input class="input" title="Page 3" type="text"   ng-model="row.entity.page3"/>
         <a     class="btn-sm btn-info " ng-click="vm.upload(file,'C',row.entity.contentid,row.entity.page3)">Upload Page 3</a>
       </div>
+
       <br/>
       <div class="block">      <label>Approved </label>    <input class="input" title="Approved" type="text"   disabled value="{{row.entity.approved}}"/>            </div>
 

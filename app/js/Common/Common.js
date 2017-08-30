@@ -1,4 +1,4 @@
-myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope, Globals, moment) {
+myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function ($rootScope, Globals, moment, AWSconfig) {
 
   let lib = {};
 
@@ -386,55 +386,67 @@ myApp.factory('Common',[ '$rootScope','Globals','moment',  function ($rootScope,
   };
 
   lib.setupAWS = (type) => {
-    $scope.AWS = {};
-    $scope.AWS.ACCESS_KEY = "AKIAICMSROCKZAETKBIA";
-    $scope.AWS.SECRET_KEY = "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";
-    $scope.AWS.BUCKET_C   = "/shoptrawler/Content";
-    $scope.AWS.BUCKET_LRC = "/shoptrawler/LRContent";
-    $scope.AWS.BUCKET_SC  = "/shoptrawler/ShoppingCenter";
-    $scope.AWS.BUCKET_RET = "/shoptrawler/Retailer";
-    $scope.AWS.SERVICE    = "s3";
-    $scope.AWS.ENCRYPTION = 'AES256';
-    $scope.AWS.REGION     = "eu-west-1";
-    $scope.AWS.type       = type; // default content type (Content.js entries) others SC, LR, and RET
+    // parameters are in AWS.js .. a file which is not on in git.
+    let AWScon = {};
+    AWScon = {
+      "ACCESS_KEY"  : AWSconfig.ACCESS_KEY,
+      "SECRET_KEY"  : AWSconfig.SECRET_KEY,
+      "BUCKET_C"    : AWSconfig.BUCKET_C,
+      "BUCKET_LRC"  : AWSconfig.BUCKET_LRC,
+      "BUCKET_SC"   : AWSconfig.BUCKET_SC,
+      "BUCKET_RET"  : AWSconfig.BUCKET_RET,
+      "SERVICE"     : AWSconfig.SERVICE,
+      "ENCRYPTION"  : AWSconfig.ENCRYPTION,
+      "REGION"      : AWSconfig.REGION,
+      "type"        : type,
+      "config"      : {
+          region : AWSconfig.REGION,
+      },
+      "UPLOAD_SITE" : AWSconfig.UPLOAD_SITE,
+      "UPLOAD_BUCKET" : "",
+      params_c      : "",
+      params_lrc    : "",
+      params_sc     : "",
+      params_ret    : "",
+    };
 
-    $scope.AWS.config = {};
-    $scope.AWS.config.region = $scope.AWS.region;
-
-    $scope.AWS.params_c   = { Bucket : $scope.AWS.BUCKET_C   , ServerSideEncryption : 'AES256'};
-    $scope.AWS.params_lrc = { Bucket : $scope.AWS.BUCKET_LRC , ServerSideEncryption : 'AES256'};
-    $scope.AWS.params_sc  = { Bucket : $scope.AWS.BUCKET_SC  , ServerSideEncryption : 'AES256'};
-    $scope.AWS.params_ret = { Bucket : $scope.AWS.BUCKET_RET , ServerSideEncryption : 'AES256'};
+    AWScon.params_c   = { Bucket : AWScon.BUCKET_C   , ServerSideEncryption : AWScon.ENCRYPTION};
+    AWScon.params_lrc = { Bucket : AWScon.BUCKET_LRC , ServerSideEncryption : AWScon.ENCRYPTION};
+    AWScon.params_sc  = { Bucket : AWScon.BUCKET_SC  , ServerSideEncryption : AWScon.ENCRYPTION};
+    AWScon.params_ret = { Bucket : AWScon.BUCKET_RET , ServerSideEncryption : AWScon.ENCRYPTION};
 
     // for use in get operations
-    $scope.AWS.server = "https://" +  $scope.AWS.service + "-" +
-      $scope.AWS.region + ".amazonaws.com";
 
-    AWS.config.update({ accessKeyId : $scope.AWS.ACCESS_KEY, secretAccessKey : $scope.AWS.SECRET_KEY});
-    AWS.config.region = $scope.AWS.REGION;
-    $scope.bucket = {};
-    $scope.params = {};
+    $rootScope.AWS = {};
+    $rootScope.AWS = AWScon;
+
+    // now to begin the AWS app
+    AWS.config.update({ accessKeyId : $rootScope.AWS.ACCESS_KEY, secretAccessKey : $rootScope.AWS.SECRET_KEY});
+    AWS.config.region = AWScon.REGION;
+
+    $rootScope.bucket = {};
+    $rootScope.params = {};
     // specify the params to use and the bucket to write to.
     switch(type) {
       case "C":
-        $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_C}});
-        $scope.params = $scope.AWS.params_c;
-        $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_C + "/";
+        $rootScope.bucket = new AWS.S3({params: {Bucket: $rootScope.AWS.BUCKET_C}});
+        $rootScope.params = $rootScope.AWS.params_c;
+        $rootScope.AWS.UPLOAD_BUCKET = $rootScope.AWS.UPLOAD_SITE + $rootScope.AWS.BUCKET_C;
         break;
       case "LR":
-        $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_LRC}});
-        $scope.params = $scope.AWS.params_lrc;
-        $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_LRC + "/";
+        $rootScope.bucket = new AWS.S3({params: {Bucket: $rootScope.AWS.BUCKET_LRC}});
+        $rootScope.params = $rootScope.AWS.params_lrc;
+        $rootScope.AWS.UPLOAD_BUCKET = $rootScope.AWS.UPLOAD_SITE + $rootScope.AWS.BUCKET_LRC;
         break;
       case "RET":
-        $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_RET}});
-        $scope.params = $scope.AWS.params_ret;
-        $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_RET + "/";
+        $rootScope.bucket = new AWS.S3({params: {Bucket: $rootScope.AWS.BUCKET_RET}});
+        $rootScope.params = $rootScope.AWS.params_ret;
+        $rootScope.AWS.UPLOAD_BUCKET = $rootScope.AWS.UPLOAD_SITE + $rootScope.AWS.BUCKET_RET;
         break;
       case "SC":
-        $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_SC}});
-        $scope.params = $scope.AWS.params_sc;
-        $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_SC + "/";
+        $rootScope.bucket = new AWS.S3({params: {Bucket: $rootScope.AWS.BUCKET_SC}});
+        $rootScope.params = $rootScope.AWS.params_sc;
+        $rootScope.AWS.UPLOAD_BUCKET = $rootScope.AWS.UPLOAD_SITE + $rootScope.AWS.BUCKET_SC;
         break;
     }
 

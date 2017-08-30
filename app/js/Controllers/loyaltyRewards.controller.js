@@ -1,10 +1,12 @@
 myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$rootScope',
-  '$uibModal','RowEditor', 'uiGridConstants','Globals',
+  '$uibModal','RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig',
 
-  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig) {
     let vm = this;
 
     $rootScope.type = "LR";
+    $scope.uploader = new FileUploader();
+
     $scope.sDate = new Date();
     $scope.eDate = new Date();
 
@@ -17,24 +19,25 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       $scope.myDate.getFullYear(),
       $scope.myDate.getMonth() + 2,
       $scope.myDate.getDate());
+
     $scope.onlyWeekendsPredicate = function(date) {
       let day = date.getDay();
       return day === 0 || day === 6;
     };
 
     if ($rootScope.isAdmin) {
-      $scope.allowAddRow = false; //  view is affected
+      $scope.allowAddRow = false;  //  view is affected
       $scope.allowEditRow = false; // action below
     } else {
-      $scope.allowAddRow = true; //  view is affected
-      $scope.allowEditRow = true; // action below
+      $scope.allowAddRow = true;   //  view is affected
+      $scope.allowEditRow = false; // action below
     }
 
     $scope.vm = vm;
 
     vm.globals = $rootScope.globals;
     vm.editRow = RowEditor.editRowLoyaltyReward;
-    vm.serviceGrid = Common.setupUiGrid(Globals.LoyaltyRewardColumnDefs, $scope.allowEditRow )
+    vm.serviceGrid = Common.setupUiGrid(Globals.LoyaltyRewardColumnDefs2, $scope.allowEditRow );
 
     if ($rootScope.currentUser.type === "Administrator")
       ListLoyaltyRewards();

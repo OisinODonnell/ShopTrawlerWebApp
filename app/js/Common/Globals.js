@@ -103,26 +103,26 @@ myApp.value('Globals', {
     type  : 'number',
     width : 100,
   },
-    {
-      name: 'Actions', field: 'edit', enableFiltering: false, enableSorting: false,
-      cellTemplate: '<div><button ng-show="!row.entity.editrow" class="btn primary" ng-click="grid.appScope.edit(row.entity)"><ifa-edit"></i></button>' +  //Edit Button
-      '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.saveRow(row.entity)"><i class="fa fa-floppy-o"></i></button>' +//Save Button
-      '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.cancelEdit(row.entity)"><i class="fa fa-times"></i></button>' + //Cancel Button
-      '</div>', width: 100
-    },
+    // {
+    //   name: 'Actions', field: 'edit', enableFiltering: false, enableSorting: false,
+    //   cellTemplate: '<div><button ng-show="!row.entity.editrow" class="btn primary" ng-click="grid.appScope.edit(row.entity)"><ifa-edit"></i></button>' +  //Edit Button
+    //   '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.saveRow(row.entity)"><i class="fa fa-floppy-o"></i></button>' +//Save Button
+    //   '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.cancelEdit(row.entity)"><i class="fa fa-times"></i></button>' + //Cancel Button
+    //   '</div>', width: 100
+    // },
     {  field : 'getEndDateString()',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : true, },
-    {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : true,
+    {  field : 'page1',               width : 200,displayName : 'Page 1',enableCellEdit : true,
       cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
 
     },
-    {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : true,
+    {  field : 'page2',               width : 200,displayName : 'Page 2',enableCellEdit : true,
       cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
     },
-    {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : true,
+    {  field : 'page3',               width : 200,displayName : 'Page 3',enableCellEdit : true,
       cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
     },
-    {  field : 'retailerid',         type: 'number' ,   width : 100,displayName : 'Retailer ID',enableCellEdit : true,          },
-    {  field : 'getStartDateString()',width : 200,displayName : 'Start Date',type:"date",                      }
+    {  field : 'retailerid',          width : 100, type: 'number' ,  displayName : 'Retailer ID',enableCellEdit : true,          },
+    {  field : 'getStartDateString()',width : 200, displayName : 'Start Date',type:"date",                      }
 
   ],
 
@@ -131,13 +131,14 @@ myApp.value('Globals', {
     enableSorting : true,               enableCellEdit : false,
     type  : 'number',
     width : 100,
-  },    {
-    name: 'Actions', field: 'edit', enableFiltering: false, enableSorting: false,
-    cellTemplate: '<div><button ng-show="!row.entity.editrow" class="btn primary" ng-click="grid.appScope.edit(row.entity)"><ifa-edit"></i></button>' +  //Edit Button
-    '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.saveRow(row.entity)"><i class="fa fa-floppy-o"></i></button>' +//Save Button
-    '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.cancelEdit(row.entity)"><i class="fa fa-times"></i></button>' + //Cancel Button
-    '</div>', width: 100
   },
+  //   {
+  //   name: 'Actions', field: 'edit', enableFiltering: false, enableSorting: false,
+  //   cellTemplate: '<div><button ng-show="!row.entity.editrow" class="btn primary" ng-click="grid.appScope.edit(row.entity)"><ifa-edit"></i></button>' +  //Edit Button
+  //   '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.saveRow(row.entity)"><i class="fa fa-floppy-o"></i></button>' +//Save Button
+  //   '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.cancelEdit(row.entity)"><i class="fa fa-times"></i></button>' + //Cancel Button
+  //   '</div>', width: 100
+  // },
     {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : true,
       cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
 
@@ -149,10 +150,9 @@ myApp.value('Globals', {
       cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
     },
     {  field : 'retailerid',         type: 'number' ,   width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
-    {  field : 'endDate',width : 200,displayName : 'Start Date',type:"date",  enableCellEdit : true  },
-    {  field : 'startDate',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : true, },
+    {  field : 'endDate',  width : 200,displayName : 'Start Date',type:"date",  enableCellEdit : true  },
+    {  field : 'startDate',width : 200,displayName : 'End Date',type:"date",enableCellEdit : true, },
   ],
-
 
   "ApproveContentColumnDefs" : [{
     field : 'contentid',                displayName    : 'Content ID',
@@ -308,29 +308,43 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field : 'getEndDateReadable()',  width : 200, displayName : 'End Date',type:"date",  enableCellEdit : false, },
-      {  field : 'pointsPerVisit',        type: 'number', width : 100, displayName : 'Points Per Visit',      enableCellEdit : false, },
-      {  field : 'rewardImage',           width : 200, displayName : 'Reward Image',          enableCellEdit : false, },
-      {  field : 'storeName',             width : 200, displayName : 'Retailer ID',           enableCellEdit : false, },
-      {  field : 'rewardTitle',           width : 200, displayName : 'Reward Title',          enableCellEdit : false, },
-      {  field : 'getStartDateReadable()',width : 200, displayName : 'Start Date',type:"date",enableCellEdit : false, },
-      {  field : 'visitTime',             type: 'number', width : 100, displayName : 'Visit Time',            enableCellEdit : false, }
+      {  field : 'getEndDateReadable()',  width : 200, displayName : 'End Date',type:"date",  enableCellEdit : true, },
+      {  field : 'pointsPerVisit',        type: 'number', width : 100, displayName : 'Points Per Visit',      enableCellEdit : true, },
+      {  field : 'rewardImage',           width : 200, displayName : 'Reward Image',          enableCellEdit : true, },
+      {  field : 'storeName',             width : 200, displayName : 'Retailer ID',           enableCellEdit : true, },
+      {  field : 'rewardTitle',           width : 200, displayName : 'Reward Title',          enableCellEdit : true, },
+      {  field : 'getStartDateReadable()',width : 200, displayName : 'Start Date',type:"date",enableCellEdit : true, },
+      {  field : 'visitTime',             type: 'number', width : 100, displayName : 'Visit Time',  enableCellEdit : true, }
     ],
 
+  "LoyaltyRewardColumnDefs2" : [{
+    field : 'loyaltyRewardid',          displayName    : 'Loyalty Reward ID',
+    enableSorting : true,               enableCellEdit : false,
+    type  : 'number',
+    width : 100,
+  },
+    {  field : 'rewardImage',   width : 200, displayName : 'Reward Image',          enableCellEdit : true, },
+    {  field : 'storeName',     width : 200, displayName : 'Retailer ID',           enableCellEdit : true, },
+    {  field : 'rewardTitle',   width : 200, displayName : 'Reward Title',          enableCellEdit : true, },
+    {  field : 'pointsPerVisit',width : 100, type: 'number', displayName : 'Points Per Visit',enableCellEdit : true, },
+    {  field : 'visitTime',     width : 100, type: 'number', displayName : 'Visit Time',      enableCellEdit : true, },
+    {  field : 'startDate',     width : 200, type: "date",   displayName : 'Start Date',      enableCellEdit : true, },
+    {  field : 'endDate',       width : 200, type: "date",   displayName : 'End Date',        enableCellEdit : true, },
+  ],
   "ApproveLoyaltyRewardColumnDefs" : [{
     field : 'loyaltyRewardid',          displayName    : 'Loyalty Reward ID',
     enableSorting : true,               enableCellEdit : false,
     type  : 'number',
     width : 100,
   },
-    {  field : 'getEndDateReadable()',  width : 200, displayName : 'End Date',type:"date",      enableCellEdit : false, },
-    {  field : 'pointsPerVisit',        type: 'number', width : 100, displayName : 'Points Per Visit',          enableCellEdit : false, },
     {  field : 'rewardImage',           width : 200, displayName : 'Reward Image',              enableCellEdit : false, },
     {  field : 'storeName',             width : 200, displayName : 'Retailer ID',               enableCellEdit : false, },
     {  field : 'rewardTitle',           width : 200, displayName : 'Reward Title',              enableCellEdit : false, },
-    {  field : 'getStartDateReadable()',width : 200, displayName : 'Start Date',type:"date",    enableCellEdit : false, },
-    {  field : 'visitTime',             type: 'number', width : 100, displayName : 'Visit Time',enableCellEdit : false, },
-    {  field : 'approved',              width : 100, displayName: 'Approved?', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'pointsPerVisit',        width : 100, type: 'number',  displayName : 'Points Per Visit',          enableCellEdit : false, },
+    {  field : 'visitTime',             width : 100, type: 'number',  displayName : 'Visit Time', enableCellEdit : false, },
+    {  field : 'getStartDateReadable()',width : 200, type: "date",    displayName : 'Start Date', enableCellEdit : false, },
+    {  field : 'getEndDateReadable()',  width : 200, type: "date",    displayName : 'End Date',   enableCellEdit : false, },
+    {  field : 'approved',              width : 100, type: 'boolean', displayName : 'Approved?',  cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
 
   "addRowLoyaltyReward" : {

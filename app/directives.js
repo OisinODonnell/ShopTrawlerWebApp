@@ -2,58 +2,58 @@
 
 let directives = angular.module('directives', []);
 
-directives.directive('file', function() {
-  return {
-    restrict: 'AE',
-    scope: {
-      file: '@'
-    },
-    link: function(scope, el, attrs){
-      el.bind('change', function(event){
-        let files = event.target.files;
-        let file = files[0];
-        scope.file = file;
-        scope.$parent.file = file;
-        scope.$apply();
-      });
-    }
-  };
-});
-directives.directive('fileUpload', function($log, $parse) {
-  return {
-    restrict: 'A',
-    link: function(scope, element, attrs) {
-      var options = $parse(attrs.fileUpload)(scope) || {};
-
-      element.fileupload({
-        dataType: 'json',
-        url: '//jquery-file-upload.appspot.com/',
-        done: function(e, data) {
-          $log.log("done accessed");
-        },
-        fail: function(e, data) {
-          $log.log("fail accessed");
-        },
-        progress: function(e, data) {
-          options.progress = parseInt(data.loaded / data.total * 100, 10);
-          scope.$apply();
-          $log.log(options)
-          $log.log("progress");
-        },
-        //add: function(e,data){
-        //$log.log("add accessed");
-        //},
-        submit: function(e, data) {
-          $log.log("notetext:", options.notetext);
-          data.formData = {
-            Description: options.notetext
-          };
-          $log.log("submit accessed");
-        }
-      });
-    }
-  }
-});
+// directives.directive('file', function() {
+//   return {
+//     restrict: 'AE',
+//     scope: {
+//       file: '@'
+//     },
+//     link: function(scope, el, attrs){
+//       el.bind('change', function(event){
+//         let files = event.target.files;
+//         let file = files[0];
+//         scope.file = file;
+//         scope.$parent.file = file;
+//         scope.$apply();
+//       });
+//     }
+//   };
+// });
+// directives.directive('fileUpload', function($log, $parse) {
+//   return {
+//     restrict: 'A',
+//     link: function(scope, element, attrs) {
+//       var options = $parse(attrs.fileUpload)(scope) || {};
+//
+//       element.fileupload({
+//         dataType: 'json',
+//         url: '//jquery-file-upload.appspot.com/',
+//         done: function(e, data) {
+//           $log.log("done accessed");
+//         },
+//         fail: function(e, data) {
+//           $log.log("fail accessed");
+//         },
+//         progress: function(e, data) {
+//           options.progress = parseInt(data.loaded / data.total * 100, 10);
+//           scope.$apply();
+//           $log.log(options)
+//           $log.log("progress");
+//         },
+//         //add: function(e,data){
+//         //$log.log("add accessed");
+//         //},
+//         submit: function(e, data) {
+//           $log.log("notetext:", options.notetext);
+//           data.formData = {
+//             Description: options.notetext
+//           };
+//           $log.log("submit accessed");
+//         }
+//       });
+//     }
+//   }
+// });
 directives.directive('myAlert', function($modal,$log) {
   return {
     restrict: 'E',

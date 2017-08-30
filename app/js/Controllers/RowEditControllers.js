@@ -180,13 +180,11 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function editRowLoyaltyReward(grid, row) {
     $uibModal.open({
       templateUrl : 'Views/Edit-LoyaltyRewards-Service.html',
-      // controller : vm.controllerArray,
-      // controllerAs : 'vm',
-      scope : $scope,
+      controller : vm.controllerArray,
+      controllerAs : 'vm',
       resolve : {
         grid  : function() { return grid; },
         row   : function() { return row;  },
-        scope  : function() { return $scope; }
       }
     });
     $rootScope.grid = grid;
@@ -730,10 +728,11 @@ RowEditCtrl.$inject = ['$http', '$uibModalInstance','grid','row','type','$rootSc
   }
 
   function saveLoyaltyReward() {
-    row.entity = setDates(row.entity);
+
       if (vm.entity.loyaltyRewardid === 0) { // implies a new entity
 
         row.entity = angular.extend(row.entity, vm.entity);
+        row.entity = setDates(row.entity);
         // Add Shopping Centre
         let params = getEntity(row.entity);
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;

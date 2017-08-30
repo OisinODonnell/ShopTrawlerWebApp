@@ -1,9 +1,42 @@
-﻿a {
+﻿@charset "UTF-8";
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak{display:none;}
+ng\:form{display:block;}
+a {
   cursor: pointer;
 }
 .tg  {border-collapse:collapse;border-spacing:2px;border-color:#ffbcfe;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:15px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:3px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg td {
+  font-family:Arial,
+  sans-serif;
+  font-size:14px;
+  padding:15px 10px;
+  border-style:solid;
+  border-width:1px;
+  overflow:hidden;
+  word-break:normal;
+  border-color:#aabcfe;
+  color:#669;
+  background-color:#e8edff;
+}
+.tg th {
+  font-family:Arial,
+  sans-serif;
+  font-size:14px;
+  font-weight:normal;
+  padding:10px 5px;
+  border-style:solid;
+  border-width:3px;
+  overflow:hidden;
+  word-break:normal;
+  border-color:#aabcfe;
+  color:#039;
+  background-color:#b9c9fe;
+}
 .tg .tg-nrw8{font-size:14px}
 .tg .tg-yw4l{vertical-align:top}
 /* Sortable tables */
@@ -13,13 +46,19 @@ table.sortable thead {
   font-weight: bold;
   cursor: default;
 }
+
+html, body { height: 100%; }
+.my-drop-zone { border: dotted 3px lightgray; }
+.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+.another-file-over-class { border: dotted 3px green; }
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
   padding: 0.2em 0;
 }
-HTMLJSCSS
+/*HTMLJSCSS*/
+html, body { height: 100%; }
 .datepickerdemoBasicUsage {
   /** Demo styles for mdCalendar. */ }
 .datepickerdemoBasicUsage md-content {
@@ -111,6 +150,8 @@ body {
 body {
   overflow-x: hidden;
 }
+
+
 #demo-top-bar {
   text-align: left;
   background: #222;
