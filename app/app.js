@@ -43,7 +43,7 @@
 let myApp =  angular.module('app', ['ng','angularFileUpload','directives','ngRoute','routes',
   'ngMaterial','ngMessages', 'ngAria','ngCookies','ngFlash',  'ngAnimate', 'ui.grid', 'ui.grid.moveColumns',
   'ngMaterialDatePicker',  'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit',
-  'ui.grid.pagination','tc.chartjs','angularMoment'])
+  'ui.grid.pagination','tc.chartjs','angularMoment', 'ui.grid.pinning' ])
 
   .config(config)
   .run(run);

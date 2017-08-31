@@ -95,7 +95,7 @@ myApp.value('Globals', {
     minRowsToShow             : 15,  // again this does not appear to work, it appears to follow the 'paginationPageSizes'
     minimumColumnSize         : 100, // this did not work, col width is specified individually below
     minWidth                  : 200, //
-    rowHeight                 : 30,  // in pixels
+    rowHeight                 : 50,  // in pixels
   },
   "ContentColumnDefs" : [{
     field : 'contentid',                displayName    : 'Content ID',
@@ -310,7 +310,7 @@ myApp.value('Globals', {
       },
       {  field : 'getEndDateReadable()',  width : 200, displayName : 'End Date',type:"date",  enableCellEdit : true, },
       {  field : 'pointsPerVisit',        type: 'number', width : 100, displayName : 'Points Per Visit',      enableCellEdit : true, },
-      {  field : 'rewardImage',           width : 200, displayName : 'Reward Image',          enableCellEdit : true, },
+      {  field : 'rewardImage',           type : 'link', width : 200, displayName : 'Reward Image',          enableCellEdit : true, },
       {  field : 'storeName',             width : 200, displayName : 'Retailer ID',           enableCellEdit : true, },
       {  field : 'rewardTitle',           width : 200, displayName : 'Reward Title',          enableCellEdit : true, },
       {  field : 'getStartDateReadable()',width : 200, displayName : 'Start Date',type:"date",enableCellEdit : true, },
@@ -318,6 +318,15 @@ myApp.value('Globals', {
     ],
 
   "LoyaltyRewardColumnDefs2" : [{
+
+    name: 'Actions', width : 150,enableCellEdit : false, pinnedLeft:true,
+    cellTemplate: '<div class="container " >' +
+                  '<button class="btn-danger btn-circle " type="button" ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_18dp_2x.png"></button>'+
+                  '<button class="btn-info btn-circle "   ng-click="grid.appScope.addRow(row)" ><img src="images/ic_add_circle_outline_black_18dp_2x.png"</button>' +
+                  '<button class="btn-success btn-circle "  ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_18dp_2x.png"</button>' +
+                  '</div>'
+    },
+    {
     field : 'loyaltyRewardid',          displayName    : 'Loyalty Reward ID',
     enableSorting : true,               enableCellEdit : false,
     type  : 'number',

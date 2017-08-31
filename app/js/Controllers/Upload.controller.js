@@ -1,8 +1,6 @@
 'use strict';
 
-let controllers = angular.module('controllers', []);
-
-controllers.controller('UploadController',['$scope','$rootScope',  function($scope, $rootScope) {
+myApp.controller('UploadController',['$scope','$rootScope',  function($scope, $rootScope) {
     $scope.sizeLimit      = 10585760; // 10MB in Bytes
     $scope.uploadProgress = 0;
     $scope.creds          = {};
