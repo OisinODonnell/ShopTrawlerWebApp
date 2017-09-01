@@ -1,4 +1,4 @@
-﻿//
+﻿﻿
 // TODO: Add Delete, Edit and Create Elements for each entity.
 //       Not needed for every entity (CRUD) A=Admin R=Retailer G=Generate /=done S=summary Reports x = no operation required
 //

@@ -10,28 +10,30 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     $rootScope.type = "C";
 
     $scope.uploader = new FileUploader();
+    $rootScope.currentUser.type = "";
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
+      $rootScope.currentUser.type = "Administrator";
     } else {
       $scope.allowAddRow = true; //  view is affected
       $scope.allowEditRow = false; // action below
+      $rootScope.currentUser.type = "Retailer";
     }
 
     $scope.awsUpload = function() {
       $scope.uploader.uploadAll();
       let ready = $scope.uploader.getReadyItems();
 
-
     };
-
 
     $scope.vm = vm;
 
-    vm.editRow = RowEditor.editRowContent;
-    vm.serviceGrid = Common.setupUiGrid(Globals.ContentColumnDefs2, $scope.allowEditRow );
-    // vm.serviceGrid.isRowSelectable = false;
+    vm.addRowContent    = RowEditor.addRowContent;
+    vm.editRowContent   = RowEditor.editRowContent;
+    vm.deleteRowContent = RowEditor.deleteRowContent;
+    vm.serviceGrid      = Common.setupUiGrid(Globals.ContentColumnDefs2, $scope.allowEditRow );
 
     vm.upload = $scope.upload;
 
@@ -40,7 +42,6 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       ListContents();
     else
       ListContentByRetailer($rootScope.currentUser.retailerid);
-
 
 
     function ListContents() {
@@ -89,12 +90,22 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     }
 
 
-    $scope.addRow = function () {
+    $scope.addRowOld = function () {
       let newService = Globals.addRowContent;
       let rowTmp = {};
       rowTmp.entity = newService;
       vm.editRow($scope.vm.serviceGrid, rowTmp);
+    };
+    $scope.saveRow = function(row) {
+      console.log("save Row C");
+    };
+    $scope.addRow = function(row) {
+      console.log("save Row C");
+      vm.serviceGrid.data.push({});
+    };
 
+    $scope.deleteRow = function(row) {
+      console.log("delete Row C");
     };
 
   }]);

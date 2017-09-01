@@ -11,10 +11,12 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
     $scope.eDate = new Date();
 
     $scope.myDate = new Date();
+
     $scope.minDate = new Date(
       $scope.myDate.getFullYear(),
       $scope.myDate.getMonth() - 2,
       $scope.myDate.getDate());
+
     $scope.maxDate = new Date(
       $scope.myDate.getFullYear(),
       $scope.myDate.getMonth() + 2,
@@ -25,18 +27,25 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       return day === 0 || day === 6;
     };
 
+    $rootScope.currentUser.type = "";
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false;  //  view is affected
       $scope.allowEditRow = false; // action below
+      $rootScope.currentUser.type = "Administrator";
     } else {
       $scope.allowAddRow = true;   //  view is affected
       $scope.allowEditRow = false; // action below
+      $rootScope.currentUser.type = "Retailer";
     }
 
     $scope.vm = vm;
 
     vm.globals = $rootScope.globals;
-    vm.editRow = RowEditor.editRowLoyaltyReward;
+
+    vm.editRow                = RowEditor.editRowLoyaltyReward;
+    vm.addRowLoyaltyReward    = RowEditor.addRowLoyaltyReward;
+    vm.deleteRowLoyaltyReward = RowEditor.deleteRowLoyaltyReward;
+    vm.saveRowLoyaltyReward   = RowEditor.saveRowLoyaltyReward;
     vm.serviceGrid = Common.setupUiGrid(Globals.LoyaltyRewardColumnDefs2, $scope.allowEditRow );
 
     if ($rootScope.currentUser.type === "Administrator")
@@ -84,34 +93,26 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       vm.dataLoading = false;
     }
 
-    // function AddLoyaltyReward(newLoyaltyReward) {
-    //   vm.dataLoading = true;
-    //   let loyaltyReward = new LoyaltyReward();
-    //   DataFactory.addLoyaltyReward(newLoyaltyReward)
-    //     .then( function(response) {
-    //         $scope.loyaltyRewards = Common.createObjects(response.data, loyaltyReward);
-    //       },
-    //       function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
-    //   vm.dataLoading = false;
-    // }
-    //
-    // function GetLoyaltyReward(id) {
-    //   vm.dataLoading = true;
-    //   let loyaltyReward = new LoyaltyReward();
-    //   DataFactory.getLoyaltyReward(id)
-    //     .then( function(response) {
-    //         $scope.loyaltyReward = Common.createObjects(response.data, loyaltyReward);
-    //       },
-    //       function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
-    //   vm.dataLoading = false;
-    // }
-
-
-    $scope.addRow = function () {
+    $scope.addRowOld = function () {
       let newService = Globals.addRowLoyaltyReward;
       let rowTmp = {};
       rowTmp.entity = newService;
       vm.editRow($scope.vm.serviceGrid, rowTmp);
     };
+
+    $scope.saveRow = function(grid,row) {
+      console.log("save Row LR");
+    };
+
+    $scope.deleteRow = function(row) {
+      console.log("delete Row LR");
+    };
+
+    $scope.addRow = function (row) {
+      console.log("adding LR");
+      vm.serviceGrid.data.push({});
+
+    };
+
 
   }]);

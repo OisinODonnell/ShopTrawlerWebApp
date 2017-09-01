@@ -27,7 +27,7 @@ angular.module('routes', []).config(function ($routeProvider) {
     .when('/BonusCodes/Generate',{controller: 'GenerateBonusCodesController',templateUrl: 'Views/Generate.BonusCodes.view.html', controllerAs: 'vm' })
     // Contents
     .when('/Contents/List',    {  controller: 'ContentsController',          templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
-    .when('/Contents/Retailer',{  controller: 'ContentsController',          templateUrl: 'Views/List.view2.html',   controllerAs: 'vm' })
+    .when('/Contents/Retailer',{  controller: 'ContentsController',          templateUrl: 'Views/List-Content.view.html',   controllerAs: 'vm' })
     .when('/Contents/Approve', {  controller: 'ApproveContentsController',   templateUrl: 'Views/Approve.view.html', controllerAs: 'vm' })
 
     // Favourites
@@ -36,7 +36,7 @@ angular.module('routes', []).config(function ($routeProvider) {
     // Locations
     .when('/Locations/List',{     controller: 'LocationsController',         templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
     // LoyaltyRewards
-    .when('/LoyaltyRewards/Retailer',{controller: 'LoyaltyRewardsController',templateUrl: 'Views/List.view2.html',    controllerAs: 'vm' })
+    .when('/LoyaltyRewards/Retailer',{controller: 'LoyaltyRewardsController',templateUrl: 'Views/List-LoyaltyRewards.view.html',    controllerAs: 'vm' })
     .when('/LoyaltyRewards/Approve', {controller: 'ApproveLoyaltyRewardsController',  templateUrl: 'Views/Approve.view.html', controllerAs: 'vm' })
     // Ratings
     .when('/Ratings/List',    {   controller: 'RatingsController',           templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })

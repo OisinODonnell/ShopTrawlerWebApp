@@ -95,7 +95,7 @@ myApp.value('Globals', {
     minRowsToShow             : 15,  // again this does not appear to work, it appears to follow the 'paginationPageSizes'
     minimumColumnSize         : 100, // this did not work, col width is specified individually below
     minWidth                  : 200, //
-    rowHeight                 : 50,  // in pixels
+    rowHeight                 : 40,  // in pixels
   },
   "ContentColumnDefs" : [{
     field : 'contentid',                displayName    : 'Content ID',
@@ -127,6 +127,14 @@ myApp.value('Globals', {
   ],
 
   "ContentColumnDefs2" : [{
+
+      name: 'Actions', width : 100,enableCellEdit : false, pinnedRight:true,
+      cellTemplate: '<div class="container " >' +
+                      '<button class="btn-success btn-circle col-lg-4"  ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_24dp_1x.png"</button>' +
+                      '<button class="btn-danger btn-circle col-lg-4" type="button" ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_24dp_1x.png"></button>'+
+                    '</div>'
+    },
+    {
     field : 'contentid',                displayName    : 'Content ID',
     enableSorting : true,               enableCellEdit : false,
     type  : 'number',
@@ -319,11 +327,10 @@ myApp.value('Globals', {
 
   "LoyaltyRewardColumnDefs2" : [{
 
-    name: 'Actions', width : 150,enableCellEdit : false, pinnedLeft:true,
+    name: 'Actions', width : 100,enableCellEdit : false, pinnedRight:true,
     cellTemplate: '<div class="container " >' +
-                  '<button class="btn-danger btn-circle " type="button" ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_18dp_2x.png"></button>'+
-                  '<button class="btn-info btn-circle "   ng-click="grid.appScope.addRow(row)" ><img src="images/ic_add_circle_outline_black_18dp_2x.png"</button>' +
-                  '<button class="btn-success btn-circle "  ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_18dp_2x.png"</button>' +
+                    '<button class="btn-success btn-circle col-lg-4"  ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_24dp_1x.png"</button>' +
+                    '<button class="btn-danger btn-circle col-lg-4" type="button" ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_24dp_1x.png"></button>'+
                   '</div>'
     },
     {
@@ -470,14 +477,14 @@ myApp.value('Globals', {
     type  : 'number',
     width : 100,
   },
-    {  field : 'firstname',     width : 200, displayName : 'Firstname',     enableCellEdit : false,  },
-    {  field : 'surname',       width : 200, displayName : 'Surname',       enableCellEdit : false,  },
-    {  field : 'emailAddress',  width : 200, displayName : 'Email Address', enableCellEdit : false,  },
-    {  field : 'phone',         width : 150, displayName : 'Phone',         enableCellEdit : false,  },
-    {  field : 'gender',        width : 200, displayName : 'Gender',        enableCellEdit : false,  },
-    {  field : 'password',      width : 200, displayName : 'Password',      enableCellEdit : false,  },
-    {  field : 'type',          width : 200, displayName : 'Type',          enableCellEdit : false,  },
-    {  field : 'yob',           type: 'number', width : 100, displayName : 'Yob',           enableCellEdit : false,  },
+    {  field : 'firstname',     width : 100, displayName : 'Firstname',     enableCellEdit : false,  },
+    {  field : 'surname',       width : 100, displayName : 'Surname',       enableCellEdit : false,  },
+    {  field : 'emailAddress',  width : 150, displayName : 'Email Address', enableCellEdit : false,  },
+    {  field : 'phone',         width : 100, displayName : 'Phone',         enableCellEdit : false,  },
+    {  field : 'gender',        width : 100, displayName : 'Gender',        enableCellEdit : false,  },
+    {  field : 'password',      width : 100, displayName : 'Password',      enableCellEdit : false,  },
+    {  field : 'type',          width : 100, displayName : 'Type',          enableCellEdit : false,  },
+    {  field : 'yob',           type: 'number', width : 50, displayName : 'Yob',           enableCellEdit : false,  },
     {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
   "ApproveUserColumnDefs" : [{

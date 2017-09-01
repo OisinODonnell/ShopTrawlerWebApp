@@ -32,9 +32,111 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
     editRowVisit        : editRowVisit,
     editRowZone         : editRowZone,
     upload              : upload,
+
+    addRowContent          : addRowContent,
+    deleteRowContent       : deleteRowContent,
+    saveRowContent         : saveRowContent,
+    addRowLoyaltyReward    : addRowLoyaltyReward,
+    deleteRowLoyaltyReward : deleteRowLoyaltyReward,
+    saveRowLoyaltyReward   : saveRowLoyaltyReward,
   };
 
+  function saveRowContent(grid, row) {
+    console.log("saving Content");
+    $rootScope.addingRow = false;
+    $uibModal.open({
+      templateUrl : 'Views/Edit-Contents-Service.html',
+      controller : vm.controllerArray,
+      controllerAs : 'vm',
+      resolve : {
+        grid  : function() { return grid; },
+        row   : function() { return row;  }
+      }
+    });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
+  }
+  function deleteRowContent(grid, row) {
+    console.log("deleting Content");
+    $rootScope.addingRow = false;
+    $uibModal.open({
+      templateUrl : 'Views/Edit-Contents-Service.html',
+      controller : vm.controllerArray,
+      controllerAs : 'vm',
+      resolve : {
+        grid  : function() { return grid; },
+        row   : function() { return row;  }
+      }
+    });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
 
+  }
+  function addRowContent(grid, row) {
+    console.log("adding Content");
+    $rootScope.addingRow = false;
+    $uibModal.open({
+      templateUrl : 'Views/Edit-Contents-Service.html',
+      controller : vm.controllerArray,
+      controllerAs : 'vm',
+      resolve : {
+        grid  : function() { return grid; },
+        row   : function() { return row;  }
+      }
+    });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
+
+  }
+
+  function deleteRowLoyaltyReward(grid, row) {
+    console.log("deleting LR");
+    $rootScope.addingRow = false;
+    $uibModal.open({
+      templateUrl : 'Views/Edit-LoyaltyRewards-Service.html',
+      controller : vm.controllerArray,
+      controllerAs : 'vm',
+      resolve : {
+        grid  : function() { return grid; },
+        row   : function() { return row;  }
+      }
+    });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
+
+  }
+  function addRowLoyaltyReward(grid,row) {
+    console.log("adding LR");
+    $rootScope.addingRow = false;
+    $uibModal.open({
+      templateUrl : 'Views/Edit-LoyaltyRewards-Service.html',
+      controller : vm.controllerArray,
+      controllerAs : 'vm',
+      resolve : {
+        grid  : function() { return grid; },
+        row   : function() { return row;  }
+      }
+    });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
+
+  }
+  function saveRowLoyaltyReward(grid,row) {
+    console.log("saving LR");
+    $rootScope.addingRow = false;
+    $uibModal.open({
+      templateUrl : 'Views/Edit-LoyaltyRewards-Service.html',
+      controller : vm.controllerArray,
+      controllerAs : 'vm',
+      resolve : {
+        grid  : function() { return grid; },
+        row   : function() { return row;  }
+      }
+    });
+    $rootScope.grid = grid;
+    $rootScope.row = row;
+
+  }
 
   function editRowVisit(grid, row) {
     $rootScope.addingRow = false;
@@ -347,11 +449,14 @@ RowEditCtrl.$inject = ['$http', '$uibModalInstance','grid','row','type','$rootSc
 
     removeZone : removeZone,
     saveZone   : saveZone,
+
     setupAWS: setupAWS,
     upload : upload,
     fileSizeLabel: fileSizeLabel,
     uniqueString: uniqueString,
   };
+
+
 
   function removeShoppingCentre() {
     console.dir(row);
