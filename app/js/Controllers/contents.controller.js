@@ -33,6 +33,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     vm.addRowContent    = RowEditor.addRowContent;
     vm.editRowContent   = RowEditor.editRowContent;
     vm.deleteRowContent = RowEditor.deleteRowContent;
+    vm.saveRowContent   = RowEditor.saveRowContent;
     vm.serviceGrid      = Common.setupUiGrid(Globals.ContentColumnDefs2, $scope.allowEditRow );
 
     vm.upload = $scope.upload;
@@ -101,7 +102,9 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     };
     $scope.addRow = function(row) {
       console.log("save Row C");
-      vm.serviceGrid.data.push({});
+      let content = Globals.NewContent;
+      content.retailerid = Common.findStoreName($rootScope.currentUser.retailerid);
+      vm.serviceGrid.data.push(content);
     };
 
     $scope.deleteRow = function(row) {

@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
+<head>
   <title>ShopTrawler</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" >
 
   <link href="../node_modules/angular-ui-grid/ui-grid.css" rel="styleSheet" />
-  <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" >
   <link href="../node_modules/angular-material/angular-material.css" rel="stylesheet"/>
   <link href="../node_modules/angular-material/layouts/angular-material.layouts.css" rel="stylesheet"/>
   <link href="lib/angular-flash.css" type="text/css" rel="stylesheet" />
 
-  <!-- application sytle sheets-->
+   <!--application sytle sheets-->
   <link href="styles/app.css" rel="stylesheet" />
-  <link href="styles/style.css" rel="styleSheet" />
+  <link href="styles/style2.css" rel="styleSheet" />
   <link href="styles/list.css" rel="styleSheet" />
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" >
+  <link href="../node_modules/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" >
 
   <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
   <script src="../node_modules/angular/angular.js"></script>
   <script src="lib/angular-flash.js"></script>
   <script src="../node_modules/angular-animate/angular-animate.js"></script>
@@ -34,6 +37,7 @@
   <script src="../node_modules/angular-file-upload/dist/angular-file-upload.js"></script>
 
   <script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+
   <script src="../node_modules/chart.js/dist/Chart.js"></script>
   <script src="../node_modules/tc-angular-chartjs/dist/tc-angular-chartjs.js"></script>
   <script src="../node_modules/aws-sdk/dist/aws-sdk.js"></script>
@@ -105,80 +109,153 @@
   <Script src="Models/AgeChart.js"></Script>
   <Script src="Models/RatingChart.js"></Script>
 
-
   <script src="js/Common/factory.js"></script>
   <script src="js/Common/Common.js"></script>
 
+  <style>
+
+    .navbar-nav li a {
+      line-height: 20px;
+      height: 20px;
+      padding-top: 0;
+      padding-bottom: 0;
+      border-radius: 0;
+    }
+    .contact-ul{list-style:none}
+  </style>
+
 </head>
 
+
 <body ng-app="app" ng-cloak xmlns:href="http://www.w3.org/1999/xhtml">
-  <div>
-    <div  class="navbar navbar-default navbar-static-top navbar-inverse navbar-toggleable-md navbar-light bg-faded" id="nav-top">
-      <div class="container-fluid">
-        <div class="col-sm-1  collapse navbar-collapse" id="navbar-lgn-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#!/login" data-ng-show="!loggedIn">Login</a></li>
-            <li><a href="#!/logout" data-ng-show="loggedIn">Log Out</a></li>
+
+<nav class="navbar navbar-default   navbar-inverse" role="navigation" >
+
+
+
+      <div class="container navbar-header">
+
+        <a href="#" class="pull-left"><img src="/ShopTrawlerWebApp/app/images/lion-logo-placeholder.png" style="height:50px;width:50px;"></a>
+        app/images/lion-logo-placeholder.png
+
+        <div class="col-sm-1  nav navbar-nav">
+          <ul>
+            <li><a href="#!/login" data-ng-show="!loggedIn"> Login </a></li>
           </ul>
         </div>
-        <div  class="col-sm-1 collapse navbar-collapse" id="navbar-crt-collapse">
-          <ul class="nav navbar-nav">
 
-            <li><a href="#!/ShoppingCentres/List"     data-ng-show = "isAdmin && loggedIn"    > ShoppingCentre </a>    </li>
-            <li><a href="#!/Locations/List"           data-ng-show = "isAdmin && loggedIn"    > Locations      </a>    </li>
-            <li><a href="#!/Beacons/List"             data-ng-show = "isAdmin && loggedIn"    > Beacons        </a>    </li>
-            <li><a href="#!/Zones/List"               data-ng-show = "isAdmin && loggedIn"    > Zones          </a>    </li>
-            <li><a href="#!/Users/List"               data-ng-show = "isAdmin && loggedIn"    > Users          </a>    </li>
-            <li><a href="#!/Retailers/List"           data-ng-show = "isAdmin && loggedIn"    > Retailers      </a>    </li>
-            <li><a href="#!/Ratings/List"             data-ng-show = "isAdmin && loggedIn"    > Ratings Summary</a>    </li>
 
-            <li>
-              <div class="dropdown" data-ng-show = "isAdmin && loggedIn">
-                <button class="dropbtn">Visit Reports</button>
-                <div class="dropdown-content">
-                  <a href="#!/Visits/Report/Admin/Days" >Last 12 Days</a>
-                  <a href="#!/Visits/Report/Admin/Weeks" >Last 12 Weeks</a>
-                  <a href="#!/Visits/Report/Admin/Months" >Last 12 Months</a>
-                  <a href="#!/Visits/Report/Admin/Gender" >By Gender</a>
-                  <a href="#!/Visits/Report/Admin/Age" >By Age Profile</a>
-                </div>
-              </div>
-            </li>
-            <!--<li><a href="#!/Visits/List"              data-ng-show = "isAdmin && loggedIn"    > Visits         </a>    </li>-->
 
-            <li><a href="#!/Users/Approve"            data-ng-show = "isAdmin && loggedIn"    > Enable New Users</a>   </li>
-            <li><a href="#!/Contents/Approve"         data-ng-show = "isAdmin && loggedIn"    > Approve Content </a>   </li>
-            <li><a href="#!/LoyaltyRewards/Approve"   data-ng-show = "isAdmin && loggedIn"    > Approve Loyalty Rewards </a>   </li>
 
-            <li><a href="#!/Favourites/Retailer"      data-ng-show = "isRetailer && loggedIn" > Favourites    </a>    </li>
-            <li><a href="#!/LoyaltyRewards/Retailer"  data-ng-show = "isRetailer && loggedIn" > LoyaltyRewards</a>    </li>
-            <li><a href="#!/Ratings/Retailer"         data-ng-show = "isRetailer && loggedIn" > Ratings       </a>    </li>
-            <li><a href="#!/Contents/Retailer"        data-ng-show = "isRetailer && loggedIn" > Contents      </a>    </li>
-            <li><a href="#!/BonusCodes/Retailer"      data-ng-show = "isRetailer && loggedIn" > BonusCodes    </a>    </li>
-            <li><a href="#!/UserPoints/Retailer"      data-ng-show = "isRetailer && loggedIn" > UserPoints    </a>    </li>
-            <li><a href="#!/Users/Retailer"           data-ng-show = "isRetailer && loggedIn" > Users         </a>    </li>
 
-            <li><a href="#!/Visits/Retailer"          data-ng-show = "isRetailer && loggedIn" > Visits        </a>    </li>
-            <li><a href="#!/BonusCodes/Generate"      data-ng-show = "isRetailer && loggedIn" > Generate New Bonus Codes </a>    </li>
-            <!--<li><a href="#!/Visits/Report"            data-ng-show = "isRetailer && loggedIn" > Report Visits </a>    </li>-->
-            <li>
-              <div class="dropdown" data-ng-show = "isRetailer && loggedIn">
-                <button class="dropbtn">Visit Reports</button>
-                <div class="dropdown-content">
-                  <a href="#!/Visits/Report/Retailer/Days" >Last 12 Days</a>
-                  <a href="#!/Visits/Report/Retailer/Weeks" >Last 12 Weeks</a>
-                  <a href="#!/Visits/Report/Retailer/Months" >Last 12 Months</a>
-                  <a href="#!/Visits/Report/Retailer/Gender" >By Gender</a>
-                  <a href="#!/Visits/Report/Retailer/Age" >By Age Profile</a>
 
-                </div>
-              </div>
-            </li>
-          </ul>
+        <a href="#!/Users/List"           data-ng-show = "isAdmin && loggedIn"    > Users      </a>
+        <a href="#!/Retailers/List"       data-ng-show = "isAdmin && loggedIn"    > Retailers  </a>
+        <a href="#!/Ratings/List"         data-ng-show = "isAdmin && loggedIn"    > Ratings    </a>
+
+        <div class="dropdown" data-ng-show = "isAdmin && loggedIn">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" >
+            Shopping Centre <span class="caret"></span>
+          </button>
+          <div class="dropdown-menu" >
+            <ul>
+              <li> <a href="#!/ShoppingCentres/List"   > Shopping Centre </a></li>
+              <li> <a href="#!/Locations/List"         > Locations       </a></li>
+              <li> <a href="#!/Beacons/List"           > Beacons         </a></li>
+              <li> <a href="#!/Zones/List"             > Zones           </a></li>
+            </ul>
+          </div>
         </div>
-      </div>
+
+
+        <div class="dropdown" data-ng-show = "isAdmin && loggedIn">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Visits   <span class="caret"></span>
+          </button>
+          <div class="dropdown-menu">
+            <ul>
+              <li> <a href="#!/Visits/List"                > Visits         </a></li>
+              <li role="separator" class="divider"></li>
+              <li> <a href="#!/Visits/Report/Admin/Days"   > Last 12 Days   </a></li>
+              <li> <a href="#!/Visits/Report/Admin/Weeks"  > Last 12 Weeks  </a></li>
+              <li> <a href="#!/Visits/Report/Admin/Months" > Last 12 Months </a></li>
+              <li> <a href="#!/Visits/Report/Admin/Gender" > By Gender      </a></li>
+              <li> <a href="#!/Visits/Report/Admin/Age"    > By Age Profile </a></li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="dropdown" data-ng-show = "isAdmin && loggedIn">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Approve  <span class="caret"></span>
+          </button>
+          <div class="dropdown-menu">
+            <ul>
+              <li><a href="#!/Users/Approve"              > New Users       </a></li>
+              <li><a href="#!/LoyaltyRewards/Approve"     > Loyalty Rewards </a></li>
+              <li><a href="#!/Contents/Approve"           > Content         </a></li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="#!/logout"                   data-ng-show = "isAdmin && loggedIn" > Log Out         </a>
+
+        <!-- ==================    ==============   =================     ==========================   -->
+
+        <a href="#!/Favourites/Retailer"      data-ng-show = "isRetailer && loggedIn" > Favourites    </a>
+        <a href="#!/Ratings/Retailer"         data-ng-show = "isRetailer && loggedIn" > Ratings       </a>
+        <a href="#!/Users/Retailer"           data-ng-show = "isRetailer && loggedIn" > Users         </a>
+
+
+        <div class="dropdown"                 data-ng-show = "isRetailer && loggedIn">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Loyalty Scheme <span class="caret"></span>
+          </button>
+
+          <div class="dropdown-menu" >
+            <ul>
+              <li><a href="#!/LoyaltyRewards/Retailer"  > LoyaltyRewards </a></li>
+              <li><a href="#!/Contents/Retailer"        > Contents       </a></li>
+              <li><a href="#!/BonusCodes/Retailer"      > BonusCodes     </a></li>
+              <li><a href="#!/UserPoints/Retailer"      > UserPoints     </a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dropdown" data-ng-show = "isRetailer && loggedIn">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Visit Reports <span class="caret"></span>
+          </button>
+
+          <div class="dropdown-menu" >
+            <UL>
+              <LI><a href="#!/Visits/Retailer"               > Visits         </a></LI>
+              <li role="separator" class="divider"           />
+              <LI><a href="#!/Visits/Report/Retailer/Days"   > Last 12 Days   </a></LI>
+              <LI><a href="#!/Visits/Report/Retailer/Weeks"  > Last 12 Weeks  </a></LI>
+              <LI><a href="#!/Visits/Report/Retailer/Months" > Last 12 Months </a></LI>
+              <LI><a href="#!/Visits/Report/Retailer/Gender" > By Gender      </a></LI>
+              <LI><a href="#!/Visits/Report/Retailer/Age"    > By Age Profile </a></LI>
+            </UL>
+          </div>
+        </div>
+
+
+        <div class="dropdown" data-ng-show = "isRetailer && loggedIn">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Actions <span class="caret"></span>
+          </button>
+
+          <div class="dropdown-menu" >
+            <ul>
+              <li><a href="#!/BonusCodes-Generate"  > Generate New Bonus Codes </a></li>
+              <li><a href="#!/logout"               > Log Out                  </a></li>
+            </ul>
+          </div>
+        </div>
     </div>
-  </div>
+</nav>
   <div >
     <flash-message  duration="3000" show-close="true" >
       <div class="my-flash"></div>

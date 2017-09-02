@@ -110,8 +110,13 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
 
     $scope.addRow = function (row) {
       console.log("adding LR");
-      vm.serviceGrid.data.push({});
+      let loyaltyReward = new LoyaltyReward();
+      loyaltyReward = Globals.NewLoyaltyReward;
 
+      // get the retailers storename
+
+      loyaltyReward.storeName = Common.findStoreName($rootScope.currentUser.retailerid);
+      vm.serviceGrid.data.push(loyaltyReward);
     };
 
 

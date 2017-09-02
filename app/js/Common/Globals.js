@@ -64,9 +64,6 @@ myApp.value('Globals', {
     "rgba0,255,255,.8)","rgba(255,0,255,.8)","rgba(144,238,144,.8)","rgba(224,255,255,.8)"
   ],
 
-
-
-
   "extraRows" : 8,
   "rowHeightPixels" : 30,
   "URL_BASE0": "http://192.168.0.143:8080", // laptop at home
@@ -93,9 +90,9 @@ myApp.value('Globals', {
     paginationPageSizes       : [15, 30, 45],
     paginationPageSize        : 15,
     minRowsToShow             : 15,  // again this does not appear to work, it appears to follow the 'paginationPageSizes'
-    minimumColumnSize         : 100, // this did not work, col width is specified individually below
-    minWidth                  : 200, //
-    rowHeight                 : 40,  // in pixels
+    // minimumColumnSize         : 100, // this did not work, col width is specified individually below
+    // minWidth                  : 200, //
+    rowHeight                 : 50,  // in pixels
   },
   "ContentColumnDefs" : [{
     field : 'contentid',                displayName    : 'Content ID',
@@ -147,14 +144,14 @@ myApp.value('Globals', {
   //   '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.cancelEdit(row.entity)"><i class="fa fa-times"></i></button>' + //Cancel Button
   //   '</div>', width: 100
   // },
-    {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : true,
+    {  field : 'page1',                 width : 400,displayName : 'Page 1',enableCellEdit : true,
       cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
 
     },
-    {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : true,
+    {  field : 'page2',                 width : 400,displayName : 'Page 2',enableCellEdit : true,
       cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
     },
-    {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : true,
+    {  field : 'page3',                 width : 400,displayName : 'Page 3',enableCellEdit : true,
       cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
     },
     {  field : 'retailerid',         type: 'number' ,   width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
@@ -185,6 +182,15 @@ myApp.value('Globals', {
     "page3"       : "",
     "retailerid"  : "",
     "startDate"   : ""
+  },
+  "NewContent" : {
+    "contentid"   : 0,
+    "endDate"     : new Date(),
+    "page1"       : "Page 1",
+    "page2"       : "Page 2",
+    "page3"       : "Page 3",
+    "retailerid"  : "",
+    "startDate"   : new Date()
   },
   "VisitColumnDefs" : [ {
       field : 'visitid',                 displayName    : 'Visit ID',
@@ -373,7 +379,16 @@ myApp.value('Globals', {
     "startDate"       : null,
     "visitTime"       : 0
   },
-
+  "NewLoyaltyReward" : {
+    "loyaltyRewardid" : 0,
+    "endDate"         : new Date(),
+    "pointsPerVisit"  : 10,
+    "rewardImage"     : "Reward Image",
+    "retailerid"      : "",
+    "rewardTitle"     : "Reward Title",
+    "startDate"       : new Date(),
+    "visitTime"       : 10
+  },
 
   "RatingColumnDefs" : [{
       field : 'fullname',               displayName : 'User ID',
