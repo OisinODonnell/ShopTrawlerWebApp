@@ -1,7 +1,7 @@
 myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootScope',
-  '$uibModal','RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig',
+  '$uibModal','RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig','Flash',
 
-  function (  DataFactory, $scope, Common, $rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig) {
+  function (  DataFactory, $scope, Common, $rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig, Flash) {
     let vm = this;
     let filename1 = "";
     let filename2 = "";
@@ -47,46 +47,31 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
 
     function ListContents() {
       vm.dataLoading = true;
-      let contents = [];
-      $scope.contents = [];
-      let content = new Content();
+
       DataFactory.listContent()
         .then( function(response) {
-            contents = Common.createObjects(response.data, content);
-            contents.forEach(function (content, key) {
-              content = Common.setDatesAndIDs(content);
-              content.filename1 = "";
-              content.filename2 = "";
-              content.filename3 = "";
-              $scope.contents[key] = content;
-
-            });
-            vm.serviceGrid.data = $scope.contents;
-            $scope.gridStyle = Common.gridStyle($scope.content.length)
-          },
-          function (error) { $scope.status = 'Unable to load Contents ' + error.message; });
+            vm.serviceGrid.data = buildNewContents(response.data);
+            $scope.gridStyle = Common.gridStyle($scope.content.length);
+            },
+            function (error) {
+            $scope.status = 'Unable to load Contents ' + error.message;
+          });
       vm.dataLoading = false;
     }
     function ListContentByRetailer(id) {
       vm.dataLoading = true;
-      let contents = [];
-      $scope.contents = [];
-      let content = new Content();
+
       DataFactory.listContentByRetailer(id)
         .then( function(response) {
-            contents = Common.createObjects(response.data, content);
-            contents.forEach(function (content, key) {
-              content = Common.setDatesAndIDs(content);
-              content.filename1 = "";
-              content.filename2 = "";
-              content.filename3 = "";
-              $scope.contents[key] = content;
+            Flash.create('success','Content added Successfully', 2000);
+            vm.serviceGrid.data = buildNewContents(response.data);
+          $scope.gridStyle = Common.gridStyle($scope.contents.length);
 
-            });
-            vm.serviceGrid.data = $scope.contents;
-            $scope.gridStyle = Common.gridStyle($scope.contents.length)
           },
-          function (error) { $scope.status = 'Unable to load Contents ' + error.message; });
+          function (error) {
+            Flash.create('danger','Content could not be added -> ' + error, 4000);
+            $scope.status = 'Unable to load Contents ' + error.message;
+        });
       vm.dataLoading = false;
     }
 
@@ -97,8 +82,34 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       rowTmp.entity = newService;
       vm.editRow($scope.vm.serviceGrid, rowTmp);
     };
+
+    // Save new or updated entry to database
     $scope.saveRow = function(row) {
-      console.log("save Row C");
+      // find retailerid
+      // copy to new LR record
+      // post to REST
+
+      let userid = $rootScope.currentUser.userid;
+      let retailerid = Common.getRetailerid(userid);
+      let content = createNewContents(row.entity, retailerid);
+
+      let index = vm.serviceGrid.data.indexOf(row.entity);
+
+      // check if dates are valid
+      let response = Common.checkDates(content.getStartDate(), content.getEndDate());
+      if (response === true) {
+        DataFactory.addContent(content)
+          .then(function (response) {
+              Flash.create("success", "Loyalty Reward added successfully", 2000);
+              vm.serviceGrid.data = buildNewContents(response.data);
+            },
+            function (response) {
+              Flash.create("danger", "Loyalty Reward not added : " + response.data.message);
+            });
+      } else {
+        Flash.create('danger', "Content not created : -> " + response, 4000);
+      }
+      console.log("save Row LR");
     };
     $scope.addRow = function(row) {
       console.log("save Row C");
@@ -107,8 +118,70 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       vm.serviceGrid.data.push(content);
     };
 
+
+    // Delete Row in Grid and delete row in Database if exists
     $scope.deleteRow = function(row) {
-      console.log("delete Row C");
+      if (row.entity.contentid !== 0) { // edits made to existing row
+        DataFactory.deleteContent(row.entity.contentid)
+          .then( function(response){
+              Flash.create('success',"Content Deleted Successfully", 2000);
+              vm.serviceGrid.data = buildNewContents(response.data);
+            },
+            function(error) {
+              Flash.create('danger',"Content with id = ", row.entity.contentid + " could not be deleted -> " + response.data.message );
+              vm.serviceGrid.data = buildNewContents(response.data);
+            });
+      }
+
+      let index = vm.serviceGrid.data.indexOf(row.entity);
+      vm.serviceGrid.data.splice(index, 1);
+
+      console.log("delete Row LR");
     };
+
+    $scope.addRow = function (row) {
+      // add row to grid with default values
+      console.log("adding LR");
+      let content = new Content();
+      content = Globals.NewContent;
+
+      // get the retailers storename
+
+      content.storeName = Common.findStoreName($rootScope.currentUser.retailerid);
+      vm.serviceGrid.data.push(content);
+    };
+
+    function createNewContents(entity, retailerid) {
+
+      let endDate = new Date(entity.endDate).getTime();
+      let startDate = new Date(entity.startDate).getTime();
+
+      let content = new Content();
+      content.setEndDate(endDate);
+      content.setStartDate(startDate);
+      content.setPage1(entity.page1);
+      content.setPage2(entity.page2);
+      content.setPage3(entity.page3);
+      content.setRetailerid(retailerid);
+      content.setApproved(false);
+
+      return content;
+    }
+
+
+    function buildNewContents(data) {
+      let contents;
+      $scope.contents = [];
+      let content = new Content();
+
+      contents = Common.createObjects(data, content);
+      contents.forEach(function (content, key) {
+        content = Common.setDatesAndIDs(content);
+        content.filename1="";
+        contents[key] = content;
+      });
+      $scope.contents = contents;
+      return $scope.contents;
+    }
 
   }]);

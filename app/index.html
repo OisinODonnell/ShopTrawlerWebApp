@@ -113,149 +113,170 @@
   <script src="js/Common/Common.js"></script>
 
   <style>
-
-    .navbar-nav li a {
-      line-height: 20px;
-      height: 20px;
-      padding-top: 0;
-      padding-bottom: 0;
-      border-radius: 0;
+    .nav-colapse.li.menu {
+      list-style-type: none;
+      list-style:none;
     }
-    .contact-ul{list-style:none}
-  </style>
+    .navbar-nav.navbar-right:last-child {
+      margin-right: auto;
+    }
+    a {
+    text-decoration: none;
+      text-align:center;
+    }
+    /* remove bullet points when displayed dropdown */
+    ul{
+      list-style-type: none;
+      padding: auto;
+      margin-left: auto;
+    }
 
+    /* adjust size of font */
+    .nav a{
+      font-size: 1.2em !important;
+    }
+    /* default container was a bit narrow */
+    .container {
+      max-width : 80%;
+    }
+
+    /* push body beyond navbar */
+    body {
+      padding-top: 80px;
+    }
+  </style>
 </head>
 
 
 <body ng-app="app" ng-cloak xmlns:href="http://www.w3.org/1999/xhtml">
 
-<nav class="navbar navbar-default   navbar-inverse" role="navigation" >
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #e3f2fd;">
 
-
-
-      <div class="container navbar-header">
-
-        <a href="#" class="pull-left"><img src="/ShopTrawlerWebApp/app/images/lion-logo-placeholder.png" style="height:50px;width:50px;"></a>
-        app/images/lion-logo-placeholder.png
-
-        <div class="col-sm-1  nav navbar-nav">
-          <ul>
-            <li><a href="#!/login" data-ng-show="!loggedIn"> Login </a></li>
-          </ul>
-        </div>
-
-
-
-
-
-
-        <a href="#!/Users/List"           data-ng-show = "isAdmin && loggedIn"    > Users      </a>
-        <a href="#!/Retailers/List"       data-ng-show = "isAdmin && loggedIn"    > Retailers  </a>
-        <a href="#!/Ratings/List"         data-ng-show = "isAdmin && loggedIn"    > Ratings    </a>
-
-        <div class="dropdown" data-ng-show = "isAdmin && loggedIn">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" >
-            Shopping Centre <span class="caret"></span>
-          </button>
-          <div class="dropdown-menu" >
-            <ul>
-              <li> <a href="#!/ShoppingCentres/List"   > Shopping Centre </a></li>
-              <li> <a href="#!/Locations/List"         > Locations       </a></li>
-              <li> <a href="#!/Beacons/List"           > Beacons         </a></li>
-              <li> <a href="#!/Zones/List"             > Zones           </a></li>
-            </ul>
-          </div>
-        </div>
-
-
-        <div class="dropdown" data-ng-show = "isAdmin && loggedIn">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Visits   <span class="caret"></span>
-          </button>
-          <div class="dropdown-menu">
-            <ul>
-              <li> <a href="#!/Visits/List"                > Visits         </a></li>
-              <li role="separator" class="divider"></li>
-              <li> <a href="#!/Visits/Report/Admin/Days"   > Last 12 Days   </a></li>
-              <li> <a href="#!/Visits/Report/Admin/Weeks"  > Last 12 Weeks  </a></li>
-              <li> <a href="#!/Visits/Report/Admin/Months" > Last 12 Months </a></li>
-              <li> <a href="#!/Visits/Report/Admin/Gender" > By Gender      </a></li>
-              <li> <a href="#!/Visits/Report/Admin/Age"    > By Age Profile </a></li>
-            </ul>
-          </div>
-        </div>
-
-
-        <div class="dropdown" data-ng-show = "isAdmin && loggedIn">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Approve  <span class="caret"></span>
-          </button>
-          <div class="dropdown-menu">
-            <ul>
-              <li><a href="#!/Users/Approve"              > New Users       </a></li>
-              <li><a href="#!/LoyaltyRewards/Approve"     > Loyalty Rewards </a></li>
-              <li><a href="#!/Contents/Approve"           > Content         </a></li>
-            </ul>
-          </div>
-        </div>
-
-        <a href="#!/logout"                   data-ng-show = "isAdmin && loggedIn" > Log Out         </a>
-
-        <!-- ==================    ==============   =================     ==========================   -->
-
-        <a href="#!/Favourites/Retailer"      data-ng-show = "isRetailer && loggedIn" > Favourites    </a>
-        <a href="#!/Ratings/Retailer"         data-ng-show = "isRetailer && loggedIn" > Ratings       </a>
-        <a href="#!/Users/Retailer"           data-ng-show = "isRetailer && loggedIn" > Users         </a>
-
-
-        <div class="dropdown"                 data-ng-show = "isRetailer && loggedIn">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Loyalty Scheme <span class="caret"></span>
-          </button>
-
-          <div class="dropdown-menu" >
-            <ul>
-              <li><a href="#!/LoyaltyRewards/Retailer"  > LoyaltyRewards </a></li>
-              <li><a href="#!/Contents/Retailer"        > Contents       </a></li>
-              <li><a href="#!/BonusCodes/Retailer"      > BonusCodes     </a></li>
-              <li><a href="#!/UserPoints/Retailer"      > UserPoints     </a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="dropdown" data-ng-show = "isRetailer && loggedIn">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Visit Reports <span class="caret"></span>
-          </button>
-
-          <div class="dropdown-menu" >
-            <UL>
-              <LI><a href="#!/Visits/Retailer"               > Visits         </a></LI>
-              <li role="separator" class="divider"           />
-              <LI><a href="#!/Visits/Report/Retailer/Days"   > Last 12 Days   </a></LI>
-              <LI><a href="#!/Visits/Report/Retailer/Weeks"  > Last 12 Weeks  </a></LI>
-              <LI><a href="#!/Visits/Report/Retailer/Months" > Last 12 Months </a></LI>
-              <LI><a href="#!/Visits/Report/Retailer/Gender" > By Gender      </a></LI>
-              <LI><a href="#!/Visits/Report/Retailer/Age"    > By Age Profile </a></LI>
-            </UL>
-          </div>
-        </div>
-
-
-        <div class="dropdown" data-ng-show = "isRetailer && loggedIn">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Actions <span class="caret"></span>
-          </button>
-
-          <div class="dropdown-menu" >
-            <ul>
-              <li><a href="#!/BonusCodes-Generate"  > Generate New Bonus Codes </a></li>
-              <li><a href="#!/logout"               > Log Out                  </a></li>
-            </ul>
-          </div>
-        </div>
+  <!-- Navbar colapses to a button on RHS as the screen is mad smaller-->
+  <!-- changing the menu from horizontal to vertical -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://dundrum.ie"><img src="images/Shoptrawler-logo.png" style="height:60px;width:60px;"/></a>
+      <ul class="nav navbar-nav" data-ng-show = "!loggedIn" > <!-- single login not logged in-->
+        <li><a href="#!/login"               > Login </a></li>
+      </ul>
     </div>
+
+
+  <div id="navbar" class="container navbar-collapse collapse"  >
+
+
+    <!-- stack these items to the left -->
+    <ul class="nav navbar-nav" data-ng-show = "isAdmin && loggedIn" > <!-- single links no dropdown -->
+      <li><a href="#!/Users/List"      > Users     </a></li>
+      <li><a href="#!/Retailers/List"  > Retailers </a></li>
+      <li><a href="#!/Ratings/List"    > Ratings   </a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right" data-ng-show = "isAdmin && loggedIn"> <!-- stack these items to the right -->
+
+      <!-- admin dropdown 1 -->
+      <li class="dropdown">
+
+        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          Shopping Center <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li> <a href="#!/ShoppingCentres/List" > Shopping Centre </a></li>
+          <li> <a href="#!/Locations/List"       > Locations       </a></li>
+          <li> <a href="#!/Beacons/List"         > Beacons         </a></li>
+          <li> <a href="#!/Zones/List"           > Zones           </a></li>
+        </ul>
+      </li> <!-- end dropdown 1 -->
+
+      <!-- admin dropdown 2 -->
+      <li class="dropdown">
+        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-expanded="false">
+          Visits <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu"                        >
+            <li> <a href="#!/Visits/List"                > Visits         </a></li>
+            <li role="separator" class="divider"         > </li>
+            <li> <a href="#!/Visits/Report/Admin/Days"   > Last 12 Days   </a></li>
+            <li> <a href="#!/Visits/Report/Admin/Weeks"  > Last 12 Weeks  </a></li>
+            <li> <a href="#!/Visits/Report/Admin/Months" > Last 12 Months </a></li>
+            <li> <a href="#!/Visits/Report/Admin/Gender" > By Gender      </a></li>
+            <li> <a href="#!/Visits/Report/Admin/Age"    > By Age Profile </a></li>
+        </ul>
+      </li> <!-- end dropdown 2 -->
+
+        <!-- admin dropdown 3 -->
+        <li class="dropdown">
+          <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Approve <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#!/Users/Approve"           > New Users       </a></li>
+            <li><a href="#!/LoyaltyRewards/Approve"  > Loyalty Rewards </a></li>
+            <li><a href="#!/Contents/Approve"        > Content         </a></li>
+          </ul>
+        </li> <!-- end dropdown 3 -->
+
+        <!-- single ... logout -->
+      <li><a href="#!/logout"               > Log Out                  </a></li>
+    </ul> <!-- end of Admin menu -->
+
+
+    <!-- stack these to left -->
+    <ul class="nav navbar-nav" data-ng-show = "isRetailer && loggedIn" > <!-- start of retailer menu -->
+
+      <li><a href="#!/Favourites/Retailer"  > Favourites    </a></li>
+      <li><a href="#!/Ratings/Retailer"     > Ratings       </a></li>
+      <li><a href="#!/Users/Retailer"       > Users         </a></li>
+      <li><a href="#!/BonusCodes/Generate"  > Generate New Bonus Codes </a></li>
+    </ul>
+
+
+    <ul class="nav navbar-nav navbar-right" data-ng-show = "isRetailer && loggedIn" > <!-- stack these to RHS -->
+      <!-- admin dropdown 1 -->
+      <li class="dropdown">
+        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          Loyalty Scheme <span class="caret"></span>
+        </a>
+
+        <ul class="dropdown-menu">
+          <li><a href="#!/LoyaltyRewards/Retailer" > LoyaltyRewards </a></li>
+          <li><a href="#!/Contents/Retailer"       > Contents       </a></li>
+          <li><a href="#!/BonusCodes/Retailer"     > BonusCodes     </a></li>
+          <li><a href="#!/UserPoints/Retailer"     > UserPoints     </a></li>
+        </ul>
+      </li>
+
+      <!-- admin dropdown 2 -->
+      <li class="dropdown">
+        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          Vists <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <LI><a href="#!/Visits/Retailer"               > Visits         </a></LI>
+          <li role="separator" class="divider"           ></li>
+          <LI><a href="#!/Visits/Report/Retailer/Days"   > Last 12 Days   </a></LI>
+          <LI><a href="#!/Visits/Report/Retailer/Weeks"  > Last 12 Weeks  </a></LI>
+          <LI><a href="#!/Visits/Report/Retailer/Months" > Last 12 Months </a></LI>
+          <LI><a href="#!/Visits/Report/Retailer/Gender" > By Gender      </a></LI>
+          <LI><a href="#!/Visits/Report/Retailer/Age"    > By Age Profile </a></LI>
+        </ul>
+
+      </li>
+
+      <!-- single ... logout -->
+      <li><a href="#!/logout"               > Log Out                  </a></li>
+    </ul> <!-- end of retailer menu -->
+
+  </div>
 </nav>
+
   <div >
     <flash-message  duration="3000" show-close="true" >
       <div class="my-flash"></div>

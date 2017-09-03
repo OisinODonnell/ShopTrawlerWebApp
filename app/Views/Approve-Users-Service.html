@@ -20,12 +20,13 @@
         <select class="input" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
       </div>
 
+
     </form>
 
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="vm.approveUser()">Save</button>
-    <button class="btn btn-primary" ng-click="vm.removeUser()">Delete</button>
+    <button class="btn btn-primary" ng-click="vm.approveUser(row)">Save</button>
+    <button class="btn btn-primary" ng-click="vm.removeUser(row)">Delete</button>
     <button class="btn btn-primary" ng-click="$close()">Cancel</button>
   </div>
 </div>

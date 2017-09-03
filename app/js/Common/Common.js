@@ -468,5 +468,52 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
   };
 
 
+  lib.getRetailerid = (id) => {
+    let retailerid = 0;
+    angular.forEach($rootScope.retailers, function(value,key) {
+      if (value.managerid === id) {
+        retailerid = value.retailerid;
+      }
+    });
+    return retailerid;
+  };
+
+  lib.checkDates = (sDate, eDate) => {
+
+    let msDate = new moment(sDate);
+    let meDate = new moment(eDate);
+
+
+    let today = new moment(new Date());
+    let sixMonths = new moment(today.add(6, 'month'));
+    today = new moment(new Date());
+    let tomorrow = new moment(today.add(1,'day'));
+    today = new moment(new Date());
+
+    let sDatePlusOne = new moment(msDate.add(1,'day'));
+    msDate = new moment(sDate);
+
+    console.log("StartDate -> " + msDate.format());
+    console.log("EndDate -> " + meDate.format());
+    console.log("Today -> " + today.format());
+    console.log("6m from Today -> " + sixMonths.format());
+
+
+
+    if (moment(msDate).isAfter(today, 'day')) {
+      return "StartDate cannot be less than todays date";
+    }
+
+    if (moment(sDatePlusOne).isAfter(meDate, 'day')){
+      return "StartDate + 1 must be equal to or less than End Date";
+    }
+    if (moment(meDate).isAfter(sixMonths, 'day')) {
+      return "EndDate cannot be after todays date plus 6 months (ie > " + sixMonths.format + ")";
+    }
+    return true;
+
+  };
+
   return lib;
+
 }]);

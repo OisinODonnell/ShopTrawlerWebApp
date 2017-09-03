@@ -22,6 +22,8 @@ class LoyaltyReward {
   getLoyaltyRewardid  ()  { return this.loyaltyRewardid;            }
   setLoyaltyRewardid  (x) { this.loyaltyRewardid     = x ? x : 0;   }
   getEndDateString    ()  { return new Date(this.endDate);          }
+  getEndDate          ()  { return this.endDate;                    }
+  getStartDate        ()  { return this.startDate;                  }
   setEndDate          (x) { this.endDate             = x ? x : "";  }
   getStartDateString  ()  { return new Date(this.startDate);        }
   setStartDate        (x) { this.startDate           = x ? x : "";  }

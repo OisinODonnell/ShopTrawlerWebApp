@@ -109,14 +109,14 @@ myApp.value('Globals', {
     // },
     {  field : 'getEndDateString()',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : true, },
     {  field : 'page1',               width : 200,displayName : 'Page 1',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
 
     },
     {  field : 'page2',               width : 200,displayName : 'Page 2',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
     },
     {  field : 'page3',               width : 200,displayName : 'Page 3',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
     },
     {  field : 'retailerid',          width : 100, type: 'number' ,  displayName : 'Retailer ID',enableCellEdit : true,          },
     {  field : 'getStartDateString()',width : 200, displayName : 'Start Date',type:"date",                      }
@@ -126,9 +126,9 @@ myApp.value('Globals', {
   "ContentColumnDefs2" : [{
 
       name: 'Actions', width : 100,enableCellEdit : false, pinnedRight:true,
-      cellTemplate: '<div class="container " >' +
-                      '<button class="btn-success btn-circle col-lg-4"  ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_24dp_1x.png"</button>' +
-                      '<button class="btn-danger btn-circle col-lg-4" type="button" ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_24dp_1x.png"></button>'+
+      cellTemplate: '<div  >' +
+                      '<button class="btn-success btn-circle"style="width:40px;height:40px;" ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_24dp_1x.png"</button>' +
+                      '<button class="btn-danger btn-circle" style="width:40px;height:40px;" type="button" ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_24dp_1x.png"></button>'+
                     '</div>'
     },
     {
@@ -137,26 +137,20 @@ myApp.value('Globals', {
     type  : 'number',
     width : 100,
   },
-  //   {
-  //   name: 'Actions', field: 'edit', enableFiltering: false, enableSorting: false,
-  //   cellTemplate: '<div><button ng-show="!row.entity.editrow" class="btn primary" ng-click="grid.appScope.edit(row.entity)"><ifa-edit"></i></button>' +  //Edit Button
-  //   '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.saveRow(row.entity)"><i class="fa fa-floppy-o"></i></button>' +//Save Button
-  //   '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.cancelEdit(row.entity)"><i class="fa fa-times"></i></button>' + //Cancel Button
-  //   '</div>', width: 100
-  // },
-    {  field : 'page1',                 width : 400,displayName : 'Page 1',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
 
+    {  field : 'page1',                 displayName : 'Page 1',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
     },
-    {  field : 'page2',                 width : 400,displayName : 'Page 2',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
+    {  field : 'page2',                 displayName : 'Page 2',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
     },
-    {  field : 'page3',                 width : 400,displayName : 'Page 3',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 80
+    {  field : 'page3',                 displayName : 'Page 3',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
     },
     {  field : 'retailerid',         type: 'number' ,   width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
-    {  field : 'endDate',  width : 200,displayName : 'Start Date',type:"date",  enableCellEdit : true  },
-    {  field : 'startDate',width : 200,displayName : 'End Date',type:"date",enableCellEdit : true, },
+    {  field : 'startDate',width : 200,displayName : 'Start Date',type:"date",enableCellEdit : true, },
+    {  field : 'endDate',  width : 200,displayName : 'End Date',type:"date",  enableCellEdit : true  },
+
   ],
 
   "ApproveContentColumnDefs" : [{
@@ -333,10 +327,10 @@ myApp.value('Globals', {
 
   "LoyaltyRewardColumnDefs2" : [{
 
-    name: 'Actions', width : 100,enableCellEdit : false, pinnedRight:true,
-    cellTemplate: '<div class="container " >' +
-                    '<button class="btn-success btn-circle col-lg-4"  ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_24dp_1x.png"</button>' +
-                    '<button class="btn-danger btn-circle col-lg-4" type="button" ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_24dp_1x.png"></button>'+
+    name: 'Actions', width : 130,enableCellEdit : false, pinnedRight:true,
+    cellTemplate: '<div  >' +
+                    '<button class="btn-success btn-circle"  ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_24dp_1x.png"</button>' +
+                    '<button class="btn-danger btn-circle "  ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_24dp_1x.png"></button>'+
                   '</div>'
     },
     {
@@ -429,10 +423,10 @@ myApp.value('Globals', {
       {  field : 'phone',              width : 150, displayName : 'Phone',                      enableCellEdit : false,          },
       {  field : 'storeName',          width : 150, displayName : 'Store Name',                 enableCellEdit : false,          },
       {  field : 'headerBackgroundImage', width : 200,displayName : 'Header Background Image',  enableCellEdit : false,          },
-      {  field : 'managerid',          type: 'number', width : 100, displayName : 'Manager ID',                 enableCellEdit : false,          },
-      {  field : 'shoppingCentreid',   type: 'number', width : 100, displayName : 'Shopping Centre ID',         enableCellEdit : false,          },
-      {  field : 'storeDefaultContentPage1',  width : 200,displayName : 'Store Default Content Page1', enableCellEdit : false,   },
-      {  field : 'zoneid',             type: 'number', width : 100, displayName : 'Zone ID',                    enableCellEdit : false           }
+      {  field : 'managerid',          type: 'number', width : 100, displayName : 'Manager ID',         enableCellEdit : false,  },
+      {  field : 'shoppingCentreid',   type: 'number', width : 100, displayName : 'Shopping Centre ID', enableCellEdit : false,  },
+      {  field : 'storeDefaultContentPage1',  width : 200,displayName : 'Store Default Content Page1',  enableCellEdit : false,  },
+      {  field : 'zoneid',             type: 'number', width : 100, displayName : 'Zone ID',            enableCellEdit : false   }
     ],
 
   "addRowRetailer" : {
@@ -499,7 +493,7 @@ myApp.value('Globals', {
     {  field : 'gender',        width : 100, displayName : 'Gender',        enableCellEdit : false,  },
     {  field : 'password',      width : 100, displayName : 'Password',      enableCellEdit : false,  },
     {  field : 'type',          width : 100, displayName : 'Type',          enableCellEdit : false,  },
-    {  field : 'yob',           type: 'number', width : 50, displayName : 'Yob',           enableCellEdit : false,  },
+    {  field : 'yob', type: 'number', width : 50, displayName : 'Yob',      enableCellEdit : false,  },
     {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
   "ApproveUserColumnDefs" : [{
