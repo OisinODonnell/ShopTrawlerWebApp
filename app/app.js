@@ -39,10 +39,10 @@
 //
 
 
-let myApp =  angular.module('app', ['ng','angularFileUpload','directives','ngRoute','routes',
+let myApp =  angular.module('app', ['angularjsToast','ng','angularFileUpload','directives','ngRoute','routes',
   'ngMaterial','ngMessages', 'ngAria','ngCookies','ngFlash',  'ngAnimate', 'ui.grid', 'ui.grid.moveColumns',
-  'ngMaterialDatePicker',  'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit',
-  'ui.grid.pagination','tc.chartjs','angularMoment', 'ui.grid.pinning' ])
+  'ngMaterialDatePicker',  'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.grid.edit', 'ui.grid.autoResize',
+  'ui.grid.pagination','tc.chartjs','angularMoment', 'ui.grid.pinning','ngSanitize' ])
 
   .config(config)
   .run(run);

@@ -1,7 +1,7 @@
 myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootScope',
-  '$uibModal','RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig','Flash','AwsFactory',
+  '$uibModal','RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig','Flash','AwsFactory','toast',
 
-  function (  DataFactory, $scope, Common, $rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig, Flash, AwsFactory) {
+  function (  DataFactory, $scope, Common, $rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig, Flash, AwsFactory, toast) {
     let vm = this;
     let filePage1 = "";
     let filePage2 = "";
@@ -10,8 +10,6 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     $scope.filePage1 = filePage1;
     $scope.filePage2 = filePage2;
     $scope.filePage3 = filePage3;
-
-
 
     $rootScope.type = "C";
 
@@ -26,14 +24,23 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       AwsFactory.updateGrid(grid, row);
 
       if (! AwsFactory.checkFileSize($rootScope.file)) {
-        Flash.create("danger", "File is too big ... please reduce size and try again Limit is 10 MBytes", 4000)
+        toast({
+          duration  : 2000,
+          message   : "File too big! must be less than : 10MB" ,
+          className : "alert-warning"
+        });
+        Flash.create("danger", "File is too big [ " + AwsFactory.fileSizeLabel() + " ] ... please reduce size and try again Limit is 10 MBytes", 4000)
+
         return false;
       } else {
         AwsFactory.sendFile();
         AwsFactory.updateGrid(grid, row);
-
+        toast({
+          duration  : 2000,
+          message   : "File [ " + $rootScope.entry + " ]uploaded to Amazon Web Services!  ",
+          className : "alert-success"
+        });
       }
-
     };
 
     if ($rootScope.isAdmin) {
@@ -49,7 +56,6 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     $scope.awsUpload = function() {
       $scope.uploader.uploadAll();
       let ready = $scope.uploader.getReadyItems();
-
     };
 
     $scope.vm = vm;
@@ -75,6 +81,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     else
       ListContentByRetailer($rootScope.currentUser.retailerid);
 
+    // $scope.gridApi.core.handleWindowResize();
 
     function ListContents() {
       vm.dataLoading = true;

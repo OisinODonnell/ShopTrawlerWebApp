@@ -1,5 +1,5 @@
-﻿myApp.controller('LoginController', ['$location', 'AuthenticationService','$rootScope','DataFactory','$scope','Flash',
-    function ($location, AuthenticationService, $rootScope, DataFactory, $scope, Flash) {
+﻿myApp.controller('LoginController', ['$location', 'AuthenticationService','$rootScope','DataFactory','$scope','Flash','toast','Common',
+    function ($location, AuthenticationService, $rootScope, DataFactory, $scope, Flash, toast, Common) {
       let vm = this;
       // user login/registration placeholders
 
@@ -71,9 +71,13 @@
               setUserLoginDetails(response.data);
 
 
+
+              // ngToast.create('a toast message...');
               // show success
               id = Flash.create('success', response.data.message, $rootScope.flash.autoHide, {class: 'custom-class', id: 'custom-id'}, true);
+
               AuthenticationService.setCredentials(vm.username, vm.password);
+
 
               // set  navbar controls
               setAdmin( $rootScope.userType === "Administrator" );
@@ -128,11 +132,13 @@
       }
 
       function RegisterRetailer() {
+        $scope.vm.retailer = $scope.retailer;
         DataFactory.registerRetailer($scope.vm)
         .then(function (response) {
           if (response.data.success === "1") {
             id = Flash.create('success', response.data.message, $rootScope.flash.autoHide,
                   {class: 'custom-class', id: 'custom-id'}, true);
+
             $location.path('/login');
           } else {
             id = Flash.create('danger', response.data.message, $rootScope.flash.autoHide,
@@ -167,16 +173,30 @@
         $location.path('/login');
       }
 
+
       function ListRetailers() {
-        // get list of retailers to use in form
+        vm.dataLoading = true;
+        let retailers;
+        let retailer = new Retailer();
         DataFactory.listRetailers()
-          .then(function (retailers) {
-              vm.allRetailers = retailers.data;
-              $rootScope.retailers = retailers.data;
-            }, // error handling function for  listRetailers()
-            function (error) { $scope.status = 'Unable to load Retailers ' + error.message;   }
-          );
+          .then( function(response) {
+              retailers = Common.createObjects(response.data, retailer);
+              $rootScope.retailers = $scope.retailers = retailers;
+            },
+            function (error) { $scope.status = 'Unable to load Retailers ' + error.message; });
+        vm.dataLoading = false;
       }
+
+      // function ListRetailers() {
+      //   // get list of retailers to use in form
+      //   DataFactory.listRetailers()
+      //     .then(function (retailers) {
+      //         vm.allRetailers = retailers.data;
+      //         $rootScope.retailers = retailers.data;
+      //       }, // error handling function for  listRetailers()
+      //       function (error) { $scope.status = 'Unable to load Retailers ' + error.message;   }
+      //     );
+      // }
 
       // selectively enables disables elements bon the navbar depending on
       // whether the user is logged in or if = Administrator or Customer

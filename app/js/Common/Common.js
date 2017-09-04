@@ -227,7 +227,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     serviceGrid.columnDefs = EntityColumnDefs;
     // Get height of grid to create ... although I can get the height it should be at, the grid does not respond yet.
     let height = (Globals.extraRows + Globals.GridDefaults.minRowsToShow) * Globals.GridDefaults.rowHeight;
-    Globals.gridStyle = "{Width:1000px; Height:" + height + "px;}";
+    Globals.gridStyle = "{Width:1200; Height:" + height + "px;}";
     $rootScope.gridStyle = Globals.gridStyle;
 
     if (authorised) {

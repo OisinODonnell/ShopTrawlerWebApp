@@ -93,6 +93,7 @@ myApp.value('Globals', {
     // minimumColumnSize         : 100, // this did not work, col width is specified individually below
     // minWidth                  : 200, //
     rowHeight                 : 50,  // in pixels
+    maxWidth                  : 9000,
   },
   "ContentColumnDefs" : [{
     field : 'contentid',                displayName    : 'Content ID',
