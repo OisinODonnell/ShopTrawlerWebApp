@@ -25,6 +25,8 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
   // BonusCodes
   factory.listBonusCodes                = ()              => $http.get(urlBase + '/BonusCodes'                    );
   factory.generateBonusCodes            = (id)            => $http.get(urlBase + '/BonusCodes/Generate/' + id     );
+  factory.generateBonusCodes250         = (id)            => $http.put(urlBase + '/BonusCodes/Generate/250/' + id );
+  factory.generateBonusCodes500         = (id)            => $http.put(urlBase + '/BonusCodes/Generate/500/' + id );
   factory.listBonusCodesByRetailer      = (id)            => $http.get(urlBase + '/BonusCodes/Retailer/' + id     );
   factory.listBonusCodesByUser          = (id)            => $http.get(urlBase + '/BonusCodes/User/' + id         );
   factory.getBonusCode                  = (id)            => $http.get(urlBase + '/BonusCode/' + id               );

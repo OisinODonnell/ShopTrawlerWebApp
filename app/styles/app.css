@@ -419,47 +419,17 @@ body{
 
 }
 .influxGrid {
-  width: 800px;
-  height: 420px;
+  width: 80%;
+  height: 80%;
 }
 .shopTrawler {
-  width: 1000px;
-  height: 420px;
+  margin-left:5%;
+  width: 90%;
+  height: 90%;
 }
-.shopTrawler1 {
-  width: 1000px;
-  height: 150px;
+.shopTrawler-chart {
+  margin-left:5%;
+  width: 80%;
+  /*height: 60%;*/
+  height: auto !important;
 }
-.shopTrawler2 {
-  width: 1000px;
-  height: 180px;
-}
-.shopTrawler3 {
-  width: 1000px;
-  height: 210px;
-}
-.shopTrawler4 {
-  width: 1000px;
-  height: 240px;
-}
-.shopTrawler5 {
-  width: 1000px;
-  height: 270px;
-}
-.shopTrawler6 {
-  width: 1000px;
-  height: 300px;
-}
-.shopTrawler7 {
-  width: 1000px;
-  height: 330px;
-}
-.shopTrawler8 {
-  width: 1000px;
-  height: 360px;
-}
-.shopTrawler9 {
-  width: 1000px;
-  height: 390px;
-}
-

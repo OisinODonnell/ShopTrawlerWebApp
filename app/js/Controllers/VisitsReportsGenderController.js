@@ -59,7 +59,7 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
             genderCharts    = Common.createObjects(response.data, genderChart);
 
             let chartConfig = {
-              type    : 'bar',
+              type    : 'pie',
               header  : "Vists by Gender",
               footer  : "Visits",
               options : {}
@@ -75,6 +75,8 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
       // Common.destroy(myLineChart, canvas,chartConfig,ctx);
 
       // myLineChart.destroy();
+
+
 
       let bgColours = Globals.BackgroundChartColours;
       let borderColours = Globals.BorderChartColours;
@@ -116,6 +118,12 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
         //   config.data.datasets[key].backgroundColor = chartConfig.options.backgroundColor;
         // }
       });
+
+
+      // if ($rootScope.myChart) {
+      //   $rootScope.myChart.destroy();
+      // }
+
 
       $rootScope.myChart = new Chart(ctx, config);
       return new Chart(ctx, config);

@@ -134,5 +134,9 @@
     <orderEntry type="library" name="assets-cache" level="application" />
     <orderEntry type="library" name="angular-material-datetimepicker" level="application" />
     <orderEntry type="library" name="angular-material-datetimepicker" level="application" />
+    <orderEntry type="library" name="csv" level="application" />
+    <orderEntry type="library" name="pdfmake" level="application" />
+    <orderEntry type="library" name="ui-grid-unstable" level="application" />
+    <orderEntry type="library" name="vfs_fonts" level="application" />
   </component>
 </module>

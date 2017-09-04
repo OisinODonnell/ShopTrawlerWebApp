@@ -71,18 +71,34 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     colDefs[3].editFileChooserCallback = $scope.uploadFile;
     colDefs[4].editFileChooserCallback = $scope.uploadFile;
 
-    vm.serviceGrid      = Common.setupUiGrid(Globals.ContentColumnDefs2, $scope.allowEditRow );
+    // vm.serviceGrid      = Common.setupUiGrid(Globals.ContentColumnDefs2, $scope.allowEditRow );
+    vm.serviceGrid      = Common.setupUiGrid(colDefs, $scope.allowEditRow );
 
     vm.upload = $scope.upload;
     vm.uploadFile = $scope.uploadFile;
+
+    // grab hold of gridApi for use later
+    vm.serviceGrid.onRegisterApi = function(gridApi){
+      $scope.gridApi = gridApi;
+    };
+    // find which cell is active
+    $scope.getCurrentFocus = function(){
+      let rowCol = $scope.gridApi.cellNav.getFocusedCell();
+      if(rowCol !== null) {
+        $scope.currentFocused = 'Row Id:' + rowCol.row.entity.id + ' col:' + rowCol.col.colDef.name;
+      }
+    }
 
     if ($rootScope.currentUser.type === "Administrator")
       ListContents();
     else
       ListContentByRetailer($rootScope.currentUser.retailerid);
 
-    // $scope.gridApi.core.handleWindowResize();
 
+    /**
+     * Return recordes of contents for all retailers
+     * @constructor
+     */
     function ListContents() {
       vm.dataLoading = true;
 
@@ -96,6 +112,13 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
           });
       vm.dataLoading = false;
     }
+
+    /**
+     * Return a list of contents for this retailer only
+     *
+     * @param id
+     * @constructor
+     */
     function ListContentByRetailer(id) {
       vm.dataLoading = true;
 
@@ -114,12 +137,6 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     }
 
 
-    $scope.addRowOld = function () {
-      let newService = Globals.addRowContent;
-      let rowTmp = {};
-      rowTmp.entity = newService;
-      vm.editRow($scope.vm.serviceGrid, rowTmp);
-    };
 
     // Save new or updated entry to database
     $scope.saveRow = function(row) {
@@ -189,6 +206,12 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       vm.serviceGrid.data.push(content);
     };
 
+    /**
+     * Create default values for a new row in the grid.
+     * @param entity
+     * @param retailerid
+     * @returns {Content}
+     */
     function createNewContents(entity, retailerid) {
 
       let endDate = new Date(entity.endDate).getTime();

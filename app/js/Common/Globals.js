@@ -76,6 +76,7 @@ myApp.value('Globals', {
     enableRowHeaderSelection  : false,
     showGridFooter            : true,
     multiSelect               : false,
+    responsive                : true,
     enableCellEdit            : true,
     enableSorting             : true,
     enableFiltering           : true,
@@ -86,14 +87,14 @@ myApp.value('Globals', {
     showColumnFooter          : true, // useful for a couple of entities where aggregate values can be calculated
 
     enableGridMenu            : true, // menu in top right hand corner
-    enablePaging              : true,
-    paginationPageSizes       : [15, 30, 45],
-    paginationPageSize        : 15,
-    minRowsToShow             : 15,  // again this does not appear to work, it appears to follow the 'paginationPageSizes'
+    // enablePaging              : true,
+    // paginationPageSizes       : [10, 20, 40],
+    // paginationPageSize        : 10,
+    minRowsToShow             : 6 ,  // again this does not appear to work, it appears to follow the 'paginationPageSizes'
     // minimumColumnSize         : 100, // this did not work, col width is specified individually below
     // minWidth                  : 200, //
     rowHeight                 : 50,  // in pixels
-    maxWidth                  : 9000,
+    // maxWidth                  : 9000,
   },
   "ContentColumnDefs" : [{
     field : 'contentid',                displayName    : 'Content ID',

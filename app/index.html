@@ -81,6 +81,8 @@
   <script src="js/Controllers/contents.controller.js"></script>
   <script src="js/Controllers/loyaltyRewards.controller.js"></script>
   <script src="js/Controllers/GenerateBonusCodes.controller.js"></script>
+  <script src="js/Controllers/GenerateBonusCodes250.controller.js"></script>
+  <script src="js/Controllers/GenerateBonusCodes500.controller.js"></script>
 
   <script src="js/Controllers/ApproveContent.controller.js"></script>
   <script src="js/Controllers/ApproveLoyaltyReward.controller.js"></script>
@@ -158,6 +160,10 @@
     body {
       padding-top: 80px;
     }
+
+    .navbar-right {
+      margin-right: 0px;
+    }
   </style>
 </head>
 
@@ -165,10 +171,10 @@
 <body ng-app="app" ng-cloak xmlns:href="http://www.w3.org/1999/xhtml">
 
 <!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-fixed-top navbar-default " style="background-color: #e3f2fd;">
 
-  <!-- Navbar colapses to a button on RHS as the screen is mad smaller-->
-  <!-- changing the menu from horizontal to vertical -->
+    <!-- Navbar colapses to a button on RHS as the screen is mad smaller-->
+    <!-- changing the menu from horizontal to vertical -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
@@ -182,11 +188,10 @@
       </ul>
     </div>
 
-  <ng-toast></ng-toast>
-  <div id="navbar"  navbar-collapse collapse"  >
-  <!--class="container-->
+    <div id="navbar"   >
+    <!--class="container-->
 
-    <!-- stack these items to the left -->
+     <!--stack these items to the left-->
     <ul class="nav navbar-nav" data-ng-show = "isAdmin && loggedIn" > <!-- single links no dropdown -->
       <li><a href="#!/Users/List"      > Users     </a></li>
       <li><a href="#!/Retailers/List"  > Retailers </a></li>
@@ -195,9 +200,9 @@
 
     <ul class="nav navbar-nav navbar-right" data-ng-show = "isAdmin && loggedIn"> <!-- stack these items to the right -->
 
-      <!-- admin dropdown 1 -->
-      <li class="dropdown">
 
+      <li class="dropdown">
+        <!-- admin dropdown 1 -->
         <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
           Shopping Center <span class="caret"></span>
         </a>
@@ -225,8 +230,8 @@
         </ul>
       </li> <!-- end dropdown 2 -->
 
-        <!-- admin dropdown 3 -->
-        <li class="dropdown">
+      <!-- admin dropdown 3 -->
+      <li class="dropdown">
           <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             Approve <span class="caret"></span>
           </a>
@@ -237,28 +242,23 @@
           </ul>
         </li> <!-- end dropdown 3 -->
 
-        <!-- single ... logout -->
-      <li><a href="#!/logout"               > Log Out                  </a></li>
+      <!-- single ... logout -->
+      <li><a href="#!/logout">Logout</a></li>
     </ul> <!-- end of Admin menu -->
-
 
     <!-- stack these to left -->
     <ul class="nav navbar-nav" data-ng-show = "isRetailer && loggedIn" > <!-- start of retailer menu -->
-
       <li><a href="#!/Favourites/Retailer"  > Favourites    </a></li>
       <li><a href="#!/Ratings/Retailer"     > Ratings       </a></li>
       <li><a href="#!/Users/Retailer"       > Users         </a></li>
-      <li><a href="#!/BonusCodes/Generate"  > Generate New Bonus Codes </a></li>
     </ul>
 
-
     <ul class="nav navbar-nav navbar-right" data-ng-show = "isRetailer && loggedIn" > <!-- stack these to RHS -->
-      <!-- admin dropdown 1 -->
+      <!-- retailer dropdown 1 -->
       <li class="dropdown">
         <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
           Loyalty Scheme <span class="caret"></span>
         </a>
-
         <ul class="dropdown-menu">
           <li><a href="#!/LoyaltyRewards/Retailer" > LoyaltyRewards </a></li>
           <li><a href="#!/Contents/Retailer"       > Contents       </a></li>
@@ -267,7 +267,18 @@
         </ul>
       </li>
 
-      <!-- admin dropdown 2 -->
+      <!-- retailer dropdown 2 -->
+      <li class="dropdown">
+        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          Generate Bonus Codes <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#!/BonusCodes/Generate250"  > Value = 250  </a></li>
+          <li><a href="#!/BonusCodes/Generate500"  > Value = 500  </a></li>
+        </ul>
+      </li>
+
+      <!-- retailer dropdown 3 -->
       <li class="dropdown">
         <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
           Vists <span class="caret"></span>
@@ -287,7 +298,6 @@
       <!-- single ... logout -->
       <li><a href="#!/logout"               > Log Out                  </a></li>
     </ul> <!-- end of retailer menu -->
-
   </div>
 </nav>
 

@@ -1,11 +1,11 @@
-<div class="container-fluid" xmlns:style="http://www.w3.org/1999/xhtml">
-
-  <div class="col-sm-1" >
-    <div class="tg">
+<div  xmlns:style="http://www.w3.org/1999/xhtml">
+  <!--class="container-fluid"-->
+  <!--<div class="col-sm-1" >-->
+    <!--<div class="tg">-->
 
       <div ng-if="allowAddRow">
-        <div >
-          <div>
+        <!--<div >-->
+          <!--<div>-->
             <button class="btn-info btn-circle"   ng-click="addRow(row)" >
               <img src="/ShopTrawlerWebApp/app/images/ic_add_circle_outline_black_18dp_2x.png">
             </button>
@@ -13,61 +13,63 @@
           </div>
 
           <!--<button type="button" id="addRow" class="btn btn-success" ng-click="addingRow=true; addRow()">Add Row</button> -->
-        </div>
-      </div>
+        <!--</div>-->
+      <!--</div>-->
       <br/>
-      <div  id="serviceGrid" class="shopTrawler"
-            ui-grid-pagination
-            ui-grid-move-columns
-            ui-grid-edit
+
+
+      <div       id="serviceGrid" class="shopTrawler"
             ui-grid-exporter
             ui-grid-auto-resize
             ui-grid-pinning
             ui-grid-selection
+            ui-grid-pagination
+            ui-grid-move-columns
+            ui-grid-edit
             ui-grid="vm.serviceGrid" >
       </div>
       <!--<div ng-dblclick="grid.appScope.vm.editRow(grid, row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader }" ui-grid-cell></div>-->
-    </div>
-  </div>
+    <!--</div>-->
+  <!--</div>-->
 
-</div>
-<div class="container" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter" class="ng-scope">
-  <div class="row">
-    <div class="col-md-3">
-      <h4>Select file</h4>
+<!--</div>-->
+<!--<div class="container" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter" class="ng-scope">-->
+  <!--<div class="row">-->
+    <!--<div class="col-md-3">-->
+      <!--<h4>Select file</h4>-->
 
-      <div ng-show="uploader.isHTML5">
-        <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-          Drop zone
-        </div>
-      </div>
+      <!--<div ng-show="uploader.isHTML5">-->
+        <!--<div class="well my-drop-zone" nv-file-over="" uploader="uploader">-->
+          <!--Drop zone-->
+        <!--</div>-->
+      <!--</div>-->
 
-      <input nv-file-select="" uploader="uploader" type="file">
-    </div>
+      <!--<input nv-file-select="" uploader="uploader" type="file">-->
+    <!--</div>-->
 
-    <div class="col-md-7" style="margin-bottom: 40px">
+    <!--<div class="col-md-7" style="margin-bottom: 40px">-->
 
-      <h4>Progress Bar</h4>
+      <!--<h4>Progress Bar</h4>-->
 
-      <div>
-        <div>
-          <div class="progress" style="">
-            <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 8%;"></div>
-          </div>
-        </div>
-        <button type="button" class="btn btn-success btn-s" ng-click="awsUpload()" ng-disabled="!uploader.getNotUploadedItems().length" disabled="disabled">
-          <span class="glyphicon glyphicon-upload"></span> Upload
-        </button>
-        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading" disabled="disabled">
-          <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-        </button>
-        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length" disabled="disabled">
-          <span class="glyphicon glyphicon-trash"></span> Remove
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+      <!--<div>-->
+        <!--<div>-->
+          <!--<div class="progress" style="">-->
+            <!--<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 8%;"></div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<button type="button" class="btn btn-success btn-s" ng-click="awsUpload()" ng-disabled="!uploader.getNotUploadedItems().length" disabled="disabled">-->
+          <!--<span class="glyphicon glyphicon-upload"></span> Upload-->
+        <!--</button>-->
+        <!--<button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading" disabled="disabled">-->
+          <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
+        <!--</button>-->
+        <!--<button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length" disabled="disabled">-->
+          <!--<span class="glyphicon glyphicon-trash"></span> Remove-->
+        <!--</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
 
 
