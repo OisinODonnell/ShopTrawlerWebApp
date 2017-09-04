@@ -18,8 +18,6 @@ myApp.controller('RatingsReportController', ['DataFactory','$scope','Common','$r
     // setup grid
     vm.serviceGrid = Common.setupUiGrid(Globals.RatingChartColumnDefs, $scope.allowEditRow );
 
-
-
     if ($rootScope.currentUser.type === "Administrator")
       ListRatingsReportAdmin();
     else if ($rootScope.currentUser.type === "Retailer")
@@ -55,6 +53,5 @@ myApp.controller('RatingsReportController', ['DataFactory','$scope','Common','$r
           function (error) { $scope.status = 'Unable to load Rating Count ' + error.message; });
       vm.dataLoading = false;
     }
-
 
   }]);

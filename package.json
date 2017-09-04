@@ -88,8 +88,10 @@
     "moment": "^2.18.1",
     "moment-with-locales-es6": "^2.18.1",
     "ng-file-upload": "^12.2.13",
+    "ng-toast": "^2.0.0",
     "ng2-charts": "^1.6.0",
     "tc-angular-chartjs": "^2.1.4",
+    "toastr": "^2.1.2",
     "typescript": "^2.4.2",
     "ui-bootstrap": "^0.1.10",
     "ui-grid": "0.0.0"

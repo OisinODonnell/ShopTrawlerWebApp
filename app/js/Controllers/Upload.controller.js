@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('UploadController',['$scope','$rootScope',  function($scope, $rootScope) {
+myApp.controller('UploadController',['$scope','$rootScope','AWSconfig',  function($scope, $rootScope, AWSconfig) {
     $scope.sizeLimit      = 10585760; // 10MB in Bytes
     $scope.uploadProgress = 0;
     $scope.creds          = {};
@@ -79,8 +79,8 @@ myApp.controller('UploadController',['$scope','$rootScope',  function($scope, $r
     function setupAWS(type) {
 
         $rootScope.AWS = {};
-        $rootScope.AWS.ACCESS_KEY = "AKIAICMSROCKZAETKBIA";
-        $rootScope.AWS.SECRET_KEY = "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";
+        $rootScope.AWS.ACCESS_KEY = AWSconfig.ACCESS_KEY;
+        $rootScope.AWS.SECRET_KEY = AWSconfig.SECRET_KEY
         $rootScope.AWS.BUCKET_C   = "/shoptrawler/Content";
         $rootScope.AWS.BUCKET_LRC = "/shoptrawler/LRContent";
         $rootScope.AWS.BUCKET_SC  = "/shoptrawler/ShoppingCenter";

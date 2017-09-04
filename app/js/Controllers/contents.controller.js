@@ -1,16 +1,40 @@
 myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootScope',
-  '$uibModal','RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig','Flash',
+  '$uibModal','RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig','Flash','AwsFactory',
 
-  function (  DataFactory, $scope, Common, $rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig, Flash) {
+  function (  DataFactory, $scope, Common, $rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig, Flash, AwsFactory) {
     let vm = this;
-    let filename1 = "";
-    let filename2 = "";
-    let filename3 = "";
+    let filePage1 = "";
+    let filePage2 = "";
+    let filePage3 = "";
+
+    $scope.filePage1 = filePage1;
+    $scope.filePage2 = filePage2;
+    $scope.filePage3 = filePage3;
+
+
 
     $rootScope.type = "C";
 
     $scope.uploader = new FileUploader();
     $rootScope.currentUser.type = "";
+
+    $scope.uploadFile = function(grid, row) {
+
+      let entry = "";
+      AwsFactory.setupAWSconfig($rootScope.type);
+      AwsFactory.setupAWSFileParams($rootScope.type, grid, row, this);
+      AwsFactory.updateGrid(grid, row);
+
+      if (! AwsFactory.checkFileSize($rootScope.file)) {
+        Flash.create("danger", "File is too big ... please reduce size and try again Limit is 10 MBytes", 4000)
+        return false;
+      } else {
+        AwsFactory.sendFile();
+        AwsFactory.updateGrid(grid, row);
+
+      }
+
+    };
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
@@ -34,10 +58,17 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     vm.editRowContent   = RowEditor.editRowContent;
     vm.deleteRowContent = RowEditor.deleteRowContent;
     vm.saveRowContent   = RowEditor.saveRowContent;
+
+    let colDefs = Globals.ContentColumnDefs2;
+
+    colDefs[2].editFileChooserCallback = $scope.uploadFile;
+    colDefs[3].editFileChooserCallback = $scope.uploadFile;
+    colDefs[4].editFileChooserCallback = $scope.uploadFile;
+
     vm.serviceGrid      = Common.setupUiGrid(Globals.ContentColumnDefs2, $scope.allowEditRow );
 
     vm.upload = $scope.upload;
-
+    vm.uploadFile = $scope.uploadFile;
 
     if ($rootScope.currentUser.type === "Administrator")
       ListContents();
@@ -63,7 +94,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
 
       DataFactory.listContentByRetailer(id)
         .then( function(response) {
-            Flash.create('success','Content added Successfully', 2000);
+            // Flash.create('success','Content added Successfully', 2000);
             vm.serviceGrid.data = buildNewContents(response.data);
           $scope.gridStyle = Common.gridStyle($scope.contents.length);
 
@@ -100,11 +131,11 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       if (response === true) {
         DataFactory.addContent(content)
           .then(function (response) {
-              Flash.create("success", "Loyalty Reward added successfully", 2000);
+              Flash.create("success", "Content added successfully", 2000);
               vm.serviceGrid.data = buildNewContents(response.data);
             },
             function (response) {
-              Flash.create("danger", "Loyalty Reward not added : " + response.data.message);
+              Flash.create("danger", "Content not added : " + response.data.message);
             });
       } else {
         Flash.create('danger', "Content not created : -> " + response, 4000);
@@ -183,5 +214,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       $scope.contents = contents;
       return $scope.contents;
     }
+
+
 
   }]);

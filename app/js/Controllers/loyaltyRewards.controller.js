@@ -81,7 +81,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       // let loyaltyReward = new LoyaltyReward();
       DataFactory.listLoyaltyRewardsByRetailer(id)
         .then( function(response) {
-            Flash.create("success", "Loyalty Reward added successfully", 2000);
+            // Flash.create("success", "Loyalty Reward added successfully", 2000);
             vm.serviceGrid.data = buildNewLoyaltyRewards(response.data);
 
             $scope.gridStyle = Common.gridStyle(vm.serviceGrid.data.length);
@@ -129,6 +129,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       let index = vm.serviceGrid.data.indexOf(row.entity);
       let resp = Common.checkDates(loyaltyReward.getStartDate(), loyaltyReward.getEndDate());
       let earliestStartDate;
+
       if (resp === true) {
         DataFactory.loyaltyRewardCheckDates(loyaltyReward)
           .then( function(response) {

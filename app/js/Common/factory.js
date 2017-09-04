@@ -140,16 +140,16 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
   factory.listVisitsReportsRetailerMonths   = (id)        => $http.get(urlBase + '/Visits/Report/Retailer/Month/' + id  );
 
   factory.getVisit                          = (id)        => $http.get(urlBase + '/Visit/'                        );
-  factory.addVisit                          = (visit)     => $http.get(urlBase + '/Visit/create' , visit          );
-  factory.deleteVisit                       = (id)        => $http.get(urlBase + '/Visit/delete/' + id            );
-  factory.updateVisit                       = (visit)     => $http.get(urlBase + '/Visit/update' , visit          );
+  factory.addVisit                          = (visit)     => $http.post(urlBase + '/Visit/create' , visit          );
+  factory.deleteVisit                       = (id)        => $http.delete(urlBase + '/Visit/delete/' + id            );
+  factory.updateVisit                       = (visit)     => $http.put(urlBase + '/Visit/update' , visit          );
 
   // Zones
   factory.listZones                         = ()          => $http.get(urlBase + '/Zones'                         );
   factory.getZone                           = (id)        => $http.get(urlBase + '/Zone/' + id                    );
-  factory.addZone                           = (zone)      => $http.get(urlBase + '/Zone/create' , zone            );
-  factory.deleteZone                        = (id)        => $http.get(urlBase + '/Zone/delete/' + id             );
-  factory.updateZone                        = (zone)      => $http.get(urlBase + '/Zone/update' , zone            );
+  factory.addZone                           = (zone)      => $http.post(urlBase + '/Zone/create' , zone            );
+  factory.deleteZone                        = (id)        => $http.delete(urlBase + '/Zone/delete/' + id             );
+  factory.updateZone                        = (zone)      => $http.put(urlBase + '/Zone/update' , zone            );
 
   // complex queries all under /Main mapping
   // returns all Visits, Users and Retailers

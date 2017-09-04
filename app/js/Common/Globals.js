@@ -126,10 +126,7 @@ myApp.value('Globals', {
   "ContentColumnDefs2" : [{
 
       name: 'Actions', width : 100,enableCellEdit : false, pinnedRight:true,
-      cellTemplate: '<div  >' +
-                      '<button class="btn-success btn-circle"style="width:40px;height:40px;" ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_24dp_1x.png"</button>' +
-                      '<button class="btn-danger btn-circle" style="width:40px;height:40px;" type="button" ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_24dp_1x.png"></button>'+
-                    '</div>'
+      cellTemplate: '/ShopTrawlerWebApp/app/Views/cellTemplateActions.html',
     },
     {
     field : 'contentid',                displayName    : 'Content ID',
@@ -137,15 +134,17 @@ myApp.value('Globals', {
     type  : 'number',
     width : 100,
   },
+    {   field : 'page1',   width : 200,  displayName : 'Page 1',enableCellEdit : true,
+      cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserPage1.html",
 
-    {  field : 'page1',                 displayName : 'Page 1',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
     },
-    {  field : 'page2',                 displayName : 'Page 2',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
+    {  field : 'page2',   width : 200,  displayName : 'Page 2',enableCellEdit : true,
+      cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserPage2.html",
+
     },
-    {  field : 'page3',                 displayName : 'Page 3',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
+    {  field : 'page3',   width : 200,  displayName : 'Page 3',enableCellEdit : true,
+      cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserPage3.html",
+
     },
     {  field : 'retailerid',         type: 'number' ,   width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
     {  field : 'startDate',width : 200,displayName : 'Start Date',type:"date",enableCellEdit : true, },
@@ -163,11 +162,12 @@ myApp.value('Globals', {
     {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : false,               },
     {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : false,               },
     {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : false,               },
-    {  field : 'retailerid',          type: 'number' ,  width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
+    {  field : 'retailerid',            width : 100, displayName : 'Retailer ID',enableCellEdit : false,type: 'number',          },
     {  field : 'getStartDateReadable()',width : 200,displayName : 'Start Date' ,type:"date",   enableCellEdit  : false  },
-    {  field : 'approved',             width : 100, displayName: 'Approved?', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'approved',              width : 100, displayName: 'Approved?', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
 
   ],
+  // sets default values for addRow popup
   "addRowContent" : {
     "contentid"   : "",
     "endDate"     : "",
@@ -177,6 +177,8 @@ myApp.value('Globals', {
     "retailerid"  : "",
     "startDate"   : ""
   },
+
+  // default values for a new row of content into the grid
   "NewContent" : {
     "contentid"   : 0,
     "endDate"     : new Date(),

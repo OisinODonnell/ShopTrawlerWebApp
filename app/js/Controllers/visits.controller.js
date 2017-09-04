@@ -21,7 +21,6 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
     let durationColWithAvg = {  name: 'avgRating', field: 'duration',  width: 100, aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Duration' };
     vm.serviceGrid.columnDefs.splice(3, 0, durationColWithAvg);
 
-
     function ListVisits() {
       vm.dataLoading = true;
       let visit    = new Visit();
