@@ -1,11 +1,12 @@
-<div>
+<!--<div style="text-align:center"> <h1>Approve Retailer Content</h1></div>-->
+
+<div >
   <div class="modal-header">
-    <h3 class="modal-title">Edit Row</h3>
-  </div>
+    <h3 class="modal-title">Approve Retailer Content</h3>
+  </div >
   <div class="modal-body">
 
-    <form name="serviceForm">
-
+    <form name="serviceForm" class="col-md-4">
 
       <div class="block">      <label>Content ID </label> <input class="input" title="Content ID" type="text"   disabled value="{{row.entity.contentid}}"/></div>
       <div class="block">      <label>Retailer </label>   <input class="input" title="Retailer"   type="text"   disabled value="{{row.entity.storeName}}"/></div>
@@ -17,7 +18,7 @@
         <select class="input" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
       </div>
 
-        <br/>
+      <br/>
       <div class="block input md-datepicker-input">      <label>Start Date </label>
         <md-datepicker ng-model       = "row.entity.sDate "
                        date-format    = "DD-MMM-YYYY HH:MM"
@@ -39,11 +40,11 @@
 
     </form>
 
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="{{ vm.uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ vm.uploadProgress }}%;">
-        {{ vm.uploadProgress == 0 ? '' : vm.uploadProgress + '%' }}
-      </div>
-    </div>
+    <!--<div class="progress">-->
+      <!--<div class="progress-bar" role="progressbar" aria-valuenow="{{ vm.uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ vm.uploadProgress }}%;">-->
+        <!--{{ vm.uploadProgress == 0 ? '' : vm.uploadProgress + '%' }}-->
+      <!--</div>-->
+    <!--</div>-->
 
 
 

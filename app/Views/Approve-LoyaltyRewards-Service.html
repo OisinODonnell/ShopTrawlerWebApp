@@ -1,12 +1,9 @@
-
-<div>
   <div class="modal-header">
-    <h3 class="modal-title">Edit Row</h3>
-  </div>
+    <h3 class="modal-title">Approve Loyalty Reward</h3>
+  </div >
   <div class="modal-body">
 
-
-    <form name="serviceForm">
+    <form name="serviceForm" class="col-md-4">
 
       <div class="block">      <label>Loyalty Reward ID </label> <input class="input" title="Loyalty Reward ID" type="text"  disabled value="{{row.entity.loyaltyRewardid}}"/> </div>
       <div class="block">      <label>Retailer </label>          <input class="input" title="Retailer"          type="text"  disabled value="{{row.entity.storeName}}"/>       </div>
@@ -38,11 +35,11 @@
         </md-datepicker>
       </div>
 
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuenow="{{ vm.uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ vm.uploadProgress }}%;">
-          {{ vm.uploadProgress == 0 ? '' : vm.uploadProgress + '%' }}
-        </div>
-      </div>
+      <!--<div class="progress">-->
+        <!--<div class="progress-bar" role="progressbar" aria-valuenow="{{ vm.uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ vm.uploadProgress }}%;">-->
+          <!--{{ vm.uploadProgress == 0 ? '' : vm.uploadProgress + '%' }}-->
+        <!--</div>-->
+      <!--</div>-->
 
 
       <div class="modal-footer">
@@ -52,5 +49,5 @@
       </div>
     </form>
     </div>
-</div>
+
 

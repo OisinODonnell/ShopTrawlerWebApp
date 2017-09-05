@@ -117,9 +117,9 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
   factory.listUserPointsByUser          = (id)            => $http.get(urlBase + '/UserPoints/User/' + id         );
   factory.listUserPointsByUserRetailer  = (userid, retailerid)   => $http.get(urlBase + '/UserPoints/UserRetailer/' + userid + '/' + retailerid );
   factory.getUserPoints                 = (id)            => $http.get(urlBase + '/UserPoint/' + id               );
-  factory.addUserPoints                 = (userPoints)    => $http.post(urlBase + '/UserPoint/create' , userPoints      );
+  factory.addUserPoints                 = (userPoints)    => $http.post(urlBase + '/UserPoint/create' , userPoints);
   factory.deleteUserPoint               = (id)            => $http.delete(urlBase + '/UserPoint/delete/' + id     );
-  factory.updateUserPoint               = (userPoint)     => $http.put(urlBase + '/UserPoint/update' , userPoint );
+  factory.updateUserPoint               = (userPoint)     => $http.put(urlBase + '/UserPoint/update' , userPoint  );
 
 
   // Visits
@@ -142,15 +142,15 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
   factory.listVisitsReportsRetailerMonths   = (id)        => $http.get(urlBase + '/Visits/Report/Retailer/Month/' + id  );
 
   factory.getVisit                          = (id)        => $http.get(urlBase + '/Visit/'                        );
-  factory.addVisit                          = (visit)     => $http.post(urlBase + '/Visit/create' , visit          );
-  factory.deleteVisit                       = (id)        => $http.delete(urlBase + '/Visit/delete/' + id            );
+  factory.addVisit                          = (visit)     => $http.post(urlBase + '/Visit/create' , visit         );
+  factory.deleteVisit                       = (id)        => $http.delete(urlBase + '/Visit/delete/' + id         );
   factory.updateVisit                       = (visit)     => $http.put(urlBase + '/Visit/update' , visit          );
 
   // Zones
   factory.listZones                         = ()          => $http.get(urlBase + '/Zones'                         );
   factory.getZone                           = (id)        => $http.get(urlBase + '/Zone/' + id                    );
-  factory.addZone                           = (zone)      => $http.post(urlBase + '/Zone/create' , zone            );
-  factory.deleteZone                        = (id)        => $http.delete(urlBase + '/Zone/delete/' + id             );
+  factory.addZone                           = (zone)      => $http.post(urlBase + '/Zone/create' , zone           );
+  factory.deleteZone                        = (id)        => $http.delete(urlBase + '/Zone/delete/' + id          );
   factory.updateZone                        = (zone)      => $http.put(urlBase + '/Zone/update' , zone            );
 
   // complex queries all under /Main mapping

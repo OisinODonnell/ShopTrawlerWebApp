@@ -4,6 +4,7 @@ myApp.controller('GenerateBonusCodesController', ['DataFactory','$scope','Common
     let vm = this;
 
     $scope.vm = vm;
+    vm.chartTitle = "Bonus Codes";
 
     if ($rootScope.isRetailer) {
       $scope.allowAddRow = false; //  view is affected
@@ -12,46 +13,13 @@ myApp.controller('GenerateBonusCodesController', ['DataFactory','$scope','Common
       vm.editRow = RowEditor.editRowGenerateBonusCode;
       vm.serviceGrid = Common.setupUiGrid(Globals.GenerateBonusCodeColumnDefs, $scope.allowEditRow );
 
-      GenerateBonusCodes($rootScope.currentUser.retailerid);
+      ListUnusedBonusCodes($rootScope.currentUser.retailerid);
     }
 
-    function GenerateBonusCodes250(id) {
+    function ListUnusedBonusCodes(id) {
       vm.dataLoading = true;
+      $location.path('/BonusCodes/Retailer');
 
-      DataFactory.generateBonusCodes250(id)
-        .then( function(response) {
-
-            if(response.data.success === "1") {
-              id = Flash.create('success', response.data.message, 2000);
-            } else {
-              id = Flash.create('warning', response.data.message, 4000);
-            }
-            $location.path('/BonusCodes/Retailer');
-          },
-          function (error) {
-            $scope.status = 'Unable to load BonusCodes ' + error.message;
-            id = Flash.create('warning', $scope.status, 4000);
-          });
-      vm.dataLoading = false;
-    }
-    function GenerateBonusCodes500(id) {
-      vm.dataLoading = true;
-
-      DataFactory.generateBonusCodes500(id)
-        .then( function(response) {
-
-            if(response.data.success === "1") {
-              id = Flash.create('success', response.data.message, 2000);
-            } else {
-              id = Flash.create('warning', response.data.message, 4000);
-            }
-            $location.path('/BonusCodes/Retailer');
-          },
-          function (error) {
-            $scope.status = 'Unable to load BonusCodes ' + error.message;
-            id = Flash.create('warning', $scope.status, 4000);
-          });
-      vm.dataLoading = false;
     }
 
   }]);

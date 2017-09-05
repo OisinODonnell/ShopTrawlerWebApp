@@ -14,6 +14,7 @@ myApp.controller('BeaconsController', ['DataFactory','$scope','Common','$rootSco
       $scope.allowEditRow = false; // action below
     }
 
+    vm.chartTitle = "Beacons";
     vm.editRow = RowEditor.editRowBeacon;
     vm.serviceGrid = Common.setupUiGrid(Globals.BeaconColumnDefs, $scope.allowEditRow )
 

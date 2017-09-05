@@ -16,7 +16,7 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
     // setup grid
     vm.editRow = RowEditor.editRowRetailer;
     vm.serviceGrid = Common.setupUiGrid(Globals.RetailerColumnDefs, $scope.allowEditRow )
-
+    vm.chartTitle = "Retailers";
     ListRetailers();
 
     function updateGridOptions(collection, defaults) {

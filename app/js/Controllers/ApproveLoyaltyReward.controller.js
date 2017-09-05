@@ -3,9 +3,11 @@ myApp.controller('ApproveLoyaltyRewardsController', ['DataFactory','$scope','Com
 
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals, moment) {
     let vm = this;
-
+    $scope.vm = vm;
     vm.myDate = new Date();
     vm.isOpen = false;
+    $scope.vm = vm;
+    vm.chartTitle = "Loyalty Rewards"
 
     $rootScope.sDate = new Date();
     $rootScope.eDate = new Date();
@@ -15,7 +17,6 @@ myApp.controller('ApproveLoyaltyRewardsController', ['DataFactory','$scope','Com
       $scope.allowEditRow = true; // action below
       vm.editRow = RowEditor.approveRowLoyaltyReward;
       vm.serviceGrid = Common.setupUiGrid(Globals.ApproveLoyaltyRewardColumnDefs, $scope.allowEditRow )
-      $scope.vm = vm;
       ListLoyaltyRewardsForApproval();
     }
 

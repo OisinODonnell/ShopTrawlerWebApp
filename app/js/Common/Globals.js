@@ -20,6 +20,7 @@ myApp.value('Globals', {
     pointHoverBackgroundColor : "rgba(75, 192, 192, 1)",
     pointHoverBorderColor     : "rgba(220, 220, 220, 1)",
     pointHoverBorderWith      : 2,
+
     // pointRadius: 1,
     // pointHitRadius: 10,
     // labels                  : [1,2,3,4,5,6,7,8,9,10,11,12],
@@ -39,6 +40,7 @@ myApp.value('Globals', {
         display: true, // option.scales.xAxes.display
         scaleLabel: { // option.scales.scaleLabel
            display     : true, // option.scales.scaleLabel.display
+          fontSize : 40,
            labelString : 'Month' // option.scales.scaleLabel.labelString
         }
       }],
@@ -46,6 +48,7 @@ myApp.value('Globals', {
         display: true, // option.scales.yAxes.display
         ticks: { // option.scales.yAxes.ticks
           beginAtZero: false, // option.scales.yAxes.display.ticks.beginAtZero
+          fontSize : 40,
           // suggestedMin: 0, // option.scales.yAxes[].display.ticks.suggestedMin
 
         }
@@ -85,6 +88,7 @@ myApp.value('Globals', {
     enableColumnMoving        : true,
     enableColumnResizing      : true,
     showColumnFooter          : true, // useful for a couple of entities where aggregate values can be calculated
+    rowTemplate: 'ShopTrawlerWebApp/app/Views/rowTemplate.html1',
 
     enableGridMenu            : true, // menu in top right hand corner
     // enablePaging              : true,
@@ -100,7 +104,7 @@ myApp.value('Globals', {
     field : 'contentid',                displayName    : 'Content ID',
     enableSorting : true,               enableCellEdit : false,
     type  : 'number',
-    width : 100,
+    width : '10%',
   },
     // {
     //   name: 'Actions', field: 'edit', enableFiltering: false, enableSorting: false,
@@ -109,19 +113,19 @@ myApp.value('Globals', {
     //   '<button ng-show="row.entity.editrow" class="btn primary" ng-click="grid.appScope.cancelEdit(row.entity)"><i class="fa fa-times"></i></button>' + //Cancel Button
     //   '</div>', width: 100
     // },
-    {  field : 'getEndDateString()',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : true, },
-    {  field : 'page1',               width : 200,displayName : 'Page 1',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
+    {  field : 'getEndDateString()',  width : '20%',displayName : 'End Date',type:"date",enableCellEdit : true, },
+    {  field : 'page1',               width : '20%',displayName : 'Page 1',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>',
 
     },
-    {  field : 'page2',               width : 200,displayName : 'Page 2',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
+    {  field : 'page2',               width : '20%',displayName : 'Page 2',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>',
     },
-    {  field : 'page3',               width : 200,displayName : 'Page 3',enableCellEdit : true,
-      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>', width: 200
+    {  field : 'page3',               width : '20%',displayName : 'Page 3',enableCellEdit : true,
+      cellTemplate: '<div  ng-if="!row.entity.editrow">{{COL_FIELD}}</div><div ng-if="row.entity.editrow"><input type="text" style="height:30px" ng-model="MODEL_COL_FIELD"</div>',
     },
-    {  field : 'retailerid',          width : 100, type: 'number' ,  displayName : 'Retailer ID',enableCellEdit : true,          },
-    {  field : 'getStartDateString()',width : 200, displayName : 'Start Date',type:"date",                      }
+    {  field : 'retailerid',          width : '10%', type: 'number' ,  displayName : 'Retailer ID',enableCellEdit : true,          },
+    {  field : 'getStartDateString()',width : '20%', displayName : 'Start Date',type:"date",                      }
 
   ],
 
@@ -134,23 +138,23 @@ myApp.value('Globals', {
     field : 'contentid',                displayName    : 'Content ID',
     enableSorting : true,               enableCellEdit : false,
     type  : 'number',
-    width : 100,
+    width : '10%',
   },
-    {   field : 'page1',   width : 200,  displayName : 'Page 1',enableCellEdit : true,
+    {   field : 'page1',   width : '20%',  displayName : 'Page 1',enableCellEdit : true,
       cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserPage1.html",
 
     },
-    {  field : 'page2',   width : 200,  displayName : 'Page 2',enableCellEdit : true,
+    {  field : 'page2',    width : '20%',  displayName : 'Page 2',enableCellEdit : true,
       cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserPage2.html",
 
     },
-    {  field : 'page3',   width : 200,  displayName : 'Page 3',enableCellEdit : true,
+    {  field : 'page3',    width : '20%',  displayName : 'Page 3',enableCellEdit : true,
       cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserPage3.html",
 
     },
-    {  field : 'retailerid',         type: 'number' ,   width : 100,displayName : 'Retailer ID',enableCellEdit : false,          },
-    {  field : 'startDate',width : 200,displayName : 'Start Date',type:"date",enableCellEdit : true, },
-    {  field : 'endDate',  width : 200,displayName : 'End Date',type:"date",  enableCellEdit : true  },
+    {  field : 'retailerid',width : '10%',displayName : 'Retailer ID',enableCellEdit : false, type: 'number',},
+    {  field : 'startDate', width : '20%',displayName : 'Start Date', enableCellEdit : true,  type: "date",  },
+    {  field : 'endDate',   width : '20%',displayName : 'End Date',   enableCellEdit : true,  type: "date",  },
 
   ],
 
@@ -158,15 +162,15 @@ myApp.value('Globals', {
     field : 'contentid',                displayName    : 'Content ID',
     enableSorting : true,               enableCellEdit : false,
     type  : 'number',
-    width : 100,
+    width : '10%',
   },
-    {  field : 'getEndDateReadable()',  width : 200,displayName : 'End Date',type:"date",enableCellEdit : false, },
-    {  field : 'page1',                 width : 200,displayName : 'Page 1',enableCellEdit : false,               },
-    {  field : 'page2',                 width : 200,displayName : 'Page 2',enableCellEdit : false,               },
-    {  field : 'page3',                 width : 200,displayName : 'Page 3',enableCellEdit : false,               },
-    {  field : 'retailerid',            width : 100, displayName : 'Retailer ID',enableCellEdit : false,type: 'number',          },
-    {  field : 'getStartDateReadable()',width : 200,displayName : 'Start Date' ,type:"date",   enableCellEdit  : false  },
-    {  field : 'approved',              width : 100, displayName: 'Approved?', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'getEndDateReadable()',  width : '20%', displayName : 'End Date',type:"date",enableCellEdit : false, },
+    {  field : 'page1',                 width : '20%', displayName : 'Page 1',enableCellEdit : false,               },
+    {  field : 'page2',                 width : '20%', displayName : 'Page 2',enableCellEdit : false,               },
+    {  field : 'page3',                 width : '20%', displayName : 'Page 3',enableCellEdit : false,               },
+    {  field : 'retailerid',            width : '10%', displayName : 'Retailer ID',enableCellEdit : false,type: 'number',          },
+    {  field : 'getStartDateReadable()',width : '20%', displayName : 'Start Date' ,type:"date",   enableCellEdit  : false  },
+    {  field : 'approved',              width : '10%', displayName : 'Approved?', type: 'boolean',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
 
   ],
   // sets default values for addRow popup
@@ -194,16 +198,16 @@ myApp.value('Globals', {
       field : 'visitid',                 displayName    : 'Visit ID',
       enableSorting : true,              enableCellEdit : false,
       type : 'number',
-      width : 60,
+      width : '6%',
       },
-      { field : 'getEntryTimeReadable()',width : 200,    displayName : 'Entry Time',enableCellEdit : false,type:"date", },
-      { field : 'getExitTimeReadable()', width : 200,    displayName : 'Exit Time', enableCellEdit : false,type:"date", },
+      { field : 'getEntryTimeReadable()',width : '18%',    displayName : 'Entry Time',enableCellEdit : false,type:"date", },
+      { field : 'getExitTimeReadable()', width : '18%',    displayName : 'Exit Time', enableCellEdit : false,type:"date", },
       // { field : 'userCreditedForVisit', width : 100,    displayName : 'User Credited For Visit',enableCellEdit : true, },
       // { field : 'duration', type: 'number' ,            width : 100,    displayName : 'Duration',enableCellEdit : false,               },
-      { field : 'storeName',             width : 200,    displayName : 'Store Name',enableCellEdit : false,             },
-      { field : 'fullname',              width : 200,    displayName : 'Fullname',  enableCellEdit : false,             },
-      { field : 'userid',   type: 'number' ,             width : 100,    displayName : 'User ID',   enableCellEdit : false,             },
-      { field : 'zoneid',   type: 'number' ,             width : 100,    displayName : 'Zone ID',   enableCellEdit : false,             }
+      { field : 'storeName',             width : '18%',    displayName : 'Store Name',enableCellEdit : false,             },
+      { field : 'fullname',              width : '18%',    displayName : 'Fullname',  enableCellEdit : false,             },
+      { field : 'userid',                width : '6%',    displayName : 'User ID',   enableCellEdit : false,type: 'number' ,             },
+      { field : 'zoneid',                width : '6%',    displayName : 'Zone ID',   enableCellEdit : false,type: 'number' ,             }
     ],
 
   "addRowVisit" : {
@@ -223,13 +227,13 @@ myApp.value('Globals', {
       field : 'beaconid',        displayName    : 'Beacon ID',
       enableSorting : true,      enableCellEdit : false,
       type  : 'number',
-      width : 100,
+      width : '12%',
       },
-      {  field: 'locationid', type: 'number' ,   width : 100,     displayName: 'Location ID',   enableCellEdit : false,  },
-      {  field: 'major', type: 'number' ,        width : 100,     displayName: 'Major',         enableCellEdit : false,  },
-      {  field: 'minor', type: 'number' ,        width : 100,     displayName: 'Minor',         enableCellEdit : false,  },
-      {  field: 'transmitPower', type: 'number' ,width : 100,     displayName: 'Transmit Power',enableCellEdit : false,  },
-      {  field: 'uuid',                          width : 300,     displayName: 'UUID',          enableCellEdit : false,  }
+      {  field: 'locationid',    width : '12%', displayName: 'Location ID',   enableCellEdit : false,type: 'number' ,  },
+      {  field: 'major',         width : '12%', displayName: 'Major',         enableCellEdit : false,type: 'number' ,  },
+      {  field: 'minor',         width : '12%', displayName: 'Minor',         enableCellEdit : false,type: 'number' ,  },
+      {  field: 'transmitPower', width : '12%', displayName: 'Transmit Power',enableCellEdit : false,type: 'number' ,  },
+      {  field: 'uuid',          width : '40%', displayName: 'UUID',          enableCellEdit : false,  }
     ],
 
   "addRowBeacon"    : {
@@ -244,24 +248,24 @@ myApp.value('Globals', {
       field : 'bonusCodeid',             displayName    : 'Bonus Code ID',
       enableSorting : true,              enableCellEdit : false,
       type  : 'number',
-      width : 100,
+      width : '10%',
       },
-      {  field : 'storeName',            width : 200,displayName : 'Retailer ID', enableCellEdit : false,         },
-      {  field : 'value',                type: 'number' ,  width : 100, displayName : 'Value',       enableCellEdit : false,         },
-      {  field : 'fullname',             width : 200,displayName : 'User ID',     enableCellEdit : false,         },
-      {  field : 'dateTime',width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
+      {  field : 'storeName', width : '30%', displayName  : 'Retailer ID', enableCellEdit : false,         },
+      {  field : 'value',     width : '10%', displayName : 'Value',       enableCellEdit : false, type: 'number' ,        },
+      {  field : 'fullname',  width : '30%', displayName  : 'User ID',     enableCellEdit : false,         },
+      {  field : 'dateTime',  width : '20%', displayName  : 'Date Time',   enableCellEdit : false, type:"date",}
     ],
 
   "GenerateBonusCodeColumnDefs" : [{
     field : 'bonusCodeid',             displayName    : 'Bonus Code ID',
     enableSorting : true,              enableCellEdit : false,
     type  : 'number',
-    width : 100,
+    width : '10%',
   },
-    {  field : 'storeName',            width : 200,displayName : 'Retailer ID', enableCellEdit : false,         },
-    {  field : 'value',                type  : 'number', width : 100, displayName : 'Value',       enableCellEdit : false,         },
-    {  field : 'fullname',             width : 200,displayName : 'User ID',     enableCellEdit : false,         },
-    {  field : 'getDateTimeReadable()',width : 200,displayName : 'Date Time',type:"date",enableCellEdit : false,}
+    {  field : 'storeName',            width : '30%',displayName : 'Retailer ID', enableCellEdit : false,         },
+    {  field : 'value',                width : '10%', displayName : 'Value',       enableCellEdit : false,type  : 'number',         },
+    {  field : 'fullname',             width : '30%',displayName : 'User ID',     enableCellEdit : false,         },
+    {  field : 'getDateTimeReadable()',width : '20%',displayName : 'Date Time',type:"date",enableCellEdit : false,}
   ],
 
   "addRowBonusCode" : {
@@ -280,9 +284,9 @@ myApp.value('Globals', {
       field : 'fullname',        displayName : 'User ID',
       enableSorting : true,      enableCellEdit : false,
       type  : 'number',
-      width : 100,
+      width : '34%',
       },
-      {  field : 'storeName',    width : 200,displayName : 'Retailer ID',enableCellEdit : false,    }
+      {  field : 'storeName',    width : '66%',displayName : 'Retailer ID',enableCellEdit : false,    }
     ],
   "addRowFavourite" : {
     "userid"     : "",
@@ -293,14 +297,14 @@ myApp.value('Globals', {
       field : 'locationid',           displayName    : 'locationid',
       enableSorting : true,           enableCellEdit : false,
       type  : 'number',
-      width : 100,
+      width : '10%',
       },
-      {  field : 'altitude',          type: 'number' ,width : 100,displayName : 'Altitude',           enableCellEdit : false,                 },
-      {  field : 'gpsLongtitude',     type: 'number' ,width : 100,displayName : 'GPS Longtitude',     enableCellEdit : false,                 },
-      {  field : 'gpsLatitude',       type: 'number' ,width : 100,displayName : 'GPS Latitude',       enableCellEdit : false,                 },
-      {  field : 'locationInShoppingCentre',  width : 100,displayName : 'Location In Shopping Centre',enableCellEdit : false, },
-      {  field : 'locationType',      type: 'text'   ,width : 200,displayName : 'Location Type',      enableCellEdit : false,                 },
-      {  field : 'shoppingCentreid',  type: 'number' ,width : 100,displayName : 'Shopping Centre ID', enableCellEdit : false,                 }
+      {  field : 'altitude',          type: 'number' ,width : '15%',displayName : 'Altitude',           enableCellEdit : false,                 },
+      {  field : 'gpsLongtitude',     type: 'number' ,width : '15%',displayName : 'GPS Longtitude',     enableCellEdit : false,                 },
+      {  field : 'gpsLatitude',       type: 'number' ,width : '15%',displayName : 'GPS Latitude',       enableCellEdit : false,                 },
+      {  field : 'locationInShoppingCentre',          width : '15%',displayName : 'Location In Shopping Centre',enableCellEdit : false, },
+      {  field : 'locationType',      type: 'text'   ,width : '20%',displayName : 'Location Type',      enableCellEdit : false,                 },
+      {  field : 'shoppingCentreid',  type: 'number' ,width : '10%',displayName : 'Shopping Centre ID', enableCellEdit : false,                 }
     ],
 
   "addRowLocation" : {
@@ -318,15 +322,15 @@ myApp.value('Globals', {
       field : 'loyaltyRewardid',          displayName    : 'Loyalty Reward ID',
       enableSorting : true,               enableCellEdit : false,
       type  : 'number',
-      width : 100,
+      width : '10%',
       },
-      {  field : 'getEndDateReadable()',  width : 200, displayName : 'End Date',type:"date",  enableCellEdit : true, },
-      {  field : 'pointsPerVisit',        type: 'number', width : 100, displayName : 'Points Per Visit',      enableCellEdit : true, },
-      {  field : 'rewardImage',           type : 'link', width : 200, displayName : 'Reward Image',          enableCellEdit : true, },
-      {  field : 'storeName',             width : 200, displayName : 'Retailer ID',           enableCellEdit : true, },
-      {  field : 'rewardTitle',           width : 200, displayName : 'Reward Title',          enableCellEdit : true, },
-      {  field : 'getStartDateReadable()',width : 200, displayName : 'Start Date',type:"date",enableCellEdit : true, },
-      {  field : 'visitTime',             type: 'number', width : 100, displayName : 'Visit Time',  enableCellEdit : true, }
+      {  field : 'getEndDateReadable()',  width : '20%', displayName : 'End Date',type:"date",  enableCellEdit : true, },
+      {  field : 'pointsPerVisit',        width : '10%', type: 'number',  displayName : 'Points Per Visit',      enableCellEdit : true, },
+      {  field : 'rewardImage',           width : '20%', type : 'link',  displayName : 'Reward Image',          enableCellEdit : true, },
+      {  field : 'storeName',             width : '20%', displayName : 'Retailer ID',           enableCellEdit : true, },
+      {  field : 'rewardTitle',           width : '20%', displayName : 'Reward Title',          enableCellEdit : true, },
+      {  field : 'getStartDateReadable()',width : '20%', displayName : 'Start Date',type:"date",enableCellEdit : true, },
+      {  field : 'visitTime',             width : '10%', type: 'number',displayName : 'Visit Time',  enableCellEdit : true, }
     ],
 
   "LoyaltyRewardColumnDefs2" : [{
@@ -341,30 +345,30 @@ myApp.value('Globals', {
     field : 'loyaltyRewardid',          displayName    : 'Loyalty Reward ID',
     enableSorting : true,               enableCellEdit : false,
     type  : 'number',
-    width : 100,
+    width : '10%',
   },
-    {  field : 'rewardImage',   width : 200, displayName : 'Reward Image',          enableCellEdit : true, },
-    {  field : 'storeName',     width : 200, displayName : 'Retailer ID',           enableCellEdit : true, },
-    {  field : 'rewardTitle',   width : 200, displayName : 'Reward Title',          enableCellEdit : true, },
-    {  field : 'pointsPerVisit',width : 100, type: 'number', displayName : 'Points Per Visit',enableCellEdit : true, },
-    {  field : 'visitTime',     width : 100, type: 'number', displayName : 'Visit Time',      enableCellEdit : true, },
-    {  field : 'startDate',     width : 200, type: "date",   displayName : 'Start Date',      enableCellEdit : true, },
-    {  field : 'endDate',       width : 200, type: "date",   displayName : 'End Date',        enableCellEdit : true, },
+    {  field : 'rewardImage',   width : '20%', displayName : 'Reward Image',          enableCellEdit : true, },
+    {  field : 'storeName',     width : '20%', displayName : 'Retailer ID',           enableCellEdit : true, },
+    {  field : 'rewardTitle',   width : '20%', displayName : 'Reward Title',          enableCellEdit : true, },
+    {  field : 'pointsPerVisit',width : '10%', type: 'number', displayName : 'Points Per Visit',enableCellEdit : true, },
+    {  field : 'visitTime',     width : '10%', type: 'number', displayName : 'Visit Time',      enableCellEdit : true, },
+    {  field : 'startDate',     width : '20%', type: "date",   displayName : 'Start Date',      enableCellEdit : true, },
+    {  field : 'endDate',       width : '20%', type: "date",   displayName : 'End Date',        enableCellEdit : true, },
   ],
   "ApproveLoyaltyRewardColumnDefs" : [{
     field : 'loyaltyRewardid',          displayName    : 'Loyalty Reward ID',
     enableSorting : true,               enableCellEdit : false,
     type  : 'number',
-    width : 100,
+    width : '10%',
   },
-    {  field : 'rewardImage',           width : 200, displayName : 'Reward Image',              enableCellEdit : false, },
-    {  field : 'storeName',             width : 200, displayName : 'Retailer ID',               enableCellEdit : false, },
-    {  field : 'rewardTitle',           width : 200, displayName : 'Reward Title',              enableCellEdit : false, },
-    {  field : 'pointsPerVisit',        width : 100, type: 'number',  displayName : 'Points Per Visit',          enableCellEdit : false, },
-    {  field : 'visitTime',             width : 100, type: 'number',  displayName : 'Visit Time', enableCellEdit : false, },
-    {  field : 'getStartDateReadable()',width : 200, type: "date",    displayName : 'Start Date', enableCellEdit : false, },
-    {  field : 'getEndDateReadable()',  width : 200, type: "date",    displayName : 'End Date',   enableCellEdit : false, },
-    {  field : 'approved',              width : 100, type: 'boolean', displayName : 'Approved?',  cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'rewardImage',           width : '20%', displayName : 'Reward Image',              enableCellEdit : false, },
+    {  field : 'storeName',             width : '20%', displayName : 'Retailer ID',               enableCellEdit : false, },
+    {  field : 'rewardTitle',           width : '20%', displayName : 'Reward Title',              enableCellEdit : false, },
+    {  field : 'pointsPerVisit',        width : '10%', type: 'number',  displayName : 'Points Per Visit',          enableCellEdit : false, },
+    {  field : 'visitTime',             width : '10%', type: 'number',  displayName : 'Visit Time', enableCellEdit : false, },
+    {  field : 'getStartDateReadable()',width : '20%', type: "date",    displayName : 'Start Date', enableCellEdit : false, },
+    {  field : 'getEndDateReadable()',  width : '20%', type: "date",    displayName : 'End Date',   enableCellEdit : false, },
+    {  field : 'approved',              width : '10%', type: 'boolean', displayName : 'Approved?',  cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
 
   "addRowLoyaltyReward" : {
@@ -392,11 +396,11 @@ myApp.value('Globals', {
       field : 'fullname',               displayName : 'User ID',
       enableSorting : true,             enableCellEdit : false,
       type  : 'number',
-      width : 100,
+      width : '10%',
       },
-      {  field : 'getDateReadable()',   width : 200,   displayName : 'Date',type:"date",enableCellEdit : false,  },
-      {  field : 'storeName',           width : 200,   displayName : 'Retailer ID',     enableCellEdit : false,  },
-      {  field : 'review',              width : 500,   displayName : 'Review',          enableCellEdit : false,  }
+      {  field : 'getDateReadable()',   width : '20%',   displayName : 'Date',type:"date",enableCellEdit : false,  },
+      {  field : 'storeName',           width : '20%',   displayName : 'Retailer ID',     enableCellEdit : false,  },
+      {  field : 'review',              width : '40%',   displayName : 'Review',          enableCellEdit : false,  }
 
     ],
 
@@ -414,23 +418,23 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field : 'defaultContentPage1',width : 200, displayName : 'Default Content Page1',      enableCellEdit : false,          },
-      {  field : 'defaultContentPage2',width : 200, displayName : 'Default Content Page2',      enableCellEdit : false,          },
-      {  field : 'defaultContentPage3',width : 200, displayName : 'Default Content Page3',      enableCellEdit : false,          },
-      {  field : 'defaultLoyaltyRewardImage', width : 200,displayName : 'Default Loyalty Reward Image',enableCellEdit : false,   },
-      {  field : 'facebookUrl',        width : 200, displayName : 'Facebook Url',               enableCellEdit : false,          },
-      {  field : 'twitterUrl',         width : 200, displayName : 'Twitter Url',                enableCellEdit : false,          },
-      {  field : 'websiteUrl',         width : 200, displayName : 'Website Url',                enableCellEdit : false,          },
-      {  field : 'logoImageSmall',     width : 400, displayName : 'Logo Image Small',           enableCellEdit : false,          },
-      {  field : 'logoImageLarge',     width : 400, displayName : 'Logo Image Large',           enableCellEdit : false,          },
-      {  field : 'logoImageMedium',    width : 400, displayName : 'Logo Image Medium',          enableCellEdit : false,          },
-      {  field : 'phone',              width : 150, displayName : 'Phone',                      enableCellEdit : false,          },
-      {  field : 'storeName',          width : 150, displayName : 'Store Name',                 enableCellEdit : false,          },
-      {  field : 'headerBackgroundImage', width : 200,displayName : 'Header Background Image',  enableCellEdit : false,          },
-      {  field : 'managerid',          type: 'number', width : 100, displayName : 'Manager ID',         enableCellEdit : false,  },
-      {  field : 'shoppingCentreid',   type: 'number', width : 100, displayName : 'Shopping Centre ID', enableCellEdit : false,  },
-      {  field : 'storeDefaultContentPage1',  width : 200,displayName : 'Store Default Content Page1',  enableCellEdit : false,  },
-      {  field : 'zoneid',             type: 'number', width : 100, displayName : 'Zone ID',            enableCellEdit : false   }
+      {  field : 'defaultContentPage1',               width : '9%',   displayName : 'Default Content Page1',      enableCellEdit : false,          },
+      {  field : 'defaultContentPage2',               width : '9%',   displayName : 'Default Content Page2',      enableCellEdit : false,          },
+      {  field : 'defaultContentPage3',               width : '9%',   displayName : 'Default Content Page3',      enableCellEdit : false,          },
+      {  field : 'defaultLoyaltyRewardImage',         width : '9%',   displayName : 'Default Loyalty Reward Image',enableCellEdit : false,   },
+      {  field : 'facebookUrl',                       width : '9%',   displayName : 'Facebook Url',               enableCellEdit : false,          },
+      {  field : 'twitterUrl',                        width : '9%',   displayName : 'Twitter Url',                enableCellEdit : false,          },
+      {  field : 'websiteUrl',                        width : '9%',   displayName : 'Website Url',                enableCellEdit : false,          },
+      {  field : 'logoImageSmall',                    width : '11%',  displayName : 'Logo Image Small',           enableCellEdit : false,          },
+      {  field : 'logoImageLarge',                    width : '11%',  displayName : 'Logo Image Large',           enableCellEdit : false,          },
+      {  field : 'logoImageMedium',                   width : '11%',  displayName : 'Logo Image Medium',          enableCellEdit : false,          },
+      {  field : 'phone',                             width : '5%',   displayName : 'Phone',                      enableCellEdit : false,          },
+      {  field : 'storeName',                         width : '5%',   displayName : 'Store Name',                 enableCellEdit : false,          },
+      {  field : 'headerBackgroundImage',             width : '9%',   displayName : 'Header Background Image',  enableCellEdit : false,          },
+      {  field : 'managerid',          type: 'number',width : '4.5%', displayName : 'Manager ID',         enableCellEdit : false,  },
+      {  field : 'shoppingCentreid',   type: 'number',width : '4.5%', displayName : 'Shopping Centre ID', enableCellEdit : false,  },
+      {  field : 'storeDefaultContentPage1',          width : '9%',   displayName : 'Store Default Content Page1',  enableCellEdit : false,  },
+      {  field : 'zoneid',             type: 'number',width : '4.5%', displayName : 'Zone ID',            enableCellEdit : false   }
     ],
 
   "addRowRetailer" : {
@@ -458,17 +462,17 @@ myApp.value('Globals', {
       field : 'shoppingCentreid',  displayName    : 'Shopping Centre ID',
       enableSorting : true,        enableCellEdit : false,
       type  : 'number',
-      width : 100,
+      width : '9%',
       },
-      {  field : 'fullname',       width : 200, displayName : 'Admin ID',           enableCellEdit : false,  },
-      {  field : 'contentPage',    width : 200, displayName : 'Content Page',       enableCellEdit : false,  },
-      {  field : 'phone',          width : 150, displayName : 'Phone',              enableCellEdit : false,  },
-      {  field : 'facebookUrl',    width : 200, displayName : 'Facebook Url',       enableCellEdit : false,  },
-      {  field : 'twitterUrl',     width : 200, displayName : 'Twitter Url',        enableCellEdit : false,  },
-      {  field : 'websiteUrl',     width : 200, displayName : 'Website Url',        enableCellEdit : false,  },
-      {  field : 'logoImageSmall', width : 400, displayName : 'Logo Image Small',   enableCellEdit : false,  },
-      {  field : 'logoImageMedium',width : 400, displayName : 'Logo Image Medium',  enableCellEdit : false,  },
-      {  field : 'logoImageLarge', width : 400, displayName : 'Logo Image Large',   enableCellEdit : false,  }
+      {  field : 'fullname',       width : '12%', displayName : 'Admin ID',           enableCellEdit : false,  },
+      {  field : 'contentPage',    width : '12%', displayName : 'Content Page',       enableCellEdit : false,  },
+      {  field : 'phone',          width : '10%', displayName : 'Phone',              enableCellEdit : false,  },
+      {  field : 'facebookUrl',    width : '12%', displayName : 'Facebook Url',       enableCellEdit : false,  },
+      {  field : 'twitterUrl',     width : '12%', displayName : 'Twitter Url',        enableCellEdit : false,  },
+      {  field : 'websiteUrl',     width : '12%', displayName : 'Website Url',        enableCellEdit : false,  },
+      {  field : 'logoImageSmall', width : '25%', displayName : 'Logo Image Small',   enableCellEdit : false,  },
+      {  field : 'logoImageMedium',width : '25%', displayName : 'Logo Image Medium',  enableCellEdit : false,  },
+      {  field : 'logoImageLarge', width : '25%', displayName : 'Logo Image Large',   enableCellEdit : false,  }
     ],
 
   "addRowShoppingCentre" : {
@@ -488,33 +492,49 @@ myApp.value('Globals', {
     field : 'userid',           displayName    : 'User ID',
     enableSorting : true,       enableCellEdit : false,
     type  : 'number',
-    width : 100,
+    width : '6%',
   },
-    {  field : 'firstname',     width : 100, displayName : 'Firstname',     enableCellEdit : false,  },
-    {  field : 'surname',       width : 100, displayName : 'Surname',       enableCellEdit : false,  },
-    {  field : 'emailAddress',  width : 150, displayName : 'Email Address', enableCellEdit : false,  },
-    {  field : 'phone',         width : 100, displayName : 'Phone',         enableCellEdit : false,  },
-    {  field : 'gender',        width : 100, displayName : 'Gender',        enableCellEdit : false,  },
-    {  field : 'password',      width : 100, displayName : 'Password',      enableCellEdit : false,  },
-    {  field : 'type',          width : 100, displayName : 'Type',          enableCellEdit : false,  },
-    {  field : 'yob', type: 'number', width : 50, displayName : 'Yob',      enableCellEdit : false,  },
-    {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'firstname',     width : '11%', displayName : 'Firstname',     enableCellEdit : false,  },
+    {  field : 'surname',       width : '11%', displayName : 'Surname',       enableCellEdit : false,  },
+    {  field : 'emailAddress',  width : '20%', displayName : 'Email Address', enableCellEdit : false,  },
+    {  field : 'phone',         width : '13%', displayName : 'Phone',         enableCellEdit : false,  },
+    {  field : 'gender',        width : '11%', displayName : 'Gender',        enableCellEdit : false,  },
+    // {  field : 'password',   width : '11%', displayName : 'Password',      enableCellEdit : false,  },
+    {  field : 'type',          width : '11%', displayName : 'Type',          enableCellEdit : false,  },
+    {  field : 'yob',           width : '6%' , displayName : 'Yob',      enableCellEdit : false,  type: 'number',},
+    {  field : 'approved',      width : '11%', displayName : 'Approved?', type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+  ],
+  "UserRetailerColumnDefs" : [{
+    field : 'userid',           displayName    : 'User ID',
+    enableSorting : true,       enableCellEdit : false,
+    type  : 'number',
+    width : '6%',
+  },
+    {  field : 'firstname',     width : '10%', displayName : 'Firstname',     enableCellEdit : false,  },
+    {  field : 'surname',       width : '10%', displayName : 'Surname',       enableCellEdit : false,  },
+    {  field : 'emailAddress',  width : '17%', displayName : 'Email Address', enableCellEdit : false,  },
+    {  field : 'phone',         width : '10%', displayName : 'Phone',         enableCellEdit : false,  },
+    {  field : 'gender',        width : '10%', displayName : 'Gender',        enableCellEdit : false,  },
+    {  field : 'password',      width : '10%', displayName : 'Password',      enableCellEdit : false, type : 'password',  },
+    {  field : 'type',          width : '10%', displayName : 'Type',          enableCellEdit : false,  },
+    {  field : 'yob',           width : '6%' , displayName : 'Yob',           enableCellEdit : false, type: 'number',},
+    {  field : 'approved',      width : '11%', displayName : 'Approved?',     type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
   "ApproveUserColumnDefs" : [{
     field : 'userid',           displayName    : 'User ID',
     enableSorting : true,       enableCellEdit : false,
     type  : 'number',
-    width : 100,
+    width : '6%',
   },
-    {  field : 'firstname',     width : 200, displayName : 'Firstname',     enableCellEdit : false,  },
-    {  field : 'surname',       width : 200, displayName : 'Surname',       enableCellEdit : false,  },
-    {  field : 'emailAddress',  width : 200, displayName : 'Email Address', enableCellEdit : false,  },
-    {  field : 'phone',         width : 150, displayName : 'Phone',         enableCellEdit : false,  },
-    {  field : 'gender',        width : 200, displayName : 'Gender',        enableCellEdit : false,  },
-    {  field : 'password',      width : 200, displayName : 'Password',      enableCellEdit : false,  },
-    {  field : 'type',          width : 200, displayName : 'Type',          enableCellEdit : false,  },
-    {  field : 'yob',           type: 'number', width : 100, displayName : 'Yob',           enableCellEdit : false,  },
-    {  field : 'approved',      width : 100, displayName : 'Approved?', type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+    {  field : 'firstname',     width : '15%', displayName : 'Firstname',     enableCellEdit : false,  },
+    {  field : 'surname',       width : '15%', displayName : 'Surname',       enableCellEdit : false,  },
+    {  field : 'emailAddress',  width : '16%', displayName : 'Email Address', enableCellEdit : false,  },
+    {  field : 'phone',         width : '11%', displayName : 'Phone',         enableCellEdit : false,  },
+    {  field : 'gender',        width : '13%', displayName : 'Gender',        enableCellEdit : false,  },
+    // {  field : 'password',      width : '13%', displayName : 'Password',      enableCellEdit : false,  },
+    {  field : 'type',          width : '10%', displayName : 'Type',          enableCellEdit : false,  },
+    {  field : 'yob',           width : '6%', displayName : 'Yob',           enableCellEdit : false, type: 'number', },
+    {  field : 'approved',      width : '8%', displayName : 'Approved?', type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
 
   "addRowUser" : {
@@ -534,10 +554,10 @@ myApp.value('Globals', {
       field : 'fullname',      displayName    : 'User ID',
       enableSorting : true,    enableCellEdit : false,
       type  : 'number',
-      width : 100,
+      width : '33%',
       },
-      {  field : 'storeName',  width : 300,  displayName : 'Retailer ID', enableCellEdit : false,  },
-      {  field : 'points',     type: 'number', width : 100,  displayName : 'Points',      enableCellEdit : false,  }
+      {  field : 'storeName',  width : '34%',  displayName : 'Retailer ID', enableCellEdit : false,  },
+      {  field : 'points',     type: 'number', width : '33%',  displayName : 'Points',      enableCellEdit : false,  }
     ],
 
   "addRowUserPoint" : {
@@ -550,10 +570,10 @@ myApp.value('Globals', {
       field : 'zoneid',       displayName    : 'Zone ID',
       enableSorting : true,   enableCellEdit : false,
       type  : 'number',
-      width : 100,
+      width : '20%',
       },
-      {  field : 'beaconid',  type: 'number', width : 100,      displayName : 'Beacon ID', enableCellEdit : false,  },
-      {  field : 'zoneName',  width : 200,      displayName : 'Zone Name', enableCellEdit : false,  }
+      {  field : 'beaconid',  type: 'number', width : '20%',      displayName : 'Beacon ID', enableCellEdit : false,  },
+      {  field : 'zoneName',  width : '60%',      displayName : 'Zone Name', enableCellEdit : false,  }
     ],
 
   "addRowZone" : {

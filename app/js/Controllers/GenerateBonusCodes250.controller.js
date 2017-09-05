@@ -4,7 +4,7 @@ myApp.controller('GenerateBonusCodes250Controller', ['DataFactory','$scope','Com
     let vm = this;
 
     $scope.vm = vm;
-
+    vm.chartTitle = "Bonus Codes";
     if ($rootScope.isRetailer) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below

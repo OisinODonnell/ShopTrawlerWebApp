@@ -4,7 +4,7 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
     $scope.vm = vm;
     let myLineChart;
     let canvas;
-
+    vm.chartTitle = "Visits";
     // Chart.defaults.global.defaultFontColor = 'white';
     Chart.defaults.global.defaultFontSize = 14;
     canvas = document.getElementById('myChart');

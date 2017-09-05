@@ -15,7 +15,7 @@ myApp.controller('ZonesController', ['DataFactory','$scope','Common','$rootScope
 
     $rootScope.addingRow = false;
     $scope.vm = vm;
-
+    vm.chartTitle = "Zones";
     vm.editRow = RowEditor.editRowZone;
     vm.serviceGrid = Common.setupUiGrid(Globals.ZoneColumnDefs, $scope.allowEditRow )
 

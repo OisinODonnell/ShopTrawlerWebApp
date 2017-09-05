@@ -3,6 +3,8 @@ myApp.controller('ApproveUsersController', ['DataFactory','$scope','Common','$ro
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
     let vm = this;
 
+    $scope.vm = vm;
+    vm.chartTitle = "Retail Managers To Approve";
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
@@ -10,10 +12,10 @@ myApp.controller('ApproveUsersController', ['DataFactory','$scope','Common','$ro
 
       vm.editRow = RowEditor.approveRowUser;
       vm.serviceGrid = Common.setupUiGrid(Globals.ApproveUserColumnDefs, $scope.allowEditRow )
-      $scope.vm = vm;
       ListUsersForApproval();
 
     }
+
 
     function ListUsersForApproval() {
       vm.dataLoading = true;
@@ -75,43 +77,43 @@ myApp.controller('ApproveUsersController', ['DataFactory','$scope','Common','$ro
 
 
   }]);
-
-myApp.controller('ApproveUserController', ['DataFactory','$scope','Common','$rootScope',
-  '$uibModal','RowEditor', 'uiGridConstants','Globals',
-  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
-    let vm = this;
-
-    if ($rootScope.isAdmin) {
-      $scope.allowAddRow = false; //  view is affected
-      $scope.allowEditRow = false; // action below
-    } else {
-      $scope.allowAddRow = false; //  view is affected
-      $scope.allowEditRow = true; // action below
-    }
-
-
-    $scope.vm = vm;
-
-    vm.editRow = RowEditor.editRowUser;
-    vm.serviceGrid = Common.setupUiGrid(Globals.UserColumnDefs, $scope.allowEditRow )
-
-    ListUsersForApproval();
-
-
-    // list inactive users (yet to be approved
-    function ListUsersForApproval(active) {
-      vm.dataLoading = true;
-      let user = new User();
-      DataFactory.listUsersForApproval(active)
-        .then( function(response) {
-            $rootScope.users = Common.createObjects(response.data, user);
-            vm.serviceGrid.data = $rootScope.users;
-            $scope.gridStyle = Common.gridStyle($rootScope.users.length);
-          },
-          function (error) { $scope.status = 'Unable to load User data ' + error.message; }
-        );
-      vm.dataLoading = false;
-    }
-
-
-  }]);
+//
+// myApp.controller('ApproveUserController', ['DataFactory','$scope','Common','$rootScope',
+//   '$uibModal','RowEditor', 'uiGridConstants','Globals',
+//   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals) {
+//     let vm = this;
+//
+//     if ($rootScope.isAdmin) {
+//       $scope.allowAddRow = false; //  view is affected
+//       $scope.allowEditRow = false; // action below
+//     } else {
+//       $scope.allowAddRow = false; //  view is affected
+//       $scope.allowEditRow = true; // action below
+//     }
+//
+//
+//     $scope.vm = vm;
+//
+//     vm.editRow = RowEditor.editRowUser;
+//     vm.serviceGrid = Common.setupUiGrid(Globals.UserColumnDefs, $scope.allowEditRow )
+//
+//     ListUsersForApproval();
+//
+//
+//     // list inactive users (yet to be approved
+//     function ListUsersForApproval(active) {
+//       vm.dataLoading = true;
+//       let user = new User();
+//       DataFactory.listUsersForApproval(active)
+//         .then( function(response) {
+//             $rootScope.users = Common.createObjects(response.data, user);
+//             vm.serviceGrid.data = $rootScope.users;
+//             $scope.gridStyle = Common.gridStyle($rootScope.users.length);
+//           },
+//           function (error) { $scope.status = 'Unable to load User data ' + error.message; }
+//         );
+//       vm.dataLoading = false;
+//     }
+//
+//
+//   }]);

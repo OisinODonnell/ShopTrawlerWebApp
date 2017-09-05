@@ -2,7 +2,7 @@ myApp.controller('VisitsReportDaysController', ['DataFactory','$scope','Common',
   function ( DataFactory,$scope,Common,$rootScope,Globals) {
     let vm = this;
     $scope.vm = vm;
-
+    vm.chartTitle = "Visits";
     // Chart.defaults.global.defaultFontColor = 'white';
     Chart.defaults.global.defaultFontSize = 14;
     let canvas = document.getElementById('myChart');

@@ -7,7 +7,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
 
     $rootScope.type = "LR";
     $scope.uploader = new FileUploader();
-
+    vm.chartTitle = "Loyalty Rewards";
     $scope.sDate = new Date();
     $scope.eDate = new Date();
 

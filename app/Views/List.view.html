@@ -1,29 +1,26 @@
-<div  xmlns:style="http://www.w3.org/1999/xhtml">
-
-  <!--class="container-fluid"-->
-
-
-
-      <div ng-if="allowAddRow">
-        <div>
-          <button type="button" id="addRow" class="btn btn-success" ng-click="addingRow=true; addRow()">Add New Row</button>
-        </div>
-      </div>
-      <br/>
-
-      <div  id="serviceGrid" class="shopTrawler"
-           ui-grid-pagination
-           ui-grid-move-columns
-           ui-grid-edit
-           ui-grid-exporter
-           ui-grid-auto-resize
-           ui-grid-pinning
-           ui-grid-selection
-           ui-grid="vm.serviceGrid" >
-
-      </div>
-      <!--<div ng-dblclick="grid.appScope.vm.editRow(grid, row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader }" ui-grid-cell></div>-->
+<div  style="text-align:center;">
+  <h2>{{vm.chartTitle}}</h2>
+</div>
+  <div ng-if="allowAddRow">
+    <div>
+      <button type="button" id="addRow" class="btn btn-success" ng-click="addingRow=true; addRow()">Add New Row</button>
     </div>
+  </div>
+  <br/>
+
+  <div  id="serviceGrid" class="shopTrawler"
+       ui-grid-pagination
+       ui-grid-move-columns
+       ui-grid-edit
+       ui-grid-exporter
+       ui-grid-auto-resize
+       ui-grid-pinning
+       ui-grid-selection
+       ui-grid="vm.serviceGrid" >
+
+  </div>
+      <!--<div ng-dblclick="grid.appScope.vm.editRow(grid, row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader }" ui-grid-cell></div>-->
+
 
 
 

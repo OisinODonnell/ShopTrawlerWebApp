@@ -1,25 +1,30 @@
-<div>
-  <div class="modal-header">
-    <h3 class="modal-title">Edit Row</h3>
-  </div>
+<div  style="text-align:center;">
+  <h2>{{vm.chartTitle}}</h2>
+</div>
+
+<div class="modal-header">
+    <h3 class="modal-title">Approve New User</h3>
+  </div >
   <div class="modal-body">
 
-    <form name="serviceForm">
+    <form name="serviceForm" class="col-md-4">
+
       <div class="block">  <label>User ID </label>        <input class="input"  type="text"     disabled value="{{row.entity.userid}}" /> </div>
-      <div class="block">  <label>Firstname </label>      <input class="input"  type="text"     ng-model="row.entity.firstname"/>         </div>
-      <div class="block">  <label>Surname </label>        <input class="input"  type="text"     ng-model="row.entity.surname"/>           </div>
-      <div class="block">  <label>Email Address </label>  <input class="input"  type="email"    ng-model="row.entity.emailAddress"/>      </div>
-      <div class="block">  <label>Phone </label>          <input class="input"  type="text"     ng-model="row.entity.phone"/>             </div>
-      <div class="block">  <label>Gender </label>         <input class="input"  type="text"     ng-model="row.entity.gender"/>            </div>
-      <div class="block">  <label>Password </label>       <input class="input"  type="password" ng-model="row.entity.password"/>          </div>
-      <div class="block">  <label>Type </label>           <input class="input"  type="text"     ng-model="row.entity.type"/>              </div>
-      <div class="block">  <label>Year of Birth </label>  <input class="input"  type="number"   ng-model="row.entity.yob"/>               </div>
+      <div class="block">  <label>Firstname </label>      <input class="input"  type="text"     disabled value="{{row.entity.firstname}}"/>         </div>
+      <div class="block">  <label>Surname </label>        <input class="input"  type="text"     disabled value="{{row.entity.surname}}"/>           </div>
+      <div class="block">  <label>Email Address </label>  <input class="input"  type="email"    disabled value="{{row.entity.emailAddress}}"/>      </div>
+      <div class="block">  <label>Phone </label>          <input class="input"  type="text"     disabled value="{{row.entity.phone}}"/>             </div>
+      <div class="block">  <label>Gender </label>         <input class="input"  type="text"     disabled value="{{row.entity.gender}}"/>            </div>
+      <div class="block">  <label>Password </label>       <input class="input"  type="password" disabled value="{{row.entity.password}}"/>          </div>
+      <div class="block">  <label>Type </label>           <input class="input"  type="text"     disabled value="{{row.entity.type}}"/>              </div>
+      <div class="block">  <label>Year of Birth </label>  <input class="input"  type="number"   disabled value="{{row.entity.yob}}"/>               </div>
+
       <!-- drop down for approved true/false-->
+
       <div class="block">
         <label>Approved </label>
         <select class="input" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
       </div>
-
 
     </form>
 
@@ -29,4 +34,4 @@
     <button class="btn btn-primary" ng-click="vm.removeUser(row)">Delete</button>
     <button class="btn btn-primary" ng-click="$close()">Cancel</button>
   </div>
-</div>
+

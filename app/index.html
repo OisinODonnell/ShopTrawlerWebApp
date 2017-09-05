@@ -160,7 +160,8 @@
     body {
       padding-top: 80px;
     }
-
+    /* right margin becomes -15px, aftert applying some
+    this resets it so the navbar sits properly on the display */
     .navbar-right {
       margin-right: 0px;
     }
@@ -171,7 +172,8 @@
 <body ng-app="app" ng-cloak xmlns:href="http://www.w3.org/1999/xhtml">
 
 <!-- Fixed navbar -->
-<nav class="navbar navbar-fixed-top navbar-default " style="background-color: #e3f2fd;">
+<nav class="navbar navbar-fixed-top  " style="background-color: #d4cfe4;" >
+     <!--#e3f2fd;">-->
 
     <!-- Navbar colapses to a button on RHS as the screen is mad smaller-->
     <!-- changing the menu from horizontal to vertical -->
@@ -250,7 +252,7 @@
     <ul class="nav navbar-nav" data-ng-show = "isRetailer && loggedIn" > <!-- start of retailer menu -->
       <li><a href="#!/Favourites/Retailer"  > Favourites    </a></li>
       <li><a href="#!/Ratings/Retailer"     > Ratings       </a></li>
-      <li><a href="#!/Users/Retailer"       > Users         </a></li>
+      <li><a href="#!/Users/Retailer"       > My Details    </a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right" data-ng-show = "isRetailer && loggedIn" > <!-- stack these to RHS -->
@@ -270,18 +272,19 @@
       <!-- retailer dropdown 2 -->
       <li class="dropdown">
         <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-          Generate Bonus Codes <span class="caret"></span>
+          Bonus Codes <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="#!/BonusCodes/Generate250"  > Value = 250  </a></li>
-          <li><a href="#!/BonusCodes/Generate500"  > Value = 500  </a></li>
+          <li><a href="#!/BonusCodes/Generate"  > List Unused Codes  </a></li>
+          <li><a href="#!/BonusCodes/Generate250"  > Generate 250 codes </a></li>
+          <li><a href="#!/BonusCodes/Generate500"  > Generate 500 codes </a></li>
         </ul>
       </li>
 
       <!-- retailer dropdown 3 -->
       <li class="dropdown">
         <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-          Vists <span class="caret"></span>
+          Visits <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
           <LI><a href="#!/Visits/Retailer"               > Visits         </a></LI>

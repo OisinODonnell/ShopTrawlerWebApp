@@ -5,20 +5,23 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
 
     $scope.vm = vm;
 
-
+    vm.chartTitle = "Users";
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below
       ListUsers();
+      vm.serviceGrid = Common.setupUiGrid(Globals.UserColumnDefs, $scope.allowEditRow );
+
     } else {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = true; // action below
       ListUser($rootScope.currentUser.userid);
+      vm.serviceGrid = Common.setupUiGrid(Globals.UserRetailerColumnDefs, $scope.allowEditRow );
+
     }
 
     vm.editRow = RowEditor.editRowUser;
-    vm.serviceGrid = Common.setupUiGrid(Globals.UserColumnDefs, $scope.allowEditRow )
 
     function ListUsers() {
       vm.dataLoading = true;

@@ -28,7 +28,7 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','
 
 
     $scope.vm = vm;
-
+    vm.chartTitle = "Shopping Center";
     vm.editRow = RowEditor.editRowShoppingCentre;
     vm.serviceGrid = Common.setupUiGrid(Globals.ShoppingCentreColumnDefs, $scope.allowEditRow )
 

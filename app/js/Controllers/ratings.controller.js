@@ -6,7 +6,7 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
 
     $scope.test="";
     $scope.testMessage="List Stock/Manufacturers/ItemCategories/Reviews ...";
-
+    vm.chartTitle = "Ratings";
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
@@ -22,7 +22,8 @@ myApp.controller('RatingsController', ['DataFactory','$scope','Common','$rootSco
     vm.editRow = RowEditor.editRowRating;
     vm.serviceGrid = Common.setupUiGrid(Globals.RatingColumnDefs, $scope.allowEditRow );
     // add rating with average in column footer
-    let ratingColWithAvg = {  name: 'avgRating', field: 'rating',  width: 100, aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Rating' };
+    let ratingColWithAvg = {  name: 'avgRating', field: 'rating',  width: '10%', aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Rating',
+      footerCellTemplate: '<div class="ui-grid-cell-contents" >Total: {{col.getAggregationValue() | number:1 }}</div>'};
     vm.serviceGrid.columnDefs.splice(2, 0, ratingColWithAvg);
 
 

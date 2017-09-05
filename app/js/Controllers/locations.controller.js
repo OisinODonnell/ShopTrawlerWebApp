@@ -5,7 +5,7 @@ myApp.controller('LocationsController', ['DataFactory','$scope','Common','$rootS
     let vm = this;
 
     $scope.vm = vm;
-
+    vm.chartTitle = "Shopping Center Locations";
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = false; // action below

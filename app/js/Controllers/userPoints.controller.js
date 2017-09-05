@@ -13,7 +13,7 @@ myApp.controller('UserPointsController', ['DataFactory','$scope','Common','$root
     }
 
     $scope.vm = vm;
-
+    vm.chartTitle = "User Points";
     vm.editRow = RowEditor.editRowUserPoint;
     vm.serviceGrid = Common.setupUiGrid(Globals.UserPointColumnDefs, $scope.allowEditRow )
 

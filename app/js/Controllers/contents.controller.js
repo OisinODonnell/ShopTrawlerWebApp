@@ -6,7 +6,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     let filePage1 = "";
     let filePage2 = "";
     let filePage3 = "";
-
+    vm.chartTitle = "retailer Content";
     $scope.filePage1 = filePage1;
     $scope.filePage2 = filePage2;
     $scope.filePage3 = filePage3;
@@ -137,7 +137,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     }
 
 
-
+    vm.chartTitle = "Retailer Content";
     // Save new or updated entry to database
     $scope.saveRow = function(row) {
       // find retailerid
@@ -146,26 +146,41 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
 
       let userid = $rootScope.currentUser.userid;
       let retailerid = Common.getRetailerid(userid);
-      let content = createNewContents(row.entity, retailerid);
-
       let index = vm.serviceGrid.data.indexOf(row.entity);
 
-      // check if dates are valid
-      let response = Common.checkDates(content.getStartDate(), content.getEndDate());
-      if (response === true) {
-        DataFactory.addContent(content)
-          .then(function (response) {
-              Flash.create("success", "Content added successfully", 2000);
-              vm.serviceGrid.data = buildNewContents(response.data);
-            },
-            function (response) {
-              Flash.create("danger", "Content not added : " + response.data.message);
-            });
+      // check dates are valid first, then attempt to save/update record
+      let response = Common.checkDates(row.entity.startDate, row.entity.endDate);
+      if (response !== true) {
+        Flash.create('danger', "Content not updated : -> " + response, 4000);
       } else {
-        Flash.create('danger', "Content not created : -> " + response, 4000);
+        if (row.entity.contentid !== 0) { // existing row
+          // check if dates are valid
+          DataFactory.updateContent(row.entity)
+            .then(function (response) {
+                Flash.create("success", "Content Updated successfully", 2000);
+                vm.serviceGrid.data = buildNewContents(response.data);
+              },
+              function (response) {
+                Flash.create("danger", "Content not updated : " + response.data.message);
+              });
+
+        } else { // must be new row
+          // check if dates are valid
+          let content = createNewContents(row.entity, retailerid);
+          DataFactory.addContent(content)
+            .then(function (response) {
+                Flash.create("success", "Content Added successfully", 2000);
+                vm.serviceGrid.data = buildNewContents(response.data);
+              },
+              function (response) {
+                Flash.create("danger", "Content not added : " + response.data.message);
+              });
+        }
       }
       console.log("save Row LR");
     };
+
+
     $scope.addRow = function(row) {
       console.log("save Row C");
       let content = Globals.NewContent;
@@ -244,7 +259,5 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       $scope.contents = contents;
       return $scope.contents;
     }
-
-
 
   }]);

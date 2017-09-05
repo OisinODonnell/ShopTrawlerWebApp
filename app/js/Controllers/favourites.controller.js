@@ -16,6 +16,7 @@ myApp.controller('FavouritesController', ['DataFactory','$scope','Common','$root
 
     $scope.vm = vm;
 
+    vm.chartTitle = "Favourites";
     vm.editRow = RowEditor.editRowFavourite;
     vm.serviceGrid = Common.setupUiGrid(Globals.FavouriteColumnDefs, $scope.allowEditRow )
 

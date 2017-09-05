@@ -14,7 +14,7 @@ myApp.controller('BonusCodesController', ['DataFactory','$scope','Common','$root
 
 
     $scope.vm = vm;
-
+    vm.chartTitle = "Bonus Codes";
     vm.editRow = RowEditor.editRowBonusCode;
     vm.serviceGrid = Common.setupUiGrid(Globals.BonusCodeColumnDefs, $scope.allowEditRow );
 
