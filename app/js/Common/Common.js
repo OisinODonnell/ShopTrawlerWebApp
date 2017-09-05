@@ -264,6 +264,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
       display : true,
       scaleLabel : {
         display : true,
+        fontSize : 40,
         labelString : chartConfig.footer
       }
     }];
@@ -272,6 +273,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     config.options = Globals.ChartLineOptions;
     // add context specif stuff hereafter
     config.options.scales.xAxes = xAxes; // footer set above
+    config.options.title.fontSize = 40;
     config.options.title.text = chartConfig.header;
 
     config.data = {};

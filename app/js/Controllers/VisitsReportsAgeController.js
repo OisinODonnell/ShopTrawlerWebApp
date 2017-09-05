@@ -86,20 +86,12 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
       // ie config.options = {}; and config.options.title = {};
 
       config.type = chartConfig.type;
-      let xAxes = [{
-        display : true,
-        scaleLabel : {
-          display : true,
-          labelString : chartConfig.footer
-        }
-      }];
 
       // bring in a standard set of options first
       config.options = Globals.ChartLineOptions;
-      // add context specif stuff hereafter
-      config.options.scales.xAxes = xAxes; // footer set above
+      config.options.scales.xAxes[0].scaleLabel.labelString = chartConfig.footer;
+      // add context specific stuff hereafter
       config.options.title.text = chartConfig.header;
-
       config.data = {};
       config.data.labels = ageCharts[0].xLabels;
 

@@ -28,65 +28,6 @@ myApp.controller('VisitsReportDaysController', ['DataFactory','$scope','Common',
     }
 
     // setup chart
-
-    // // Line options
-    // let data = {
-    //   labels                  : [1,2,3,4,5,6,7,8,9,10,11,12],
-    //   xAxisID                 : "",
-    //   yAxisID                 : "",
-    //   backgroundColor         : Color,
-    //   borderColor             : Color,
-    //   borderWidth             : 0,
-    //   borderDash              : Number,
-    //   borderDashOffset        : Number,
-    //   borderCapStyle          : "",
-    //   borderJoinStyle         : "",
-    //   cubicInterpolationMode  : "",
-    //   fill                    : Boolean,
-    //   lineTension             :	Number,
-    //   pointBackgroundColor    :	Color/Color[],
-    //   pointBorderColor        :	Color/Color[],
-    //   pointBorderWidth        :	Number/Number[],
-    //   pointRadius             :	Number/Number[],
-    //   pointStyle              :	String/String[]/Image/Image[],
-    //   pointHitRadius          :	Number/Number[],
-    //   pointHoverBackgroundColor :	Color/Color[],
-    //   pointHoverBorderColor   :	Color/Color[],
-    //   pointHoverBorderWidth   :	Number/Number[],
-    //   pointHoverRadius        :	Number/Number[],
-    //   steppedLine             :	Boolean/String,
-    //   showLine                :	true,
-    //   spanGaps                :	true,
-    // };
-    //
-    // // Bar Options
-    // let data = {
-    //   labels                  : [1,2,3,4,5,6,7,8,9,10,11,12],
-    //   xAxisID                 : "",
-    //   yAxisID                 : "",
-    //   backgroundColor         : Color,
-    //   borderColor             : Color,
-    //   borderWidth             : 0,
-    //   borderSkipped           : Number,
-    //   cubicInterpolationMode  : "",
-    //   fill                    : Boolean,
-    //   hoverBackgroundColor    : Color,
-    //   hoverBorderColor        : Color,
-    //   hoverBorderWidth        : Number,
-    // };
-    // // Pie Options
-    //
-    // let data = {
-    //   labels                  : "",
-    //   backgroundColor         : Color,
-    //   borderColor             : Color,
-    //   borderWidth             : 0,
-    //   hoverBackgroundColor    : Color,
-    //   hoverBorderColor        : Color,
-    //   hoverBorderWidth        : Number,
-    // };
-
-
     function ListVisitsReportsAdminDays() {
       vm.dataLoading = true;
       let visitCharts = [];
