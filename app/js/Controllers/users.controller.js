@@ -21,6 +21,8 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
 
     }
 
+
+
     vm.editRow = RowEditor.editRowUser;
 
     function ListUsers() {

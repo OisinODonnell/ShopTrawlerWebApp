@@ -1,4 +1,4 @@
-<div  style="text-align:center;">
+<div  style="text-align:center;" >
   <h2>{{vm.chartTitle}}</h2>
 </div>
 <div ng-if="allowAddRow">
@@ -6,8 +6,8 @@
     <button type="button" id="addRow" class="btn btn-success" ng-click="addingRow=true; addRow()">Add New Row</button>
   </div>
 </div>
-<div ng-if="allowAddRow">
-  <div >
+<div ng-if="allowAddRow" >
+  <div class="col-md-4">
     <div style="margin-left:5%;">
         <!--<div >-->
           <!--<div>-->
@@ -33,6 +33,7 @@
             ui-grid-edit
             ui-grid="vm.serviceGrid" >
       </div>
+  </div>
       <!--<div ng-dblclick="grid.appScope.vm.editRow(grid, row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader }" ui-grid-cell></div>-->
     <!--</div>-->
   <!--</div>-->

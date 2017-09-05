@@ -167,6 +167,26 @@
     .navbar-right {
       margin-right: 0px;
     }
+
+    .rowColour:nth-child(odd) {
+      background-color : white;
+    }
+    .rowColour:nth-child(even) {
+      background-color : #d4cfe4;
+    }
+
+    .navTxtColour {
+      color:#40375a;
+    }
+
+    .ui-grid-row {
+      height: auto !important;
+      overflow: hidden; }
+    .ui-grid-row:nth-child(odd) .ui-grid-cell {
+      background: #f5f1ff; }
+    .ui-grid-row:nth-child(even) .ui-grid-cell {
+      background: #d4cfe4; }
+
   </style>
 </head>
 
@@ -192,7 +212,7 @@
       </ul>
     </div>
 
-    <div id="navbar"   >
+    <div id="navbar"  class="navTxtColour" >
     <!--class="container-->
 
      <!--stack these items to the left-->

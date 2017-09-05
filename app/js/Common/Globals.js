@@ -20,7 +20,7 @@ myApp.value('Globals', {
     pointHoverBackgroundColor : "rgba(75, 192, 192, 1)",
     pointHoverBorderColor     : "rgba(220, 220, 220, 1)",
     pointHoverBorderWith      : 2,
-    headerCellClass: 'white',
+    // headerCellClass: 'white',
 
     // pointRadius: 1,
     // pointHitRadius: 10,
@@ -94,7 +94,7 @@ myApp.value('Globals', {
     enableColumnMoving        : true,
     enableColumnResizing      : true,
     showColumnFooter          : true, // useful for a couple of entities where aggregate values can be calculated
-    rowTemplate: 'ShopTrawlerWebApp/app/Views/rowTemplate.html1',
+    rowTemplate               : "/ShopTrawlerWebApp/app/Views/rowTemplate2.html",
 
     enableGridMenu            : true, // menu in top right hand corner
     // enablePaging              : true,
@@ -107,9 +107,8 @@ myApp.value('Globals', {
     // maxWidth                  : 9000,
   },
   "ContentColumnDefs" : [{
-    field : 'contentid',                displayName    : 'Content ID',headerCellClass: 'white',
-    enableSorting : true,               enableCellEdit : false,
-    type  : 'number',
+    field : 'contentid',        displayName    : 'Content ID',headerCellClass: 'white',
+    enableSorting : true,       enableCellEdit : false,       type  : 'number',
     width : '10%',
   },
     // {
@@ -206,14 +205,14 @@ myApp.value('Globals', {
       type : 'number',
       width : '6%',
       },
-      { field : 'getEntryTimeReadable()',width : '18%',    displayName : 'Entry Time',enableCellEdit : false,type:"date", headerCellClass: 'white',},
-      { field : 'getExitTimeReadable()', width : '18%',    displayName : 'Exit Time', enableCellEdit : false,type:"date", headerCellClass: 'white',},
+      { field : 'getEntryTimeReadable()',width : '18%',    displayName : 'Entry Time', enableCellEdit : false,type:"date", headerCellClass: 'white',},
+      { field : 'getExitTimeReadable()', width : '18%',    displayName : 'Exit Time',  enableCellEdit : false,type:"date", headerCellClass: 'white',},
       // { field : 'userCreditedForVisit', width : 100,    displayName : 'User Credited For Visit',enableCellEdit : true, },
       // { field : 'duration', type: 'number' ,            width : 100,    displayName : 'Duration',enableCellEdit : false,               },
-      { field : 'storeName',             width : '18%',    displayName : 'Store Name',enableCellEdit : false,             headerCellClass: 'white',},
-      { field : 'fullname',              width : '18%',    displayName : 'Fullname',  enableCellEdit : false,            headerCellClass: 'white', },
-      { field : 'userid',                width : '6%',    displayName : 'User ID',   enableCellEdit : false,type: 'number' ,headerCellClass: 'white',             },
-      { field : 'zoneid',                width : '6%',    displayName : 'Zone ID',   enableCellEdit : false,type: 'number' ,headerCellClass: 'white',             }
+      { field : 'storeName',             width : '18%',    displayName : 'Store Name', enableCellEdit : false,             headerCellClass: 'white',},
+      { field : 'fullname',              width : '18%',    displayName : 'Fullname',   enableCellEdit : false,            headerCellClass: 'white', },
+      { field : 'userid',                width : '6%',    displayName : 'User ID',     enableCellEdit : false,type: 'number' ,headerCellClass: 'white',             },
+      { field : 'zoneid',                width : '6%',    displayName : 'Zone ID',     enableCellEdit : false,type: 'number' ,headerCellClass: 'white',             }
     ],
 
   "addRowVisit" : {
