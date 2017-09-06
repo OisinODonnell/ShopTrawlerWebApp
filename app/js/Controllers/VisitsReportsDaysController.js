@@ -29,22 +29,11 @@
 //
 // }]);
 
-myApp.controller('VisitsReportDaysController', ['DataFactory','$rootScope','$scope','Common','$rootScope','Globals',
-  function ( DataFactory,$rootScope,$scope,Common,Globals) {
+myApp.controller('VisitsReportDaysController', ['$rootScope','$scope','DataFactory','Common','Globals',
+  function ( $rootScope,$scope,DataFactory,Common,Globals) {
     let vm = this;
     $scope.vm = vm;
     vm.chartTitle = "Visits";
-    // Chart.defaults.global.defaultFontColor = 'white';
-
-    Common.resetCanvas();
-
-    // $rootScope.canvas = document.getElementById('myChart');
-    // $rootScope.ctx = $rootScope.canvas.getContext('2d');
-
-    // if (angular.isDefined($rootScope.myChart)) {
-    //   $rootScope.myChart = {};
-    // }
-    // Chart.defaults.global.defaultFontSize = 14;
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow  = false; //  view is affected
@@ -75,7 +64,8 @@ myApp.controller('VisitsReportDaysController', ['DataFactory','$rootScope','$sco
               footer  : "Daily",
               options : {}
            };
-            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
+            Common.resetCanvas();
+            Common.buildChart(visitCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
@@ -96,31 +86,22 @@ myApp.controller('VisitsReportDaysController', ['DataFactory','$rootScope','$sco
               footer  : "Daily",
               options : {}
             };
-            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
+            Common.resetCanvas();
+            Common.buildChart(visitCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
 
-    // $scope.$on('chart-update',function(evt, $rootScope){
-    //   $rootScope.myNewChart.update();
-    // });
 
   }]);
 
-
-myApp.controller('VisitsReportWeeksController', ['DataFactory','$rootScope','$scope','Common','$rootScope','Globals',
-  function ( DataFactory,$rootScope,$scope,Common,$rootScope, Globals) {
+myApp.controller('VisitsReportWeeksController', ['$rootScope','$scope','DataFactory','Common','Globals','$http',
+  function ( $rootScope,$scope,DataFactory,Common,Globals,$http) {
     let vm = this;
     $scope.vm = vm;
-    // if (angular.isDefined($rootScope.myChart)) {
-    //   $rootScope.myChart = {};
-    // }
+    const urlBase = Globals.URL_BASE;
 
-    Common.resetCanvas();
-    // Chart.defaults.global.defaultFontSize = 14;
-    // $rootScope.canvas = document.getElementById('myChart');
-    // $rootScope.ctx = $rootScope.canvas.getContext('2d');
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow  = false; //  view is affected
@@ -139,10 +120,12 @@ myApp.controller('VisitsReportWeeksController', ['DataFactory','$rootScope','$sc
       vm.dataLoading = true;
       let visitCharts = [];
       let visitChart    = new VisitChart();
-      DataFactory.listVisitsReportsAdminWeeks()
+      // DataFactory.listVisitsReportsAdminWeeks()
+      $http.get(urlBase + '/Visits/Report/Admin/Week' )
         .then( function(response) {
             // extract collections
             let visitCharts    = Common.createObjects(response.data, visitChart);
+            vm.dataLoading = false;
 
             let chartConfig = {
               type    : 'line',
@@ -150,10 +133,12 @@ myApp.controller('VisitsReportWeeksController', ['DataFactory','$rootScope','$sc
               footer  : "Weekly",
               options : {}
             };
-            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
+            Common.resetCanvas();
+            Common.buildChart(visitCharts, chartConfig);
           },
-          function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
-      vm.dataLoading = false;
+          function (error) { $scope.status = 'Unable to load Visits ' + error.message;
+        });
+
     }
 
     function ListVisitsReportsByRetailerWeeks(id) {
@@ -182,24 +167,19 @@ myApp.controller('VisitsReportWeeksController', ['DataFactory','$rootScope','$sc
             chartConfig.scales = {};
             chartConfig.scales.yAxes = yAxes;
 
-            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
+            Common.resetCanvas();
+            Common.buildChart(visitCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
   }]);
 
-myApp.controller('VisitsReportMonthsController', ['DataFactory','$rootScope','$scope','Common','$rootScope','Globals',
-  function ( DataFactory,$rootScope,$scope,Common,$rootScope, Globals) {
+myApp.controller('VisitsReportMonthsController', ['$rootScope','$scope','DataFactory','Common','Globals',
+  function ( $rootScope,$scope,DataFactory,Common, Globals) {
     let vm = this;
     $scope.vm = vm;
 
-    Common.resetCanvas();
-
-    // Chart.defaults.global.defaultFontSize = 14;
-
-    // $rootScope.canvas = document.getElementById('myChart');
-    // $rootScope.ctx = $rootScope.canvas.getContext('2d');
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow  = false; //  view is affected
@@ -229,7 +209,8 @@ myApp.controller('VisitsReportMonthsController', ['DataFactory','$rootScope','$s
               footer  : "Monthly",
               options : {}
             };
-            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
+            Common.resetCanvas();
+            Common.buildChart(visitCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
@@ -259,8 +240,8 @@ myApp.controller('VisitsReportMonthsController', ['DataFactory','$rootScope','$s
 
             chartConfig.scales = {};
             chartConfig.scales.yAxes = yAxes;
-            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
-
+            Common.resetCanvas();
+            Common.buildChart(visitCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;

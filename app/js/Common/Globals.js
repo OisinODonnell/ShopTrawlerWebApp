@@ -66,7 +66,7 @@ myApp.value('Globals', {
       fill: true, // options.title.fill
     }
   },
-  "BackgroundChartColours" : [ "rgba(255,0,0,.4)","rgba(0,255,0,.4)","rgba(0,0,255,.4)","rgba(255,255,0,.4)",
+  "BackgroundChartColours" : [ "rgba(0,255,0,.4)","rgba(255,0,0,.4)","rgba(0,0,255,.4)","rgba(255,255,0,.4)",
     "rgba0,255,255,.4)","rgba(255,0,255,.4)","rgba(144,238,144,.4)","rgba(224,255,255,.4)"
   ],
   "BorderChartColours" : [ "rgba(255,0,0,.8)","rgba(0,255,0,.8)","rgba(0,0,255,.8)","rgba(255,255,0,.8)",
@@ -199,6 +199,7 @@ myApp.value('Globals', {
     "retailerid"  : "",
     "startDate"   : new Date()
   },
+
   "VisitColumnDefs" : [ {
       field : 'visitid',                 displayName    : 'Visit ID',headerCellClass: 'white',
       enableSorting : true,              enableCellEdit : false,
@@ -281,10 +282,6 @@ myApp.value('Globals', {
     "dateTime"    : ""
   },
 
-
-
-
-
   "FavouriteColumnDefs" : [{
       field : 'fullname',        displayName : 'User ID',headerCellClass: 'white',
       enableSorting : true,      enableCellEdit : false,
@@ -293,6 +290,7 @@ myApp.value('Globals', {
       },
       {  field : 'storeName',    width : '66%',displayName : 'Retailer ID',enableCellEdit : false, headerCellClass: 'white',   }
     ],
+
   "addRowFavourite" : {
     "userid"     : "",
     "retailerid" : ""
@@ -360,6 +358,7 @@ myApp.value('Globals', {
     {  field : 'startDate',     width : '20%', type: "date",   displayName : 'Start Date',      enableCellEdit : true, headerCellClass: 'white',},
     {  field : 'endDate',       width : '20%', type: "date",   displayName : 'End Date',        enableCellEdit : true, headerCellClass: 'white',},
   ],
+
   "ApproveLoyaltyRewardColumnDefs" : [{
     field : 'loyaltyRewardid',          displayName    : 'Loyalty Reward ID',headerCellClass: 'white',
     enableSorting : true,               enableCellEdit : false,
@@ -386,6 +385,7 @@ myApp.value('Globals', {
     "startDate"       : null,
     "visitTime"       : 0
   },
+
   "NewLoyaltyReward" : {
     "loyaltyRewardid" : 0,
     "endDate"         : new Date(),
@@ -509,6 +509,7 @@ myApp.value('Globals', {
     {  field : 'yob',           width : '6%' , displayName : 'Yob',      enableCellEdit : false, headerCellClass: 'white', type: 'number',},
     {  field : 'approved',      width : '11%', displayName : 'Approved?', type: 'boolean', headerCellClass: 'white',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
+
   "UserRetailerColumnDefs" : [{
     field : 'userid',           displayName    : 'User ID',headerCellClass: 'white',
     enableSorting : true,       enableCellEdit : false,
@@ -525,6 +526,7 @@ myApp.value('Globals', {
     {  field : 'yob',           width : '6%' , displayName : 'Yob',           enableCellEdit : false, headerCellClass: 'white',type: 'number',},
     {  field : 'approved',      width : '11%', displayName : 'Approved?',     headerCellClass: 'white',type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
+
   "ApproveUserColumnDefs" : [{
     field : 'userid',           displayName    : 'User ID',headerCellClass: 'white',
     enableSorting : true,       enableCellEdit : false,

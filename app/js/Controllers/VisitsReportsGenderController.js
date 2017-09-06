@@ -1,19 +1,10 @@
-myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common','$rootScope','Globals',
-  function ( DataFactory,$scope,Common,$rootScope,Globals) {
+myApp.controller('VisitsReportGenderController', ['$rootScope','$scope','DataFactory','Common','Globals',
+  function ( $rootScope,$scope,DataFactory,Common,Globals) {
     let vm = this;
     $scope.vm = vm;
     let myLineChart;
     let canvas;
     vm.chartTitle = "Visits";
-    // Chart.defaults.global.defaultFontColor = 'white';
-    Chart.defaults.global.defaultFontSize = 14;
-    canvas = document.getElementById('myChart');
-    let ctx = canvas.getContext('2d');
-
-    // if (angular.isDefined($rootScope.myChart)) {
-    //   $rootScope.myChart = {};
-    // }
-
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow  = false; //  view is affected
@@ -43,7 +34,8 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
               footer  : "Visits",
               options : {}
             };
-            myLineChart = buildGenderChart(genderCharts, chartConfig, ctx);
+            Common.resetCanvas();
+            buildGenderChart(genderCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
@@ -64,19 +56,14 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
               footer  : "Visits",
               options : {}
             };
-            let myLineChart = buildGenderChart(genderCharts, chartConfig, ctx);
+            Common.resetCanvas();
+            buildGenderChart(genderCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
 
-    function buildGenderChart(genderCharts, chartConfig, ctx )  {
-      // lib.destroy = (charts, canvasid, config, ctx) => {
-      // Common.destroy(myLineChart, canvas,chartConfig,ctx);
-
-      // myLineChart.destroy();
-
-
+    function buildGenderChart(genderCharts, chartConfig ) {
 
       let bgColours = Globals.BackgroundChartColours;
       let borderColours = Globals.BorderChartColours;
@@ -100,30 +87,21 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
 
       config.data.datasets = [];
 
-      genderCharts.forEach(  function (genderChart, key) {
+      genderCharts.forEach(function (genderChart, key) {
         config.data.datasets[key] = [];
-        config.data.datasets[key].data = [ genderChart.getMaleCount(), genderChart.getFemaleCount()];
+        config.data.datasets[key].data = [genderChart.getMaleCount(), genderChart.getFemaleCount()];
         config.data.datasets[key].label = genderChart.getStoreName();
         config.data.datasets[key].fill = true;
-        config.data.datasets[key].backgroundColor = bgColours[key];
+        config.data.datasets[key].backgroundColor = bgColours; //[key];
         config.data.datasets[key].borderColor = borderColours[key];
         // if (chartConfig.type === "pie" || chartConfig.type === "doughnut" || chartConfig.type === "bar") {
         //   config.data.datasets[key].backgroundColor = chartConfig.options.backgroundColor;
         // }
       });
 
-
-      // if ($rootScope.myChart) {
-      //   $rootScope.myChart.destroy();
-      // }
-
-
-      $rootScope.myNewChart = new Chart(ctx, config);
-      return new Chart(ctx, config);
+      $rootScope.myNewChart = new Chart($rootScope.ctx, config);
 
     }
-
-
 
 
   }]);

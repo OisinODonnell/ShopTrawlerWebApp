@@ -249,7 +249,6 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
    * @returns {Chart} the data to be displayed
    */
   lib.buildChart = (visitCharts, chartConfig ) => {
-
     let bgColours = Globals.BackgroundChartColours;
     let borderColours = Globals.BorderChartColours;
     let config = {};
@@ -258,7 +257,6 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     // in order to make a change to eg 'config.options.title.text = header';
     // config.options and config.options.title must be initialised first before the header can be set
     // ie config.options = {}; and config.options.title = {};
-    $rootScope.ctx.fillText('This text is centered on the canvas', 300, 200);
     config.type = chartConfig.type;
 
     if (config.type === 'line') {
@@ -308,9 +306,6 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
 
     $rootScope.myNewChart = new Chart($rootScope.ctx, config);
     $rootScope.ctx.fillText('This text is centered on the canvas', 300, 220);
-    // return new Chart(ctx, config);
-    return $rootScope.myNewChart;
-
   };
 
   /**=======================================================================================
@@ -462,6 +457,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
 
 
   lib.resetCanvas = ()  => {
+
     // if ($rootScope.canvas === {}) {
     $('#myChart').remove(); // this is my <canvas> element
     $('#canvas-container').append('<canvas id="myChart" align="center" width="600" height="400"></canvas>');

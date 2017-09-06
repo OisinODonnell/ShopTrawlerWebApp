@@ -66,14 +66,10 @@ angular.module('routes', []).config(function ($routeProvider) {
       .when('/Visits/Report/Retailer/Months', { controller: 'VisitsReportMonthsController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
       .when('/Visits/Report/Retailer/Gender', { controller: 'VisitsReportGenderController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
       .when('/Visits/Report/Retailer/Age',    { controller: 'VisitsReportAgeController',    templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Admin/Days',      { controller: 'VisitsReportDaysController',   templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Admin/Weeks',     { controller: 'VisitsReportWeeksController',  templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Admin/Months',    { controller: 'VisitsReportMonthsController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Admin/Gender',    { controller: 'VisitsReportGenderController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Admin/Age',       { controller: 'VisitsReportAgeController',    templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
 
-      .when('/Visits/Report/Retailer/Days',   { controller: 'VisitsReportDaysController',   templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Retailer/Age',    { controller: 'VisitsReportAgeController',    templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
+      .when('/Visits/Report/Admin/Days',      { controller: 'VisitsReportDaysController',   templateUrl: 'Views/ReportDays.Visit.view.html', controllerAs: 'vm' })
+      .when('/Visits/Report/Admin/Weeks',     { controller: 'VisitsReportWeeksController',  templateUrl: 'Views/ReportWeeks.Visit.view.html', controllerAs: 'vm' })
+      .when('/Visits/Report/Admin/Months',    { controller: 'VisitsReportMonthsController', templateUrl: 'Views/ReportMonths.Visit.view.html', controllerAs: 'vm' })
       .when('/Visits/Report/Admin/Gender',    { controller: 'VisitsReportGenderController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
       .when('/Visits/Report/Admin/Age',       { controller: 'VisitsReportAgeController',    templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
 

@@ -1,21 +1,10 @@
 
 
-myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','$rootScope','Globals',
-  function ( DataFactory,$scope,Common,$rootScope,Globals) {
+myApp.controller('VisitsReportAgeController', ['$rootScope','$scope','DataFactory','Common','Globals',
+  function ( $rootScope,$scope, DataFactory,Common,Globals) {
     let vm = this;
     $scope.vm = vm;
     vm.chartTitle = "Visits";
-    // Chart.defaults.global.defaultFontColor = 'white';
-    Chart.defaults.global.defaultFontSize = 14;
-    let canvas = document.getElementById('myChart');
-    let ctx = canvas.getContext('2d');
-
-
-    //
-    // if (angular.isDefined($rootScope.myChart)) {
-    //   $rootScope.myNewChart = {};
-    // }
-
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow  = false; //  view is affected
@@ -47,7 +36,9 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
             };
 
 
-            $rootScope.myNewChart = buildAgeChart(ageCharts, chartConfig, ctx);
+            Common.resetCanvas();
+            buildAgeChart(ageCharts, chartConfig);
+
 
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
@@ -70,15 +61,15 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
               options : {}
             };
 
-
-            $rootScope.myNewChart = buildAgeChart(ageCharts, chartConfig, ctx);
+            Common.resetCanvas();
+            buildAgeChart(ageCharts, chartConfig);
 
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
 
-    function buildAgeChart(ageCharts, chartConfig, ctx )  {
+    function buildAgeChart(ageCharts, chartConfig)  {
 
       let bgColours = Globals.BackgroundChartColours;
       let borderColours = Globals.BorderChartColours;
@@ -113,12 +104,8 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
         }
       });
 
-      $rootScope.myNewChart = new Chart(ctx, config);
-      return new Chart(ctx, config);
-
+      $rootScope.myNewChart = new Chart($rootScope.ctx, config);
     }
-
-
 
   }]);
 
