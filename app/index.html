@@ -179,6 +179,11 @@
       color:#40375a;
     }
 
+
+    .ui-grid-filter-input {
+      color: #40375a;
+    }
+
     .ui-grid-row {
       height: auto !important;
       overflow: hidden; }
@@ -194,11 +199,12 @@
 <body ng-app="app" ng-cloak xmlns:href="http://www.w3.org/1999/xhtml">
 
 <!-- Fixed navbar -->
-<nav class="navbar navbar-fixed-top  " style="background-color: #d4cfe4;" >
+<nav class="navbar navbar-fixed-top  " style="background-color: #d4cfe4;color:black;" >
      <!--#e3f2fd;">-->
 
     <!-- Navbar colapses to a button on RHS as the screen is mad smaller-->
     <!-- changing the menu from horizontal to vertical -->
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
@@ -208,7 +214,7 @@
       </button>
       <a class="navbar-brand" href="http://dundrum.ie"><img src="images/Shoptrawler-logo.png" style="height:60px;width:60px;"/></a>
       <ul class="nav navbar-nav" data-ng-show = "!loggedIn" > <!-- single login not logged in-->
-        <li><a href="#!/login"               > Login </a></li>
+        <li><a href="#!/login"     style="color:black;"          > Login </a></li>
       </ul>
     </div>
 
@@ -217,9 +223,9 @@
 
      <!--stack these items to the left-->
     <ul class="nav navbar-nav" data-ng-show = "isAdmin && loggedIn" > <!-- single links no dropdown -->
-      <li><a href="#!/Users/List"      > Users     </a></li>
-      <li><a href="#!/Retailers/List"  > Retailers </a></li>
-      <li><a href="#!/Ratings/List"    > Ratings   </a></li>
+      <li><a href="#!/Users/List"     style="color:black;"  > Users     </a></li>
+      <li><a href="#!/Retailers/List" style="color:black;"  > Retailers </a></li>
+      <li><a href="#!/Ratings/List"   style="color:black;"  > Ratings   </a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right" data-ng-show = "isAdmin && loggedIn"> <!-- stack these items to the right -->
@@ -227,101 +233,101 @@
 
       <li class="dropdown">
         <!-- admin dropdown 1 -->
-        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:black;">
           Shopping Center <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-          <li> <a href="#!/ShoppingCentres/List" > Shopping Centre </a></li>
-          <li> <a href="#!/Locations/List"       > Locations       </a></li>
-          <li> <a href="#!/Beacons/List"         > Beacons         </a></li>
-          <li> <a href="#!/Zones/List"           > Zones           </a></li>
+          <li> <a href="#!/ShoppingCentres/List"style="color:black;" > Shopping Centre </a></li>
+          <li> <a href="#!/Locations/List"      style="color:black;" > Locations       </a></li>
+          <li> <a href="#!/Beacons/List"        style="color:black;"  > Beacons         </a></li>
+          <li> <a href="#!/Zones/List"          style="color:black;"  > Zones           </a></li>
         </ul>
       </li> <!-- end dropdown 1 -->
 
       <!-- admin dropdown 2 -->
       <li class="dropdown">
-        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-expanded="false">
+        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-expanded="false" style="color:black;">
           Visits <span class="caret"></span>
         </a>
         <ul class="dropdown-menu"                        >
-            <li> <a href="#!/Visits/List"                > Visits         </a></li>
+            <li> <a href="#!/Visits/List"              style="color:black;"  > Visits         </a></li>
             <li role="separator" class="divider"         > </li>
-            <li> <a href="#!/Visits/Report/Admin/Days"   > Last 12 Days   </a></li>
-            <li> <a href="#!/Visits/Report/Admin/Weeks"  > Last 12 Weeks  </a></li>
-            <li> <a href="#!/Visits/Report/Admin/Months" > Last 12 Months </a></li>
-            <li> <a href="#!/Visits/Report/Admin/Gender" > By Gender      </a></li>
-            <li> <a href="#!/Visits/Report/Admin/Age"    > By Age Profile </a></li>
+            <li> <a href="#!/Visits/Report/Admin/Days"  style="color:black;" > Last 12 Days   </a></li>
+            <li> <a href="#!/Visits/Report/Admin/Weeks" style="color:black;" > Last 12 Weeks  </a></li>
+            <li> <a href="#!/Visits/Report/Admin/Months"style="color:black;" > Last 12 Months </a></li>
+            <li> <a href="#!/Visits/Report/Admin/Gender"style="color:black;" > By Gender      </a></li>
+            <li> <a href="#!/Visits/Report/Admin/Age"   style="color:black;" > By Age Profile </a></li>
         </ul>
       </li> <!-- end dropdown 2 -->
 
       <!-- admin dropdown 3 -->
       <li class="dropdown">
-          <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:black;">
             Approve <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#!/Users/Approve"           > New Users       </a></li>
-            <li><a href="#!/LoyaltyRewards/Approve"  > Loyalty Rewards </a></li>
-            <li><a href="#!/Contents/Approve"        > Content         </a></li>
+            <li><a href="#!/Users/Approve"          style="color:black;" > New Users       </a></li>
+            <li><a href="#!/LoyaltyRewards/Approve" style="color:black;" > Loyalty Rewards </a></li>
+            <li><a href="#!/Contents/Approve"       style="color:black;"  > Content         </a></li>
           </ul>
         </li> <!-- end dropdown 3 -->
 
       <!-- single ... logout -->
-      <li><a href="#!/logout">Logout</a></li>
+      <li><a href="#!/logout" style="color:black;">Logout</a></li>
     </ul> <!-- end of Admin menu -->
 
     <!-- stack these to left -->
     <ul class="nav navbar-nav" data-ng-show = "isRetailer && loggedIn" > <!-- start of retailer menu -->
-      <li><a href="#!/Favourites/Retailer"  > Favourites    </a></li>
-      <li><a href="#!/Ratings/Retailer"     > Ratings       </a></li>
-      <li><a href="#!/Users/Retailer"       > My Details    </a></li>
+      <li><a href="#!/Favourites/Retailer" style="color:black;" > Favourites    </a></li>
+      <li><a href="#!/Ratings/Retailer"    style="color:black;" > Ratings       </a></li>
+      <li><a href="#!/Users/Retailer"      style="color:black;" > My Details    </a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right" data-ng-show = "isRetailer && loggedIn" > <!-- stack these to RHS -->
       <!-- retailer dropdown 1 -->
       <li class="dropdown">
-        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:black;">
           Loyalty Scheme <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="#!/LoyaltyRewards/Retailer" > LoyaltyRewards </a></li>
-          <li><a href="#!/Contents/Retailer"       > Contents       </a></li>
-          <li><a href="#!/BonusCodes/Retailer"     > BonusCodes     </a></li>
-          <li><a href="#!/UserPoints/Retailer"     > UserPoints     </a></li>
+          <li><a href="#!/LoyaltyRewards/Retailer" style="color:black;"> LoyaltyRewards </a></li>
+          <li><a href="#!/Contents/Retailer"       style="color:black;" > Contents       </a></li>
+          <li><a href="#!/BonusCodes/Retailer"     style="color:black;" > BonusCodes     </a></li>
+          <li><a href="#!/UserPoints/Retailer"     style="color:black;" > UserPoints     </a></li>
         </ul>
       </li>
 
       <!-- retailer dropdown 2 -->
       <li class="dropdown">
-        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:black;">
           Bonus Codes <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="#!/BonusCodes/Generate"  > List Unused Codes  </a></li>
-          <li><a href="#!/BonusCodes/Generate250"  > Generate 250 codes </a></li>
-          <li><a href="#!/BonusCodes/Generate500"  > Generate 500 codes </a></li>
+          <li><a href="#!/BonusCodes/Generate"     style="color:black;"> List Unused Codes  </a></li>
+          <li><a href="#!/BonusCodes/Generate250"  style="color:black;"> Generate 250 codes </a></li>
+          <li><a href="#!/BonusCodes/Generate500"  style="color:black;" > Generate 500 codes </a></li>
         </ul>
       </li>
 
       <!-- retailer dropdown 3 -->
       <li class="dropdown">
-        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color:black;">
           Visits <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-          <LI><a href="#!/Visits/Retailer"               > Visits         </a></LI>
+          <LI><a href="#!/Visits/Retailer"              style="color:black;" > Visits         </a></LI>
           <li role="separator" class="divider"           ></li>
-          <LI><a href="#!/Visits/Report/Retailer/Days"   > Last 12 Days   </a></LI>
-          <LI><a href="#!/Visits/Report/Retailer/Weeks"  > Last 12 Weeks  </a></LI>
-          <LI><a href="#!/Visits/Report/Retailer/Months" > Last 12 Months </a></LI>
-          <LI><a href="#!/Visits/Report/Retailer/Gender" > By Gender      </a></LI>
-          <LI><a href="#!/Visits/Report/Retailer/Age"    > By Age Profile </a></LI>
+          <LI><a href="#!/Visits/Report/Retailer/Days"  style="color:black;"  > Last 12 Days   </a></LI>
+          <LI><a href="#!/Visits/Report/Retailer/Weeks" style="color:black;" > Last 12 Weeks  </a></LI>
+          <LI><a href="#!/Visits/Report/Retailer/Months"style="color:black;" > Last 12 Months </a></LI>
+          <LI><a href="#!/Visits/Report/Retailer/Gender"style="color:black;" > By Gender      </a></LI>
+          <LI><a href="#!/Visits/Report/Retailer/Age"   style="color:black;"  > By Age Profile </a></LI>
         </ul>
 
       </li>
 
       <!-- single ... logout -->
-      <li><a href="#!/logout"               > Log Out                  </a></li>
+      <li><a href="#!/logout"         style="color:black;"      > Log Out                  </a></li>
     </ul> <!-- end of retailer menu -->
   </div>
 </nav>

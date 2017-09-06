@@ -1,18 +1,50 @@
-myApp.controller('VisitsReportDaysController', ['DataFactory','$scope','Common','$rootScope','Globals',
-  function ( DataFactory,$scope,Common,$rootScope,Globals) {
+// // myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function ($rootScope, Globals, moment, AWSconfig) {
+// myApp.factory('Cht', ['$rootScope', function($rootScope) {
+//
+//   let lib = {};
+//
+//   lib.resetCanvas  = () => {
+//
+//     if ($rootScope.myNewChart)
+//       if ($rootScope.myNewChart.destroy)
+//         $rootScope.myNewChart.destroy();
+//
+//     if ($rootScope.ctx !== null || $rootScope.ctx !== {}) {
+//       if ($rootScope.ctx.clearRect) {
+//         $rootScope.ctx.clearRect(0, 0, 600, 400);
+//         $rootScope.canvas = document.getElementById('myChart');
+//         $rootScope.ctx = $rootScope.canvas.getContext('2d');
+//       }
+//     } else {
+//
+//       // $('#myChart').remove(); // this is my <canvas> element
+//       // $('#canvas-container').append('<canvas id="myChart" align="center" width="600" height="400"></canvas>');
+//       let canvas = document.querySelector('#myChart');
+//       $rootScope.canvas = canvas;
+//       $rootScope.ctx = $rootScope.canvas.getContext('2d');
+//     }
+//   };
+//
+//   return lib;
+//
+// }]);
+
+myApp.controller('VisitsReportDaysController', ['DataFactory','$rootScope','$scope','Common','$rootScope','Globals',
+  function ( DataFactory,$rootScope,$scope,Common,Globals) {
     let vm = this;
     $scope.vm = vm;
     vm.chartTitle = "Visits";
     // Chart.defaults.global.defaultFontColor = 'white';
-    Chart.defaults.global.defaultFontSize = 14;
-    let canvas = document.getElementById('myChart');
-    let ctx = canvas.getContext('2d');
 
+    Common.resetCanvas();
 
-    if (angular.isDefined($rootScope.myChart)) {
-      $rootScope.myChart = {};
-    }
+    // $rootScope.canvas = document.getElementById('myChart');
+    // $rootScope.ctx = $rootScope.canvas.getContext('2d');
 
+    // if (angular.isDefined($rootScope.myChart)) {
+    //   $rootScope.myChart = {};
+    // }
+    // Chart.defaults.global.defaultFontSize = 14;
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow  = false; //  view is affected
@@ -43,7 +75,7 @@ myApp.controller('VisitsReportDaysController', ['DataFactory','$scope','Common',
               footer  : "Daily",
               options : {}
            };
-            let myLineChart = Common.buildChart(visitCharts, chartConfig, ctx);
+            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
@@ -64,28 +96,31 @@ myApp.controller('VisitsReportDaysController', ['DataFactory','$scope','Common',
               footer  : "Daily",
               options : {}
             };
-
-            let myLineChart = Common.buildChart(visitCharts, chartConfig, ctx);
-
+            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
 
+    // $scope.$on('chart-update',function(evt, $rootScope){
+    //   $rootScope.myNewChart.update();
+    // });
+
   }]);
 
 
-myApp.controller('VisitsReportWeeksController', ['DataFactory','$scope','Common','$rootScope','Globals',
-  function ( DataFactory,$scope,Common,$rootScope, Globals) {
+myApp.controller('VisitsReportWeeksController', ['DataFactory','$rootScope','$scope','Common','$rootScope','Globals',
+  function ( DataFactory,$rootScope,$scope,Common,$rootScope, Globals) {
     let vm = this;
     $scope.vm = vm;
-    if (angular.isDefined($rootScope.myChart)) {
-      $rootScope.myChart = {};
-    }
-    // Chart.defaults.global.defaultFontColor = 'white';
-    Chart.defaults.global.defaultFontSize = 14;
-    let canvas = document.getElementById('myChart');
-    let ctx = canvas.getContext('2d');
+    // if (angular.isDefined($rootScope.myChart)) {
+    //   $rootScope.myChart = {};
+    // }
+
+    Common.resetCanvas();
+    // Chart.defaults.global.defaultFontSize = 14;
+    // $rootScope.canvas = document.getElementById('myChart');
+    // $rootScope.ctx = $rootScope.canvas.getContext('2d');
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow  = false; //  view is affected
@@ -115,10 +150,7 @@ myApp.controller('VisitsReportWeeksController', ['DataFactory','$scope','Common'
               footer  : "Weekly",
               options : {}
             };
-
-
-            let myLineChart = Common.buildChart(visitCharts, chartConfig, ctx);
-
+            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
@@ -150,27 +182,24 @@ myApp.controller('VisitsReportWeeksController', ['DataFactory','$scope','Common'
             chartConfig.scales = {};
             chartConfig.scales.yAxes = yAxes;
 
-
-            let myLineChart = Common.buildChart(visitCharts, chartConfig, ctx);
-
+            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
-
   }]);
 
-myApp.controller('VisitsReportMonthsController', ['DataFactory','$scope','Common','$rootScope','Globals',
-  function ( DataFactory,$scope,Common,$rootScope, Globals) {
+myApp.controller('VisitsReportMonthsController', ['DataFactory','$rootScope','$scope','Common','$rootScope','Globals',
+  function ( DataFactory,$rootScope,$scope,Common,$rootScope, Globals) {
     let vm = this;
     $scope.vm = vm;
-    if (angular.isDefined($rootScope.myChart)) {
-      $rootScope.myChart = {};
-    }
-    // Chart.defaults.global.defaultFontColor = 'white';
-    Chart.defaults.global.defaultFontSize = 14;
-    let canvas = document.getElementById('myChart');
-    let ctx = canvas.getContext('2d');
+
+    Common.resetCanvas();
+
+    // Chart.defaults.global.defaultFontSize = 14;
+
+    // $rootScope.canvas = document.getElementById('myChart');
+    // $rootScope.ctx = $rootScope.canvas.getContext('2d');
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow  = false; //  view is affected
@@ -200,10 +229,7 @@ myApp.controller('VisitsReportMonthsController', ['DataFactory','$scope','Common
               footer  : "Monthly",
               options : {}
             };
-
-
-            let myLineChart = Common.buildChart(visitCharts, chartConfig, ctx);
-
+            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
@@ -231,14 +257,12 @@ myApp.controller('VisitsReportMonthsController', ['DataFactory','$scope','Common
             };
             chartConfig.options.backgroundColor = Globals.PieColours;
 
-
             chartConfig.scales = {};
             chartConfig.scales.yAxes = yAxes;
-            let myLineChart = Common.buildChart(visitCharts, chartConfig, ctx);
+            $rootScope.myNewChart = Common.buildChart(visitCharts, chartConfig);
 
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
       vm.dataLoading = false;
     }
-
   }]);

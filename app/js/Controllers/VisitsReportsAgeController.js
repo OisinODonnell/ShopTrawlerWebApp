@@ -1,3 +1,5 @@
+
+
 myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','$rootScope','Globals',
   function ( DataFactory,$scope,Common,$rootScope,Globals) {
     let vm = this;
@@ -8,9 +10,11 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
     let canvas = document.getElementById('myChart');
     let ctx = canvas.getContext('2d');
 
-    if (angular.isDefined($rootScope.myChart)) {
-      $rootScope.myChart = {};
-    }
+
+    //
+    // if (angular.isDefined($rootScope.myChart)) {
+    //   $rootScope.myNewChart = {};
+    // }
 
 
     if ($rootScope.isAdmin) {
@@ -43,7 +47,7 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
             };
 
 
-            let myLineChart = buildAgeChart(ageCharts, chartConfig, ctx);
+            $rootScope.myNewChart = buildAgeChart(ageCharts, chartConfig, ctx);
 
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
@@ -67,7 +71,7 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
             };
 
 
-            let myLineChart = buildAgeChart(ageCharts, chartConfig, ctx);
+            $rootScope.myNewChart = buildAgeChart(ageCharts, chartConfig, ctx);
 
           },
           function (error) { $scope.status = 'Unable to load Visits ' + error.message; });
@@ -109,7 +113,7 @@ myApp.controller('VisitsReportAgeController', ['DataFactory','$scope','Common','
         }
       });
 
-      $rootScope.myChart = new Chart(ctx, config);
+      $rootScope.myNewChart = new Chart(ctx, config);
       return new Chart(ctx, config);
 
     }

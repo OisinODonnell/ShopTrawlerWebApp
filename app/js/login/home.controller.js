@@ -20,6 +20,11 @@ myApp.controller('HomeController', ['$location', 'DataFactory','$rootScope','Com
     $rootScope.addingRow = false;
     $rootScope.urlBase = Globals.URL_BASE;
 
+    $rootScope.canvas = {};
+    $rootScope.ctx = {};
+
+    $rootScope.myNewChart = {};
+
     let factory = {};
 
     loadData($rootScope.username);

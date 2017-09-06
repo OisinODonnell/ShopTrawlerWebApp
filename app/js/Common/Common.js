@@ -246,9 +246,9 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
    * @param header Test to appear above Legend
    * @param chartType  line, bar or pie
    * @param ctx ... where our convas object is
-   * @returns {Array.<Number>|String|Array} the data to be displayed
+   * @returns {Chart} the data to be displayed
    */
-  lib.buildChart = (visitCharts, chartConfig, ctx ) => {
+  lib.buildChart = (visitCharts, chartConfig ) => {
 
     let bgColours = Globals.BackgroundChartColours;
     let borderColours = Globals.BorderChartColours;
@@ -258,8 +258,14 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     // in order to make a change to eg 'config.options.title.text = header';
     // config.options and config.options.title must be initialised first before the header can be set
     // ie config.options = {}; and config.options.title = {};
-
+    $rootScope.ctx.fillText('This text is centered on the canvas', 300, 200);
     config.type = chartConfig.type;
+
+    if (config.type === 'line') {
+
+    }
+
+
     let xAxes = [{
       display : true,
       scaleLabel : {
@@ -282,20 +288,28 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     config.data.datasets = [];
 
     visitCharts.forEach(  function (visitChart, key) {
+
       config.data.datasets[key] = [];
+
+      // line config
+      config.data.datasets[key].pointRadius = 10;
+      config.data.datasets[key].pointStyle = 'rectRounded';
+
       config.data.datasets[key].data = visitChart.getCounts();
       config.data.datasets[key].label = visitChart.getStoreName();
       config.data.datasets[key].fill = true;
       config.data.datasets[key].backgroundColor = bgColours[key];
+
       config.data.datasets[key].borderColor = borderColours[key];
       if (chartConfig.type === "pie" || chartConfig.type === "doughnut" || chartConfig.type === "bar") {
         config.data.datasets[key].backgroundColor = chartConfig.options.backgroundColor;
       }
     });
 
-    $rootScope.myChart = new Chart(ctx, config);
+    $rootScope.myNewChart = new Chart($rootScope.ctx, config);
+    $rootScope.ctx.fillText('This text is centered on the canvas', 300, 220);
     // return new Chart(ctx, config);
-    return $rootScope.myChart;
+    return $rootScope.myNewChart;
 
   };
 
@@ -388,78 +402,6 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     return entity;
   };
 
-  // lib.setupAWSconfig = (type) => {
-  //   // parameters are in AWS.js .. a file which is not on in git.
-  //   let AWScon = {};
-  //   AWScon = {
-  //     "ACCESS_KEY"  : AWSconfig.ACCESS_KEY,
-  //     "SECRET_KEY"  : AWSconfig.SECRET_KEY,
-  //     "BUCKET_C"    : AWSconfig.BUCKET_C,
-  //     "BUCKET_LRC"  : AWSconfig.BUCKET_LRC,
-  //     "BUCKET_SC"   : AWSconfig.BUCKET_SC,
-  //     "BUCKET_RET"  : AWSconfig.BUCKET_RET,
-  //     "SERVICE"     : AWSconfig.SERVICE,
-  //     "ENCRYPTION"  : AWSconfig.ENCRYPTION,
-  //     "REGION"      : AWSconfig.REGION,
-  //     "type"        : type,
-  //     "config"      : {
-  //         region : AWSconfig.REGION,
-  //     },
-  //     "UPLOAD_SITE" : AWSconfig.UPLOAD_SITE,
-  //     "UPLOAD_BUCKET" : "",
-  //     params_c      : "",
-  //     params_lrc    : "",
-  //     params_sc     : "",
-  //     params_ret    : "",
-  //   };
-  //
-  //   AWScon.params_c   = { Bucket : AWScon.BUCKET_C   , ServerSideEncryption : AWScon.ENCRYPTION};
-  //   AWScon.params_lrc = { Bucket : AWScon.BUCKET_LRC , ServerSideEncryption : AWScon.ENCRYPTION};
-  //   AWScon.params_sc  = { Bucket : AWScon.BUCKET_SC  , ServerSideEncryption : AWScon.ENCRYPTION};
-  //   AWScon.params_ret = { Bucket : AWScon.BUCKET_RET , ServerSideEncryption : AWScon.ENCRYPTION};
-  //
-  //   // for use in get operations
-  //
-  //   $rootScope.AWS = {};
-  //   $rootScope.AWS = AWScon;
-  //
-  //   // now to begin the AWS app
-  //   AWS.config.update({ accessKeyId : $rootScope.AWS.ACCESS_KEY, secretAccessKey : $rootScope.AWS.SECRET_KEY});
-  //   AWS.config.region = AWScon.REGION;
-  //
-  //   $rootScope.bucket = {};
-  //   $rootScope.params = {};
-  //   // specify the params to use and the bucket to write to.
-  //   switch(type) {
-  //     case "C":
-  //       $rootScope.bucket = new AWS.S3({params: {Bucket: $rootScope.AWS.BUCKET_C}});
-  //       $rootScope.params = $rootScope.AWS.params_c;
-  //       $rootScope.AWS.UPLOAD_BUCKET = $rootScope.AWS.UPLOAD_SITE + $rootScope.AWS.BUCKET_C;
-  //       break;
-  //     case "LR":
-  //       $rootScope.bucket = new AWS.S3({params: {Bucket: $rootScope.AWS.BUCKET_LRC}});
-  //       $rootScope.params = $rootScope.AWS.params_lrc;
-  //       $rootScope.AWS.UPLOAD_BUCKET = $rootScope.AWS.UPLOAD_SITE + $rootScope.AWS.BUCKET_LRC;
-  //       break;
-  //     case "RET":
-  //       $rootScope.bucket = new AWS.S3({params: {Bucket: $rootScope.AWS.BUCKET_RET}});
-  //       $rootScope.params = $rootScope.AWS.params_ret;
-  //       $rootScope.AWS.UPLOAD_BUCKET = $rootScope.AWS.UPLOAD_SITE + $rootScope.AWS.BUCKET_RET;
-  //       break;
-  //     case "SC":
-  //       $rootScope.bucket = new AWS.S3({params: {Bucket: $rootScope.AWS.BUCKET_SC}});
-  //       $rootScope.params = $rootScope.AWS.params_sc;
-  //       $rootScope.AWS.UPLOAD_BUCKET = $rootScope.AWS.UPLOAD_SITE + $rootScope.AWS.BUCKET_SC;
-  //       break;
-  //   }
-  //
-  // };
-
-  lib.fileSizeLabel = () => {
-    // Convert Bytes To MB
-    return Math.round($scope.sizeLimit / 1024 / 1024) + 'MB';
-  };
-
   lib.uniqueString = () => {
     let text     = "";
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -517,33 +459,29 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
 
   };
 
-  // lib.checkFileSize = (file) => {
-  //   let fileSize = Math.round(parseInt(file.size));
-  //   return  (fileSize <= $rootScope.sizeLimit)
-  // };
-  // lib.setupAWSFileParams = (type, grid, row, ctx) => {
-  //   // gather the bits to create a unique filename;
-  //   // type = C
-  //   // contentid = number
-  //   // page1 /page2 or page3
-  //   // eg 'C10-page1-imag002.jpg'
-  //   let files = ctx.editFileChooserCallback.arguments[2];
-  //   let file = files[0];
-  //   let filename = file.name;
-  //   let filesize = file.size;
-  //   let id = grid.entity.contentid;
-  //   let page = row.field;
-  //   let uniqueName = type + id + "-" + page + "-" + filename;
-  //   $rootScope.file = file;
-  //
-  //   // set params for aws call
-  //   $rootScope.params.Key = uniqueName;
-  //   $rootScope.params.ContentType = $rootScope.file.type;
-  //   $rootScope.params.Body = $rootScope.file;
-  //
-  //   return uniqueName;
-  // };
 
+
+  lib.resetCanvas = ()  => {
+    // if ($rootScope.canvas === {}) {
+    $('#myChart').remove(); // this is my <canvas> element
+    $('#canvas-container').append('<canvas id="myChart" align="center" width="600" height="400"></canvas>');
+    $rootScope.canvas = document.getElementById('myChart')
+    // $rootScope.canvas = document.querySelector('#myChart');
+    $rootScope.ctx = $rootScope.canvas.getContext('2d');
+    $rootScope.ctx.canvas.width = $('#myChart').width(); // resize to parent width
+    $rootScope.ctx.canvas.height = $('#myChart').height(); // resize to parent height
+
+    // $rootScope.canvas = document.getElementById('myChart');
+    // $rootScope.ctx = $rootScope.canvas.getContext('2d');
+
+    let x = $rootScope.canvas.width / 2;
+    let y = $rootScope.canvas.height / 2;
+    $rootScope.ctx.font = '10pt Verdana';
+    $rootScope.ctx.textAlign = 'center';
+    $rootScope.ctx.fillText('This text is centered on the canvas from resetCanvas', x, y);
+
+
+  };
 
 
   return lib;

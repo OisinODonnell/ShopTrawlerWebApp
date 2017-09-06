@@ -10,9 +10,9 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
     canvas = document.getElementById('myChart');
     let ctx = canvas.getContext('2d');
 
-    if (angular.isDefined($rootScope.myChart)) {
-      $rootScope.myChart = {};
-    }
+    // if (angular.isDefined($rootScope.myChart)) {
+    //   $rootScope.myChart = {};
+    // }
 
 
     if ($rootScope.isAdmin) {
@@ -118,7 +118,7 @@ myApp.controller('VisitsReportGenderController', ['DataFactory','$scope','Common
       // }
 
 
-      $rootScope.myChart = new Chart(ctx, config);
+      $rootScope.myNewChart = new Chart(ctx, config);
       return new Chart(ctx, config);
 
     }
