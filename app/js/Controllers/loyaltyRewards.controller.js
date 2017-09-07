@@ -1,4 +1,3 @@
-
 myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$rootScope',
   '$uibModal','RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig','Flash',
 
@@ -10,6 +9,8 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
     vm.chartTitle = "Loyalty Rewards";
     $scope.sDate = new Date();
     $scope.eDate = new Date();
+
+    $scope.rewardImage  = "";
 
     $scope.myDate = new Date();
 
@@ -47,7 +48,11 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
     vm.addRowLoyaltyReward    = RowEditor.addRowLoyaltyReward;
     vm.deleteRowLoyaltyReward = RowEditor.deleteRowLoyaltyReward;
     vm.saveRowLoyaltyReward   = RowEditor.saveRowLoyaltyReward;
-    vm.serviceGrid = Common.setupUiGrid(Globals.LoyaltyRewardColumnDefs2, $scope.allowEditRow );
+
+    let colDefs = Globals.LoyaltyRewardColumnDefs2;
+    colDefs[1].editFileChooserCallback = $scope.uploadFile;
+
+    vm.serviceGrid = Common.setupUiGrid(colDefs, $scope.allowEditRow );
 
     if ($rootScope.currentUser.type === "Administrator")
       ListLoyaltyRewards();
@@ -127,20 +132,24 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       loyaltyReward = createNewLR(row.entity, retailerid);
 
       let index = vm.serviceGrid.data.indexOf(row.entity);
+      // let resp = Common.checkDates(row.entity.startDate, row.entity.endDate);
       let resp = Common.checkDates(loyaltyReward.getStartDate(), loyaltyReward.getEndDate());
       let earliestStartDate;
 
-      if (resp === true) {
-        DataFactory.loyaltyRewardCheckDates(loyaltyReward)
+      if (resp !== true) { // fails basic date check
+        Flash.create("danger", "Loyalty Reward not updated : -> " + resp, 4000);
+      } else { // basic date check ok
+        DataFactory.loyaltyRewardCheckDates(loyaltyReward) // check Dates valid on system
           .then( function(response) {
             // ok no content record found between these start and end dates
             if (response.data.success === 1) {
-              DataFactory.addLoyaltyReward(loyaltyReward)
+              DataFactory.addLoyaltyReward(loyaltyReward) // ok, now lets save the Loyalty Reward
                 .then(function (response) {
+
                     Flash.create("success", "Loyalty Reward validated and added successfully", 2000);
                     vm.serviceGrid.data = buildNewLoyaltyRewards(response.data);
                   },
-                  function (response) {
+                  function (response) { // could not save
                     Flash.create("danger", "Loyalty Reward not created : " + response.data.message, 4000);
                   });
             } else {
@@ -156,8 +165,6 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
           function(response) {
             Flash.create('danger',"Loyalty Reward Record could not be saved : " + response.data.message, 4000);
           })
-      } else {
-        Flash.create("danger", resp, 4000);
       }
       console.log("save Row LR");
     };

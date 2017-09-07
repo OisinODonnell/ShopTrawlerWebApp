@@ -138,5 +138,12 @@
     <orderEntry type="library" name="pdfmake" level="application" />
     <orderEntry type="library" name="ui-grid-unstable" level="application" />
     <orderEntry type="library" name="vfs_fonts" level="application" />
+    <orderEntry type="library" name="papaparse" level="application" />
+    <orderEntry type="library" name="csv" level="application" />
+    <orderEntry type="library" name="pdfmake" level="application" />
+    <orderEntry type="library" name="vfs_fonts" level="application" />
+    <orderEntry type="library" name="es5-shim" level="application" />
+    <orderEntry type="library" name="es5-sham" level="application" />
+    <orderEntry type="library" name="jquery-1.8.3" level="application" />
   </component>
 </module>

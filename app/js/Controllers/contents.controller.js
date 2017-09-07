@@ -6,7 +6,9 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     let filePage1 = "";
     let filePage2 = "";
     let filePage3 = "";
-    vm.chartTitle = "retailer Content";
+
+    vm.chartTitle = "Retailer Content";
+
     $scope.filePage1 = filePage1;
     $scope.filePage2 = filePage2;
     $scope.filePage3 = filePage3;
@@ -96,7 +98,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
 
 
     /**
-     * Return recordes of contents for all retailers
+     * Return the content for all retailers
      * @constructor
      */
     function ListContents() {
@@ -114,7 +116,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     }
 
     /**
-     * Return a list of contents for this retailer only
+     * Return a list of content for this retailer only
      *
      * @param id
      * @constructor
@@ -150,6 +152,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
 
       // check dates are valid first, then attempt to save/update record
       let response = Common.checkDates(row.entity.startDate, row.entity.endDate);
+
       if (response !== true) {
         Flash.create('danger', "Content not updated : -> " + response, 4000);
       } else {

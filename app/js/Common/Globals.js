@@ -338,7 +338,7 @@ myApp.value('Globals', {
 
   "LoyaltyRewardColumnDefs2" : [{
 
-    name: 'Actions', width : 130,enableCellEdit : false, pinnedRight:true,headerCellClass: 'white',
+    name: 'Actions', width : 130,enableCellEdit : false, pinnedRight:true, headerCellClass: 'white',
     cellTemplate: '<div  >' +
                     '<button class="btn-success btn-circle"  ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_24dp_1x.png"</button>' +
                     '<button class="btn-danger btn-circle "  ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_24dp_1x.png"></button>'+
@@ -350,7 +350,12 @@ myApp.value('Globals', {
     type  : 'number',
     width : '10%',
   },
-    {  field : 'rewardImage',   width : '20%', displayName : 'Reward Image',          enableCellEdit : true, headerCellClass: 'white',},
+    // {  field : 'rewardImage',   width : '20%', displayName : 'Reward Image',          enableCellEdit : true, headerCellClass: 'white',},
+    {  field : 'rewardImage',    width : '20%',  displayName : 'Reward Image',enableCellEdit : true,headerCellClass: 'white',
+      cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserPage2.html",
+
+    },
+
     {  field : 'storeName',     width : '20%', displayName : 'Retailer ID',           enableCellEdit : true, headerCellClass: 'white',},
     {  field : 'rewardTitle',   width : '20%', displayName : 'Reward Title',          enableCellEdit : true, headerCellClass: 'white',},
     {  field : 'pointsPerVisit',width : '10%', type: 'number', displayName : 'Points Per Visit',enableCellEdit : true,headerCellClass: 'white', },
