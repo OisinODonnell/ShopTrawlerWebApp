@@ -7,7 +7,7 @@ myApp.controller('ApproveLoyaltyRewardsController', ['DataFactory','$scope','Com
     vm.myDate = new Date();
     vm.isOpen = false;
     $scope.vm = vm;
-    vm.chartTitle = "Loyalty Rewards"
+    vm.chartTitle = "Loyalty Rewards to Approve"
 
     $rootScope.sDate = new Date();
     $rootScope.eDate = new Date();

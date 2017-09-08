@@ -1,38 +1,38 @@
 <div >
   <div class="modal-header">
-    <h3 class="modal-title">Approve Retailer Content</h3>
+    <h3 class="modal-title text-center">Approve Retailer Content</h3>
   </div >
-  <div class="modal-body col-md-4">
+  <div class="modal-body">
 
-    <form name="serviceForm" >
+    <form name="serviceForm" class="form-horizontal ">
 
-        <div class="block" >      <label>Content ID </label> <input class="input " title="Content ID" type="text"   disabled value="{{row.entity.contentid}}"/></div>
-        <div class="block" >      <label>Retailer </label>   <input class="input " title="Retailer"   type="text"   disabled value="{{row.entity.storeName}}"/></div>
-        <div class="block" >      <label>Page 1</label>      <input class="input " title="Page 1"     type="text"   disabled value="{{row.entity.page1}}"/>    </div>
-        <div class="block" >      <label>Page 2 </label>     <input class="input " title="Page 2"     type="text"   disabled value="{{row.entity.page2}}"/>    </div>
-        <div class="block" >      <label>Page 3 </label>     <input class="input " title="Page 3"     type="text"   disabled value="{{row.entity.page3}}"/>    </div>
-        <div class="block" >      <label>Approved </label>
+        <div class="form-group" >      <label class="control-label col-sm-4"> Content ID </label> <input class="input col-sm-5 " title="Content ID" type="text"   disabled value="{{row.entity.contentid}}"/></div>
+        <div class="form-group" >      <label class="control-label col-sm-4"> Retailer </label>   <input class="input col-sm-5 " title="Retailer"   type="text"   disabled value="{{row.entity.storeName}}"/></div>
+        <div class="form-group" >      <label class="control-label col-sm-4"> Page 1</label>      <input class="input col-sm-5 " title="Page 1"     type="text"   disabled value="{{row.entity.page1}}"/>    </div>
+        <div class="form-group" >      <label class="control-label col-sm-4"> Page 2 </label>     <input class="input col-sm-5 " title="Page 2"     type="text"   disabled value="{{row.entity.page2}}"/>    </div>
+        <div class="form-group" >      <label class="control-label col-sm-4"> Page 3 </label>     <input class="input col-sm-5 " title="Page 3"     type="text"   disabled value="{{row.entity.page3}}"/>    </div>
+        <div class="form-group" >      <label class="control-label col-sm-4"> Approved </label>
 
-        <select class="input" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
+        <select class="input col-sm-5" ng-model="row.entity.approved" ng-options="o.v as o.n for o in [{ n: 'False', v: false }, { n: 'True', v: true }]" title="Approved"></select>
       </div>
 
       <br/>
-      <div class="block input md-datepicker-input">      <label>Start Date </label>
+      <div class="form-group input md-datepicker-input">      <label class="control-label col-sm-7"> Start Date </label>
         <md-datepicker ng-model       = "row.entity.sDate "
                        date-format    = "DD-MMM-YYYY HH:MM"
                        md-placeholder = "Enter date"
                        md-min-date    = "row.entity.minStartDate"
                        md-max-date    = "row.entity.eDate"
-                       required >
+                       required class="col-sm-5">
         </md-datepicker>
       </div>
-      <div class="block input md-datepicker-input">      <label>End Date </label>
+      <div class="form-group input md-datepicker-input">      <label class="control-label col-sm-7"> End Date </label>
         <md-datepicker ng-model       = "row.entity.eDate"
                        date-format    = "DD-MMM-YYYY HH:MM"
                        md-placeholder = "Enter date"
                        md-min-date    = "row.entity.minEndDate"
                        md-max-date    = "row.entity.maxEndDate"
-                      required >
+                      required class="col-sm-5">
         </md-datepicker>
       </div>
 
