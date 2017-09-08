@@ -8,7 +8,7 @@ myApp.service('NavController', function(){
   let loggedIn = false;
   let factory = {};
 
-  // selectively enables disables elements bon the navbar depending on
+  // selectively enables disables elements on the navbar depending on
   // whether the user is logged in or if = Administrator or Customer
 
   factory.selectTab = (setTab) =>  this.tab = setTab;
