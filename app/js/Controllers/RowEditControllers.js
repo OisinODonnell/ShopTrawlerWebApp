@@ -706,7 +706,7 @@ RowEditCtrl.$inject = ['$http', '$uibModalInstance','grid','row','Flash'];
   function saveRetailer() {
     if (vm.entity.retailerid === 0 || vm.entity.retailerid === "") { // implies a new entity
 
-      row.entity = angular.extend(vm.entity, row.entity);
+      row.entity = angular.extend(row.entity, vm.entity);
 
       $http.post(urlBase + '/Retailer/create/' , row.entity , vm.headers )
         .then(function(response) {
@@ -1166,137 +1166,7 @@ RowEditCtrl.$inject = ['$http', '$uibModalInstance','grid','row','Flash'];
       grid.appScope.vm.serviceGrid.data.splice(index, 1);
     }
 
-  // function upload(file, type, id, page, row) {
-  //   setupAWS(type);
-  //   let newPage = type + id + "-" + file.name;
-  //   // $scope.file = file;
-  //
-  //     if(file) {
-  //       // Perform File Size Check First
-  //       let fileSize = Math.round(parseInt(file.size));
-  //       if (fileSize > $scope.sizeLimit) {
-  //         // Flash.create("Sorry, your attachment is too big. <br/> Maximum "  + $scope.fileSizeLabel() + " file attachment allowed ... File Too Large",4000);
-  //         console.log("Sorry, your attachment is too big. <br/> Maximum "  + $scope.fileSizeLabel() + " file attachment allowed ... File Too Large");
-  //         // toastr.error("Sorry, your attachment is too big. <br/> Maximum "  + $scope.fileSizeLabel() + " file attachment allowed ... File Too Large");
-  //         return false;
-  //       }
-  //       // Prepend Unique String To Prevent Overwrites
-  //       // The uniqueness is used as a key to locate the file.
-  //       // This will be changed to become one of 4 content types (C, LR, SC or RET) plus the id of that entity
-  //       // eg  ... C0001, or LR020
-  //
-  //       let uniqueFileName = rowEditors.uniqueString() + '-' + file.name;
-  //
-  //       // add file details to parameters
-  //       $scope.params.Key = newPage; //uniqueFileName;
-  //       $scope.params.ContentType = $scope.file.type;
-  //       $scope.params.Body = $scope.file;
-  //
-  //
-  //       $scope.bucket.putObject($scope.params, function(err, data) {
-  //         if(err) {
-  //           // Flash.create('danger',err.message + ' ' + err.code,4000);
-  //           console.log('danger',err.message + ' ' + err.code);
-  //           // toastr.error(err.message,err.code);
-  //           return false;
-  //         } else {
-  //           // Upload Successfully Finished
-  //           // toastr.success('File Uploaded Successfully', 'Done');
-  //           // Flash.create('success','File Uploaded Successfully',2000);
-  //           // update page with URL to AWS file.
-  //           page = $scope.AWS.server + "/" + newPage;
-  //           row.entity.page1 = page;
-  //
-  //
-  //
-  //           // Reset The Progress Bar
-  //           setTimeout(function() {
-  //             vm.uploadProgress = 0;
-  //             // $scope.$digest();
-  //           }, 4000);
-  //           // $scope.AWS.server + $scope.params.Bucket ;
-  //         }
-  //       })
-  //         .on('httpUploadProgress',function(progress) {
-  //           vm.uploadProgress = Math.round(progress.loaded / progress.total * 100);
-  //           // $scope.$digest();
-  //         });
-  //     }
-  //     else {
-  //       // No File Selected
-  //       Flash.create('danger','No file selected, Please select a file to upload',4000);
-  //     }
-  //   }
-  //
-  // function setupAWS(type) {
-  //   $scope.AWS = {};
-  //   $scope.AWS.ACCESS_KEY = "AKIAICMSROCKZAETKBIA";
-  //   $scope.AWS.SECRET_KEY = "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";
-  //   $scope.AWS.BUCKET_C   = "/shoptrawler/Content";
-  //   $scope.AWS.BUCKET_LRC = "/shoptrawler/LRContent";
-  //   $scope.AWS.BUCKET_SC  = "/shoptrawler/ShoppingCenter";
-  //   $scope.AWS.BUCKET_RET = "/shoptrawler/Retailer";
-  //   $scope.AWS.SERVICE    = "s3";
-  //   $scope.AWS.ENCRYPTION = 'AES256';
-  //   $scope.AWS.REGION     = "eu-west-1";
-  //   $scope.AWS.type       = type; // default content type (Content.js entries) others SC, LR, and RET
-  //
-  //   $scope.AWS.config = {};
-  //   $scope.AWS.config.region = $scope.AWS.region;
-  //
-  //   $scope.AWS.params_c   = { Bucket : $scope.AWS.BUCKET_C   , ServerSideEncryption : 'AES256'};
-  //   $scope.AWS.params_lrc = { Bucket : $scope.AWS.BUCKET_LRC , ServerSideEncryption : 'AES256'};
-  //   $scope.AWS.params_sc  = { Bucket : $scope.AWS.BUCKET_SC  , ServerSideEncryption : 'AES256'};
-  //   $scope.AWS.params_ret = { Bucket : $scope.AWS.BUCKET_RET , ServerSideEncryption : 'AES256'};
-  //
-  //   // for use in get operations
-  //   $scope.AWS.server = "https://" +  $scope.AWS.service + "-" +
-  //     $scope.AWS.region + ".amazonaws.com";
-  //
-  //   AWS.config.update({ accessKeyId : $scope.AWS.ACCESS_KEY, secretAccessKey : $scope.AWS.SECRET_KEY});
-  //   AWS.config.region = $scope.AWS.REGION;
-  //   $scope.bucket = {};
-  //   $scope.params = {};
-  //   // specify the params to use and the bucket to write to.
-  //   switch(type) {
-  //     case "C":
-  //       $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_C}});
-  //       $scope.params = $scope.AWS.params_c;
-  //       $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_C + "/";
-  //       break;
-  //     case "LR":
-  //       $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_LRC}});
-  //       $scope.params = $scope.AWS.params_lrc;
-  //       $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_LRC + "/";
-  //       break;
-  //     case "RET":
-  //       $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_RET}});
-  //       $scope.params = $scope.AWS.params_ret;
-  //       $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_RET + "/";
-  //       break;
-  //     case "SC":
-  //       $scope.bucket = new AWS.S3({params: {Bucket: $scope.AWS.BUCKET_SC}});
-  //       $scope.params = $scope.AWS.params_sc;
-  //       $scope.AWS.server = $scope.AWS.server + $scope.AWS.BUCKET_SC + "/";
-  //       break;
-  //   }
-  //
-  // }
 
-  // function fileSizeLabel() {
-  //     // Convert Bytes To MB
-  //     return Math.round($scope.sizeLimit / 1024 / 1024) + 'MB';
-  //   }
-  //
-  // function uniqueString(){
-  //     let text     = "";
-  //     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  //
-  //     for( let i=0; i < 8; i++ ) {
-  //       text += possible.charAt(Math.floor(Math.random() * possible.length));
-  //     }
-  //     return text;
-  //   }
 
   return rowEditors;
 

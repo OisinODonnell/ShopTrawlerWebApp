@@ -13,7 +13,7 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
                                                         '/' + a.phone + '/' + a.gender + '/' + a.yob + '/' + a.emailAddress );
   factory.registerRetailer  = ( r ) =>
     $http.get( urlBase + '/Login/register/Retailer/' + r.firstname + '/'+ r.surname  + '/' + r.password + '/' + "Retailer" +
-                                       '/' + r.phone + '/' + r.retailer  + '/' + r.gender + '/' + r.yob + '/' + r.emailAddress);
+                                       '/' + r.phone + '/' + r.gender + '/' + r.yob + '/' + r.emailAddress);
 
   // Beacons
   factory.listBeacons                   = ()              => $http.get(urlBase + '/Beacons'                       );
@@ -103,13 +103,15 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
   factory.listUsersForApproval          = ()              => $http.get(urlBase + '/Users/ForApproval'             );
   factory.listUsersByRetailer           = (id)            => $http.get(urlBase + '/Users/Retailer/' + id          );
   factory.getUser                       = (id)            => $http.get(urlBase + '/User/' + id                    );
+  factory.listUsersNotManagers          = ()              => $http.get(urlBase + '/User/NotManagers'              );
   factory.addUser                       = (user)          => $http.post(urlBase + '/User/create' , user           );
-  factory.addRetailManager              = (user)          => $http.put(urlBase + '/User/retailer/update' , user);
+  factory.addRetailManager              = (user)          => $http.put(urlBase + '/User/retailer/update' , user   );
   factory.getUserByEmailAddress         = (email)         => $http.get(urlBase + '/User/ByEmail/' + email         );
   factory.deleteUserById                = (id)            => $http.delete(urlBase + '/User/delete/' + id          );
   factory.deleteUserByEmailAddress      = (email)         => $http.delete(urlBase + '/User/deleteByEmail/' + email);
   factory.deleteUserByUser              = (user)          => $http.delete(urlBase + '/User/delete/' + user        );
   factory.updateUser                    = (user)          => $http.put(urlBase + '/User/update' , user            );
+
 
   // UserPoints
   factory.listUserPoints                = ()              => $http.get(urlBase + '/UserPoints'                    );
@@ -155,8 +157,8 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
 
   // complex queries all under /Main mapping
   // returns all Visits, Users and Retailers
-    factory.getVisitsUsersRetailers       = ()            => $http.get(urlBase + '/Main/VUR'                      );
-    factory.getUsersRetailers             = ()            => $http.get(urlBase + '/Main/UR'                       );
+  factory.getVisitsUsersRetailers          = ()           => $http.get(urlBase + '/Main/VUR'                      );
+  factory.getUsersRetailers                = ()           => $http.get(urlBase + '/Main/UR'                       );
 
     return factory;
 }]);

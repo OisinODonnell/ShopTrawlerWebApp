@@ -1,9 +1,11 @@
 myApp.value('Globals', {
+
   // Chart Line Data options
   "PieColours" :  ["#0074D9", "#FF4136", "#2ECC40", "#FF851B",
                    "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC",
                    "#85144b", "#F012BE", "#3D9970", "#111111",
                   ],
+
   "ChartLineDataOptions": {
     lineTension               : .4,
     fill                      : true,
@@ -66,20 +68,23 @@ myApp.value('Globals', {
       fill: true, // options.title.fill
     }
   },
+
   "BackgroundChartColours" : [ "rgba(0,255,0,.4)","rgba(255,0,0,.4)","rgba(0,0,255,.4)","rgba(255,255,0,.4)",
     "rgba0,255,255,.4)","rgba(255,0,255,.4)","rgba(144,238,144,.4)","rgba(224,255,255,.4)"
   ],
+
   "BorderChartColours" : [ "rgba(255,0,0,.8)","rgba(0,255,0,.8)","rgba(0,0,255,.8)","rgba(255,255,0,.8)",
     "rgba0,255,255,.8)","rgba(255,0,255,.8)","rgba(144,238,144,.8)","rgba(224,255,255,.8)"
   ],
 
   "extraRows" : 8,
   "rowHeightPixels" : 30,
-  "URL_BASE0": "http://192.168.0.143:8080", // laptop at home
-  "URL_BASE4": "http://192.168.0.124:8080", // laptop at home
-  "URL_BASE3": "http://147.252.81.7:8080", // laptop in DIT
+  "URL_BASE0": "http://192.168.0.143:8080",  // laptop at home
+  "URL_BASE4": "http://192.168.0.124:8080",  // laptop at home
+  "URL_BASE3": "http://147.252.81.7:8080",   // laptop in DIT
   "URL_BASE1": "http://147.252.148.47:8080", // 2nd Laptop in DIT
   "URL_BASE": "http://localhost:8080",
+
   "GridDefaults": {
     enableRowSelection        : true,
     enableRowHeaderSelection  : false,
@@ -106,6 +111,7 @@ myApp.value('Globals', {
     rowHeight                 : 50,  // in pixels
     // maxWidth                  : 9000,
   },
+
   "ContentColumnDefs" : [{
     field : 'contentid',        displayName    : 'Content ID',headerCellClass: 'white',
     enableSorting : true,       enableCellEdit : false,       type  : 'number',
@@ -133,7 +139,6 @@ myApp.value('Globals', {
     {  field : 'getStartDateString()',width : '20%', displayName : 'Start Date',type:"date",  headerCellClass: 'white',                    }
 
   ],
-
   "ContentColumnDefs2" : [{
 
       name: 'Actions', width : 100,enableCellEdit : false, pinnedRight:true,headerCellClass: 'white',
@@ -147,22 +152,18 @@ myApp.value('Globals', {
   },
     {   field : 'page1',   width : '20%',  displayName : 'Page 1',enableCellEdit : true,headerCellClass: 'white',
       cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserPage1.html",
-
     },
     {  field : 'page2',    width : '20%',  displayName : 'Page 2',enableCellEdit : true,headerCellClass: 'white',
       cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserPage2.html",
-
     },
     {  field : 'page3',    width : '20%',  displayName : 'Page 3',enableCellEdit : true,headerCellClass: 'white',
       cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserPage3.html",
-
     },
     {  field : 'retailerid',width : '10%',displayName : 'Retailer ID',enableCellEdit : false, type: 'number',headerCellClass: 'white',},
     {  field : 'startDate', width : '20%',displayName : 'Start Date', enableCellEdit : true,  type: "date",  headerCellClass: 'white',},
     {  field : 'endDate',   width : '20%',displayName : 'End Date',   enableCellEdit : true,  type: "date",  headerCellClass: 'white',},
 
   ],
-
   "ApproveContentColumnDefs" : [{
     field : 'contentid',                displayName    : 'Content ID',headerCellClass: 'white',
     enableSorting : true,               enableCellEdit : false,
@@ -188,7 +189,6 @@ myApp.value('Globals', {
     "retailerid"  : "",
     "startDate"   : ""
   },
-
   // default values for a new row of content into the grid
   "NewContent" : {
     "contentid"   : 0,
@@ -215,7 +215,6 @@ myApp.value('Globals', {
       { field : 'userid',                width : '6%',    displayName : 'User ID',     enableCellEdit : false,type: 'number' ,headerCellClass: 'white',             },
       { field : 'zoneid',                width : '6%',    displayName : 'Zone ID',     enableCellEdit : false,type: 'number' ,headerCellClass: 'white',             }
     ],
-
   "addRowVisit" : {
     "visitid"   : "",
     "enterTime" : "",
@@ -227,7 +226,6 @@ myApp.value('Globals', {
     "fullname"  : "",
     "storename" : ""
   },
-
 
   "BeaconColumnDefs": [{
       field : 'beaconid',        displayName    : 'Beacon ID',headerCellClass: 'white',
@@ -241,7 +239,6 @@ myApp.value('Globals', {
       {  field: 'transmitPower', width : '12%', displayName: 'Transmit Power',enableCellEdit : false,type: 'number' , headerCellClass: 'white', },
       {  field: 'uuid',          width : '40%', displayName: 'UUID',          enableCellEdit : false,headerCellClass: 'white',  }
     ],
-
   "addRowBeacon"    : {
     "beaconids"     : "",
     "dateTime"      : "",
@@ -261,7 +258,6 @@ myApp.value('Globals', {
       {  field : 'fullname',  width : '30%', displayName  : 'User ID',     enableCellEdit : false,   headerCellClass: 'white',      },
       {  field : 'dateTime',  width : '20%', displayName  : 'Date Time',   enableCellEdit : false, type:"date",headerCellClass: 'white',}
     ],
-
   "GenerateBonusCodeColumnDefs" : [{
     field : 'bonusCodeid',             displayName    : 'Bonus Code ID',headerCellClass: 'white',
     enableSorting : true,              enableCellEdit : false,
@@ -273,7 +269,6 @@ myApp.value('Globals', {
     {  field : 'fullname',             width : '30%',displayName : 'User ID',     enableCellEdit : false,     headerCellClass: 'white',    },
     {  field : 'getDateTimeReadable()',width : '20%',displayName : 'Date Time',type:"date",enableCellEdit : false,headerCellClass: 'white',}
   ],
-
   "addRowBonusCode" : {
     "bonusCodeid" : "",
     "retailerid"  : "",
@@ -290,7 +285,6 @@ myApp.value('Globals', {
       },
       {  field : 'storeName',    width : '66%',displayName : 'Retailer ID',enableCellEdit : false, headerCellClass: 'white',   }
     ],
-
   "addRowFavourite" : {
     "userid"     : "",
     "retailerid" : ""
@@ -309,7 +303,6 @@ myApp.value('Globals', {
       {  field : 'locationType',      type: 'text'   ,width : '20%',displayName : 'Location Type',      enableCellEdit : false,        headerCellClass: 'white',         },
       {  field : 'shoppingCentreid',  type: 'number' ,width : '10%',displayName : 'Shopping Centre ID', enableCellEdit : false,        headerCellClass: 'white',         }
     ],
-
   "addRowLocation" : {
     "locationid"        :"",
     "altitude"          :"",
@@ -319,7 +312,6 @@ myApp.value('Globals', {
     "locationType"      :"",
     "shoppingCentreid"  :""
   },
-
 
   "LoyaltyRewardColumnDefs" : [{
       field : 'loyaltyRewardid',          displayName    : 'Loyalty Reward ID',headerCellClass: 'white',
@@ -335,7 +327,6 @@ myApp.value('Globals', {
       {  field : 'getStartDateReadable()',width : '20%', displayName : 'Start Date',type:"date",enableCellEdit : true, headerCellClass: 'white',},
       {  field : 'visitTime',             width : '10%', type: 'number',displayName : 'Visit Time',  enableCellEdit : true, headerCellClass: 'white',}
     ],
-
   "LoyaltyRewardColumnDefs2" : [{
 
     name: 'Actions', width : 130,enableCellEdit : false, pinnedRight:true, headerCellClass: 'white',
@@ -363,7 +354,6 @@ myApp.value('Globals', {
     {  field : 'startDate',     width : '20%', type: "date",   displayName : 'Start Date',      enableCellEdit : true, headerCellClass: 'white',},
     {  field : 'endDate',       width : '20%', type: "date",   displayName : 'End Date',        enableCellEdit : true, headerCellClass: 'white',},
   ],
-
   "ApproveLoyaltyRewardColumnDefs" : [{
     field : 'loyaltyRewardid',          displayName    : 'Loyalty Reward ID',headerCellClass: 'white',
     enableSorting : true,               enableCellEdit : false,
@@ -379,7 +369,6 @@ myApp.value('Globals', {
     {  field : 'getEndDateReadable()',  width : '20%', type: "date",    displayName : 'End Date',   enableCellEdit : false,headerCellClass: 'white', },
     {  field : 'approved',              width : '10%', type: 'boolean', displayName : 'Approved?',  headerCellClass: 'white',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
-
   "addRowLoyaltyReward" : {
     "loyaltyRewardid" : 0,
     "endDate"         : null,
@@ -390,7 +379,6 @@ myApp.value('Globals', {
     "startDate"       : null,
     "visitTime"       : 0
   },
-
   "NewLoyaltyReward" : {
     "loyaltyRewardid" : 0,
     "endDate"         : new Date(),
@@ -413,7 +401,6 @@ myApp.value('Globals', {
       {  field : 'review',              width : '40%',   displayName : 'Review',          enableCellEdit : false,headerCellClass: 'white',  }
 
     ],
-
   "addRowRating" : {
     "userid"     : "",
     "date"       : "",
@@ -428,26 +415,80 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
-      {  field : 'defaultContentPage1',               width : '9%',   displayName : 'Default Content Page1',      enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'defaultContentPage2',               width : '9%',   displayName : 'Default Content Page2',      enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'defaultContentPage3',               width : '9%',   displayName : 'Default Content Page3',      enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'defaultLoyaltyRewardImage',         width : '9%',   displayName : 'Default Loyalty Reward Image',enableCellEdit : false,headerCellClass: 'white',   },
-      {  field : 'facebookUrl',                       width : '9%',   displayName : 'Facebook Url',               enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'twitterUrl',                        width : '9%',   displayName : 'Twitter Url',                enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'websiteUrl',                        width : '9%',   displayName : 'Website Url',                enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'logoImageSmall',                    width : '11%',  displayName : 'Logo Image Small',           enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'logoImageLarge',                    width : '11%',  displayName : 'Logo Image Large',           enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'logoImageMedium',                   width : '11%',  displayName : 'Logo Image Medium',          enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'phone',                             width : '5%',   displayName : 'Phone',                      enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'storeName',                         width : '5%',   displayName : 'Store Name',                 enableCellEdit : false, headerCellClass: 'white',         },
-      {  field : 'headerBackgroundImage',             width : '9%',   displayName : 'Header Background Image',  enableCellEdit : false,   headerCellClass: 'white',       },
-      {  field : 'managerid',          type: 'number',width : '4.5%', displayName : 'Manager ID',         enableCellEdit : false, headerCellClass: 'white', },
-      {  field : 'shoppingCentreid',   type: 'number',width : '4.5%', displayName : 'Shopping Centre ID', enableCellEdit : false, headerCellClass: 'white', },
-      {  field : 'storeDefaultContentPage1',          width : '9%',   displayName : 'Store Default Content Page1',  enableCellEdit : false, headerCellClass: 'white', },
-      {  field : 'zoneid',             type: 'number',width : '4.5%', displayName : 'Zone ID',            enableCellEdit : false,  headerCellClass: 'white', }
+      {  field : 'defaultContentPage1',               width : '9%',   displayName : 'Default Content Page1',      enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'defaultContentPage2',               width : '9%',   displayName : 'Default Content Page2',      enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'defaultContentPage3',               width : '9%',   displayName : 'Default Content Page3',      enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'defaultLoyaltyRewardImage',         width : '9%',   displayName : 'Default Loyalty Reward Image',enableCellEdit : true,headerCellClass: 'white',  },
+      {  field : 'facebookUrl',                       width : '9%',   displayName : 'Facebook Url',               enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'twitterUrl',                        width : '9%',   displayName : 'Twitter Url',                enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'websiteUrl',                        width : '9%',   displayName : 'Website Url',                enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'logoImageSmall',                    width : '11%',  displayName : 'Logo Image Small',           enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'logoImageLarge',                    width : '11%',  displayName : 'Logo Image Large',           enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'logoImageMedium',                   width : '11%',  displayName : 'Logo Image Medium',          enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'phone',                             width : '5%',   displayName : 'Phone',                      enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'storeName',                         width : '5%',   displayName : 'Store Name',                 enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'headerBackgroundImage',             width : '9%',   displayName : 'Header Background Image',    enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'managerid',          type: 'number',width : '4.5%', displayName : 'Manager ID',                 enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'shoppingCentreid',   type: 'number',width : '4.5%', displayName : 'Shopping Centre ID',         enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'storeDefaultContentPage1',          width : '9%',   displayName : 'Store Default Content Page1',enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'zoneid',             type: 'number',width : '4.5%', displayName : 'Zone ID',                    enableCellEdit : true, headerCellClass: 'white',  }
+    ],
+    "RetailerColumnDefs" : [{
+      field : 'retailerid',            displayName    : 'Retailer ID',headerCellClass: 'white',
+      enableSorting : true,            enableCellEdit : false,
+      type  : 'number',
+      width : 100,
+    },
+      { name: 'Actions', width : 130,enableCellEdit : false, pinnedRight:true, headerCellClass: 'white',
+        cellTemplate: '<div  >' +
+      '<button class="btn-success btn-circle"  ng-click="grid.appScope.saveRow(row)" ><img src="images/ic_save_black_24dp_1x.png"</button>' +
+      '<button class="btn-danger btn-circle "  ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_24dp_1x.png"></button>'+
+      '</div>' },
+      {  field : 'defaultContentPage1',               width : '9%',   displayName : 'Default Content Page1',      enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'defaultContentPage2',               width : '9%',   displayName : 'Default Content Page2',      enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'defaultContentPage3',               width : '9%',   displayName : 'Default Content Page3',      enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'defaultLoyaltyRewardImage',         width : '9%',   displayName : 'Default Loyalty Reward Image',enableCellEdit : true,headerCellClass: 'white',  },
+      {  field : 'facebookUrl',                       width : '9%',   displayName : 'Facebook Url',               enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'twitterUrl',                        width : '9%',   displayName : 'Twitter Url',                enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'websiteUrl',                        width : '9%',   displayName : 'Website Url',                enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'logoImageSmall',                    width : '11%',  displayName : 'Logo Image Small',           enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'logoImageLarge',                    width : '11%',  displayName : 'Logo Image Large',           enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'logoImageMedium',                   width : '11%',  displayName : 'Logo Image Medium',          enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'phone',                             width : '5%',   displayName : 'Phone',                      enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'storeName',                         width : '5%',   displayName : 'Store Name',                 enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'headerBackgroundImage',             width : '9%',   displayName : 'Header Background Image',    enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'managerid',          type: 'number',width : '4.5%', displayName : 'Manager ID',                 enableCellEdit : true, headerCellClass: 'white',
+        editDropDownOptionsArray: 'vm.usersNotManagers'  },
+      {  field : 'shoppingCentreid',   type: 'number',width : '4.5%', displayName : 'Shopping Centre ID',         enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'storeDefaultContentPage1',          width : '9%',   displayName : 'Store Default Content Page1',enableCellEdit : true, headerCellClass: 'white',  },
+      {  field : 'zoneid',             type: 'number',width : '4.5%', displayName : 'Zone ID',                    enableCellEdit : true, headerCellClass: 'white',
+      editDropDownOptionsArray: 'vm.zones'  },
     ],
 
-  "addRowRetailer" : {
+
+
+
+  "NewRetailer" : {
+    "retailerid"                : 0,
+    "defaultContentPage1"       : "Default Content Page 1",
+    "defaultContentPage2"       : "Default Content Page 2",
+    "defaultContentPage3"       : "Default Content Page 3",
+    "defaultLoyaltyRewardImage" : "Default Loyalty Reward",
+    "facebookUrl"               : "facebook.com",
+    "twitterUrl"                : "twitter.com",
+    "websiteUrl"                : "website",
+    "logoImageSmall"            : "logo Small",
+    "logoImageLarge"            : "logo medium",
+    "logoImageMedium"           : "logo large",
+    "phone"                     : "Phone No",
+    "storeName"                 : "Store Name",
+    "headerBackgroundImage"     : "Header Image",
+    "managerid"                 : null,
+    "shoppingCentreid"          : 1,
+    "storeDefaultContentPage1"  : "Store default content page 1",
+    "zoneid"                    : null,
+  },
+  "AddRowRetailer" : {
     "retailerid"                : "",
     "defaultContentPage1"       : "",
     "defaultContentPage2"       : "",
@@ -484,7 +525,6 @@ myApp.value('Globals', {
       {  field : 'logoImageMedium',width : '25%', displayName : 'Logo Image Medium',  enableCellEdit : false, headerCellClass: 'white', },
       {  field : 'logoImageLarge', width : '25%', displayName : 'Logo Image Large',   enableCellEdit : false, headerCellClass: 'white', }
     ],
-
   "addRowShoppingCentre" : {
     "shoppingCentreid"  : "",
     "adminid"           : "",
@@ -497,24 +537,6 @@ myApp.value('Globals', {
     "logoImageMedium"   : "",
     "logoImageLarge"    : ""
   },
-
-  "UserColumnDefs" : [{
-    field : 'userid',           displayName    : 'User ID',headerCellClass: 'white',
-    enableSorting : true,       enableCellEdit : false,
-    type  : 'number',
-    width : '6%',
-  },
-    {  field : 'firstname',     width : '11%', displayName : 'Firstname',     enableCellEdit : false,headerCellClass: 'white',  },
-    {  field : 'surname',       width : '11%', displayName : 'Surname',       enableCellEdit : false,headerCellClass: 'white',  },
-    {  field : 'emailAddress',  width : '20%', displayName : 'Email Address', enableCellEdit : false,headerCellClass: 'white',  },
-    {  field : 'phone',         width : '13%', displayName : 'Phone',         enableCellEdit : false,headerCellClass: 'white',  },
-    {  field : 'gender',        width : '11%', displayName : 'Gender',        enableCellEdit : false,headerCellClass: 'white',  },
-    // {  field : 'password',   width : '11%', displayName : 'Password',      enableCellEdit : false,  },
-    {  field : 'type',          width : '11%', displayName : 'Type',          enableCellEdit : false,headerCellClass: 'white',  },
-    {  field : 'yob',           width : '6%' , displayName : 'Yob',      enableCellEdit : false, headerCellClass: 'white', type: 'number',},
-    {  field : 'approved',      width : '11%', displayName : 'Approved?', type: 'boolean', headerCellClass: 'white',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
-  ],
-
   "UserRetailerColumnDefs" : [{
     field : 'userid',           displayName    : 'User ID',headerCellClass: 'white',
     enableSorting : true,       enableCellEdit : false,
@@ -532,6 +554,22 @@ myApp.value('Globals', {
     {  field : 'approved',      width : '11%', displayName : 'Approved?',     headerCellClass: 'white',type: 'boolean', cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
 
+  "UserColumnDefs" : [{
+    field : 'userid',           displayName    : 'User ID',headerCellClass: 'white',
+    enableSorting : true,       enableCellEdit : false,
+    type  : 'number',
+    width : '6%',
+  },
+    {  field : 'firstname',     width : '11%', displayName : 'Firstname',     enableCellEdit : false,headerCellClass: 'white',  },
+    {  field : 'surname',       width : '11%', displayName : 'Surname',       enableCellEdit : false,headerCellClass: 'white',  },
+    {  field : 'emailAddress',  width : '20%', displayName : 'Email Address', enableCellEdit : false,headerCellClass: 'white',  },
+    {  field : 'phone',         width : '13%', displayName : 'Phone',         enableCellEdit : false,headerCellClass: 'white',  },
+    {  field : 'gender',        width : '11%', displayName : 'Gender',        enableCellEdit : false,headerCellClass: 'white',  },
+    // {  field : 'password',   width : '11%', displayName : 'Password',      enableCellEdit : false,  },
+    {  field : 'type',          width : '11%', displayName : 'Type',          enableCellEdit : false,headerCellClass: 'white',  },
+    {  field : 'yob',           width : '6%' , displayName : 'Yob',      enableCellEdit : false, headerCellClass: 'white', type: 'number',},
+    {  field : 'approved',      width : '11%', displayName : 'Approved?', type: 'boolean', headerCellClass: 'white',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
+  ],
   "ApproveUserColumnDefs" : [{
     field : 'userid',           displayName    : 'User ID',headerCellClass: 'white',
     enableSorting : true,       enableCellEdit : false,
@@ -548,7 +586,6 @@ myApp.value('Globals', {
     {  field : 'yob',           width : '6%', displayName : 'Yob',           enableCellEdit : false, headerCellClass: 'white',type: 'number', },
     {  field : 'approved',      width : '8%', displayName : 'Approved?', type: 'boolean', headerCellClass: 'white',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
-
   "addRowUser" : {
     "userid"      : "",
     "firstname"   : "",
@@ -571,7 +608,6 @@ myApp.value('Globals', {
       {  field : 'storeName',  width : '34%',  displayName : 'Retailer ID', enableCellEdit : false, headerCellClass: 'white', },
       {  field : 'points',     type: 'number', width : '33%',  displayName : 'Points',      enableCellEdit : false, headerCellClass: 'white', }
     ],
-
   "addRowUserPoint" : {
     "userid"      : "",
     "retailerid"  : "",
@@ -587,12 +623,12 @@ myApp.value('Globals', {
       {  field : 'beaconid',  type: 'number', width : '20%',      displayName : 'Beacon ID', headerCellClass: 'white',enableCellEdit : false,  },
       {  field : 'zoneName',  width : '60%',      displayName : 'Zone Name', headerCellClass: 'white',enableCellEdit : false,  }
     ],
-
   "addRowZone" : {
     "zoneid"   : "",
     "beaconid" : "",
     "zoneName" : ""
   }
+
 });
 
 

@@ -7,7 +7,7 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
     $rootScope.type = "RET";
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = true; //  view is affected
-      $scope.allowEditRow = true; // action below
+      $scope.allowEditRow = false; // action below
     } else {
       $scope.allowAddRow = false; //  view is affected
       $scope.allowEditRow = true; // action below
@@ -38,15 +38,36 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       vm.dataLoading = true;
       let retailers;
       let retailer = new Retailer();
-      DataFactory.listRetailers()
+      DataFactory.listRetailers() // get list of retailers to display in grid
         .then( function(response) {
             retailers = Common.createObjects(response.data, retailer);
-
             // vm.serviceGrid = updateGridOptions(retailers, vm.serviceGrid);
             $scope.retailers = retailers;
-            vm.serviceGrid.data = $scope.retailers;
+
+            let zones = [];
+            let zone = new Zone();
+            DataFactory.listZones() // get list of zones to use as drop down in modal popup
+              .then( function(response){
+                zones= Common.createObjects(response.data, zone);
+                vm.zones = zones;
+
+                let user = new User();
+                let users = [];
+                DataFactory.listUsersNotManagers() // get list of users not managers yet
+                  .then( function(response){
+                      users = Common.createObjects(response.data, user);
+                      vm.usersNotManagers = users;
+                      vm.serviceGrid.data = $scope.retailers;
+
+                    },
+                    function(error) { $scope.status = "Unable to load Users " + error.message; }
+                )
+              },
+                function(error) { $scope.status = "Unable to load Zones " + error.message; }
+              );
           },
-          function (error) { $scope.status = 'Unable to load Retailers ' + error.message; });
+          function (error) { $scope.status = 'Unable to load Retailers ' + error.message; }
+        );
       vm.dataLoading = false;
     }
 
@@ -84,10 +105,23 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       vm.dataLoading = false;
     }
 
+    $scope.addRow = function (row) {
+      // add row to grid with default values
+      console.log("adding LR");
+      let content = new Content();
+      content = Globals.NewContent;
+
+      // get the retailers storeName
+
+      content.storeName = Common.findStoreName($rootScope.currentUser.retailerid);
+      vm.serviceGrid.data.push(content);
+    };
+
+
     $scope.addRow = function () {
       $rootScope.addingRow = true;
-
-      let newService = Globals.addRowRetailer;
+      console.log("adding R");
+      let newService = Globals.NewRetailer;
       let rowTmp = {};
       rowTmp.entity = newService;
       vm.editRow($scope.vm.serviceGrid, rowTmp);

@@ -9,7 +9,7 @@ myApp.controller('UsersController', ['DataFactory','$scope','Common','$rootScope
 
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false; //  view is affected
-      $scope.allowEditRow = false; // action below
+      $scope.allowEditRow = true; // action below
       ListUsers();
       vm.serviceGrid = Common.setupUiGrid(Globals.UserColumnDefs, $scope.allowEditRow );
 

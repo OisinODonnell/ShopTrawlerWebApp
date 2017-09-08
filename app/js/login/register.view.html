@@ -12,36 +12,37 @@
 
         <tr>   <td>
       <div class="form-group" ng-class="{ 'has-error': form.firstname.$dirty && form.firstname.$error.required }">
-        <input placeholder="Firstname"  name="firstname" id="firstname" class="form-control" ng-model="vm.firstname" required />
+        <input placeholder="Firstname"  name="firstname" id="firstname" class="form-control" ng-model="vm.firstname" required oninput="checkFirstname(this)"/>
         <span ng-show="form.firstname.$dirty && form.firstname.$error.required" class="help-block">Firstname is required</span>
       </div> </td>  </tr>
 
         <tr>   <td>
       <div class="form-group" ng-class="{ 'has-error': form.surname.$dirty && form.surname.$error.required }">
-        <input  placeholder="Surname"  surname="surname" id="surname" class="form-control" ng-model="vm.surname" required />
+        <input  placeholder="Surname"  surname="surname" id="surname" class="form-control" ng-model="vm.surname" required oninput="checkSurname(this)"/>
         <span ng-show="form.surname.$dirty && form.surname.$error.required" class="help-block">Surname is required</span>
       </div>  </td>  </tr>
 
         <tr>   <td>
       <div class="form-group" ng-class="{ 'has-error': form.emailAddress.$dirty && form.emailAddress.$error.required }">
-        <input  placeholder="Username (your email address)" name="emailAddress" id="emailAddress" class="form-control" ng-model="vm.emailAddress" required />
+        <input  placeholder="Username (your email address)" name="emailAddress" id="emailAddress" class="form-control" ng-model="vm.emailAddress" required oninput="checkEmail(this)" />
         <span ng-show="form.emailAddress.$dirty && form.emailAddress.$error.required" class="help-block">Username is required</span>
       </div>  </td> </tr>
 
         <tr>   <td>
           <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
-            <input placeholder="Phone Number" name="phone" id="phone" class="form-control" ng-model="vm.phone"  />
+            <input placeholder="Phone Number" name="phone" id="phone" class="form-control" ng-model="vm.phone" required oninput="checkPhone(this)"/>
             <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block">Phone number is required</span>
           </div> </td>  </tr>
 
         <tr>   <td>
           <div class="form-group" ng-class="{ 'has-error': form.yob.$dirty && form.yob.$error.required }">
-            <input placeholder="Year of Birth" name="yob" id="yob" class="form-control" ng-model="vm.yob"  />
-            <span ng-show="form.yob.$dirty && form.yob.$error.required" class="help-block">Year of Birth is required</span>
+            <input placeholder="Year of Birth" name="yob" id="yob" class="form-control" ng-model="vm.yob" required oninput="checkYob(this)" />
+            <span ng-show="form.yob.$dirty && form.yob.$error.required" class="help-block"
+            >Year of Birth is required</span>
           </div> </td>  </tr>
 
         <tr>  <td>
-        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+        <div  class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
           <input type="password" placeholder="Password" name="password" id="password" class="form-control" ng-model="vm.password" required />
           <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
         </div> </td> </tr>
@@ -67,22 +68,22 @@
 
 
 
-        <tr> <td>
-          <div data-ng-show="!vm.isAdmin === true">
-            <!-- Create drop down menu of Registered Retailers for manager to p;ick from-->
-              <div ng-class="{ 'has-error': form.retailer.$dirty && form.retailer.$error.required }">
-                <select name="retailer" class="register form_group grey_color"
-                        ng-model="retailer" required
-                        ng-options="store.retailerid as store.storeName for store in retailers">
-                  <option value="">Select Retailer</option>
-                </select>
-                <span ng-show="form.retailer.$dirty && form.retailer.$error.required" class="help-block">Retailer required</span>
-              </div>
-              <br/>
+        <!--<tr> <td>-->
+          <!--<div data-ng-show="!vm.isAdmin === true">-->
+            <!--&lt;!&ndash; Create drop down menu of Registered Retailers for manager to p;ick from&ndash;&gt;-->
+              <!--<div ng-class="{ 'has-error': form.retailer.$dirty && form.retailer.$error.required }">-->
+                <!--<select name="retailer" class="register form_group grey_color"-->
+                        <!--ng-model="retailer" required-->
+                        <!--ng-options="store.retailerid as store.storeName for store in retailers">-->
+                  <!--<option value="">Select Retailer</option>-->
+                <!--</select>-->
+                <!--<span ng-show="form.retailer.$dirty && form.retailer.$error.required" class="help-block">Retailer required</span>-->
+              <!--</div>-->
+              <!--<br/>-->
 
 
-          </div>
-        </td></tr>
+          <!--</div>-->
+        <!--</td></tr>-->
         <tr> <td>
           <div class="form-group form-actions col-xs-8">
               <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
@@ -97,14 +98,72 @@
       </table>
       <script language='javascript' type='text/javascript'>
         <!-- // password Confirm password Verification Check -->
-        function check(input) {
-          if (input.value != document.getElementById('password').value) {
-            input.setCustomValidity('Password Must be Matching.');
-          } else {
-            <!-- input is valid -- reset the error message -->
-            input.setCustomValidity('');
+        function check( input ) {
+
+          if (input.value.length >= 6 && input.value.length <= 20) {
+
+            if (input.value != document.getElementById('password').value) {
+              input.setCustomValidity('Password Must be Matching.');
+            } else {
+              <!-- input is valid -- reset the error message -->
+              input.setCustomValidity('');
+            }
+          } else{
+            input.setCustomValidity('Password invalid length ... range 6 to 20');
           }
         }
+        function checkYob( input ) {
+         let thisYear = new Date().getFullYear();
+         let minYear = thisYear - 100;
+         let maxYear = thisYear - 12; // min 12 years old to accumulate points
+
+
+          if (input.value >= minYear && input.value <= maxYear) {
+            <!-- input is valid -- reset the error message -->
+            input.setCustomValidity('');
+          } else {
+            input.setCustomValidity('Year Of Birth invalid Range ... ' + minYear + " to " + maxYear);
+          }
+        }
+
+        function checkEmail( input ) {
+          // catches 99.99% of known email addresses
+          let reg =/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+          if (reg.test(input.value)) {
+            if (input.value.length < 8) {
+              input.setCustomValidity('Email address is invalid');
+            } else {
+              input.setCustomValidity('');
+            }
+          } else {
+            input.setCustomValidity('Email address is invalid');
+          }
+        }
+
+        function checkFirstname(input) {
+          if (input.value.length >= 2 && input.value.length <= 30 ) {
+            input.setCustomValidity('');
+          } else {
+            input.setCustomValidity('Invalid Firstname length ... Range 2 - 30 ');
+          }
+        }
+        function checkSurname(input) {
+          if (input.value.length >= 2 && input.value.length <= 30 ) {
+            input.setCustomValidity('');
+          } else {
+            input.setCustomValidity('Invalid Surname length ... Range 2 - 30 ');
+          }
+        }
+
+        function checkPhone(input) {
+          if (input.value.length >= 7 && input.value.length <= 20 ) {
+            input.setCustomValidity('');
+          } else {
+            input.setCustomValidity('Phone Number invalid length ... Range 7 - 20 ');
+          }
+        }
+
       </script>
     </form>
 </div>
