@@ -1,16 +1,8 @@
-﻿<h1>Hi {{vm.user.firstname + " " + vm.user.surname}}!</h1>
-<p>You're logged in!!</p>
+﻿<div style="margin-left: 5% ;">
 
-<!--<div ng-if="vm.isAdmin()">-->
-  <!--<h2>All registered users:</h2>-->
-  <!--<ul>-->
-    <!--<li ng-repeat="user in vm.allUsers">-->
-        <!--{{user.emailAddress}}-->
-        <!-- - <a ng-click="vm.deleteUser(userId)">Delete</a>-->
-    <!--</li>-->
-  <!--</ul>-->
-<!--</div>-->
+  <h1>Hi {{vm.user.firstname + " " + vm.user.surname}}!</h1>
+  <p>You're logged in!!</p>
+  <p><a href="#!/login" class="btn btn-primary">Logout</a></p>
 
-<p><a href="#!/login" class="btn btn-primary">Logout</a></p>
-
+</div>
 

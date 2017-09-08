@@ -6,21 +6,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" >
 
+  <!-- library stylesheets -->
   <link href="../node_modules/angular-ui-grid/ui-grid.css" rel="styleSheet" />
   <link href="../node_modules/angular-material/angular-material.css" rel="stylesheet"/>
   <link href="../node_modules/angular-material/layouts/angular-material.layouts.css" rel="stylesheet"/>
   <link href="../node_modules/toastr/build/toastr.css" rel="stylesheet"/>
   <link href="lib/angular-flash.css" type="text/css" rel="stylesheet" />
-  <link rel="stylesheet" href="../node_modules/angularjs-toast/dist/angularjs-toast.css">
-
+  <link href="../node_modules/angularjs-toast/dist/angularjs-toast.css" rel="stylesheet" />
+  <link href="../node_modules/selectize/dist/css/selectize.default.css" rel="stylesheet" />
+  <link href="../node_modules/ui-select/dist/select.css" rel="stylesheet" />
 
    <!--application sytle sheets-->
   <link href="styles/app.css" rel="stylesheet" />
   <!--<link href="styles/style2.css" rel="styleSheet" />-->
   <link href="styles/list.css" rel="styleSheet" />
+
   <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" >
   <link href="../node_modules/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" >
-
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
   <script src="../node_modules/angular/angular.js"></script>
@@ -40,6 +42,10 @@
   <script src="../node_modules/angular-file-upload/dist/angular-file-upload.js"></script>
   <script src="../node_modules/angular-file-upload/dist/angular-file-upload.js"></script>
   <script src="../node_modules/angularjs-toast/dist/angularjs-toast.min.js"></script>
+  <script src="../node_modules/microplugin/src/microplugin.js"></script>
+  <script src="../node_modules/selectize/dist/js/selectize.js"></script>
+  <script src="../node_modules/ui-select/dist/select.js"></script>
+
 
   <script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
 
@@ -225,7 +231,7 @@
     <ul class="nav navbar-nav" data-ng-show = "isAdmin && loggedIn" > <!-- single links no dropdown -->
       <li><a href="#!/Users/List"     style="color:black;"  > Users     </a></li>
       <li><a href="#!/Retailers/List" style="color:black;"  > Retailers </a></li>
-      <li><a href="#!/Ratings/List"   style="color:black;"  > Ratings   </a></li>
+      <!--<li><a href="#!/Ratings/List"   style="color:black;"  > Ratings   </a></li>-->
     </ul>
 
     <ul class="nav navbar-nav navbar-right" data-ng-show = "isAdmin && loggedIn"> <!-- stack these items to the right -->
@@ -279,7 +285,7 @@
     <!-- stack these to left -->
     <ul class="nav navbar-nav" data-ng-show = "isRetailer && loggedIn" > <!-- start of retailer menu -->
       <li><a href="#!/Favourites/Retailer" style="color:black;" > Favourites    </a></li>
-      <li><a href="#!/Ratings/Retailer"    style="color:black;" > Ratings       </a></li>
+      <!--<li><a href="#!/Ratings/Retailer"    style="color:black;" > Store Rating  </a></li>-->
       <li><a href="#!/Users/Retailer"      style="color:black;" > My Details    </a></li>
     </ul>
 

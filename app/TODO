@@ -1,0 +1,24 @@
+TODO Admin -> Retailers -> AddRow ... do not allow popup ...
+         ... edit row inline
+         ... add cell dropdown for manager
+         ... Add celkl dropdown for zone
+             ... fill select with data from rest.
+         ... mark some fields as not editable (eg SC id)
+
+    -> Add AWS -> ShoppingCentre
+
+TODO Retailer -> Add AWS -> LoyaltyReward
+         -> Add AWS -> Content
+         -> Add AWS -> Retailer
+
+TODO Admin -> Popups are affected by browser window size ... attempt to fix width of popup
+
+Approve LoyaltyReward popup is transparent ... TBF
+              Input cells are staggerd again
+
+
+TODO Admin -> Users consider adding row actions to users grid (eg Delete)
+
+Done -  Home Screen -> change margin left to 5% ... done
+
+TODO Admin

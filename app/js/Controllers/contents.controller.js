@@ -96,7 +96,6 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     else
       ListContentByRetailer($rootScope.currentUser.retailerid);
 
-
     /**
      * Return the content for all retailers
      * @constructor
@@ -137,7 +136,6 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
         });
       vm.dataLoading = false;
     }
-
 
     vm.chartTitle = "Retailer Content";
     // Save new or updated entry to database
@@ -183,14 +181,12 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       console.log("save Row LR");
     };
 
-
     $scope.addRow = function(row) {
       console.log("save Row C");
       let content = Globals.NewContent;
       content.retailerid = Common.findStoreName($rootScope.currentUser.retailerid);
       vm.serviceGrid.data.push(content);
     };
-
 
     // Delete Row in Grid and delete row in Database if exists
     $scope.deleteRow = function(row) {
@@ -246,7 +242,6 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
 
       return content;
     }
-
 
     function buildNewContents(data) {
       let contents;

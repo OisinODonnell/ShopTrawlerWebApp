@@ -170,14 +170,15 @@ myApp.value('Globals', {
     type  : 'number',
     width : '10%',
   },
+    // {  field : 'retailerid',            width : '10%', displayName : 'Retailer ID',enableCellEdit : false,type: 'number', headerCellClass: 'white',         },
+    {  field : 'storeName',            width : '10%', displayName : 'Store Name',enableCellEdit : false,type: 'number', headerCellClass: 'white',         },
+    {  field : 'getStartDateReadable()',width : '20%', displayName : 'Start Date' ,type:"date",   enableCellEdit  : false, headerCellClass: 'white', },
     {  field : 'getEndDateReadable()',  width : '20%', displayName : 'End Date',type:"date",enableCellEdit : false, headerCellClass: 'white',},
     {  field : 'page1',                 width : '20%', displayName : 'Page 1',enableCellEdit : false,               headerCellClass: 'white',},
     {  field : 'page2',                 width : '20%', displayName : 'Page 2',enableCellEdit : false,               headerCellClass: 'white',},
     {  field : 'page3',                 width : '20%', displayName : 'Page 3',enableCellEdit : false,               headerCellClass: 'white',},
-    {  field : 'retailerid',            width : '10%', displayName : 'Retailer ID',enableCellEdit : false,type: 'number', headerCellClass: 'white',         },
-    {  field : 'getStartDateReadable()',width : '20%', displayName : 'Start Date' ,type:"date",   enableCellEdit  : false, headerCellClass: 'white', },
-    {  field : 'approved',              width : '10%', displayName : 'Approved?', type: 'boolean',headerCellClass: 'white',cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
-
+    {  field : 'approved',              width : '10%', displayName : 'Approved?', type: 'boolean',headerCellClass: 'white',
+      cellTemplate: '<input type="checkbox" ng-model="row.entity.approved">'}
   ],
   // sets default values for addRow popup
   "addRowContent" : {
@@ -462,7 +463,7 @@ myApp.value('Globals', {
       {  field : 'shoppingCentreid',   type: 'number',width : '4.5%', displayName : 'Shopping Centre ID',         enableCellEdit : true, headerCellClass: 'white',  },
       {  field : 'storeDefaultContentPage1',          width : '9%',   displayName : 'Store Default Content Page1',enableCellEdit : true, headerCellClass: 'white',  },
       {  field : 'zoneid',             type: 'number',width : '4.5%', displayName : 'Zone ID',                    enableCellEdit : true, headerCellClass: 'white',
-      editDropDownOptionsArray: 'vm.zones'  },
+      editDropDownOptionsArray: 'vm.zones' ,editableCellTemplate: '/ShopTrawlerWebApp/app/Views/uiSelect.html', },
     ],
 
 

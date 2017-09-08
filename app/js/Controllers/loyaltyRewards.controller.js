@@ -4,40 +4,36 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
   function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig, Flash) {
     let vm = this;
 
-    $rootScope.type = "LR";
-    $scope.uploader = new FileUploader();
-    vm.chartTitle = "Loyalty Rewards";
-    $scope.sDate = new Date();
-    $scope.eDate = new Date();
+    $rootScope.type = "LR"; // used in AWS selection of bucket
+    $scope.uploader = new FileUploader(); // file uploader in grids
+    vm.chartTitle = "Loyalty Rewards"; // header for UI Grid chart
 
     $scope.rewardImage  = "";
 
+    $scope.sDate = new Date();
+    $scope.eDate = new Date();
     $scope.myDate = new Date();
-
     $scope.minDate = new Date(
       $scope.myDate.getFullYear(),
       $scope.myDate.getMonth() - 2,
       $scope.myDate.getDate());
-
     $scope.maxDate = new Date(
       $scope.myDate.getFullYear(),
       $scope.myDate.getMonth() + 2,
       $scope.myDate.getDate());
 
-    $scope.onlyWeekendsPredicate = function(date) {
-      let day = date.getDay();
-      return day === 0 || day === 6;
-    };
 
     $rootScope.currentUser.type = "";
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = false;  //  view is affected
       $scope.allowEditRow = false; // action below
       $rootScope.currentUser.type = "Administrator";
+      ListLoyaltyRewards();
     } else {
       $scope.allowAddRow = true;   //  view is affected
       $scope.allowEditRow = false; // action below
       $rootScope.currentUser.type = "Retailer";
+      ListLoyaltyRewardsByRetailer($rootScope.currentUser.retailerid);
     }
 
     $scope.vm = vm;
@@ -54,10 +50,10 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
 
     vm.serviceGrid = Common.setupUiGrid(colDefs, $scope.allowEditRow );
 
-    if ($rootScope.currentUser.type === "Administrator")
-      ListLoyaltyRewards();
-    else
-      ListLoyaltyRewardsByRetailer($rootScope.currentUser.retailerid);
+    // if ($rootScope.currentUser.type === "Administrator")
+    //
+    // else
+
 
     function ListLoyaltyRewards() {
       vm.dataLoading = true;
@@ -139,20 +135,23 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       if (resp !== true) { // fails basic date check
         Flash.create("danger", "Loyalty Reward not updated : -> " + resp, 4000);
       } else { // basic date check ok
+
         DataFactory.loyaltyRewardCheckDates(loyaltyReward) // check Dates valid on system
           .then( function(response) {
             // ok no content record found between these start and end dates
             if (response.data.success === 1) {
+
               DataFactory.addLoyaltyReward(loyaltyReward) // ok, now lets save the Loyalty Reward
                 .then(function (response) {
-
                     Flash.create("success", "Loyalty Reward validated and added successfully", 2000);
                     vm.serviceGrid.data = buildNewLoyaltyRewards(response.data);
                   },
+
                   function (response) { // could not save
                     Flash.create("danger", "Loyalty Reward not created : " + response.data.message, 4000);
                   });
             } else {
+
               earliestStartDate = response.data.earliestStartDate;
               let message = "Loyalty Reward Record could not be saved : " + response.data.message + "start date set to earliest possible start date."
               Flash.create('danger',message, 8000);
