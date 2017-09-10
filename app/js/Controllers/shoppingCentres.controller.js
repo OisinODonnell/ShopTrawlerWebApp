@@ -54,7 +54,7 @@ myApp.controller('ShoppingCentresController', ['DataFactory','$scope','Common','
       } else {
 
         AwsFactory.setupAWSconfig($rootScope.type);
-        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file, grid.entity.shoppingCentreid);
+        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file, grid.entity.shoppingCentreid, grid.entity.shoppingCentreName);
         AwsFactory.sendFile();
 
         Common.updateGrid(grid, row);

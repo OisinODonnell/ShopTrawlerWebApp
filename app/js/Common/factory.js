@@ -89,6 +89,7 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
   factory.listRetailers                 = ()              => $http.get(urlBase + '/Retailers'                     );
   factory.getRetailerBy                 = (id)            => $http.get(urlBase + '/Retailer/' + id                );
   factory.addRetailer                   = (retailer)      => $http.post(urlBase + '/Retailer/create' , retailer   );
+  factory.addDefaultRetailer            = ()              => $http.post(urlBase + '/Retailer/create/default'      );
   factory.deleteRetailer                = (id)            => $http.delete(urlBase + '/Retailer/delete/' + id      );
   factory.updateRetailer                = (retailer)      => $http.put(urlBase + '/Retailer/update' , retailer    );
   factory.updateRetailerByRetailer      = (retailer)      => $http.put(urlBase + '/Retailer/Retailer/update' , retailer    );

@@ -6,7 +6,7 @@
 class ShoppingCentre {
 
   constructor (shoppingCentreid, adminid, contentPage, phone, facebookUrl, twitterUrl, websiteUrl,
-               logoImageSmall, logoImageMedium, logoImageLarge)
+               logoImageSmall, logoImageMedium, logoImageLarge, shoppingCentreName)
   {
     this.shoppingCentreid	= this.setShoppingCentreid  (shoppingCentreid);
     this.adminid	        = this.setAdminid           (adminid);
@@ -18,6 +18,7 @@ class ShoppingCentre {
     this.logoImageSmall	  = this.setLogoImageSmall    (logoImageSmall);
     this.logoImageMedium	= this.setLogoImageMedium   (logoImageMedium);
     this.logoImageLarge	  = this.setLogoImageLarge    (logoImageLarge);
+    this.shoppingCentreName = this.setShoppingCentreName (shoppingCentreName);
     this.usersByAdminid   = this.setUsersByAdminid    ({});
     this.locationsByShoppingCentreid	      = this.setLocationsByShoppingCentreid   ([]);
     this.retailersByShoppingCentreid	      = this.setRetailersByShoppingCentreid   ([]);
@@ -45,7 +46,11 @@ class ShoppingCentre {
   getLogoImageMedium      ()  { return this.logoImageMedium;        }
   setLogoImageMedium      (x) { this.logoImageMedium  = x ? x : ""; }
   getLogoImageLarge       ()  { return this.logoImageLarge;         }
-  setLogoImageLarge       (x) { this.logoImageLarge   = x ? x : ""; }
+  setLogoImageLarge       (x)  { this.logoImageLarge   = x ? x : ""; }
+  getShoppingCentreName   ()  { return this.shoppingCentreName;     }
+  setShoppingCentreName   (x) { this.shoppingCentreName= x ? x : "";}
+
+
 
   getUsersByAdminid       ()  { return this.usersByAdminid;         }
   setUsersByAdminid       (x) { this.usersByAdminid   = x ? x : []; }

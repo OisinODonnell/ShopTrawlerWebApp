@@ -42,7 +42,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       } else {
 
         AwsFactory.setupAWSconfig($rootScope.type);
-        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file, grid.entity.contentid);
+        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file, grid.entity.contentid, grid.entity.storename);
         AwsFactory.sendFile();
 
         Common.updateGrid(grid, row);
@@ -106,14 +106,18 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
      */
     function ListContents() {
       vm.dataLoading = true;
-
+      let contents = [];
+      let content = new Content();
       DataFactory.listContent()
         .then( function(response) {
+            // contents = Common.createObjects(response.data, content);
+
             vm.serviceGrid.data = buildNewContents(response.data);
             $scope.gridStyle = Common.gridStyle($scope.content.length);
+
             },
             function (error) {
-            $scope.status = 'Unable to load Contents ' + error.message;
+              $scope.status = 'Unable to load Contents ' + error.message;
           });
       vm.dataLoading = false;
     }
@@ -131,7 +135,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
         .then( function(response) {
             // Flash.create('success','Content added Successfully', 2000);
             vm.serviceGrid.data = buildNewContents(response.data);
-          $scope.gridStyle = Common.gridStyle($scope.contents.length);
+            $scope.gridStyle = Common.gridStyle($scope.contents.length);
 
           },
           function (error) {

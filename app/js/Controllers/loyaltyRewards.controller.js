@@ -95,7 +95,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       } else {
 
         AwsFactory.setupAWSconfig($rootScope.type);
-        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file,grid.entity.loyaltyRewardid);
+        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file,grid.entity.loyaltyRewardid, grid.entity.storeName);
         AwsFactory.sendFile();
 
         Common.updateGrid(grid, row);

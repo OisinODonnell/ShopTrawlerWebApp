@@ -623,6 +623,7 @@ myApp.value('Globals', {
     {  field : 'logoImageMedium',  width : '25%',  displayName : 'Logo Image Medium', enableCellEdit : true,  headerCellClass: 'white',
       cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserLILarge.html",
     },
+    {  field : 'shoppingCentreName',     width : '12%', displayName : 'Shopping Centre Name',        enableCellEdit : true, headerCellClass: 'white', },
     ],
   "addRowShoppingCentre" : {
     "shoppingCentreid"  : "",
@@ -634,7 +635,8 @@ myApp.value('Globals', {
     "websiteUrl"        : "",
     "logoImageSmall"    : "",
     "logoImageMedium"   : "",
-    "logoImageLarge"    : ""
+    "logoImageLarge"    : "",
+    "shoppingCentreName" : "",
   },
   "UserRetailerColumnDefs" : [{
     field : 'userid',           displayName    : 'User ID',headerCellClass: 'white',

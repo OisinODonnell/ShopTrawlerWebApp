@@ -46,7 +46,7 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       } else {
 
         AwsFactory.setupAWSconfig($rootScope.type);
-        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file, grid.entity.shoppingCentreid);
+        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file, grid.entity.retailerid, grid.entity.storeName);
         AwsFactory.sendFile();
 
         Common.updateGrid(grid, row);
@@ -163,6 +163,31 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       vm.serviceGrid.data.push(retailer);
      };
 
+
+    $scope.addRow = function (row) {
+      // add row to grid with default values
+      console.log("adding LR");
+      let retailer = new Retailer();
+      retailer = Globals.NewRetailer;
+      DataFactory.addDefaultRetailer($rootScope.currentUser.retailerid)
+        .then( function(response){
+            Flash.create("success", "Retailer Added successfully", 2000);
+            vm.serviceGrid.data = buildNewRetailers(response.data);
+            // retailer.retailedid = $rootScope.currentUser.retailerid;
+            // retailer.storeName = Common.findStoreName($rootScope.currentUser.retailerid);
+            // vm.serviceGrid.data.push(retailer);
+          },
+          function (message) {
+            Flash.create("danger", "Default Retailer not added : " + response.data.message);
+          });
+    };
+
+
+
+
+
+
+
     // if id > 0 delete row from grid, else delete from grid and db.
     $scope.deleteRow = function(row) {
       if (row.entity.retailerid !== 0) { // edits made to existing row
@@ -193,11 +218,9 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       // let userid = $rootScope.currentUser.userid;
       // let retailerid = Common.getRetailerid(userid);
       retailer = createNewRET(row.entity, 0);
-
       let index = vm.serviceGrid.data.indexOf(row.entity);
 
       if ($rootScope.isAdmin) {
-
         DataFactory.updateRetailer(retailer) // ok, now lets save the Retailer
           .then(function (response) {
               Flash.create("success", "Retailer saved successfully", 2000);
@@ -227,9 +250,9 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
 
       retailers = Common.createObjects(data, retailer);
       // retailers.forEach(function (retailer, key) {
-        // retailer = Common.setDatesAndIDs(retailer);
-        // retailer.filename1="";
-        // retailers[key] = retailer;
+      //   retailer = Common.setDatesAndIDs(retailer);
+      //   retailer.zoneid = retailer.retailerid;
+      //   retailers[key] = retailer;
       // });
       $scope.retailers = retailers;
       return $scope.retailers;

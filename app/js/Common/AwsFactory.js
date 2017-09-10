@@ -4,7 +4,7 @@ myApp.factory('AwsFactory',[ '$rootScope','Globals','moment','AWSconfig','Flash'
 
   let factory = {};
 
-  factory.setupAWSFileParams = (type, grid, row, file, id) => {
+  factory.setupAWSFileParams = (type, grid, row, file, id, storename) => {
     // gather the bits to create a unique filename;
     // type = C
     // contentid = number
@@ -16,7 +16,9 @@ myApp.factory('AwsFactory',[ '$rootScope','Globals','moment','AWSconfig','Flash'
     let filesize = file.size;
     // let id = grid.entity.contentid;
     let page = row.field;
-    let uniqueName = type + id + "-" + page + "-" + filename;
+    // eg C15-Page1-Nandos-promo.jpg
+    let uniqueName = type + id + "-" + page + "-" + storename + "-" + filename;
+
     $rootScope.file = file;
 
     // set params for aws call
