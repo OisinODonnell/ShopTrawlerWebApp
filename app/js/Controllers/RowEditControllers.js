@@ -6,7 +6,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function ($http, $rootScope, $uibModal) {
 
   let vm = this;
-
+  let urlBase = "http://localhost:8080"
   vm.controllerArray = [ '$http', '$uibModalInstance', 'grid', 'row','Flash', RowEditCtrl ];
 
   $rootScope.row = {};
@@ -195,6 +195,19 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
       $rootScope.row = row;
     }
   function editRowRetailer(grid, row) {
+
+    // $http.get(urlBase + '/Users/NotManagers')
+    //   .then(function(resp2){
+    //     let users = resp2.data;
+    //     // now update the grid before we go back.
+    //     grid.rows.forEach(function(user,key){
+    //       user.entity.managers = users;
+    //       grid.rows[key] = user;
+    //     });
+    //
+    //   });
+
+
     $rootScope.addingRow = false;
     $uibModal.open({
       templateUrl : 'Views/Edit-Retailers-Service.html',
@@ -729,10 +742,30 @@ RowEditCtrl.$inject = ['$http', '$uibModalInstance','grid','row','Flash'];
 
       row.entity = angular.extend(vm.entity, row.entity);
 
+      // select / ngoptions returns a user opbject,
+      if (angular.isObject(row.entity.managerid)) {
+        row.entity.managerid = row.entity.managerid.userid;
+      }
+
+
       $http.put(urlBase + '/Retailer/update/' , row.entity , vm.headers )
         .then(function(response) {
+            let retailers = response.data;
             Flash.create('success', "Retailer Updated : " + response.message, 4000);
             $uibModalInstance.close(row.entity);
+            // $http.get(urlBase + '/Users/NotManagers')
+            //   .then(function(resp2){
+            //     let users = resp2.data;
+            //     // now update the grid before we go back.
+            //     grid.rows.forEach(function(row,key){
+            //       row.entity.managers = users;
+            //       grid.rows[key] = row;
+            //     });
+            //     grid.refresh();
+            //
+            //   })
+
+
           },
           function(response) {
             Flash.create('danger', "Retailer could Not be Updated : " + response.message, 4000);

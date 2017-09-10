@@ -21,10 +21,16 @@
       <div class="form-group">  <label class="control-label col-sm-4">Phone </label>                      <input class="input col-sm-5"  type="text" ng-model="row.entity.phone"/>                  </div>
       <div class="form-group">  <label class="control-label col-sm-4">Store Name </label>                 <input class="input col-sm-5"  type="text" ng-model="row.entity.storeName"/>              </div>
       <div class="form-group">  <label class="control-label col-sm-4">Header Background Image </label>    <input class="input col-sm-5"  type="text" ng-model="row.entity.headerBackgroundImage"/> </div>
-      <div class="form-group">  <label class="control-label col-sm-4">Manager ID </label>                 <input class="input col-sm-5"  type="text" disabled value="{{row.entity.managerid}}"/>   </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-4">Manager ID</label>
+        <select class="input col-sm-5" ng-selected="$last" ng-model="row.entity.managerid" ng-options="x.fullname for x in row.entity.managers " value="{{x.userid}}" title="Manager ID">{{$last}}</select>
+      </div>
+
+      <!--<div class="form-group">  <label class="control-label col-sm-4">Manager ID </label>                 <input class="input col-sm-5"  type="text" disabled value="{{row.entity.managerid}}"/>   </div>-->
       <div class="form-group">  <label class="control-label col-sm-4">Shopping Centre ID </label>         <input class="input col-sm-5"  type="text" disabled value="{{row.entity.shoppingCentreid}}"/> </div>
       <!--<div class="form-group">  <label class="control-label col-sm-4">Store Default Content Page 1</label><input class="input col-sm-5"  type="text" ng-model="row.entity.storeDefaultContentPage1"/>   </div>-->
-      <div class="form-group">  <label class="control-label col-sm-4">Zone ID </label>                    <input class="input col-sm-5"  type="text" disabled value="{{row.entity.zoneid}}"/>      </div>
+      <!--<div class="form-group">  <label class="control-label col-sm-4">Zone ID </label>                    <input class="input col-sm-5"  type="text" disabled value="{{row.entity.zoneid}}"/>      </div>-->
 
     </form>
 

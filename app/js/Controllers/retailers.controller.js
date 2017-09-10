@@ -1,37 +1,90 @@
 myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootScope',
-  '$uibModal','RowEditor', 'uiGridConstants','Globals','Flash',
-  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals, Flash) {
+  '$uibModal','RowEditor', 'uiGridConstants','Globals','Flash','FileUploader','AwsFactory','toast',
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals, Flash,FileUploader, AwsFactory, toast) {
     let vm = this;
     $scope.vm = vm;
     $rootScope.type = "RET";
+
+    $scope.uploader = new FileUploader();
+    vm.upload = $scope.upload;
+
+    let colDefs = {};
+
     if ($rootScope.isAdmin) {
       $scope.allowAddRow = true; //  view is affected
-      $scope.allowEditRow = true; // action below
+      $scope.allowEditRow = false; // action below
+      ListRetailers();
+      colDefs = Globals.RetailerColumnDefs2;
+      vm.chartTitle = "Retailers";
     } else {
       $scope.allowAddRow = false; //  view is affected
-      $scope.allowEditRow = true; // action below
+      $scope.allowEditRow = false; // action below
+      getRetailerBy($rootScope.currentUser.retailerid);
+      colDefs = Globals.RetailerColumnDefs3;
+      vm.chartTitle = "Store Details";
     }
+
+    $scope.uploadFile = function(grid, row) {
+
+      let files = this.editFileChooserCallback.arguments[2];
+      $rootScope.file = files[0];
+
+      let entry = "";
+      // AwsFactory.setupAWSconfig($rootScope.type);
+      // AwsFactory.setupAWSFileParams($rootScope.type, grid, row, this);
+      // Common.updateGrid(grid, row);
+
+      if (! Common.checkFileSize($rootScope.file)) {
+        toast({
+          duration  : 2000,
+          message   : "File is too big! must be less than : 10MB" ,
+          className : "alert-warning"
+        });
+        Flash.create("danger", "File is too big [ " + Common.fileSizeLabel() + " ] ... please reduce size and try again Limit is 10 MBytes", 4000)
+
+        return false;
+      } else {
+
+        AwsFactory.setupAWSconfig($rootScope.type);
+        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file, grid.entity.shoppingCentreid);
+        AwsFactory.sendFile();
+
+        Common.updateGrid(grid, row);
+        toast({
+          duration  : 2000,
+          message   : "File [ " + $rootScope.entry + " ] uploaded to Amazon Web Services Successfully!  ",
+          className : "alert-success"
+        });
+      }
+    };
+
+    // default content
+    colDefs[2].editFileChooserCallback  = $scope.uploadFile;
+    colDefs[3].editFileChooserCallback  = $scope.uploadFile;
+    colDefs[4].editFileChooserCallback  = $scope.uploadFile;
+    // default loyalty reward
+    colDefs[5].editFileChooserCallback  = $scope.uploadFile;
+    // logos
+    colDefs[9].editFileChooserCallback  = $scope.uploadFile;
+    colDefs[10].editFileChooserCallback = $scope.uploadFile;
+    colDefs[11].editFileChooserCallback = $scope.uploadFile;
+    // header image
+    colDefs[14].editFileChooserCallback = $scope.uploadFile;
+
 
     // setup grid
+    vm.serviceGrid = Common.setupUiGrid(colDefs, $scope.allowEditRow )
     vm.editRow = RowEditor.editRowRetailer;
-    vm.serviceGrid = Common.setupUiGrid(Globals.RetailerColumnDefs, $scope.allowEditRow )
-    vm.chartTitle = "Retailers";
-    ListRetailers();
+    vm.upload = $scope.upload;
+    vm.uploadFile = $scope.uploadFile;
 
-    function updateGridOptions(collection, defaults) {
-      // set of css options changing only in height for each row of collection
-      let shopTrawlers =
-        [ "",   "shopTrawler1",  "shopTrawler2",  "shopTrawler3",  "shopTrawler4",  "shopTrawler5",
-                "shopTrawler6",  "shopTrawler7",  "shopTrawler8",  "shopTrawler9",  "shopTrawler" ];
-
-      if ( collection.length <= 10 ) {
-        $scope.gridStyle = shopTrawlers[collection.length];
-        defaults.enablePagination = false;
-        defaults.enableExpandAll = true;
-
-      }
-      return defaults;
-    }
+    /**
+     * The method makes 3 calls to REST
+     * Retrieving Retailers / Zones and users not yet managers
+     *
+     * These users form a drop down list where the administartor can select
+     * from one of these as the Manager for the store
+     */
 
     function ListRetailers() {
       vm.dataLoading = true;
@@ -51,12 +104,22 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
                 vm.zones = zones;
 
                 let user = new User();
-                let users = [];
+                let usersNotManagers = [];
                 DataFactory.listUsersNotManagers() // get list of users not managers yet
                   .then( function(response){
-                      users = Common.createObjects(response.data, user);
-                      vm.usersNotManagers = users;
+                      usersNotManagers = Common.createObjects(response.data, user);
+                      usersNotManagers.forEach(function (user, key) {
+                        user.fullname = user.firstname + " " + user.surname;
+                        usersNotManagers[key] = user;
+                      });
+                      $scope.usersNotManagers = usersNotManagers;
+                      vm.usersNotManagers = usersNotManagers;
                       vm.serviceGrid.data = $scope.retailers;
+                      // update each retailer with list of possible managers for use in grid
+                      $scope.retailers.forEach(function (retailer, key) {
+                        retailer.managers = vm.usersNotManagers;
+                        $scope.retailers[key] = retailer;
+                      });
 
                     },
                     function(error) { $scope.status = "Unable to load Users " + error.message; }
@@ -70,39 +133,24 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       vm.dataLoading = false;
     }
 
-    // function GetRetailer(id) {
-    //   vm.dataLoading = true;
-    //   let retailer = new Retailer();
-    //   DataFactory.getRetailer(id)
-    //     .then( function(response) {
-    //         $scope.retailers = Common.createObjects(response.data, retailer);
-    //         vm.serviceGrid.data = $scope.retailers;
-    //       },
-    //       function (error) { $scope.status = 'Unable to load Retailer ' + error.message; });
-    //   vm.dataLoading = false;
-    // }
-    //
-    // function EditRetailer(id) {
-    //   vm.dataLoading = true;
-    //   let retailer = new Retailer();
-    //   DataFactory.editRetailers(id)
-    //     .then( function(response) {
-    //         $scope.retailer = Common.createObjects(response.data, retailer);
-    //       },
-    //       function (error) { $scope.status = 'Unable to load Retailer ' + error.message; });
-    //   vm.dataLoading = false;
-    // }
-    //
-    // function UpdateRetailer(changedRetailer) {
-    //   vm.dataLoading = true;
-    //   let retailer = new Retailer();
-    //   DataFactory.updateRetailer(changedRetailer)
-    //     .then( function(response) {
-    //         $scope.retailer = Common.createObjects(response.data, retailer);
-    //       },
-    //       function (error) { $scope.status = 'Unable to load Retailer ' + error.message; });
-    //   vm.dataLoading = false;
-    // }
+    function getRetailerBy(id) {
+      vm.dataLoading = true;
+      let retailers;
+      let retailer = new Retailer();
+      DataFactory.getRetailerBy(id) // get list of retailers to display in grid
+        .then( function(response) {
+            retailers = Common.createObjects(response.data, retailer);
+            // vm.serviceGrid = updateGridOptions(retailers, vm.serviceGrid);
+            $scope.retailers = retailers;
+            vm.serviceGrid.data = $scope.retailers;
+
+            let zones = [];
+            let zone = new Zone();
+          },
+          function (error) { $scope.status = 'Unable to load Retailers ' + error.message; }
+        );
+      vm.dataLoading = false;
+    }
 
     $scope.addRow = function (row) {
       // $rootScope.addingRow = true;
@@ -148,15 +196,26 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
 
       let index = vm.serviceGrid.data.indexOf(row.entity);
 
-      DataFactory.addRetailer(retailer) // ok, now lets save the Retailer
-      .then(function (response) {
-          Flash.create("success", "Retailer added successfully", 2000);
-          vm.serviceGrid.data = buildNewRetailers(response.data);
-        },
-        function (response) { // could not save
-          Flash.create("danger", "Retailer not created : " + response.data.message, 4000);
-        });
+      if ($rootScope.isAdmin) {
 
+        DataFactory.updateRetailer(retailer) // ok, now lets save the Retailer
+          .then(function (response) {
+              Flash.create("success", "Retailer saved successfully", 2000);
+              vm.serviceGrid.data = buildNewRetailers(response.data);
+            },
+            function (response) { // could not save
+              Flash.create("danger", "Retailer changes were not saved : " + response.data.message, 4000);
+            });
+      } else {
+        DataFactory.updateRetailerByRetailer(retailer) // ok, now lets save the Retailer
+          .then(function (response) {
+              Flash.create("success", "Store Details saved successfully", 2000);
+              vm.serviceGrid.data = buildNewRetailers(response.data);
+            },
+            function (response) { // could not save
+              Flash.create("danger", "Store Details were not saved : " + response.data.message, 4000);
+            });
+      }
       console.log("save Row RET");
     };
 

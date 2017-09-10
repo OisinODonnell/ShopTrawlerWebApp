@@ -1,7 +1,7 @@
-myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$rootScope',
-  '$uibModal','RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig','Flash',
+myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$rootScope', '$uibModal',
+ 'RowEditor', 'uiGridConstants','Globals','FileUploader','AWSconfig','Flash','AwsFactory','toast',
 
-  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig, Flash) {
+  function ( DataFactory,$scope,Common,$rootScope, $uibModal, RowEditor, uiGridConstants, Globals, FileUploader, AWSconfig, Flash, AwsFactory, toast) {
     let vm = this;
 
     $rootScope.type = "LR"; // used in AWS selection of bucket
@@ -46,14 +46,11 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
     vm.saveRowLoyaltyReward   = RowEditor.saveRowLoyaltyReward;
 
     let colDefs = Globals.LoyaltyRewardColumnDefs2;
-    colDefs[1].editFileChooserCallback = $scope.uploadFile;
+    colDefs[2].editFileChooserCallback = $scope.uploadFile;
 
     vm.serviceGrid = Common.setupUiGrid(colDefs, $scope.allowEditRow );
-
-    // if ($rootScope.currentUser.type === "Administrator")
-    //
-    // else
-
+    vm.upload = $scope.upload;
+    vm.uploadFile = $scope.uploadFile;
 
     function ListLoyaltyRewards() {
       vm.dataLoading = true;
@@ -74,6 +71,43 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
         function (error) { $scope.status = 'Unable to load LoyaltyRewards ' + error.message; });
       vm.dataLoading = false;
     }
+
+    $scope.uploadFile = function(grid, row) {
+
+      let files = this.editFileChooserCallback.arguments[2];
+      $rootScope.file = files[0];
+
+
+      let entry = "";
+      // AwsFactory.setupAWSconfig($rootScope.type);
+      // AwsFactory.setupAWSFileParams($rootScope.type, grid, row, this);
+      // Common.updateGrid(grid, row);
+
+      if (! Common.checkFileSize($rootScope.file)) {
+        toast({
+          duration  : 2000,
+          message   : "File is too big! must be less than : 10MB" ,
+          className : "alert-warning"
+        });
+        Flash.create("danger", "File is too big [ " + Common.fileSizeLabel() + " ] ... please reduce size and try again Limit is 10 MBytes", 4000)
+
+        return false;
+      } else {
+
+        AwsFactory.setupAWSconfig($rootScope.type);
+        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file,grid.entity.loyaltyRewardid);
+        AwsFactory.sendFile();
+
+        Common.updateGrid(grid, row);
+        toast({
+          duration  : 2000,
+          message   : "File [ " + $rootScope.entry + " ] uploaded to Amazon Web Services Successfully!  ",
+          className : "alert-success"
+        });
+      }
+    };
+
+    colDefs[2].editFileChooserCallback = $scope.uploadFile;
 
     function ListLoyaltyRewardsByRetailer(id) {
       vm.dataLoading = true;
@@ -136,7 +170,7 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
         Flash.create("danger", "Loyalty Reward not updated : -> " + resp, 4000);
       } else { // basic date check ok
 
-        DataFactory.loyaltyRewardCheckDates(loyaltyReward) // check Dates valid on system
+        DataFactory.loyaltyRewardCheckDates(loyaltyReward) // check Dates valid on REST
           .then( function(response) {
             // ok no content record found between these start and end dates
             if (response.data.success === 1) {
@@ -157,7 +191,6 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
               Flash.create('danger',message, 8000);
               let index = vm.serviceGrid.data.indexOf(row.entity);
               vm.serviceGrid.data[index].startDate = earliestStartDate;
-
 
             }
           },
@@ -208,18 +241,23 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       console.log("delete Row LR");
     };
 
-    // add new row ro grid ... and init values to defaults
+
     $scope.addRow = function (row) {
       // add row to grid with default values
       console.log("adding LR");
       let loyaltyReward = new LoyaltyReward();
       loyaltyReward = Globals.NewLoyaltyReward;
-
-      // get the retailers storename
-
-      loyaltyReward.storeName = Common.findStoreName($rootScope.currentUser.retailerid);
-      vm.serviceGrid.data.push(loyaltyReward);
+      DataFactory.addDefaultLoyaltyReward($rootScope.currentUser.retailerid)
+        .then( function(response){
+            Flash.create("success", "LoyaltyReward Added successfully", 2000);
+            vm.serviceGrid.data = buildNewLoyaltyRewards(response.data);
+            // loyaltyReward.retailedid = $rootScope.currentUser.retailerid;
+            // loyaltyReward.storeName = Common.findStoreName($rootScope.currentUser.retailerid);
+            // vm.serviceGrid.data.push(loyaltyReward);
+          },
+          function (message) {
+            Flash.create("danger", "Default LoyaltyReward not added : " + response.data.message);
+          });
     };
-
 
   }]);

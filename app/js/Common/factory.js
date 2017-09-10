@@ -41,6 +41,7 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
   factory.listContentByRetailer         = (id)            => $http.get(urlBase + '/Content/Retailer/' + id        );
   factory.getContent                    = (id)            => $http.get(urlBase + '/Content/' + id                 );
   factory.addContent                    = (content)       => $http.post(urlBase + '/Content/create' , content     );
+  factory.addDefaultContent             = (id)            => $http.get(urlBase + '/Content/create/default/' + id );
   factory.deleteContent                 = (id)            => $http.delete(urlBase + '/Content/delete/' + id       );
   factory.updateContent                 = (content)       => $http.put(urlBase + '/Content/update' , content      );
   factory.contentCheckDates             = (content)       => $http.put(urlBase + '/Content/CheckDates', content   );
@@ -67,6 +68,8 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
   factory.listLoyaltyRewardsByRetailer  = (id)            => $http.get(urlBase + '/LoyaltyRewards/Retailer/' + id );
   factory.getLoyaltyReward              = (id)            => $http.get(urlBase + '/LoyaltyReward/' + id           );
   factory.addLoyaltyReward              = (loyaltyReward) => $http.post(urlBase + '/LoyaltyReward/create' , loyaltyReward );
+  factory.addDefaultLoyaltyReward       = (id)            => $http.get(urlBase + '/LoyaltyReward/create/default/' + id );
+
   factory.deleteLoyaltyReward           = (id)            => $http.delete(urlBase + '/LoyaltyReward/delete/' + id );
   factory.updateLoyaltyReward           = (loyaltyReward) => $http.put(urlBase + '/LoyaltyReward/update' , loyaltyReward );
   factory.loyaltyRewardCheckDates       = (loyaltyReward) => $http.put(urlBase + '/LoyaltyReward/CheckDates', loyaltyReward );
@@ -84,10 +87,11 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
 
   // Retailers
   factory.listRetailers                 = ()              => $http.get(urlBase + '/Retailers'                     );
-  factory.getRetailer                   = (id)            => $http.get(urlBase + '/Retailer/' + id                );
+  factory.getRetailerBy                 = (id)            => $http.get(urlBase + '/Retailer/' + id                );
   factory.addRetailer                   = (retailer)      => $http.post(urlBase + '/Retailer/create' , retailer   );
   factory.deleteRetailer                = (id)            => $http.delete(urlBase + '/Retailer/delete/' + id      );
   factory.updateRetailer                = (retailer)      => $http.put(urlBase + '/Retailer/update' , retailer    );
+  factory.updateRetailerByRetailer      = (retailer)      => $http.put(urlBase + '/Retailer/Retailer/update' , retailer    );
 
 
   // ShoppingCentre

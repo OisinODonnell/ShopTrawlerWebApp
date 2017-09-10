@@ -44,38 +44,9 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     return objects;
   };
 
-  /**=======================================================================================
-   * Add 'ies' to any word passed ending in y
-   * add 's' to any other word
-   */
-  lib.plural = (word) => {
-    let len = word.length;
-    if (word[ len - 1 ] === 'y') {
-      let pre = word.slice(0, len - 1);
-      word    = pre + "ies";
-    } else
-      word += "s";
-
-    return word;
-  };
-
-  /**=======================================================================================
-   * Take a word and return the same word with the first word in lower case.
-   * ie Accounts -> accounts
-   */
-
-  lib.lowerCaseFirstLetter = (str) => {
-    // get classname as a string
-    // pluck out the first character
-    //return a lower case version of the classname
-    //let text     = str.constructor.name;
-    let char = str[ 0 ].toLowerCase();
-    return char + str.slice(1);
-  };
-
   lib.setUserAuthenticated = (value) => $rootScope.userIsAuthenticated = value;
 
-  lib.getUserAuthenticated = () => $rootScope.userIsAuthenticated;
+  lib.getUserAuthenticated = ()      => $rootScope.userIsAuthenticated;
 
   /**=======================================================================================
    * Get average rating for stock item
@@ -88,7 +59,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
    *   return rating rounded to one decimal,
    *   ie 3.664 => 3.7
    */
-  lib.updateRatings = ($scope) => {
+  lib.updateRatings   = ($scope) => {
     "use strict";
 
     for (let i = 0; i < $scope.stockItems.length; i++) {
@@ -106,22 +77,21 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     }
 };
 
-
   /**=======================================================================================
    * These methods change the state of the attributes which control the navbar
    */
 
-  lib.selectTab   = setTab   => $rootScope.tab = setTab;
-  lib.isSelected  = checkTab => $rootScope.tab === checkTab;
+  lib.selectTab       = setTab   => $rootScope.tab = setTab;
+  lib.isSelected      = checkTab => $rootScope.tab === checkTab;
 
   // lib.isAdmin     = ()       => $rootScope.admin;
   // lib.isRetailer  = ()       => !$rootScope.admin;
-  lib.isLoggedIn  = ()       => $rootScope.loggedIn;
-  lib.setLoggedIn = state    => $rootScope.loggedIn = state;
-  lib.setAdmin    = state    => $rootScope.isAdmin    = state;
-  lib.setRetailer = state    => $rootScope.isRetailer     = state;
+  lib.isLoggedIn      = ()       => $rootScope.loggedIn;
+  lib.setLoggedIn     = state    => $rootScope.loggedIn = state;
+  lib.setAdmin        = state    => $rootScope.isAdmin    = state;
+  lib.setRetailer     = state    => $rootScope.isRetailer     = state;
 
-  lib.reloadJs = (src) =>  {
+  lib.reloadJs        = (src)    =>  {
     src = $('script[src$="' + src + '"]').attr("src");
     $('script[src$="' + src + '"]').remove();
     $('<script/>').attr('src', src).appendTo('body');
@@ -132,7 +102,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
    * @param date
    * @returns {string}
    */
-  lib.getReadableDate = (date) => {
+  lib.getReadableDate = (date)   => {
     let newDate = "";
     let parts = date.split(" ");
     let dateBits = parts[0].split("-");
@@ -161,7 +131,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
    * @param id (userid)
    * @returns {String} or ""
    */
-  lib.findUsersName = (id) => {
+  lib.findUsersName   = (id)     => {
     if (id == undefined) return "";
 
     let user = new User();
@@ -179,7 +149,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
    * @param id (retailerid)
    * @returns {storeName} or ""
    */
-  lib.findStoreName = (id) => {
+  lib.findStoreName   = (id)     => {
     if (id == undefined) return "";
 
     let retailer = new Retailer();
@@ -203,7 +173,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
    * @param pixels ... pixels per row ~(usually 30)
    * @returns (String)  Style to be applied
    */
-  lib.gridStyle = (rows) => {
+  lib.gridStyle       = (rows)   => {
     let extraRows = Globals.extraRows;
     let pixels = Globals.rowHeightPixels;
     let size = 420; // default size of grid when rows >= 10
@@ -212,7 +182,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     return style;
   };
   // attempt to change value of 'Edit Row' to 'Add Row' ... missing something to complete this.
-  lib.changeToAddRow = () =>{
+  lib.changeToAddRow  = ()       =>{
     let doc = $(this);
     let x = doc.getElementsByClassName("modal-title");  // Find the element
     x.innerHTML="Add Row";
@@ -221,7 +191,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
   };
 
   // setup the UI Grid passing in the entity column defs and whether the user is admin or a retailer
-  lib.setupUiGrid = (EntityColumnDefs, authorised) => {
+  lib.setupUiGrid     = (EntityColumnDefs, authorised) => {
 
     let serviceGrid = Globals.GridDefaults;
     serviceGrid.columnDefs = EntityColumnDefs;
@@ -248,7 +218,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
    * @param ctx ... where our convas object is
    * @returns {Chart} the data to be displayed
    */
-  lib.buildChart = (visitCharts, chartConfig ) => {
+  lib.buildChart      = (visitCharts, chartConfig ) => {
     let bgColours = Globals.BackgroundChartColours;
     let borderColours = Globals.BorderChartColours;
     let config = {};
@@ -350,14 +320,14 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
 
   };
 
-  lib.destroy = (charts, canvasid, config, ctx) => {
+  lib.destroy        = (charts, canvasid, config, ctx) => {
     charts[canvasid].destroy();
     $('#' + canvisid).remove();
     $(this).append('<canvas id="' + canvasid + '"></canvas>');
     charts[canvasid] = new Chart($("#" + canvasid), config);
   };
 
-  lib.setDatesAndIDs = (entity) => {
+  lib.setDatesAndIDs = (entity)    => {
 
     let today = moment(new Date());
     let tomorrow = moment(new Date()).add(1,'day');
@@ -397,7 +367,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     return entity;
   };
 
-  lib.uniqueString = () => {
+  lib.uniqueString   = ()          => {
     let text     = "";
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -407,8 +377,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     return text;
   };
 
-
-  lib.getRetailerid = (id) => {
+  lib.getRetailerid  = (id)        => {
     let retailerid = 0;
     angular.forEach($rootScope.retailers, function(value,key) {
       if (value.managerid === id) {
@@ -418,7 +387,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     return retailerid;
   };
 
-  lib.checkDates = (sDate, eDate) => {
+  lib.checkDates     = (sDate, eDate) => {
 
     let msDate = new moment(sDate);
     let meDate = new moment(eDate);
@@ -438,9 +407,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     console.log("Today -> " + today.format());
     console.log("6m from Today -> " + sixMonths.format());
 
-
-
-    if (moment(msDate).isAfter(today, 'day')) {
+    if (moment(msDate).isBefore(today, 'day')) {
       return "StartDate cannot be less than todays date";
     }
 
@@ -454,9 +421,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
 
   };
 
-
-
-  lib.resetCanvas = ()  => {
+  lib.resetCanvas    = ()          => {
 
     // if ($rootScope.canvas === {}) {
     $('#myChart').remove(); // this is my <canvas> element
@@ -479,6 +444,60 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
 
   };
 
+  lib.checkFileSize  = (file)      => {
+    let fileSize = Math.round(parseInt(file.size));
+    return (fileSize <= $rootScope.sizeLimit)
+  };
+
+  lib.fileSizeLabel  = ()          => {
+    // Convert Bytes To MB
+    return Math.round($scope.sizeLimit / 1024 / 1024) + 'MB';
+  };
+
+  lib.updateGrid     = (grid, row) => {
+
+    switch (row.field) {
+      case 'page1': // from Content
+        grid.entity.page1 = $rootScope.entry;
+        break;
+      case 'page2': // from Content
+        grid.entity.page2 = $rootScope.entry;
+        break;
+      case 'page3': // from Content
+        grid.entity.page3 = $rootScope.entry;
+        break;
+      case 'rewardImage': // from Loyalty Reward
+        grid.entity.rewardImage = $rootScope.entry;
+        break;
+      case 'defaultContentPage1': // from Retailer
+        grid.entity.defaultContentPage1 = $rootScope.entry;
+        break;
+      case 'defaultContentPage2': // from Retailer
+        grid.entity.defaultContentPage2 = $rootScope.entry;
+        break;
+      case 'defaultContentPage3': // from Retailer
+        grid.entity.defaultContentPage3 = $rootScope.entry;
+        break;
+      case 'defaultLoyaltyImage': // from Retailer
+        grid.entity.defaultLoyaltyImage = $rootScope.entry;
+        break;
+      case 'logoImageSmall': // from Retailer and ShoppingCenter
+        grid.entity.logoImageSmall = $rootScope.entry;
+        break;
+      case 'logoImageMedium': // from Retailer and ShoppingCenter
+        grid.entity.logoImageMedium = $rootScope.entry;
+        break;
+      case 'logoImageLarge': // from Retailer and ShoppingCenter
+        grid.entity.logoImageLarge = $rootScope.entry;
+        break;
+      case 'headerBackgroundImage': // from Retailer
+        grid.entity.headerBackgroundImage = $rootScope.entry;
+        break;
+      case 'contentPage': // from ShoppingCenter
+        grid.entity.contentPage = $rootScope.entry;
+        break;
+    }
+  };
 
   return lib;
 

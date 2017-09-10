@@ -1,25 +1,20 @@
-myApp.factory('AwsFactory',[ '$rootScope','Globals','moment','AWSconfig','Flash',  function ($rootScope, Globals, moment, AWSconfig, Flash) {
+myApp.factory('AwsFactory',[ '$rootScope','Globals','moment','AWSconfig','Flash','Common',  function ($rootScope, Globals, moment, AWSconfig, Flash, Common) {
   $rootScope.sizeLimit = 10585760; // 10MB in Bytes
 
 
   let factory = {};
 
-  factory.checkFileSize = (file) => {
-    let fileSize = Math.round(parseInt(file.size));
-    return (fileSize <= $rootScope.sizeLimit)
-  };
-
-  factory.setupAWSFileParams = (type, grid, row, ctx) => {
+  factory.setupAWSFileParams = (type, grid, row, file, id) => {
     // gather the bits to create a unique filename;
     // type = C
     // contentid = number
     // page1 /page2 or page3
     // eg 'C10-page1-imag002.jpg'
-    let files = ctx.editFileChooserCallback.arguments[2];
-    let file = files[0];
+
+
     let filename = file.name;
     let filesize = file.size;
-    let id = grid.entity.contentid;
+    // let id = grid.entity.contentid;
     let page = row.field;
     let uniqueName = type + id + "-" + page + "-" + filename;
     $rootScope.file = file;
@@ -29,14 +24,9 @@ myApp.factory('AwsFactory',[ '$rootScope','Globals','moment','AWSconfig','Flash'
     $rootScope.params.ContentType = $rootScope.file.type;
     $rootScope.params.Body = $rootScope.file;
 
-    $rootScope.entry = $rootScope.entry + uniqueName;
+    $rootScope.entry = $rootScope.entry + "/"+ uniqueName;
 
     return uniqueName;
-  };
-
-  factory.fileSizeLabel = () => {
-    // Convert Bytes To MB
-    return Math.round($scope.sizeLimit / 1024 / 1024) + 'MB';
   };
 
   factory.setupAWSconfig = (type) => {
@@ -122,20 +112,45 @@ myApp.factory('AwsFactory',[ '$rootScope','Globals','moment','AWSconfig','Flash'
     })
   };
 
-  factory.updateGrid = (grid, row) => {
+  // $scope.uploadFile = function(grid, row) {
 
-    switch (row.field) {
-      case 'page1':
-        grid.entity.page1 = $rootScope.entry;
-        break;
-      case 'page2':
-        grid.entity.page2 = $rootScope.entry;
-        break;
-      case 'page3':
-        grid.entity.page3 = $rootScope.entry;
-        break;
+  factory.uploadFile = (grid, row, ctx) => {
+
+    let files = this.editFileChooserCallback.arguments[2];
+    $rootScope.file = files[0];
+
+
+    let entry = "";
+    // AwsFactory.setupAWSconfig($rootScope.type);
+    // AwsFactory.setupAWSFileParams($rootScope.type, grid, row, this);
+    // Common.updateGrid(grid, row);
+
+    if (! Common.checkFileSize($rootScope.file)) {
+      toast({
+        duration  : 2000,
+        message   : "File is too big! must be less than : 10MB" ,
+        className : "alert-warning"
+      });
+      Flash.create("danger", "File is too big [ " + Common.fileSizeLabel() + " ] ... please reduce size and try again Limit is 10 MBytes", 4000)
+
+      return false;
+    } else {
+
+      AwsFactory.setupAWSconfig($rootScope.type);
+      AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file);
+      AwsFactory.sendFile();
+
+      Common.updateGrid(grid, row);
+      toast({
+        duration  : 2000,
+        message   : "File [ " + $rootScope.entry + " ] uploaded to Amazon Web Services Successfully!  ",
+        className : "alert-success"
+      });
     }
-  }
+  };
+
+
+
 
   return factory;
 

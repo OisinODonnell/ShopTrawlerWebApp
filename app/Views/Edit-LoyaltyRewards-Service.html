@@ -8,12 +8,31 @@
         <div class="block"> <label>Points Per Visit </label>  <input class="input" title="" type="number" ng-model="row.entity.pointsPerVisit"/>           </div>
 
       <br/>
-        <div class="block">      <label>Reward Image </label>
 
-          <input class="bottom-marg-15" type="file" name="file" file/>
-          <input class="input" title="" type="text"   ng-model="row.entity.rewardImage"/>
-          <a     class="btn-sm btn-info" ng-click="upload()">Upload New Image</a>
-        </div>
+          <!--<input class="bottom-marg-15" type="file" name="file" file/>-->
+          <!--<input class="input" title="" type="text"   ng-model="row.entity.rewardImage"/>-->
+          <!--<a     class="btn-sm btn-info" ng-click="upload()">Upload New Image</a>-->
+        <!--</div>-->
+
+
+
+  <div class="block">      <label>Reward Image </label>
+
+
+        <!--<input class="bottom-marg-15" type="file" name="file" file/>-->
+        <input file-upload="fileUploadOptions" type="file" multiple data-sequential-uploads="true" />
+        <input  class="input" title="Reward Image" ng-model="row.entity.rewardImage"/>
+        <a class="btn-sm btn-info" ng-click="vm.upload(file, 'LR', row.entity.loyaltyRewardid, row.entity.rewardImage, row)">Upload Reward Image</a>
+
+      </div>
+
+
+
+
+
+
+
+
       <br/>
         <div class="block">  <label>Retailer ID  </label>  <input class="input" title="" type="text"   disabled value="{{row.entity.storeName}}"/> </div>
         <div class="block">  <label>Reward Title </label>  <input class="input" title="" type="text"   ng-model="row.entity.rewardTitle"/>          </div>

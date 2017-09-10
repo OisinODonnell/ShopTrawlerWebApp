@@ -18,28 +18,37 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
     $scope.uploader = new FileUploader();
     $rootScope.currentUser.type = "";
 
+
     $scope.uploadFile = function(grid, row) {
 
-      let entry = "";
-      AwsFactory.setupAWSconfig($rootScope.type);
-      AwsFactory.setupAWSFileParams($rootScope.type, grid, row, this);
-      AwsFactory.updateGrid(grid, row);
+      let files = this.editFileChooserCallback.arguments[2];
+      $rootScope.file = files[0];
 
-      if (! AwsFactory.checkFileSize($rootScope.file)) {
+
+      let entry = "";
+      // AwsFactory.setupAWSconfig($rootScope.type);
+      // AwsFactory.setupAWSFileParams($rootScope.type, grid, row, this);
+      // Common.updateGrid(grid, row);
+
+      if (! Common.checkFileSize($rootScope.file)) {
         toast({
           duration  : 2000,
-          message   : "File too big! must be less than : 10MB" ,
+          message   : "File is too big! must be less than : 10MB" ,
           className : "alert-warning"
         });
-        Flash.create("danger", "File is too big [ " + AwsFactory.fileSizeLabel() + " ] ... please reduce size and try again Limit is 10 MBytes", 4000)
+        Flash.create("danger", "File is too big [ " + Common.fileSizeLabel() + " ] ... please reduce size and try again Limit is 10 MBytes", 4000)
 
         return false;
       } else {
+
+        AwsFactory.setupAWSconfig($rootScope.type);
+        AwsFactory.setupAWSFileParams($rootScope.type, grid, row, $rootScope.file, grid.entity.contentid);
         AwsFactory.sendFile();
-        AwsFactory.updateGrid(grid, row);
+
+        Common.updateGrid(grid, row);
         toast({
           duration  : 2000,
-          message   : "File [ " + $rootScope.entry + " ]uploaded to Amazon Web Services!  ",
+          message   : "File [ " + $rootScope.entry + " ] uploaded to Amazon Web Services Successfully!  ",
           className : "alert-success"
         });
       }
@@ -54,11 +63,6 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       $scope.allowEditRow = false; // action below
       $rootScope.currentUser.type = "Retailer";
     }
-
-    $scope.awsUpload = function() {
-      $scope.uploader.uploadAll();
-      let ready = $scope.uploader.getReadyItems();
-    };
 
     $scope.vm = vm;
 
@@ -181,13 +185,6 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       console.log("save Row LR");
     };
 
-    $scope.addRow = function(row) {
-      console.log("save Row C");
-      let content = Globals.NewContent;
-      content.retailerid = Common.findStoreName($rootScope.currentUser.retailerid);
-      vm.serviceGrid.data.push(content);
-    };
-
     // Delete Row in Grid and delete row in Database if exists
     $scope.deleteRow = function(row) {
       if (row.entity.contentid !== 0) { // edits made to existing row
@@ -205,7 +202,7 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       let index = vm.serviceGrid.data.indexOf(row.entity);
       vm.serviceGrid.data.splice(index, 1);
 
-      console.log("delete Row LR");
+      console.log("delete Row C");
     };
 
     $scope.addRow = function (row) {
@@ -213,11 +210,18 @@ myApp.controller('ContentsController', ['DataFactory','$scope','Common','$rootSc
       console.log("adding LR");
       let content = new Content();
       content = Globals.NewContent;
+      DataFactory.addDefaultContent($rootScope.currentUser.retailerid)
+        .then( function(response){
+          Flash.create("success", "Content Added successfully", 2000);
+          vm.serviceGrid.data = buildNewContents(response.data);
+            // content.retailedid = $rootScope.currentUser.retailerid;
+            // content.storeName = Common.findStoreName($rootScope.currentUser.retailerid);
+            // vm.serviceGrid.data.push(content);
+        },
+        function (message) {
+          Flash.create("danger", "Default Content not added : " + response.data.message);
+        });
 
-      // get the retailers storename
-
-      content.storeName = Common.findStoreName($rootScope.currentUser.retailerid);
-      vm.serviceGrid.data.push(content);
     };
 
     /**

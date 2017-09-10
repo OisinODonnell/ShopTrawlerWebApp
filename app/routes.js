@@ -39,44 +39,43 @@ angular.module('routes', []).config(function ($routeProvider) {
     .when('/Favourites/List',    {controller: 'FavouritesController',        templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
     .when('/Favourites/Retailer',{controller: 'FavouritesController',        templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
     // Locations
-    .when('/Locations/List',{     controller: 'LocationsController',         templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
+    .when('/Locations/List',    { controller: 'LocationsController',         templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
     // LoyaltyRewards
     .when('/LoyaltyRewards/Retailer',{controller: 'LoyaltyRewardsController',templateUrl: 'Views/List-LoyaltyRewards.view.html',    controllerAs: 'vm' })
     .when('/LoyaltyRewards/Approve', {controller: 'ApproveLoyaltyRewardsController',  templateUrl: 'Views/Approve.view.html', controllerAs: 'vm' })
     // Ratings
-    .when('/Ratings/List',    {   controller: 'RatingsController',           templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
-    .when('/Ratings/Retailer',{   controller: 'RatingsController',           templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
+    .when('/Ratings/List',      { controller: 'RatingsController',           templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
+    .when('/Ratings/Retailer',  { controller: 'RatingsController',           templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
     // Retailers
-    .when('/Retailers/List', {    controller: 'RetailersController',         templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
+    .when('/Retailers/List',    { controller: 'RetailersController',         templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
+    .when('/Retailers/Retailer',{ controller: 'RetailersController',         templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
     //  ShoppingCentre
     .when('/ShoppingCentres/List', { controller: 'ShoppingCentresController',templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
     // Users
-    .when('/Users/List',     {    controller: 'UsersController',             templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
-    .when('/Users/Retailer', {    controller: 'UsersController',             templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
-    .when('/Users/Approve',  {    controller: 'ApproveUsersController',      templateUrl: 'Views/Approve.view.html', controllerAs: 'vm' })
+    .when('/Users/List',        { controller: 'UsersController',             templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
+    .when('/Users/Retailer',    { controller: 'UsersController',             templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
+    .when('/Users/Approve',     { controller: 'ApproveUsersController',      templateUrl: 'Views/Approve.view.html', controllerAs: 'vm' })
     // UserPoints
     .when('/UserPoints/Retailer',{controller: 'UserPointsController',        templateUrl: 'Views/List.view.html',    controllerAs: 'vm'    })
 
     // Visits
-    .when('/Visits/List',     {   controller: 'VisitsController',            templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
-    .when('/Visits/Retailer', {   controller: 'VisitsController',            templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
+    .when('/Visits/List',       { controller: 'VisitsController',            templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
+    .when('/Visits/Retailer',   { controller: 'VisitsController',            templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
 
-      .when('/Visits/Report/Retailer/Days',   { controller: 'VisitsReportDaysController',   templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Retailer/Weeks',  { controller: 'VisitsReportWeeksController',  templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Retailer/Months', { controller: 'VisitsReportMonthsController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Retailer/Gender', { controller: 'VisitsReportGenderController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Retailer/Age',    { controller: 'VisitsReportAgeController',    templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Retailer/Days',   { controller: 'VisitsReportDaysController',   templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Retailer/Weeks',  { controller: 'VisitsReportWeeksController',  templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Retailer/Months', { controller: 'VisitsReportMonthsController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Retailer/Gender', { controller: 'VisitsReportGenderController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Retailer/Age',    { controller: 'VisitsReportAgeController',    templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
 
-      .when('/Visits/Report/Admin/Days',      { controller: 'VisitsReportDaysController',   templateUrl: 'Views/ReportDays.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Admin/Weeks',     { controller: 'VisitsReportWeeksController',  templateUrl: 'Views/ReportWeeks.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Admin/Months',    { controller: 'VisitsReportMonthsController', templateUrl: 'Views/ReportMonths.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Admin/Gender',    { controller: 'VisitsReportGenderController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
-      .when('/Visits/Report/Admin/Age',       { controller: 'VisitsReportAgeController',    templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Admin/Days',      { controller: 'VisitsReportDaysController',   templateUrl: 'Views/ReportDays.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Admin/Weeks',     { controller: 'VisitsReportWeeksController',  templateUrl: 'Views/ReportWeeks.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Admin/Months',    { controller: 'VisitsReportMonthsController', templateUrl: 'Views/ReportMonths.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Admin/Gender',    { controller: 'VisitsReportGenderController', templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
+    .when('/Visits/Report/Admin/Age',       { controller: 'VisitsReportAgeController',    templateUrl: 'Views/Report.Visit.view.html', controllerAs: 'vm' })
 
     // Zones
     .when('/Zones/List',    {     controller: 'ZonesController',             templateUrl: 'Views/List.view.html',    controllerAs: 'vm' })
-
-
 
     .otherwise({redirectTo: '/login'});
 });
