@@ -159,7 +159,7 @@ myApp.controller('VisitsReportWeeksController', ['$rootScope','$scope','DataFact
             let chartConfig = {
               header : "Weekly Visits for past 12 Weeks",
               footer : "Weekly",
-              type   : 'doughnut',
+              type   : 'bar',
               options : {},
             };
 

@@ -260,8 +260,8 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
       config.data.datasets[key] = [];
 
       // line config
-      config.data.datasets[key].pointRadius = 10;
-      config.data.datasets[key].pointStyle = 'rectRounded';
+      config.data.datasets[key].pointRadius = 7;
+      config.data.datasets[key].pointStyle = 'circle';
 
       config.data.datasets[key].data = visitChart.getCounts();
       config.data.datasets[key].label = visitChart.getStoreName();
