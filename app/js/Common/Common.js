@@ -338,6 +338,8 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     entity.sDate = new Date(entity.startDate);
     entity.eDate = new Date(entity.endDate);
 
+
+
     // fix invalid dates before we start.
     // startdate cant be less that today
     // endate cant be less than tomorrow
@@ -350,7 +352,7 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
       entity.eDate = new Date(tomorrow);
     }
 
-    entity.minStartDate = today;
+    entity.minStartDate = new Date ( today );
     entity.minEndDate = new Date (tomorrow);
     entity.maxEndDate = new Date (endDate);
 

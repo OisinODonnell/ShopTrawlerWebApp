@@ -6,7 +6,7 @@ myApp.service('RowEditor',[ '$http', '$rootScope', '$uibModal',
   function ($http, $rootScope, $uibModal) {
 
   let vm = this;
-  let urlBase = "http://localhost:8080"
+  let urlBase = "http://localhost:8080";
   vm.controllerArray = [ '$http', '$uibModalInstance', 'grid', 'row','Flash', RowEditCtrl ];
 
   $rootScope.row = {};
