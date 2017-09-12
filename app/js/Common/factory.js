@@ -69,7 +69,6 @@ myApp.factory('DataFactory', ['$http','Globals','$rootScope', function($http, Gl
   factory.getLoyaltyReward              = (id)            => $http.get(urlBase + '/LoyaltyReward/' + id           );
   factory.addLoyaltyReward              = (loyaltyReward) => $http.post(urlBase + '/LoyaltyReward/create' , loyaltyReward );
   factory.addDefaultLoyaltyReward       = (id)            => $http.get(urlBase + '/LoyaltyReward/create/default/' + id );
-
   factory.deleteLoyaltyReward           = (id)            => $http.delete(urlBase + '/LoyaltyReward/delete/' + id );
   factory.updateLoyaltyReward           = (loyaltyReward) => $http.put(urlBase + '/LoyaltyReward/update' , loyaltyReward );
   factory.loyaltyRewardCheckDates       = (loyaltyReward) => $http.put(urlBase + '/LoyaltyReward/CheckDates', loyaltyReward );

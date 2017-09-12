@@ -414,10 +414,10 @@ myApp.factory('Common',[ '$rootScope','Globals','moment','AWSconfig',  function 
     }
 
     if (moment(sDatePlusOne).isAfter(meDate, 'day')){
-      return "StartDate cannot be the same day as endDate";
+      return "StartDate cannot greater than or equal to EndDate";
     }
     if (moment(meDate).isAfter(sixMonths, 'day')) {
-      return "EndDate cannot be m ote than 6 Months away (ie > " + sixMonths.format + ")";
+      return "EndDate cannot be more than 6 Months away (ie > " + sixMonths.format + ")";
     }
     return true;
 

@@ -155,27 +155,25 @@ myApp.controller('LoyaltyRewardsController', ['DataFactory','$scope','Common','$
       // find retailerid
       // copy to new LR record
       // post to REST
-
-      let loyaltyReward = new LoyaltyReward()
       let userid = $rootScope.currentUser.userid;
       let retailerid = Common.getRetailerid(userid);
-      loyaltyReward = createNewLR(row.entity, retailerid);
 
       let index = vm.serviceGrid.data.indexOf(row.entity);
       // let resp = Common.checkDates(row.entity.startDate, row.entity.endDate);
-      let resp = Common.checkDates(loyaltyReward.getStartDate(), loyaltyReward.getEndDate());
+
+      let resp = Common.checkDates(row.entity.startDate, row.entity.endDate);
       let earliestStartDate;
 
       if (resp !== true) { // fails basic date check
         Flash.create("danger", "Loyalty Reward not updated : -> " + resp, 4000);
       } else { // basic date check ok
 
-        DataFactory.loyaltyRewardCheckDates(loyaltyReward) // check Dates valid on REST
+        DataFactory.loyaltyRewardCheckDates(row.entity) // check Dates valid on REST
           .then( function(response) {
             // ok no content record found between these start and end dates
-            if (response.data.success === 1) {
+            if (response.data.success === "1") {
 
-              DataFactory.addLoyaltyReward(loyaltyReward) // ok, now lets save the Loyalty Reward
+              DataFactory.updateLoyaltyReward(row.entity) // ok, now lets save the Loyalty Reward
                 .then(function (response) {
                     Flash.create("success", "Loyalty Reward validated and added successfully", 2000);
                     vm.serviceGrid.data = buildNewLoyaltyRewards(response.data);
