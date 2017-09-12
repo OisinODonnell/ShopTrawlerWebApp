@@ -59,17 +59,18 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
     };
 
     // default content
-    colDefs[2].editFileChooserCallback  = $scope.uploadFile;
     colDefs[3].editFileChooserCallback  = $scope.uploadFile;
     colDefs[4].editFileChooserCallback  = $scope.uploadFile;
-    // default loyalty reward
     colDefs[5].editFileChooserCallback  = $scope.uploadFile;
+    // default loyalty reward
+    colDefs[6].editFileChooserCallback  = $scope.uploadFile;
     // logos
-    colDefs[9].editFileChooserCallback  = $scope.uploadFile;
-    colDefs[10].editFileChooserCallback = $scope.uploadFile;
+    colDefs[10].editFileChooserCallback  = $scope.uploadFile;
     colDefs[11].editFileChooserCallback = $scope.uploadFile;
+    colDefs[12].editFileChooserCallback = $scope.uploadFile;
     // header image
-    colDefs[14].editFileChooserCallback = $scope.uploadFile;
+    colDefs[15].editFileChooserCallback = $scope.uploadFile;
+
 
 
     // setup grid
@@ -114,12 +115,13 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
                       });
                       $scope.usersNotManagers = usersNotManagers;
                       vm.usersNotManagers = usersNotManagers;
-                      vm.serviceGrid.data = $scope.retailers;
+                      vm.serviceGrid.columnDefs[2].editDropDownOptionsArray = vm.usersNotManagers;
                       // update each retailer with list of possible managers for use in grid
                       $scope.retailers.forEach(function (retailer, key) {
                         retailer.managers = vm.usersNotManagers;
                         $scope.retailers[key] = retailer;
                       });
+                      vm.serviceGrid.data = $scope.retailers;
 
                     },
                     function(error) { $scope.status = "Unable to load Users " + error.message; }
@@ -277,9 +279,11 @@ myApp.controller('RetailersController', ['DataFactory','$scope','Common','$rootS
       retailer.setPhone(entity.phone);
       retailer.setStoreName(entity.storeName);
       retailer.setHeaderBackgroundImage(entity.headerBackgroundImage);
-      if (entity.managerid == 0) retailer.setManagerid(null);
+      if (entity.managerid == 0)
+        retailer.setManagerid(null);
+      else
+        retailer.setManagerid                 (entity.managerid);
 
-      // retailer.setManagerid                 (entity.managerid);
       retailer.setShoppingCentreid          (entity.shoppingCentreid);
       retailer.setStoreDefaultContentPage1  (entity.storeDefaultContentPage1);
       if (entity.zoneid == 0) retailer.setZoneid(null)

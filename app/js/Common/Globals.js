@@ -416,6 +416,7 @@ myApp.value('Globals', {
       type  : 'number',
       width : 100,
       },
+      {  field : 'managerid',          type: 'number',width : '15%', displayName : 'Manager ID',                 enableCellEdit : true, headerCellClass: 'white',  },
       {  field : 'defaultContentPage1',               width : '9%',   displayName : 'Default Content Page1',      enableCellEdit : true, headerCellClass: 'white',  },
       {  field : 'defaultContentPage2',               width : '9%',   displayName : 'Default Content Page2',      enableCellEdit : true, headerCellClass: 'white',  },
       {  field : 'defaultContentPage3',               width : '9%',   displayName : 'Default Content Page3',      enableCellEdit : true, headerCellClass: 'white',  },
@@ -429,7 +430,6 @@ myApp.value('Globals', {
       {  field : 'phone',                             width : '5%',   displayName : 'Phone',                      enableCellEdit : true, headerCellClass: 'white',  },
       {  field : 'storeName',                         width : '5%',   displayName : 'Store Name',                 enableCellEdit : true, headerCellClass: 'white',  },
       {  field : 'headerBackgroundImage',             width : '9%',   displayName : 'Header Background Image',    enableCellEdit : true, headerCellClass: 'white',  },
-      {  field : 'managerid',          type: 'number',width : '4.5%', displayName : 'Manager ID',                 enableCellEdit : true, headerCellClass: 'white',  },
       {  field : 'shoppingCentreid',   type: 'number',width : '4.5%', displayName : 'Shopping Centre ID',         enableCellEdit : true, headerCellClass: 'white',  },
       {  field : 'storeDefaultContentPage1',          width : '9%',   displayName : 'Store Default Content Page1',enableCellEdit : true, headerCellClass: 'white',  },
       // {  field : 'zoneid',             type: 'number',width : '4.5%', displayName : 'Zone ID',                    enableCellEdit : true, headerCellClass: 'white',  }
@@ -448,6 +448,16 @@ myApp.value('Globals', {
       // '<button class="btn-danger btn-circle "  ng-click="grid.appScope.deleteRow(row)" ><img src="images/ic_delete_forever_black_24dp_1x.png"></button>'+
       // '</div>'
       },
+      {
+        field: 'managerid',
+        type: 'number',
+        width: '15%',
+        displayName: 'Manager ID',
+        enableCellEdit: true,
+        headerCellClass: 'white',
+        // editableCellTemplate: '/ShopTrawlerWebApp/app/Views/uiSelect.html',
+
+      }, // 'vm.usersNotManagers'  },
       {  field : 'defaultContentPage1',               width : '20%',   displayName : 'Default Content Page 1',      enableCellEdit : true, headerCellClass: 'white',
         cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserDCPage1.html",},
       {  field : 'defaultContentPage2',               width : '20%',   displayName : 'Default Content Page 2',      enableCellEdit : true, headerCellClass: 'white',
@@ -476,20 +486,7 @@ myApp.value('Globals', {
       {  field : 'headerBackgroundImage',             width : '20%',   displayName : 'Header Background Image',    enableCellEdit : true, headerCellClass: 'white',
         cellTemplate: "/ShopTrawlerWebApp/app/Views/cellTemplateFileChooserHBImage.html",
       },
-      {
-        field: 'managerid',
-        type: 'number',
-        width: '4.5%',
-        displayName: 'Manager ID',
-        enableCellEdit: true,
-        headerCellClass: 'white',
-        editableCellTemplate: '/ShopTrawlerWebApp/app/Views/uiSelect.html',
-        editDropDownOptionsArray: [
-          { id: 0, value: 'male' },
-          { id: 1, value: 'female' },
-          { id: 2, value: 'other ' },
-        ]
-      }, // 'vm.usersNotManagers'  },
+
       {  field : 'shoppingCentreid',   type: 'number',width : '4.5%', displayName : 'Shopping Centre ID',         enableCellEdit : true, headerCellClass: 'white',  },
       {  field : 'storeDefaultContentPage1',          width : '9%',   displayName : 'Store Default Content Page1',enableCellEdit : true, headerCellClass: 'white',  },
       // {  field : 'zoneid',             type: 'number',width : '4.5%', displayName : 'Zone ID',                    enableCellEdit : true, headerCellClass: 'white',
