@@ -19,7 +19,7 @@ myApp.controller('VisitsController', ['DataFactory','$scope','Common','$rootScop
     vm.editRow = RowEditor.editRowVisit;
     vm.serviceGrid = Common.setupUiGrid(Globals.VisitColumnDefs, $scope.allowEditRow )
     let durationColWithAvg = {  name: 'avgRating', field: 'duration',  headerCellClass: 'white',width: '10%', aggregationType: uiGridConstants.aggregationTypes.avg, displayName: 'Duration',
-      footerCellTemplate: '<div class="ui-grid-cell-contents" >Total: {{col.getAggregationValue() | number:0 }}</div>'};
+      footerCellTemplate: '<div class="ui-grid-cell-contents" >Average: {{col.getAggregationValue() | number:0 }}</div>'};
     vm.serviceGrid.columnDefs.splice(3, 0, durationColWithAvg);
 
     function ListVisits() {

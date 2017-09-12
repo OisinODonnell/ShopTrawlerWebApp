@@ -103,7 +103,7 @@ myApp.value('Globals', {
 
     enableGridMenu            : true, // menu in top right hand corner
     // enablePaging              : true,
-    // paginationPageSizes       : [10, 20, 40],
+    paginationPageSizes       : [10, 20, 40],
     // paginationPageSize        : 10,
     minRowsToShow             : 6 ,  // again this does not appear to work, it appears to follow the 'paginationPageSizes'
     // minimumColumnSize         : 100, // this did not work, col width is specified individually below
@@ -205,16 +205,16 @@ myApp.value('Globals', {
       field : 'visitid',                 displayName    : 'Visit ID',headerCellClass: 'white',
       enableSorting : true,              enableCellEdit : false,
       type : 'number',
-      width : '6%',
+      width : '7%',
       },
-      { field : 'getEntryTimeReadable()',width : '18%',    displayName : 'Entry Time', enableCellEdit : false,type:"date", headerCellClass: 'white',},
-      { field : 'getExitTimeReadable()', width : '18%',    displayName : 'Exit Time',  enableCellEdit : false,type:"date", headerCellClass: 'white',},
+      { field : 'getEntryTimeReadable()',width : '19%',    displayName : 'Entry Time', enableCellEdit : false,type:"date", headerCellClass: 'white',},
+      { field : 'getExitTimeReadable()', width : '19%',    displayName : 'Exit Time',  enableCellEdit : false,type:"date", headerCellClass: 'white',},
       // { field : 'userCreditedForVisit', width : 100,    displayName : 'User Credited For Visit',enableCellEdit : true, },
       // { field : 'duration', type: 'number' ,            width : 100,    displayName : 'Duration',enableCellEdit : false,               },
-      { field : 'storeName',             width : '18%',    displayName : 'Store Name', enableCellEdit : false,             headerCellClass: 'white',},
-      { field : 'fullname',              width : '18%',    displayName : 'Fullname',   enableCellEdit : false,            headerCellClass: 'white', },
-      { field : 'userid',                width : '6%',    displayName : 'User ID',     enableCellEdit : false,type: 'number' ,headerCellClass: 'white',             },
-      { field : 'zoneid',                width : '6%',    displayName : 'Zone ID',     enableCellEdit : false,type: 'number' ,headerCellClass: 'white',             }
+      { field : 'storeName',             width : '19%',    displayName : 'Store Name', enableCellEdit : false,             headerCellClass: 'white',},
+      { field : 'fullname',              width : '19%',    displayName : 'Fullname',   enableCellEdit : false,            headerCellClass: 'white', },
+      { field : 'userid',                width : '7%',    displayName : 'User ID',     enableCellEdit : false,type: 'number' ,headerCellClass: 'white',             },
+      // { field : 'zoneid',                width : '6%',    displayName : 'Zone ID',     enableCellEdit : false,type: 'number' ,headerCellClass: 'white',             }
     ],
   "addRowVisit" : {
     "visitid"   : "",
